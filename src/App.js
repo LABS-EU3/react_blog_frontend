@@ -1,14 +1,7 @@
-import React from 'react';
-
+import React from "react";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        Welcome to our blog publishing platform
-      </header>
-    </div>
-  );
+  return <div className="App">Welcome to our blog publishing platform</div>;
 }
 
 export default App;
