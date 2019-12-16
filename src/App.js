@@ -1,14 +1,19 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Modal from "./pages/Modal";
+import Register from "./pages/Register";
 
 function App() {
-  const [modalOpen, setModalOpen] = useState(true);
-  
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const handleControl = () => {
+    setModalOpen(!modalOpen);
+  };
+
   return (
     <div className="App">
       Welcome to our blog publishing platform
-      <button onClick={() => {setModalOpen(!modalOpen)}}>Register</button>
-      {modalOpen && <Modal />}
+      <button onClick={handleControl}>Trigger Modal</button>
+      {modalOpen && <Modal handleControl={handleControl} />}
     </div>
   );
 }

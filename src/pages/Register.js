@@ -26,5 +26,4 @@ function Register(props) {
     </div>
   );
 }
-
 export default connect(state=>state, {})(Register)
