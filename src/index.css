@@ -54,6 +54,3 @@ table {
   src: local('HK-Grotesk'), url(./fonts/HKGrotesk-Regular.woff) format('truetype');
 }
 
-#modal {
-	margin: 0 auto;
-}

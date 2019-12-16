@@ -2,45 +2,45 @@ import React, { useRef } from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
 
-const StyledModal = styled.div`
-    background-color: pink;
-    width: 50vw;
-    form {
-        display: flex;
-        flex-direction: column;
-    }
+const ModalWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0,0.3);
+`;
+const ModalInner = styled.div`
+  padding: 20;
+  background: #fff;
+  border-radius: 2px;
+  display: inline-block;
+  min-height: 300px;
+  margin: 1rem;
+  position: relative;
+  min-width: 300px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  justify-self: center;
+  width: 750px;
+  padding: 1.0rem;
+  @media (max-width: 750px) {
+    width: 90%;
+    margin: auto;
+    border-radius: 10px;
+    margin-top: 23.0rem;
+  }
 `;
 
-function Form(props) {
-  const username = useRef("");
-  const email = useRef("");
-  const password = useRef("");
-
-  const signup = e => {
-    e.preventDefault();
-    console.log(
-      username.current.value,
-      email.current.value,
-      password.current.value
-    );
-  };
-
-  return (
-    <StyledModal>
-      <form>
-        <input placeholder="Username" ref={username} />
-        <input placeholder="Email" ref={email} />
-        <input placeholder="Password" ref={password} />
-        <button onClick={signup}>Create an Account</button>
-      </form>
-    </StyledModal>
+function Modal(props) {
+  return ReactDOM.createPortal(
+    <ModalWrapper onClick={() => props.handleControl()}>
+      <ModalInner>{props.children}</ModalInner>
+    </ModalWrapper>,
+    document.querySelector("#modal")
   );
 }
 
-function Modal(props) {
-  return ReactDOM.createPortal(<Form />, document.querySelector("#modal"));
-}
-
 export default Modal;
-
-
