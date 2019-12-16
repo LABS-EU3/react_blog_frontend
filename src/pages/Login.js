@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import {Container, MyH2, Div, P, Input, Button} from "../utilities/styles/LoginStyles"
+import { Container, MyH2, Div, P, Input, Button } from "../utilities/styles/LoginStyles"
 
 const Login = props => {
     const nameRef = useRef();
@@ -46,8 +46,9 @@ const Login = props => {
     };
 
     return (
+
         <Container>
-            <MyH2> Log In </MyH2>
+            <MyH2> Login </MyH2>
             <Div>
                 {/* <p>Username</p> */}
                 <Input ref={nameRef} type="text" autoComplete="username" placeholder="Username" />
