@@ -1,18 +1,29 @@
-import React from "react";
-import { Route, Link, Router } from "react-router-dom";
+import React, { useState } from "react";
+import Modal from "./pages/Modal";
+import Register from "./pages/Register";
 import Login from "./pages/Login";
 
 function App() {
-  return <div>
+  const [modalOpen, setModalOpen] = useState(false);
+
+  // const [Login, setLoginOpen] = useState(false);
+
+  const handleControl = () => {
+    setModalOpen(!modalOpen);
+  };
+
+  return (
     <div className="App">
-      
       Welcome to our blog publishing platform
-
-      </div>;
-  
-      <Route path="/login" component={Login} />
-
-  </div>
+      <button onClick={handleControl}>Trigger Modal</button>
+      {modalOpen && (
+        <Modal handleControl={handleControl}>
+          <Register />
+          <Login />
+        </Modal>
+      )}
+    </div>
+  );
 }
 
 export default App;
