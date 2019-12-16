@@ -4,34 +4,38 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 
 
-
 function App() {
-  const [modalOpen, setModalOpen] = useState(false);
+  const [signUpModal, setSignUpModal] = useState(false);
 
-  // const [Login, setLoginOpen] = useState(false);
+  const [loginModal, setLoginModal] = useState(false);
 
   const handleControl = () => {
-    setModalOpen(!modalOpen);
+    setSignUpModal(!signUpModal);
+  };
+
+  const handleLogin = () => {
+    setLoginModal(!loginModal);
   };
 
   return (
     <div className="App">
       Welcome to our blog publishing platform
       <button onClick={handleControl}>Signup</button>
-      {modalOpen && (
+      {signUpModal && (
         <Modal handleControl={handleControl}>
           <Register />
         </Modal>
 
       )}
 
-      <button onClick={handleControl}>Login</button>
-      {modalOpen && (
-        <Modal handleControl={handleControl}>
+      <button onClick={handleLogin}>Login</button>
+      {loginModal && (
+        <Modal handleControl={handleLogin}>
           <Login />
         </Modal>
 
       )}
+
     </div>
   );
 }

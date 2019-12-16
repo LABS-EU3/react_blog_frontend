@@ -5,9 +5,10 @@ background: #fffefe;
     width: 500px;   
     margin: auto;
     box-shadow: 0px 1px 3px 0px #aaa;
-    height: 425px;
+    height: 400px;
     padding-top: 30px;
     margin-top: 45px;
+    margin-bottom: 50px;
 `;
 
 export const MyH2 = styled.h2`
@@ -32,6 +33,17 @@ display: flex;
 export const P = styled.p`
 text-align:center;
 line-height: 30px;
+color:#E16868;
+
+`;
+
+export const P2 = styled.p`
+text-align:center;
+line-height: 30px;
+
+a {
+    color: #E16868;
+    }
 `;
 
 export const Input = styled.input`

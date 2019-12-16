@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import {connect} from "react-redux"
-import { Container, MyH2, Div, P, Input, Button } from "../utilities/styles/LoginStyles"
+import { Container, MyH2, Div, P, Input, Button,P2 } from "../utilities/styles/LoginStyles"
 
 const Login = props => {
     const nameRef = useRef();
@@ -50,12 +50,10 @@ const Login = props => {
         <Container>
             <MyH2> Login </MyH2>
             <Div>
-                {/* <p>Username</p> */}
                 <Input ref={nameRef} type="text" autoComplete="username" placeholder="Username" />
             </Div>
 
             <Div>
-                {/* <p>Password</p> */}
                 <Input ref={passwordRef} type="password" autoComplete="password" placeholder="Password" />
             </Div >
 
@@ -63,7 +61,7 @@ const Login = props => {
                 <Button onClick={submit}> {loading ? "Loading" : "Login"} </Button>
             </Div>
             <P> Forgot your Password? </P>
-            <P> Dont have an account yet? <Link> Sign up here </Link> </P>
+            <P2> Dont have an account yet? <Link> Sign up here </Link> </P2>
 
         </Container>
     );
