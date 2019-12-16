@@ -13,7 +13,11 @@ function App() {
     <div className="App">
       Welcome to our blog publishing platform
       <button onClick={handleControl}>Trigger Modal</button>
-      {modalOpen && <Modal handleControl={handleControl} />}
+      {modalOpen && (
+        <Modal handleControl={handleControl}>
+          <Register />
+        </Modal>
+      )}
     </div>
   );
 }
