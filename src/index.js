@@ -2,8 +2,32 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import { BrowserRouter as Router } from "react-router-dom";
+import thunk from "redux-thunk";
+import logger from "redux-logger";
+import {loginReducer} from "./redux-store/reducers/user-reducer"
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import { Provider } from "react-redux";
+import { combineReducers, createStore, applyMiddleware, compose } from "redux";
+
+const bigReducer = combineReducers({
+    login: loginReducer.loginReducer,
+
+});
+
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(
+    bigReducer,
+    composeEnhancer(applyMiddleware(thunk, logger))
+  );
+
+ReactDOM.render(
+    <Provider store={store}>
+        <Router>
+            <App />
+        </Router>
+    </Provider>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
