@@ -3,9 +3,9 @@ import Modal from "./pages/Modal";
 import Register from "./pages/Register";
 
 function App() {
-  const [modalOpen, setModalOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(true);
 
-  const handleControl = () => {
+  const handleControl = (e) => {
     setModalOpen(!modalOpen);
   };
 

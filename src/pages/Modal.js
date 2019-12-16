@@ -16,7 +16,6 @@ const ModalWrapper = styled.div`
 const ModalInner = styled.div`
   padding: 20;
   background: #fff;
-  border-radius: 2px;
   display: inline-block;
   min-height: 300px;
   margin: 1rem;
@@ -26,6 +25,8 @@ const ModalInner = styled.div`
   justify-self: center;
   width: 750px;
   padding: 1.0rem;
+  border-radius: 5px;
+
   @media (max-width: 750px) {
     width: 90%;
     margin: auto;
