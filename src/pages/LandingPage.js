@@ -29,7 +29,7 @@ const LandingPage = () => {
 
         .button.get-started{
             background-color: #3672FB; 
-            padding: 8px;
+            padding: 10px;
         }
     `
 
