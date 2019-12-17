@@ -1,8 +1,9 @@
 import React, { useRef, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import {connect} from "react-redux"
-import { Container, MyH2, Div, P, Input, Button,P2 } from "../utilities/styles/LoginStyles"
+import {connect} from "react-redux";
+import { Container, MyH2, Div, P, Input, Button,P2 } from "../utilities/styles/LoginStyles";
+// import setLoginSuccess from "../redux-store/reducers/user-reducer";
 
 const Login = props => {
     const nameRef = useRef();
@@ -29,6 +30,18 @@ const Login = props => {
         if (valid) {
             return;
         }
+
+        // function callLoginApi(username, password, callback) {
+        //     setTimeout(() => {
+        //       if (username === 'Damilolami' && password === 'admin') {
+        //         return callback(null);
+        //       } else {
+        //         return callback(new Error('Invalid username and password'));
+        //       }
+        //     }, 1000);
+        //   }
+
+        props.setLoginSuccess({name: "damilola", token:"jkasaKLJajksdja"})
         setLoading(true);
         axios
             .post("https://react-blog.herokuapp.com/auth/login", {

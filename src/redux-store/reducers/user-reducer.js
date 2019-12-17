@@ -6,14 +6,27 @@ const initialLoginState = {
 };
 
 export const loginReducer = (state = initialLoginState, action) => {
-    switch(action.type) {
+    switch (action.type) {
         case types.LOGIN_START:
             return {};
-            default:
-                return state;
+        default:
+            return state;
     }
 };
 
+// export const setLoginSuccess = (user) => {
+//     return {
+//         type: types.LOGIN_SUCCESS,
+//         user: user
+//     };
+// }
+
+// export const setLoginFailure = (error) => {
+//     return {
+//       type: types.LOGIN_FAILURE,
+//       error: error
+//     };
+//   }
 
 const initialRegisterState = {
     username: "",
@@ -22,7 +35,7 @@ const initialRegisterState = {
 }
 
 export const userReducer = (state = initialRegisterState, action) => {
-    switch(action.type) {
+    switch (action.type) {
         default:
             return state;
     }

@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import styled from "styled-components";
 
 const StyledAuth = styled.form`
-  min-height: 300px;
-  width: 100%;
+  height: 400px;
+  width: 500px;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
