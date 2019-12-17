@@ -66,7 +66,7 @@ const StyledAuth = styled.form`
   }
 `;
 
-function Register({ register }) {
+function Register({ register, loading }) {
   const username = useRef("");
   const email = useRef("");
   const password = useRef("");
@@ -89,10 +89,14 @@ function Register({ register }) {
       <h1>Sign Up</h1>
       <input placeholder="Username" ref={username} />
       <input placeholder="Email" ref={email} />
-      <input placeholder="Password" ref={password} type='password'/>
-      <input placeholder="Confirm Password" ref={confirmPassword} type='password'/>
+      <input placeholder="Password" ref={password} type="password" />
+      <input
+        placeholder="Confirm Password"
+        ref={confirmPassword}
+        type="password"
+      />
       <button onClick={signup} className="primary">
-        Create an Account
+        {!loading.loading ? "Create an Account" : "Loading.."}
       </button>
       <div className="tos">
         <input type="checkbox" />
