@@ -16,9 +16,9 @@ function App() {
   };
 
   const handleControl = e => {
-    if (e.target.id === "modal-wrapper" && registerOpen) {
+    if (registerOpen) {
       setRegisterOpen(false);
-    } else if (e.target.id === "modal-wrapper" && loginOpen) {
+    } else if (loginOpen) {
       setLoginOpen(false);
     }
   };
@@ -36,7 +36,6 @@ function App() {
         <Modal handleControl={handleControl}>
           <Register />
         </Modal>
-
       )}
       {loginOpen && (
         <Modal handleControl={handleControl}>
