@@ -36,10 +36,13 @@ const ModalInner = styled.div`
 
 function Modal(props) {
   return ReactDOM.createPortal(
+    // <ModalWrapper onClick={() => props.handleControl()}>
+    //   <ModalInner>{props.children}</ModalInner>
+    // </ModalWrapper>,
+
     <ModalWrapper onClick={() => props.handleControl()}>
-      <ModalInner>{props.children}</ModalInner>
-    </ModalWrapper>,
-    document.querySelector("#modal")
+      <ModalInner onClick={(e) => e.stopPropagation()}>{props.children}</ModalInner>
+    </ModalWrapper>, document.querySelector("#modal")
   );
 }
  
