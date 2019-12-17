@@ -3,39 +3,45 @@ import Modal from "./pages/Modal";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 
-
 function App() {
-  const [signUpModal, setSignUpModal] = useState(false);
+  const [registerOpen, setRegisterOpen] = useState(false);
+  const [loginOpen, setLoginOpen] = useState(false);
 
-  const [loginModal, setLoginModal] = useState(false);
-
-  const handleControl = () => {
-    setSignUpModal(!signUpModal);
+  const showModal = e => {
+    if (e.target.id === "register") {
+      setRegisterOpen(true);
+    } else if (e.target.id === "login") {
+      setLoginOpen(true);
+    }
   };
 
-  const handleLogin = () => {
-    setLoginModal(!loginModal);
+  const handleControl = e => {
+    if (registerOpen) {
+      setRegisterOpen(false);
+    } else if (loginOpen) {
+      setLoginOpen(false);
+    }
   };
 
   return (
     <div className="App">
       Welcome to our blog publishing platform
-      <button onClick={handleControl}>Signup</button>
-      {signUpModal && (
+      <button onClick={showModal} id="register">
+        Sign Up
+      </button>
+      <button onClick={showModal} id="login">
+        Log In
+      </button>
+      {registerOpen && (
         <Modal handleControl={handleControl}>
           <Register />
         </Modal>
-
       )}
-
-      <button onClick={handleLogin}>Login</button>
-      {loginModal && (
-        <Modal handleControl={handleLogin}>
+      {loginOpen && (
+        <Modal handleControl={handleControl}>
           <Login />
         </Modal>
-
       )}
-
     </div>
   );
 }

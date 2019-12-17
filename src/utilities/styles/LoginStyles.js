@@ -2,9 +2,9 @@ import styled from "styled-components";
 
 export const Container = styled.div`
 background: #fffefe;
-    width: 500px;   
+    /* width: 100%;    */
     margin: auto;
-    box-shadow: 0px 1px 3px 0px #aaa;
+    /* box-shadow: 0px 1px 3px 0px #aaa; */
     height: 400px;
     padding-top: 30px;
     margin-top: 45px;
