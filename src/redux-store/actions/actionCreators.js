@@ -8,5 +8,6 @@ export const register = (user) => dispatch => {
     })
     .catch(err => {
         console.log(err)
+        alert("Please enter valid credentials")
     })
 }

@@ -89,8 +89,8 @@ function Register({ register }) {
       <h1>Sign Up</h1>
       <input placeholder="Username" ref={username} />
       <input placeholder="Email" ref={email} />
-      <input placeholder="Password" ref={password} />
-      <input placeholder="Confirm Password" ref={confirmPassword} />
+      <input placeholder="Password" ref={password} type='password'/>
+      <input placeholder="Confirm Password" ref={confirmPassword} type='password'/>
       <button onClick={signup} className="primary">
         Create an Account
       </button>
