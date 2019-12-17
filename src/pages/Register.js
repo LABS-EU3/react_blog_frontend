@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
+import * as actionCreators from "../redux-store/actions/actionCReators";
 
 const StyledAuth = styled.form`
   min-height: 300px;
@@ -10,7 +11,7 @@ const StyledAuth = styled.form`
   margin: 0 auto;
   align-items: center;
   justify-content: space-between;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   padding: 2rem 0;
   h1 {
     font-size: 2rem;
@@ -51,21 +52,21 @@ const StyledAuth = styled.form`
   }
   color: #636363;
   .tos {
-      display: flex;
-      margin-top: 1rem;
-      align-items: center;
-      width: 40%;
-      input {
-          width: 10%;
-          margin: 0;
-      }
-      a {
-          color : red;
-      }
+    display: flex;
+    margin-top: 1rem;
+    align-items: center;
+    width: 40%;
+    input {
+      width: 10%;
+      margin: 0;
+    }
+    a {
+      color: red;
+    }
   }
 `;
 
-function Register(props) {
+function Register({ register }) {
   const username = useRef("");
   const email = useRef("");
   const password = useRef("");
@@ -73,12 +74,14 @@ function Register(props) {
 
   const signup = e => {
     e.preventDefault();
-    console.log(
-      username.current.value,
-      email.current.value,
-      password.current.value,
-      confirmPassword.current.value
-    );
+
+    const userData = {
+      username: username.current.value,
+      email: email.current.value,
+      password: password.current.value,
+      confirmPassword: confirmPassword.current.value
+    };
+    register(userData);
   };
 
   return (
@@ -91,11 +94,11 @@ function Register(props) {
       <button onClick={signup} className="primary">
         Create an Account
       </button>
-      <div className='tos'>
-        <input type="checkbox"/>
-        <p className='inline'>
+      <div className="tos">
+        <input type="checkbox" />
+        <p className="inline">
           I agree to Insight's
-            <a> Terms of Service</a>
+          <a> Terms of Service</a>
         </p>
       </div>
       <hr />
@@ -108,4 +111,4 @@ function Register(props) {
     </StyledAuth>
   );
 }
-export default connect(state => state, {})(Register);
+export default connect(state => state, actionCreators)(Register);
