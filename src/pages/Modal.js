@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
 
@@ -43,5 +43,6 @@ function Modal(props) {
     document.querySelector("#modal")
   );
 }
+ 
 
 export default Modal;

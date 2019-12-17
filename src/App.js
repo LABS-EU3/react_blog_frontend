@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Modal from "./pages/Modal";
 import Register from "./pages/Register";
+import Login from "./pages/Login";
 
 function App() {
   const [registerOpen, setRegisterOpen] = useState(false);
@@ -35,10 +36,11 @@ function App() {
         <Modal handleControl={handleControl}>
           <Register />
         </Modal>
+
       )}
       {loginOpen && (
         <Modal handleControl={handleControl}>
-          <div>LOGIN FORM</div>
+          <Login />
         </Modal>
       )}
     </div>
