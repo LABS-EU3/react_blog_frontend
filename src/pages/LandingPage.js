@@ -5,6 +5,9 @@ import styled from 'styled-components';
 
 import lp from '../assets/images/lp-pic.png';
 import demo from '../assets/images/demo.GIF';
+import logo from '../assets/images/logo.png';
+import ps from '../assets/images/ps.png';
+import appstr from '../assets/images/appstr.png';
 
 const LandingPage = () => {
 
@@ -133,6 +136,11 @@ const LandingPage = () => {
         }
     `
 
+    const Space = styled.div`
+        background-color: #C6D0EB;
+        height: 150px;
+    `
+
     const Pitch = styled.div`
         color: #205284;
         display: flex;
@@ -141,7 +149,7 @@ const LandingPage = () => {
         h3 {
             font-family: 'HK Grotesk Bold';
             font-size: 3rem;
-            margin: 30px auto;
+            margin: 50px auto;
         }
 
         p {
@@ -155,10 +163,46 @@ const LandingPage = () => {
             color: #FFFFFF;
             border-radius: 5px;
             width: 180px;
-            margin: 30px auto;
+            margin: 50px auto;
         }
     `
-    
+
+    const BottomMenu = styled.div`
+        background-color: #212C4F;
+        font-family: 'HK Grotesk Light';
+        display: flex;
+        padding: 60px 0;
+        justify-content: space-around;
+
+        .header {
+            color: #686868;
+        }
+
+        .content a{
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: #FFFFFF;
+        }
+    `
+    const Footer = styled.div`
+        background-color: #123D63;
+        font-family: 'HK Grotesk Light';
+        padding: 50px 0;
+        display: flex;
+        justify-content: space-around;
+
+        a {
+            color: #FFFFFF;
+            text-decoration: none;
+        }
+
+        img {
+            margin: 0 20px;
+        }
+    `
+
     return (
         <Main>
             <Content>
@@ -190,15 +234,15 @@ const LandingPage = () => {
                 </MidContent>
 
                 <Features>
-                    <div className = 'feat'>
+                    <div className='feat'>
                         <h3>Lorem Ipsum</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
                     </div>
-                    <div className = 'feat'>
+                    <div className='feat'>
                         <h3>Lorem Ipsum</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
                     </div>
-                    <div className = 'feat'>
+                    <div className='feat'>
                         <h3>Lorem Ipsum</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
                     </div>
@@ -206,14 +250,57 @@ const LandingPage = () => {
 
                 <Demo>
                     <p>Watch Insight in action</p>
-                    <img src={demo} alt='app demo' width='600px'/>
+                    <img src={demo} alt='app demo' width='600px' />
                 </Demo>
+
+                <Space>
+                    <p></p>
+                </Space>
 
                 <Pitch>
                     <h3>Get Better Work Done</h3>
                     <p>See why millions of people across 100 countries use Insight</p>
-                    <button className = 'try'>Try for free</button>
+                    <button className='try'>Try for free</button>
                 </Pitch>
+
+                <BottomMenu>
+                    <img src={logo} alt='logo' width='80px' height='80px' />
+                    <div className='content'>
+                        <p className='header'>Insight</p>
+                        <a href='#'>Home</a>
+                        <a href='#'>Product</a>
+                        <a href='#'>Pricing</a>
+                        <a href='#'>Premium</a>
+                    </div>
+                    <div className='content'>
+                        <p className='header'>About Us</p>
+                        <a href='#'>Company</a>
+                        <a href='#'>Leadership</a>
+                        <a href='#'>Customers</a>
+                        <a href='#'>Careers</a>
+                    </div>
+                    <div className='content'>
+                        <p className='header'>Solutions</p>
+                        <a href='#'>Open Source Editor</a>
+                        <a href='#'>Emoji React</a>
+                        <a href='#'>Voice to Text</a>
+                    </div>
+                    <div className='content'>
+                        <p className='header'>Resources</p>
+                        <a href='#'>Insight Guide</a>
+                        <a href='#'>Forum</a>
+                        <a href='#'>Support</a>
+                        <a href='#'>Events</a>
+                    </div>
+                </BottomMenu>
+
+                <Footer>
+                    <a href='#'>Terms & Privacy</a>
+                    <div>
+                        <a href='#'><img src={appstr} alt='apple store' /></a>
+                        <a href='#'><img src={ps} alt='google playstore' /></a>
+                    </div>
+                </Footer>
             </Content>
         </Main>
     );
