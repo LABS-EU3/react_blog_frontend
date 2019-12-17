@@ -4,7 +4,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 
 function App() {
-  const [registerOpen, setRegisterOpen] = useState(false);
+  const [registerOpen, setRegisterOpen] = useState(true);
   const [loginOpen, setLoginOpen] = useState(false);
 
   const showModal = e => {
