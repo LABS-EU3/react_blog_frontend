@@ -14,7 +14,7 @@ import { combineReducers, createStore, applyMiddleware, compose } from "redux";
 
 const bigReducer = combineReducers({
   login: loginReducer.loginReducer,
-  loading: registerReducer
+  registering: registerReducer
 
 });
 
