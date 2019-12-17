@@ -2,6 +2,7 @@ import React from "react";
 import { Icon } from "react-icons-kit";
 import { bell } from "react-icons-kit/feather/bell";
 import logo from "../assets/logo-gradient.png";
+import avatar from "../assets/random-avatar.jpeg";
 
 import styled from "styled-components";
 
@@ -13,19 +14,41 @@ const Nav = styled.ul`
   margin-left: auto;
   margin-right: auto;
   max-width: 70%;
-  div{
+
+  div.left {
     display: flex;
     font-family: Lato;
+    div {
+      display: flex;
+      div {
+        padding-left: 1rem;
+        padding-top: 0.5rem;
+      }
+    }
   }
 
-div.right {
+  div.right {
     display: flex;
- div {
-    padding-right: 1rem;
-    padding-left: 1rem;
-}
-}
+    div {
+      padding-right: 0.6rem;
+      padding-left: 0.6rem;
+    }
 
+    div.avatar-container {
+      line-height: 0;
+      display: inline-block;
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      border-radius: 50%;
+      transition: linear 0.25s;
+      white-space: nowrap;
+
+      img.avatar {
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+      }
+    }
+  }
 
   a,
   button {
@@ -33,10 +56,9 @@ div.right {
     border-color: #5759a9;
     color: white;
     border-radius: 4px;
-    padding: 0.4rem 0.8rem;
+    padding: 0.45rem 0.8rem;
     text-rendering: optimizeLegibility;
     cursor: pointer;
-    display: flex;
     font-size: 0.8em;
     font-family: "Lato";
     &:hover,
@@ -56,15 +78,13 @@ div.right {
 const NavBar = () => {
   return (
     <Nav>
-      <div style={{ width: "70%", margin: "0" }}>
+      <div className="left" style={{ width: "70%", margin: "0" }}>
         <div>
           <img src={logo} alt="logo" />
         </div>
         <div>
-          Draft
-        </div>
-        <div>
-          Saving
+          <div>Draft </div>
+          <div style={{ color: "grey" }}>Saving</div>
         </div>
       </div>
 
@@ -72,8 +92,11 @@ const NavBar = () => {
         <div>
           <button>Publish</button>
         </div>
-        <div  style={{ color: "#A9A9A9", marginTop: "3px"}}>
+        <div style={{ color: "#A9A9A9", paddingTop: "5px" }}>
           <Icon icon={bell} size={24} />
+        </div>
+        <div className="avatar-container">
+          <img className="avatar" src={avatar} alt="avatar" />
         </div>
       </div>
     </Nav>
