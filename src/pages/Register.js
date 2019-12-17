@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { connect } from "react-redux";
 import { StyledAuth } from "../utilities/styles/RegisterStyles";
 import * as actionCreators from "../redux-store/actions/actionCReators";
@@ -8,12 +8,9 @@ function Register({ register, registering }) {
   const email = useRef("");
   const password = useRef("");
   const confirmPassword = useRef("");
-  const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = e => {
     e.preventDefault();
-
-    setSubmitted(true);
 
     const userData = {
       username: username.current.value,
@@ -49,14 +46,14 @@ function Register({ register, registering }) {
         <input type="checkbox" />
         <p className="inline">
           I agree to Insight's
-          <a> Terms of Service</a>
+          <a href='/'> Terms of Service</a>
         </p>
       </div>
       <hr />
       <p>
         Already have an account?
         <span>
-          <a>Log in Here</a>
+          <a href='/'>Log in Here</a>
         </span>
       </p>
     </StyledAuth>
