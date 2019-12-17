@@ -70,7 +70,7 @@ function Register(props) {
       </button>
       <div>
         <input type="checkbox" id="tos" />
-        <label for="tos">
+        <label>
           I agree to Insight's{" "}
           <span>
             <a>Terms of Service</a>
