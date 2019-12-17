@@ -127,9 +127,35 @@ const LandingPage = () => {
         justify-content: space-between;
         
         p {
-            color: #212C4F;
+            color: #205284;
             font-family: 'HK Grotesk Bold';
             font-size: 5rem;
+        }
+    `
+
+    const Pitch = styled.div`
+        color: #205284;
+        display: flex;
+        flex-direction: column;
+
+        h3 {
+            font-family: 'HK Grotesk Bold';
+            font-size: 3rem;
+            margin: 30px auto;
+        }
+
+        p {
+            font-family: 'HK Grotesk Light';
+            margin: auto;
+        }
+
+        .try {
+            background-color: #3672FB; 
+            padding: 10px;
+            color: #FFFFFF;
+            border-radius: 5px;
+            width: 180px;
+            margin: 30px auto;
         }
     `
     
@@ -182,6 +208,12 @@ const LandingPage = () => {
                     <p>Watch Insight in action</p>
                     <img src={demo} alt='app demo' width='600px'/>
                 </Demo>
+
+                <Pitch>
+                    <h3>Get Better Work Done</h3>
+                    <p>See why millions of people across 100 countries use Insight</p>
+                    <button className = 'try'>Try for free</button>
+                </Pitch>
             </Content>
         </Main>
     );
