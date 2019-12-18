@@ -1,9 +1,10 @@
 import React, { useRef, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import {connect} from "react-redux";
-import { Container, MyH2, Div, P, Input, Button,P2 } from "../utilities/styles/LoginStyles";
-// import setLoginSuccess from "../redux-store/reducers/user-reducer";
+import { connect } from "react-redux";
+import { Container, MyH2, Div, P, Input, Button, P2 } from "../utilities/styles/LoginStyles";
+import {setLoginSuccess, setLoginFailure} from "../redux-store/actions/actionCReators";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 const Login = props => {
     const nameRef = useRef();
@@ -11,6 +12,8 @@ const Login = props => {
 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+
+    const [userInfo, setUserInfo] = useLocalStorage('userInfo', {});
 
     const validate = () => {
         let isError = false;
@@ -31,31 +34,29 @@ const Login = props => {
             return;
         }
 
-        // function callLoginApi(username, password, callback) {
-        //     setTimeout(() => {
-        //       if (username === 'Damilolami' && password === 'admin') {
-        //         return callback(null);
-        //       } else {
-        //         return callback(new Error('Invalid username and password'));
-        //       }
-        //     }, 1000);
-        //   }
+        let dummyData = {
+            name: "damilola",
+            token: "jkasaKLJajksdja",
+            username: "bettyd"
+        }
+        props.setLoginSuccess(dummyData)
+ 
+        // setLoading(true);
+        // axios
+        //     .post("https://react-blog.herokuapp.com/auth/login", {
+        //         username: nameRef.current.value,
+        //         password: passwordRef.current.value
+        //     })
+        //     .then(response => {
+        //         setLoading(false);
+                // setUserInfo(dummyData)
+        // props.setLoginSuccess(dummyData)
 
-        props.setLoginSuccess({name: "damilola", token:"jkasaKLJajksdja"})
-        setLoading(true);
-        axios
-            .post("https://react-blog.herokuapp.com/auth/login", {
-                username: nameRef.current.value,
-                password: passwordRef.current.value
-            })
-            .then(response => {
-                setLoading(false);
-                window.localStorage.setItem("token", response.data.token);
-
-            })
-            .catch(error => {
-                setLoading(false);
-            });
+        //     })
+        //     .catch(error => {
+        //         setLoading(false);
+        // props.setLoginFailure(error)
+        //     });
     };
 
     return (
@@ -81,4 +82,4 @@ const Login = props => {
 };
 
 
-export default connect(state=>state, {})(Login)
+export default connect(state => state, {setLoginSuccess, setLoginFailure})(Login)

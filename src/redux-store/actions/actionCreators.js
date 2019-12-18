@@ -1,16 +1,16 @@
-// export function login(email, password) {
-//     return dispatch => {
-//       dispatch(loginReducer(true));
-//       dispatch(setLoginSuccess(false));
-//       dispatch(setLoginFailure(null));
-  
-//       callLoginApi(email, password, error => {
-//         dispatch(loginReducer(false));
-//         if (!error) {
-//           dispatch(setLoginSuccess(true));
-//         } else {
-//           dispatch(setLoginFailure(error));
-//         }
-//       });
-//     }
-//   }
+import * as types from "../actions/actionTypes";
+
+export const setLoginSuccess = (user) => {
+    return {
+        type: types.LOGIN_SUCCESS,
+        user: user
+    };
+}
+
+
+export const setLoginFailure = (error) => {
+    return {
+      type: types.LOGIN_FAILURE,
+      error: error
+    };
+  }
