@@ -1,7 +1,7 @@
 import * as types from "../actions/actionTypes";
 
 const initialLoginState = {
-  username: "",
+  email: "",
   password: "",
     loading:false,
     error:''
