@@ -73,11 +73,28 @@ const Nav = styled.ul`
       }
     }
   }
+
+  button.draft {
+    background: white;
+    border-color: #5759a9;
+    color: #5759a9;
+    &:hover,
+    &:focus,
+    &:visited {
+      outline: none;
+      transition: all 0.2s ease-in-out;
+      color: #3d3e77;
+      &:after {
+        color: #5759a9;
+        width: calc(100% - 40px);
+      }
+    }
+  }
 `;
 
 const NavBar = props => {
   console.log(props);
-  const [data, setData] = useState([])
+  const [data, setData] = useState([]);
 
   const handle = async e => {
     await props.editorInstance();
@@ -89,13 +106,16 @@ const NavBar = props => {
         <div>
           <img src={logo} alt="logo" onClick={e => handle()} />
         </div>
-        <div>
+        {/* <div>
           <div>Draft </div>
           <div style={{ color: "grey" }}>Saving</div>
-        </div>
+        </div> */}
       </div>
 
       <div className="right" style={{ width: "30%" }}>
+        <div>
+          <button className="draft">Save as Draft</button>
+        </div>
         <div>
           <button>Publish</button>
         </div>
