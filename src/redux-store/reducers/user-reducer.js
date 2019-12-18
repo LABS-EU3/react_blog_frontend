@@ -1,31 +1,35 @@
 import * as types from "../actions/actionTypes";
 
 const initialLoginState = {
-    username: "",
-    password: ""
+  username: "",
+  password: ""
 };
 
 export const loginReducer = (state = initialLoginState, action) => {
-    switch (action.type) {
-        case types.LOGIN_START:
-            return {};
-        default:
-            return state;
-    }
+  switch (action.type) {
+    case types.LOGIN_START:
+      return {};
+    default:
+      return state;
+  }
 };
-
 
 
 
 const initialRegisterState = {
-    username: "",
-    email: "",
-    password: ""
-}
+  registering: false
+};
 
-export const userReducer = (state = initialRegisterState, action) => {
-    switch (action.type) {
-        default:
-            return state;
-    }
-}
+
+export const registerReducer = (state = initialRegisterState, action) => {
+  switch (action.type) {
+    case types.REGISTER_REQUEST:
+      return { registering: true };
+    case types.REGISTER_SUCCESS:
+      return { registering: false };
+    case types.REGISTER_FAILURE:
+      return { registering: false };
+    default:
+      return state;
+  }
+};

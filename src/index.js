@@ -1,19 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { userReducer } from "./redux-store/reducers/user-reducer";
 import './index.css';
 import App from './App';
 import { BrowserRouter as Router } from "react-router-dom";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
-import { loginReducer } from "./redux-store/reducers/user-reducer"
-
+import { loginReducer } from "./redux-store/reducers/user-reducer";
+import { registerReducer } from "./redux-store/reducers/user-reducer";
 import { Provider } from "react-redux";
 import { combineReducers, createStore, applyMiddleware, compose } from "redux";
 
 const bigReducer = combineReducers({
-  login: loginReducer.loginReducer,
-  user: userReducer
+  login: loginReducer,
+  registering: registerReducer
 
 });
 
