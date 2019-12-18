@@ -35,7 +35,7 @@ function Register({ register, registering }) {
 
   return (
     <StyledContainer>
-      {registering.success && (
+      {registering && registering.success && (
         <Modal>
           <RegistrationSuccess />
         </Modal>
@@ -44,7 +44,11 @@ function Register({ register, registering }) {
         <div className="nav-left">Insight</div>
         <div className="nav-right"></div>
       </StyledNav>
-      <img src={registration_jumbo} alt="Man on laptop" className='laptop_man'/>
+      <img
+        src={registration_jumbo}
+        alt="Man on laptop"
+        className="laptop_man"
+      />
       <StyledAuth>
         <h1>Try Insight for Free</h1>
         <p>
@@ -55,7 +59,7 @@ function Register({ register, registering }) {
         <input placeholder="Email" ref={email} type="text" />
         <input placeholder="Password" ref={password} type="password" />
         <PrimaryBtn onClick={handleSubmit} className="primary">
-          {!registering.loading ? "Try for Free" : "Loading.."}
+          {registering && !registering.loading ? "Try for Free" : "Loading.."}
         </PrimaryBtn>
         <p>
           * By signing up, I agree to Insight's <a href="/"> Privacy Policy </a>{" "}
