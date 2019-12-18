@@ -3,7 +3,7 @@ import React from "react";
 import Tags from "./Tags";
 import { createPortal } from "react-dom";
 import styled from "styled-components";
-import save from "../assets/save.png";
+import logo from "../assets/logo-gradient.png";
 import send from "../assets/send.png";
 
 const modalRoot = document.getElementById("article-modal");
@@ -42,7 +42,7 @@ export default class Home extends React.Component {
     console.log(`input value is now: ${e.target.value}`);
   };
 
-  toggleModal = async () => {
+  toggleModal = () => {
     console.log(this.editor);
     if (this.state.showModal) {
       this.app.style.filter = "blur(0px)";
@@ -68,16 +68,27 @@ export default class Home extends React.Component {
         {showModal ? (
           <ArticleModal>
             <StyledModal>
-            <div>
-                
-            </div>
+              <div className="modal-row-1">
+                <div className="modal-row-1-div" onClick={this.toggleModal}>
+                  X
+                </div>
+                <div className="modal-row-1-div">
+                  <img src={logo} alt="logo" />
+                </div>
+              </div>
+              <div className="modal-quote">
+                "Don't tell me the moon is shining; show me the glint of light
+                on broken glass."
+              </div>
               <div className="modal-top">
                 <Tags
                   tags={[]}
                   onTagsChanged={this.onTagsChanged}
                   onInputChanged={this.onInputChanged}
+                  placeholder="Add a tag for your Insight..."
                 />
               </div>
+              <div></div>
               <div className="modal-bottom">
                 <button>Publish Now</button>
               </div>
@@ -93,6 +104,9 @@ const StyledModal = styled.div`
   background: #fff;
   position: absolute;
   opacity: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   left: 0;
   right: 0;
   top: 0;
@@ -103,7 +117,21 @@ const StyledModal = styled.div`
   box-shadow: 0 5px 10px 2px rgba(195, 192, 192, 0.5);
   padding: 20px;
   text-align: center;
-  div.modal-top {
+  div.modal-row-1 {
+    display: flex;
+    div {
+      width: 50%;
+      font-family: "Lato";
+      display: flex;
+      flex-direction: start;
+      cursor: default;
+    }
+  }
+
+  div.modal-quote {
+    font-size: 1.3rem;
+    font-family: "Lato";
+    color: #808080;
   }
 
   div.modal-bottom {
@@ -111,7 +139,7 @@ const StyledModal = styled.div`
     button {
       background: #5759a9;
       border-color: #5759a9;
-      width: 60%;
+      width: 75%;
       color: white;
       border-radius: 4px;
       padding: 0.45rem 0.8rem;
@@ -119,6 +147,7 @@ const StyledModal = styled.div`
       cursor: pointer;
       font-size: 0.8em;
       font-family: "Lato";
+      margin: 0 auto;
       &:hover,
       &:focus,
       &:visited {

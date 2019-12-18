@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-expressions */
 import React, { Component } from "react";
+import ArticleModal from "../components/ArticleModal";
 import "../fonts/HKGrotesk-Regular.woff";
 import EditorJs from "react-editor-js";
 import NavBar from "../components/NavBar";
@@ -11,10 +12,10 @@ class Editor extends Component {
   constructor(props) {
     super(props);
     this.state = { isOn: true };
-    this.handleSave = this.handleSave.bind(this);
+    this.handlePublish = this.handlePublish.bind(this);
     this.document = document.getElementsByClassName("ce-header");
   }
-  async handleSave() {
+  async handlePublish() {
     const savedData = await this.editorInstance.save();
     console.log(JSON.stringify(savedData));
     console.log(this.document);
@@ -31,7 +32,8 @@ class Editor extends Component {
   render() {
     return (
       <div id="editor-page">
-        <NavBar editorInstance={this.handleSave} />
+        <NavBar handlePublish={this.handlePublish} />
+        <ArticleModal handlePublish={this.handlePublish}/>
         {/* <button onClick={this.handleSave}>DIDDDDDD</button> */}
         <StyledEditor>
           <EditorJs

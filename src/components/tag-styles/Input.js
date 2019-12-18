@@ -10,7 +10,6 @@ const Input = styled.input`
   color: #69626D;
   &::-webkit-input-placeholder {
     font-weight: 100;
-    font-style: italic;
     color: #69626D;
   }
 `;

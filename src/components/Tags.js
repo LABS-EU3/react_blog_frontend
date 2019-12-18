@@ -199,7 +199,7 @@ export default class TagInput extends Component {
             onKeyDown={this.onInputKeyDown}
           />
         </InputWrapper>
-        <div style={{ display: "flex", justifyContent: "center" }}>
+        <div style={{ display: "flex", justifyContent: "center", width: "100%", margin: "auto" }}>
           {this.renderTags()}
         </div>
       </div>
