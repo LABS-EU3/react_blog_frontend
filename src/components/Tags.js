@@ -35,7 +35,7 @@ export default class TagInput extends Component {
   }
 
   onInputKeyUp(e) {
-    const { addTagOnEnterKeyPressed, onTagsChanged } = this.props;
+    const { onTagsChanged } = this.props;
     const inputValue = e.target.value;
     const inputNotEmpty = inputValue && inputValue.trim() !== "";
     const addTag = () => {
@@ -45,7 +45,7 @@ export default class TagInput extends Component {
             ...state.selectedTags,
             {
               index: state.selectedTags.length + 1,
-              displayValue: inputValue
+              displayValue: "#" + inputValue
             }
           ]
         }),
@@ -58,11 +58,11 @@ export default class TagInput extends Component {
       );
     };
 
-    if (e.key === "Enter" && inputNotEmpty && addTagOnEnterKeyPressed) {
+    if (e.keyCode === 13 && inputNotEmpty) {
       addTag();
     }
 
-    if (e.keyCode === 32) {
+    if (e.keyCode === 32 && inputNotEmpty) {
       addTag();
     }
   }
@@ -188,17 +188,21 @@ export default class TagInput extends Component {
     const InputComponent = this.getInputStyledComponent();
 
     return (
-      <InputWrapper onClick={this.focusInput}>
-        <InputComponent
-          ref={el => (this.input = el)}
-          onChange={onInputChanged}
-          placeholder={this.renderPlaceholder()}
-          type="text"
-          onKeyUp={this.onInputKeyUp}
-          onKeyDown={this.onInputKeyDown}
-        />
-        {this.renderTags()}
-      </InputWrapper>
+      <div>
+        <InputWrapper onClick={this.focusInput}>
+          <InputComponent
+            ref={el => (this.input = el)}
+            onChange={onInputChanged}
+            placeholder={this.renderPlaceholder()}
+            type="text"
+            onKeyUp={this.onInputKeyUp}
+            onKeyDown={this.onInputKeyDown}
+          />
+        </InputWrapper>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          {this.renderTags()}
+        </div>
+      </div>
     );
   }
 }

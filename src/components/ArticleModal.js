@@ -34,14 +34,13 @@ export default class Home extends React.Component {
     };
   }
 
+  onTagsChanged = newTags => {
+    console.log("tags changed to: ", newTags);
+  };
 
-  onTagsChanged = (newTags) => {
-    console.log('tags changed to: ', newTags);
-};
-
-onInputChanged = (e) => {
+  onInputChanged = e => {
     console.log(`input value is now: ${e.target.value}`);
-}
+  };
 
   toggleModal = async () => {
     console.log(this.editor);
@@ -69,24 +68,18 @@ onInputChanged = (e) => {
         {showModal ? (
           <ArticleModal>
             <StyledModal>
+            <div>
+                
+            </div>
               <div className="modal-top">
                 <Tags
-                  tags={[
-                    {
-                      id: 1,
-                      displayValue: "Bruce Lee"
-                    }
-                  ]}
-                  onTagsChanged={this.onTagsChanged} onInputChanged={this.onInputChanged}
+                  tags={[]}
+                  onTagsChanged={this.onTagsChanged}
+                  onInputChanged={this.onInputChanged}
                 />
               </div>
               <div className="modal-bottom">
-                <div className="modal-bottom-left">
-                  <img src={save} alt="paper-plane-send" />
-                </div>
-                <div className="modal-bottom-right">
-                  <img src={send} alt="paper-plane-send" />
-                </div>
+                <button>Publish Now</button>
               </div>
             </StyledModal>
           </ArticleModal>
@@ -105,7 +98,7 @@ const StyledModal = styled.div`
   top: 0;
   bottom: 0;
   margin: auto;
-  width: 35%;
+  width: 30%;
   height: 300px;
   box-shadow: 0 5px 10px 2px rgba(195, 192, 192, 0.5);
   padding: 20px;
@@ -115,12 +108,32 @@ const StyledModal = styled.div`
 
   div.modal-bottom {
     display: flex;
-    div {
-      align-content: center;
-      img {
-        height: 75%;
-        width: 50%;
+    button {
+      background: #5759a9;
+      border-color: #5759a9;
+      width: 60%;
+      color: white;
+      border-radius: 4px;
+      padding: 0.45rem 0.8rem;
+      text-rendering: optimizeLegibility;
+      cursor: pointer;
+      font-size: 0.8em;
+      font-family: "Lato";
+      &:hover,
+      &:focus,
+      &:visited {
+        outline: none;
+        transition: all 0.2s ease-in-out;
+        background: #3d3e77;
+        &:after {
+          background: #5759a9;
+          width: calc(100% - 40px);
+        }
       }
+    }
+    img {
+      height: 75%;
+      width: 50%;
     }
   }
 

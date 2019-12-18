@@ -3,10 +3,10 @@ import styled from 'styled-components'
 const TagDelete = styled.span.attrs(props => ({
     'data-test': `tag-delete-${props.index}`,
 }))`
-    color: white;
+    color: #69626D;
     font-size: 1em;
     &:hover {
-        color: gray;
+        color: #69626D;
     }
 `
 
