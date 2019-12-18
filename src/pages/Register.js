@@ -58,7 +58,7 @@ function Register({ register, registering }) {
         <input placeholder="Full Name" ref={fullname} type="text" />
         <input placeholder="Email" ref={email} type="text" />
         <input placeholder="Password" ref={password} type="password" />
-        <PrimaryBtn onClick={handleSubmit} className="primary">
+        <PrimaryBtn onClick={handleSubmit} className="primary" id='register-submit'>
           {registering && !registering.loading ? "Try for Free" : "Loading.."}
         </PrimaryBtn>
         <p>
