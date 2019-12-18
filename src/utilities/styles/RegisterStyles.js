@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import modalBorder from "../../assets/images/modalBorder.png";
 
 export const StyledContainer = styled.div`
   width: 100vw;
@@ -32,11 +33,38 @@ export const StyledFooter = styled.div`
   width: 100%;
   height: 3vh;
   padding: 2vh;
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  // height:30px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+`;
+
+export const PrimaryBtn = styled.div`
+  background-color: #6f85fd;
+  width: 60%;
+  height: 6.3vh;
+  border-radius: 5px;
+  border: none;
+  font-size: 1.5vh;
+  color: white;
+  font-weight: 100;
+  margin-top: 1rem;
+  cursor: pointer;
+`;
+
+export const SecondaryBtn = styled.div`
+  background-color: #323c5c;
+  width: 100%;
+  height: 90%;
+  border-radius: 5px;
+  border: none;
+  font-size: 2vh;
+  color: white;
+  font-weight: 100;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const StyledAuth = styled.form`
@@ -63,28 +91,11 @@ export const StyledAuth = styled.form`
     padding-left: 1rem;
     margin-top: 1rem;
   }
-  .primary {
-    background-color: #6f85fd;
-    width: 60%;
-    height: 6.3vh;
-    border-radius: 5px;
-    border: none;
-    font-size: 1.5vh;
-    color: white;
-    font-weight: 100;
-    margin-top: 1rem;
-    cursor: pointer;
-  }
   label {
     display: inline-block;
   }
   span a {
     color: red;
-  }
-  hr {
-    width: 63%;
-    border: 0.5px solid #cfcfcf;
-    margin-bottom: 1rem;
   }
   color: #636363;
   .tos {
@@ -99,5 +110,55 @@ export const StyledAuth = styled.form`
     a {
       color: red;
     }
+  }
+`;
+
+export const StyledRegistrationSuccessModal = styled.div`
+  width: 100%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Lato", sans-serif;
+  color: #646f79;
+  .regstr-modal-top {
+    position: absolute;
+    height: 70%;
+    padding: 0 10%;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    h1 {
+      font-size: 2rem;
+      color: #205284;
+    }
+    img {
+      width: 28%;
+      height: 30%;
+    }
+  }
+  .regstr-modal-border {
+    width: 100%;
+    height: 30%;
+    background-color: #6f85fd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border: none;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+  a {
+    width: 30%;
+    height: 50%;
   }
 `;

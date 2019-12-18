@@ -14,7 +14,7 @@ const ModalWrapper = styled.div`
   background-color: rgba(0, 0, 0, 0.3);
 `;
 const ModalInner = styled.div`
-  padding: 20;
+  padding: 0;
   background: #fff;
   display: inline-block;
   min-height: 300px;
@@ -23,8 +23,8 @@ const ModalInner = styled.div`
   min-width: 300px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   justify-self: center;
-  width: 750px;
-  padding: 1rem;
+  width: 650px;
+  height: 550px;
   border-radius: 5px;
 
   @media (max-width: 750px) {
