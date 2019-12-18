@@ -1,11 +1,12 @@
 import styled from "styled-components";
-import modalBorder from "../../assets/images/modalBorder.png";
 
 export const StyledContainer = styled.div`
-  width: 100vw;
+  width: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   img {
     width: 25%;
   }
@@ -31,12 +32,25 @@ export const StyledNav = styled.div`
 export const StyledFooter = styled.div`
   background-color: #323c5c;
   width: 100%;
-  height: 3vh;
-  padding: 2vh;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  padding: 4vh 0;
+  display: flex;
+  font-family: "Lato", sans-serif;
+  .footer-group {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    padding-left: 2rem;
+    img {
+      border-radius: 10px;
+      border: 2px solid #323c5c;
+      margin-left: 2rem;
+    }
+    a {
+      color: white;
+      text-decoration: none;
+      font-size: 0.5rem;
+    }
+  }
 `;
 
 export const PrimaryBtn = styled.div`

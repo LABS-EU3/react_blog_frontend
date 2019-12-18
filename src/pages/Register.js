@@ -1,8 +1,10 @@
 import React, { useRef } from "react";
 import { connect } from "react-redux";
 import { StyledContainer, StyledAuth, StyledNav, StyledFooter } from "../utilities/styles/RegisterStyles";
-import * as actionCreators from "../redux-store/actions/actionCReators";
+import * as actionCreators from "../redux-store/actions/actionCreators";
 import registration_jumbo from '../assets/images/registration-jumbo.png';
+import ps from '../assets/images/ps.png';
+import appstr from '../assets/images/appstr.png';
 import Modal from './Modal';
 import RegistrationSuccess from './RegistrationSuccess';
 import {PrimaryBtn} from '../utilities/styles/RegisterStyles';
@@ -32,7 +34,7 @@ function Register({ register, registering }) {
 
   return (
     <StyledContainer>
-        {!registering.success && <Modal><RegistrationSuccess/></Modal>}
+        {registering.success && <Modal><RegistrationSuccess/></Modal>}
         <StyledNav>
             <div className='nav-left'>
                 Insight
@@ -60,7 +62,13 @@ function Register({ register, registering }) {
         </p>
       </StyledAuth>
       <StyledFooter>
-
+        <div className='footer-group'>
+            <a href='/'>Terms & Privacy</a>
+        </div>
+        <div className='footer-group'>
+            <img src={appstr} alt='Apple Store logo'/>
+            <img src={ps} alt='Play Store logo'/>
+        </div>
       </StyledFooter>
     </StyledContainer>
   );

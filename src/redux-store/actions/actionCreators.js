@@ -6,7 +6,6 @@ export const register = user => dispatch => {
   axios
     .post("http://localhost:3300/api/auth/register", user)
     .then(res => {
-    //   alert("Welcome to Insight " + res.data.username);
       dispatch({ type: types.REGISTER_SUCCESS });
     })
     .catch(err => {
