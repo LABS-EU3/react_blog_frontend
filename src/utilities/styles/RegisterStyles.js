@@ -1,4 +1,43 @@
-import styled from 'styled-components';
+import styled from "styled-components";
+
+export const StyledContainer = styled.div`
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  img {
+    width: 25%;
+  }
+`;
+export const StyledNav = styled.div`
+  display: flex;
+  width: 100%;
+  padding: 1rem 0;
+  .nav-left {
+    width: 50%;
+    padding-left: 2rem;
+    font-family: "HK Grotesk Bold";
+    color: #212c4f;
+    font-weight: 800;
+    font-size: 2rem;
+    margin-left: 30px;
+  }
+  .nav-right {
+    width: 50%;
+  }
+`;
+
+export const StyledFooter = styled.div`
+  background-color: #323c5c;
+  width: 100%;
+  height: 3vh;
+  padding: 2vh;
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  // height:30px;
+`;
 
 export const StyledAuth = styled.form`
   min-height: 300px;
@@ -26,11 +65,11 @@ export const StyledAuth = styled.form`
   }
   .primary {
     background-color: #6f85fd;
-    width: 63%;
-    height: 4.4vh;
+    width: 60%;
+    height: 6.3vh;
     border-radius: 5px;
     border: none;
-    font-size: 1.2rem;
+    font-size: 1.5vh;
     color: white;
     font-weight: 100;
     margin-top: 1rem;
