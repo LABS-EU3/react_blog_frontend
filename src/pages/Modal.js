@@ -23,8 +23,8 @@ const ModalInner = styled.div`
   min-width: 300px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   justify-self: center;
-  width: 650px;
-  height: 550px;
+  width: 550px;
+  height: 450px;
   border-radius: 5px;
 
   @media (max-width: 750px) {

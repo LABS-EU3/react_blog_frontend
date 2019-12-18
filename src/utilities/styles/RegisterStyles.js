@@ -124,6 +124,7 @@ export const StyledRegistrationSuccessModal = styled.div`
   color: #646f79;
   .regstr-modal-top {
     position: absolute;
+    text-align: center;
     height: 70%;
     padding: 0 10%;
     top: 0;
