@@ -1,4 +1,4 @@
-import * as types from "../actions/actionTypes";
+import * as types from "./actionTypes";
 
 export const setLoginSuccess = (user) => {
     return {
@@ -6,7 +6,6 @@ export const setLoginSuccess = (user) => {
         user: user
     };
 }
-
 
 export const setLoginFailure = (error) => {
     return {
