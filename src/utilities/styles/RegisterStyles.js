@@ -15,6 +15,7 @@ export const StyledNav = styled.div`
   display: flex;
   width: 100%;
   padding: 1rem 0;
+  margin-bottom: 2rem;
   .nav-left {
     width: 50%;
     padding-left: 2rem;
@@ -55,15 +56,19 @@ export const StyledFooter = styled.div`
 
 export const PrimaryBtn = styled.div`
   background-color: #6f85fd;
-  width: 60%;
+  width: 80%;
   height: 6.3vh;
   border-radius: 5px;
   border: none;
-  font-size: 1.5vh;
+  font-size: 2vh;
   color: white;
   font-weight: 100;
-  margin-top: 1rem;
+  margin: 1rem 0;
   cursor: pointer;
+  padding: 1vh 0 1vh 2vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const SecondaryBtn = styled.div`
@@ -83,47 +88,39 @@ export const SecondaryBtn = styled.div`
 
 export const StyledAuth = styled.form`
   min-height: 300px;
-  width: 100%;
+  // border: 1px solid;
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
+  margin: 2vh auto;
   align-items: center;
   justify-content: space-between;
   font-family: "Lato", sans-serif;
-  padding: 2rem 0;
+  text-align: center;
+  color: #636363;
+  padding: 2rem;
   h1 {
     font-size: 2rem;
-    color: #636363;
+    color: #205284;
     margin-bottom: 1rem;
   }
+  p {
+    width: 70%;
+    margin-bottom: 10px;
+  }
   input {
-    width: 60%;
+    width: 80%;
     height: 4vh;
     border-radius: 5px;
     border: 1px solid #c4c4c4;
-    color: #c4c4c4;
-    padding-left: 1rem;
+    padding: 1vh 0 1vh 2vh;
     margin-top: 1rem;
   }
   label {
     display: inline-block;
   }
-  span a {
-    color: red;
-  }
-  color: #636363;
-  .tos {
-    display: flex;
-    margin-top: 1rem;
-    align-items: center;
-    width: 40%;
-    input {
-      width: 10%;
-      margin: 0;
-    }
-    a {
-      color: red;
-    }
+  a {
+    color: #e16868;
+    text-decoration: none;
   }
 `;
 
