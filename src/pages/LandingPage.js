@@ -31,28 +31,38 @@ const LandingPage = () => {
     const LogIn = styled.div`
         margin-right: 30px; 
         font-family: 'HK Grotesk Light';
+        display: flex;
         
         .button {
             text-decoration: none
         }
 
-        .button.get-started{
+        .button.get-started {
             background-color: #3672FB; 
             padding: 10px;
             color: #FFFFFF;
             border-radius: 5px;
+            border: none;
+            box-shadow: 0px 10px 20px;
+            -webkit-transition-duration: 0.4s;
+            transition-duration: 0.4s;
+        }
+
+        .button.get-started:hover {
+            background-color: #212C4F;
+            color: #FFFFFF;
         }
 
         .button.login{
             color: #205284;
-            margin-right: 30px;
+            margin: 15px 30px 0 0;
+            text-decoration: none;
         }
     `
 
     const TopLp = styled.div`
         display: flex;
         justify-content: space-between;
-        align-items: flex-end;
         padding-top: 8px;
     `
 
@@ -87,6 +97,14 @@ const LandingPage = () => {
             color: #FFFFFF;
             border-radius: 5px;
             width: 180px;
+            border: none;
+            -webkit-transition-duration: 0.4s;
+            transition-duration: 0.4s;
+        }
+
+        .get-started-2:hover {
+            background-color: #212C4F;
+            color: #FFFFFF;
         }
     `
 
@@ -164,6 +182,14 @@ const LandingPage = () => {
             border-radius: 5px;
             width: 180px;
             margin: 50px auto;
+            border: none;
+            -webkit-transition-duration: 0.4s;
+            transition-duration: 0.4s;
+        }
+
+        .try:hover {
+            background-color: #212C4F;
+            color: #FFFFFF;
         }
     `
 
@@ -178,7 +204,7 @@ const LandingPage = () => {
             color: #686868;
         }
 
-        .content a{
+        .content li{
             margin: 20px 0;
             display: flex;
             flex-direction: column;
@@ -193,7 +219,7 @@ const LandingPage = () => {
         display: flex;
         justify-content: space-around;
 
-        a {
+        li {
             color: #FFFFFF;
             text-decoration: none;
         }
@@ -211,8 +237,10 @@ const LandingPage = () => {
                         <p>Insight</p>
                     </Logo>
                     <LogIn>
-                        <a href='#' className='button login'>Log In</a>
-                        <button href='#' className='button get-started'>Try for free</button>
+                        <ul className='button login'>
+                            <li>Log In</li>
+                        </ul>
+                        <button className='button get-started'>Try for free</button>
                     </LogIn>
                 </TopLp>
 
@@ -223,7 +251,7 @@ const LandingPage = () => {
                         <form>
                             <div>
                                 <input value={null} type='email' className='email' placeholder='Enter your email address' />
-                                <button href='#' className='get-started-2'>Try for free</button>
+                                <button className='get-started-2'>Try for free</button>
                             </div>
                         </form>
                     </About>
@@ -267,38 +295,48 @@ const LandingPage = () => {
                     <img src={logo} alt='logo' width='80px' height='80px' />
                     <div className='content'>
                         <p className='header'>Insight</p>
-                        <a href='#'>Home</a>
-                        <a href='#'>Product</a>
-                        <a href='#'>Pricing</a>
-                        <a href='#'>Premium</a>
+                        <ul>
+                            <li>Home</li>
+                            <li>Product</li>
+                            <li>Pricing</li>
+                            <li>Premium</li>
+                        </ul>
                     </div>
                     <div className='content'>
                         <p className='header'>About Us</p>
-                        <a href='#'>Company</a>
-                        <a href='#'>Leadership</a>
-                        <a href='#'>Customers</a>
-                        <a href='#'>Careers</a>
+                        <ul>
+                            <li>Company</li>
+                            <li>Leadership</li>
+                            <li>Customers</li>
+                            <li>Careers</li>
+                        </ul>
                     </div>
                     <div className='content'>
                         <p className='header'>Solutions</p>
-                        <a href='#'>Open Source Editor</a>
-                        <a href='#'>Emoji React</a>
-                        <a href='#'>Voice to Text</a>
+                        <ul>
+                            <li>Open Source Editor</li>
+                            <li>Emoji React</li>
+                            <li>Voice to Text</li>
+                        </ul>
                     </div>
                     <div className='content'>
                         <p className='header'>Resources</p>
-                        <a href='#'>Insight Guide</a>
-                        <a href='#'>Forum</a>
-                        <a href='#'>Support</a>
-                        <a href='#'>Events</a>
+                        <ul>
+                            <li>Insight Guide</li>
+                            <li>Forum</li>
+                            <li>Support</li>
+                            <li>Events</li>
+                        </ul>
                     </div>
                 </BottomMenu>
 
                 <Footer>
-                    <a href='#'>Terms & Privacy</a>
+                    <ul>
+                        <li>Terms & Privacy</li>
+                    </ul>
                     <div>
-                        <a href='#'><img src={appstr} alt='apple store' /></a>
-                        <a href='#'><img src={ps} alt='google playstore' /></a>
+                        <img src={appstr} alt='apple store' />
+                        <img src={ps} alt='google playstore' />
                     </div>
                 </Footer>
             </Content>
