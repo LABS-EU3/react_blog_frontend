@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import Wrapper from "./styled/Wrapper";
-import Tag from "./styled/Tag";
-import Input from "./styled/Input";
-import TagDelete from "./styled/TagDelete";
+import Wrapper from "./tag-styles/Wrapper";
+import Tag from "./tag-styles/Tag";
+import Input from "./tag-styles/Input";
+import TagDelete from "./tag-styles/TagDelete";
 
 export default class TagInput extends Component {
   constructor(props) {
@@ -59,6 +59,10 @@ export default class TagInput extends Component {
     };
 
     if (e.key === "Enter" && inputNotEmpty && addTagOnEnterKeyPressed) {
+      addTag();
+    }
+
+    if (e.keyCode === 32) {
       addTag();
     }
   }
@@ -185,7 +189,6 @@ export default class TagInput extends Component {
 
     return (
       <InputWrapper onClick={this.focusInput}>
-        {this.renderTags()}
         <InputComponent
           ref={el => (this.input = el)}
           onChange={onInputChanged}
@@ -194,6 +197,7 @@ export default class TagInput extends Component {
           onKeyUp={this.onInputKeyUp}
           onKeyDown={this.onInputKeyDown}
         />
+        {this.renderTags()}
       </InputWrapper>
     );
   }

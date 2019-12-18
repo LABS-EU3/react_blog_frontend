@@ -1,6 +1,6 @@
 // Modal.js
 import React from "react";
-import Tags from './Tags'
+import Tags from "./Tags";
 import { createPortal } from "react-dom";
 import styled from "styled-components";
 import save from "../assets/save.png";
@@ -34,6 +34,15 @@ export default class Home extends React.Component {
     };
   }
 
+
+  onTagsChanged = (newTags) => {
+    console.log('tags changed to: ', newTags);
+};
+
+onInputChanged = (e) => {
+    console.log(`input value is now: ${e.target.value}`);
+}
+
   toggleModal = async () => {
     console.log(this.editor);
     if (this.state.showModal) {
@@ -61,6 +70,15 @@ export default class Home extends React.Component {
           <ArticleModal>
             <StyledModal>
               <div className="modal-top">
+                <Tags
+                  tags={[
+                    {
+                      id: 1,
+                      displayValue: "Bruce Lee"
+                    }
+                  ]}
+                  onTagsChanged={this.onTagsChanged} onInputChanged={this.onInputChanged}
+                />
               </div>
               <div className="modal-bottom">
                 <div className="modal-bottom-left">
@@ -93,17 +111,17 @@ const StyledModal = styled.div`
   padding: 20px;
   text-align: center;
   div.modal-top {
-      
   }
 
   div.modal-bottom {
-      display: flex;
-      div {align-content: center;
-          img {
-              height: 75%;
-              width: 50%;
-          }
+    display: flex;
+    div {
+      align-content: center;
+      img {
+        height: 75%;
+        width: 50%;
       }
+    }
   }
 
   button {
