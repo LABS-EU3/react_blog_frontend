@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Icon } from "react-icons-kit";
 import { bell } from "react-icons-kit/feather/bell";
 import logo from "../assets/logo-gradient.png";
 import avatar from "../assets/random-avatar.jpeg";
-
 import styled from "styled-components";
 
 const Nav = styled.ul`
@@ -13,7 +12,7 @@ const Nav = styled.ul`
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
-  max-width: 70%;
+  max-width: 75%;
 
   div.left {
     display: flex;
@@ -29,8 +28,9 @@ const Nav = styled.ul`
 
   div.right {
     display: flex;
+    justify-content: flex-end;
     div {
-      padding-right: 0.6rem;
+      padding-right: 1rem;
       padding-left: 0.6rem;
     }
 
@@ -75,12 +75,19 @@ const Nav = styled.ul`
   }
 `;
 
-const NavBar = () => {
+const NavBar = props => {
+  console.log(props);
+  const [data, setData] = useState([])
+
+  const handle = async e => {
+    await props.editorInstance();
+  };
+
   return (
     <Nav>
       <div className="left" style={{ width: "70%", margin: "0" }}>
         <div>
-          <img src={logo} alt="logo" />
+          <img src={logo} alt="logo" onClick={e => handle()} />
         </div>
         <div>
           <div>Draft </div>

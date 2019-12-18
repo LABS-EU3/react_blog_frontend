@@ -54,3 +54,12 @@ table {
   src: local('HK-Grotesk'), url(./fonts/HKGrotesk-Regular.woff) format('truetype');
 }
 
+@font-face {
+	font-family: 'AtlasGrotesk';
+	src: local('AtlasGrotesk'), url(./fonts/AtlasGrotesk-Regular.woff) format('truetype');
+  }
+
+
+.ce-toolbar__actions--opened {
+    margin-right: 20%;
+}
