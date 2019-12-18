@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import Modal from "./pages/Modal";
-import Register from "./pages/Register";
+import LandingPage from "./pages/LandingPage";
+import Register from './pages/Register';
 import Login from "./pages/Login";
+import {Route} from 'react-router-dom';
 
 function App() {
   const [registerOpen, setRegisterOpen] = useState(true);
@@ -25,25 +27,14 @@ function App() {
 
   return (
     <div className="App">
-      Welcome to our blog publishing platform
-      <button onClick={showModal} id="register">
-        Sign Up
-      </button>
-      <button onClick={showModal} id="login">
-        Log In
-      </button>
-      {registerOpen && (
-        <Modal handleControl={handleControl}>
-          <Register />
-        </Modal>
-      )}
+      <LandingPage showModal={showModal}/>
       {loginOpen && (
         <Modal handleControl={handleControl}>
           <Login />
         </Modal>
       )}
+      <Route exact path='/register' render={Register}/>
     </div>
   );
 }
-
 export default App;
