@@ -44,7 +44,7 @@ function Register({ register, registering }) {
         <div className="nav-left">Insight</div>
         <div className="nav-right"></div>
       </StyledNav>
-      <img src={registration_jumbo} alt="Man on laptop" />
+      <img src={registration_jumbo} alt="Man on laptop" className='laptop_man'/>
       <StyledAuth>
         <h1>Try Insight for Free</h1>
         <p>
@@ -66,7 +66,7 @@ function Register({ register, registering }) {
         <div className="footer-group">
           <a href="/">Terms & Privacy</a>
         </div>
-        <div className="footer-group">
+        <div className="footer-group footer-right">
           <img src={appstr} alt="Apple Store logo" />
           <img src={ps} alt="Play Store logo" />
         </div>

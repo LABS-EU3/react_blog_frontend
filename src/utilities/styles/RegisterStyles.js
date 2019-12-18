@@ -2,20 +2,26 @@ import styled from "styled-components";
 
 export const StyledContainer = styled.div`
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   img {
-    width: 25%;
+    max-width: 15%;
+  }
+  .laptop_man {
+    max-width: 10%;
+    max-height: 18vh;
   }
 `;
+
 export const StyledNav = styled.div`
   display: flex;
   width: 100%;
   padding: 1rem 0;
   margin-bottom: 2rem;
+  min-height: 4vh;
   .nav-left {
     width: 50%;
     padding-left: 2rem;
@@ -33,23 +39,30 @@ export const StyledNav = styled.div`
 export const StyledFooter = styled.div`
   background-color: #323c5c;
   width: 100%;
+  min-height: 5vh;
   padding: 4vh 0;
   display: flex;
+  bottom: 0;
   font-family: "Lato", sans-serif;
   .footer-group {
     width: 50%;
     display: flex;
     align-items: center;
     padding-left: 2rem;
-    img {
-      border-radius: 10px;
-      border: 2px solid #323c5c;
-      margin-left: 2rem;
-    }
     a {
       color: white;
       text-decoration: none;
       font-size: 0.5rem;
+    }
+    &.footer-right {
+      justify-content: flex-end;
+      img {
+        border-radius: 10px;
+        border: 2px solid #323c5c;
+        margin-right: 5%;
+        max-width: 15%;
+        max-height: 80%;
+      }
     }
   }
 `;
@@ -88,10 +101,8 @@ export const SecondaryBtn = styled.div`
 
 export const StyledAuth = styled.form`
   min-height: 300px;
-  // border: 1px solid;
   display: flex;
   flex-direction: column;
-  margin: 2vh auto;
   align-items: center;
   justify-content: space-between;
   font-family: "Lato", sans-serif;
@@ -99,7 +110,7 @@ export const StyledAuth = styled.form`
   color: #636363;
   padding: 2rem;
   h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: #205284;
     margin-bottom: 1rem;
   }
