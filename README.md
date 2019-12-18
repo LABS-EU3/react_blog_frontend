@@ -1,4 +1,15 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Insight Frontend
+
+You can find the deployed project at https://getinsight.to
+
+Project Overview
+
+[Trello Board](https://trello.com/b/HsuE5rL4/labs)
+Product Canvas
+UX Design files
+
+A writing publishing platform (cms) that allows readers to emoji react to text blocks and text highlights
+
 
 ## Available Scripts
 
