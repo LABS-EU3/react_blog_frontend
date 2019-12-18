@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { StyledContainer, StyledAuth, StyledNav, StyledFooter } from "../utilities/styles/RegisterStyles";
 import * as actionCreators from "../redux-store/actions/actionCReators";
 import registration_jumbo from '../assets/images/registration-jumbo.png';
+import Modal from './Modal';
+import RegistrationSuccess from './RegistrationSuccess';
 
 function Register({ register, registering }) {
   const fullname = useRef("");
@@ -29,6 +31,7 @@ function Register({ register, registering }) {
 
   return (
     <StyledContainer>
+        {!registering.success && <Modal><RegistrationSuccess /></Modal>}
         <StyledNav>
             <div className='nav-left'>
                 Insight
@@ -46,7 +49,7 @@ function Register({ register, registering }) {
         <input placeholder="Email" ref={email} type="text" />
         <input placeholder="Password" ref={password} type="password" />
         <button onClick={handleSubmit} className="primary">
-          {!registering.registering ? "Try for Free" : "Loading.."}
+          {!registering.loading ? "Try for Free" : "Loading.."}
         </button>
         <p>
           Already have an account?
