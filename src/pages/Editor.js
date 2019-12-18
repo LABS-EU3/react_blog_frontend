@@ -30,7 +30,7 @@ class Editor extends Component {
 
   render() {
     return (
-      <div>
+      <div id="editor-page">
         <NavBar editorInstance={this.handleSave} />
         {/* <button onClick={this.handleSave}>DIDDDDDD</button> */}
         <StyledEditor>

@@ -93,9 +93,7 @@ const Nav = styled.ul`
 `;
 
 const NavBar = props => {
-  console.log(props);
-  const [data, setData] = useState([]);
-
+ 
   const handle = async e => {
     await props.editorInstance();
   };
@@ -114,7 +112,7 @@ const NavBar = props => {
 
       <div className="right" style={{ width: "30%" }}>
         <div>
-          <button className="draft">Save as Draft</button>
+          <button className="draft">Save for Later</button>
         </div>
         <div>
           <button>Publish</button>
