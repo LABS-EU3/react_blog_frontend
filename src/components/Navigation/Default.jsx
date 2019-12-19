@@ -1,5 +1,6 @@
 import React from 'react'
 import Button from '../Button';
+import { Link } from "react-router-dom";
 
 import {
   NavWrapper,
@@ -17,7 +18,7 @@ export default function Default(props) {
       </Logo>
       <AuthButtons>
         <ul><li onClick={() => props.handleOpen(true)}>Log In</li></ul>
-        <Button label="Try for free" />
+        <Link to="/register"><Button label="Try for free" /></Link>
       </AuthButtons>
     </NavWrapper>
   )
