@@ -2,7 +2,7 @@ import React from "react";
 import "../fonts/style.css";
 import styled from "styled-components";
 import lp from "../assets/images/landing-jumbo.svg";
-import demo from "../assets/images/demo.GIF";
+import demo from "../assets/images/demo.svg";
 import logo from "../assets/images/logo.png";
 import ps from "../assets/images/ps.png";
 import appstr from "../assets/images/appstr.png";
@@ -151,15 +151,18 @@ const LandingPage = props => {
     }
   `;
   const Demo = styled.div`
-    width: 80%;
-    margin: 50px auto;
+    width: 100%;
     display: flex;
-    justify-content: space-between;
-
+    justify-content: space-around;
+    padding: 2% 4%;
     p {
       color: #205284;
-      font-family: "HK Grotesk Bold";
-      font-size: 5rem;
+      font-size: 64px;
+      width: 40%;
+    }
+    img {
+      width: 50%;
+      padding: 2%;
     }
   `;
 
