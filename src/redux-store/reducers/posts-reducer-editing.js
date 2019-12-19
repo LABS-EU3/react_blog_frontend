@@ -1,3 +1,13 @@
+import {
+  TOGGLE_MODAL,
+  PUBLISHING_FAIL,
+  PUBLISHING_SUCCESS,
+  PUBLISHING_START,
+  SAVING_FAIL,
+  SAVING_SUCCESS,
+  SAVING_START
+} from "../actions/types";
+
 const initialState = {
   showModal: false,
   blocks: [],
@@ -7,42 +17,42 @@ const initialState = {
 
 export const postsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "TOGGLE_MODAL":
+    case TOGGLE_MODAL:
       return {
         ...state,
         showModal: !state.showModal
       };
-    case "PUBLISHING_START":
+    case PUBLISHING_START:
       return {
         ...state,
         isPublishing: true
       };
 
-    case "PUBLISHING_SUCCESS":
+    case PUBLISHING_SUCCESS:
       return {
         ...state,
         isPublishing: true
       };
 
-    case "PUBLISHING_FAIL":
+    case PUBLISHING_FAIL:
       return {
         ...state,
         isPublishing: false
       };
 
-    case "SAVING_START":
+    case SAVING_START:
       return {
         ...state,
         isSaving: true
       };
 
-    case "SAVING_SUCCESS":
+    case SAVING_SUCCESS:
       return {
         ...state,
         isSaving: true
       };
 
-    case "SAVING_FAIL":
+    case SAVING_FAIL:
       return {
         ...state,
         isSaving: false
