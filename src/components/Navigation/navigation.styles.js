@@ -6,7 +6,6 @@ export const NavWrapper = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid black;
   padding: 0.5rem;
 `;
 
