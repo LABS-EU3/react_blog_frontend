@@ -14,54 +14,7 @@ import {
 
 import { EDITOR_JS_TOOLS } from "../utilities/editor-tools";
 
-class Editor extends Component {
-  constructor(props) {
-    super(props);
-    this.state = this.props.newPost;
-    this.handlePublish = this.handlePublish.bind(this);
-    this.publishPost = this.props.publishPost
-  }
-  async handlePublish() {
-    const savedData = await this.editorInstance.save();
-    this.publishPost(savedData)
-  
-  }
-
-  componentDidMount() {
-    this.editorInstance;
-  }
-
-  render() {
-    return (
-      <div id="editor-page">
-        <NavBar handlePublish={this.handlePublish} />
-        <ArticleModal handlePublish={this.handlePublish} />
-        <StyledEditor>
-          <EditorJs
-            tools={EDITOR_JS_TOOLS}
-            placeholder={"Be Insightful"}
-            instanceRef={instance => (this.editorInstance = instance)}
-            data={{
-              time: 1556098174501,
-              blocks: [
-                {
-                  type: "header",
-                  data: {
-                    text: "Untitled",
-                    level: 1
-                  }
-                }
-              ]
-            }}
-          />
-        </StyledEditor>
-      </div>
-    );
-  }
-}
-
 const StyledEditor = styled.div`
-  @import url("../fonts/HKGrotesk-Regular.woff");
   font-family: "HKGrotesk-Regular";
   h1 {
     font-size: 3.2rem;
@@ -93,6 +46,51 @@ const StyledEditor = styled.div`
   }
   caret-color: #3d3e77;
 `;
+
+class Editor extends Component {
+  constructor(props) {
+    super(props);
+    this.state = this.props.newPost;
+    this.handlePublish = this.handlePublish.bind(this);
+    this.publishPost = this.props.publishPost;
+  }
+  async handlePublish() {
+    const savedData = await this.editorInstance.save();
+    this.publishPost(savedData);
+  }
+
+  componentDidMount() {
+    this.editorInstance;
+  }
+
+  render() {
+    return (
+      <div id="editor-page">
+        <NavBar handlePublish={this.handlePublish} />
+        <ArticleModal handlePublish={this.handlePublish} />
+        <StyledEditor>
+          <EditorJs
+            tools={EDITOR_JS_TOOLS}
+            placeholder={"Be Insightful"}
+            instanceRef={instance => (this.editorInstance = instance)}
+            data={{
+              time: 1556098174501,
+              blocks: [
+                {
+                  type: "header",
+                  data: {
+                    text: "Title here...",
+                    level: 1
+                  }
+                }
+              ]
+            }}
+          />
+        </StyledEditor>
+      </div>
+    );
+  }
+}
 
 const mapStateToProps = state => {
   return {
