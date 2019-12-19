@@ -34,18 +34,19 @@ export const loginReducer = (state = initialLoginState, action) => {
 
 
 const initialRegisterState = {
-  registering: false
+  loading: false,
+  success: false
 };
 
 
 export const registerReducer = (state = initialRegisterState, action) => {
   switch (action.type) {
     case types.REGISTER_REQUEST:
-      return { registering: true };
+      return { loading: true };
     case types.REGISTER_SUCCESS:
-      return { registering: false };
+      return { loading: false, success: true };
     case types.REGISTER_FAILURE:
-      return { registering: false };
+      return { loading: false, success: false };
     default:
       return state;
   }

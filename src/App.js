@@ -27,13 +27,13 @@ function App() {
 
   return (
     <div className="App">
-      <LandingPage showModal={showModal}/>
       {loginOpen && (
         <Modal handleControl={handleControl}>
           <Login />
         </Modal>
       )}
-      <Route exact path='/register' render={Register}/>
+      <Route exact path='/' render={props => <LandingPage {...props} showModal={showModal}/>}/>
+      <Route exact path='/register' component={Register}/>
     </div>
   );
 }
