@@ -3,11 +3,9 @@ import "../fonts/style.css";
 import styled from "styled-components";
 import lp from "../assets/images/landing-jumbo.svg";
 import demo from "../assets/images/demo.GIF";
-import logo from "../assets/images/logo.png";
-import ps from "../assets/images/ps.png";
-import appstr from "../assets/images/appstr.png";
-import { Link } from "react-router-dom";
 import DefaultNav from "../components/Navigation/Default";
+import PrimaryFooter from '../components/Footer/PrimaryFooter';
+import SecondaryFooter from '../components/Footer/SecondaryFooter';
 
 const LandingPage = props => {
   const Main = styled.div`
@@ -78,53 +76,6 @@ const LandingPage = props => {
       min-width: 95%;
       max-height: 60vh;
     }
-  `;
-
-  const Logo = styled.div`
-    p {
-      font-family: "HK Grotesk Bold";
-      color: #212c4f;
-      font-weight: 800;
-      font-size: 2rem;
-      margin-left: 30px;
-    }
-  `;
-  const LogIn = styled.div`
-    margin-right: 30px;
-    font-family: "HK Grotesk Light";
-    display: flex;
-
-    .button {
-      text-decoration: none;
-    }
-
-    .button.get-started {
-      background-color: #3672fb;
-      padding: 10px;
-      color: #ffffff;
-      border-radius: 5px;
-      border: none;
-      box-shadow: 0px 10px 20px;
-      -webkit-transition-duration: 0.4s;
-      transition-duration: 0.4s;
-    }
-
-    .button.get-started:hover {
-      background-color: #212c4f;
-      color: #ffffff;
-    }
-
-    .button.login {
-      color: #205284;
-      margin: 15px 30px 0 0;
-      text-decoration: none;
-    }
-  `;
-
-  const TopLp = styled.div`
-    display: flex;
-    justify-content: space-between;
-    padding-top: 8px;
   `;
 
   const Features = styled.div`
@@ -202,41 +153,6 @@ const LandingPage = props => {
     }
   `;
 
-  const BottomMenu = styled.div`
-    background-color: #212c4f;
-    font-family: "HK Grotesk Light";
-    display: flex;
-    padding: 60px 0;
-    justify-content: space-around;
-
-    .header {
-      color: #686868;
-    }
-
-    .content li {
-      margin: 20px 0;
-      display: flex;
-      flex-direction: column;
-      text-decoration: none;
-      color: #ffffff;
-    }
-  `;
-  const Footer = styled.div`
-    background-color: #123d63;
-    font-family: "HK Grotesk Light";
-    padding: 50px 0;
-    display: flex;
-    justify-content: space-around;
-
-    li {
-      color: #ffffff;
-      text-decoration: none;
-    }
-
-    img {
-      margin: 0 20px;
-    }
-  `;
 
   return (
     <Main>
@@ -318,54 +234,8 @@ const LandingPage = props => {
         <button className="try">Try for free</button>
       </Pitch>
 
-      <BottomMenu>
-        <img src={logo} alt="logo" width="80px" height="80px" />
-        <div className="content">
-          <p className="header">Insight</p>
-          <ul>
-            <li>Home</li>
-            <li>Product</li>
-            <li>Pricing</li>
-            <li>Premium</li>
-          </ul>
-        </div>
-        <div className="content">
-          <p className="header">About Us</p>
-          <ul>
-            <li>Company</li>
-            <li>Leadership</li>
-            <li>Customers</li>
-            <li>Careers</li>
-          </ul>
-        </div>
-        <div className="content">
-          <p className="header">Solutions</p>
-          <ul>
-            <li>Open Source Editor</li>
-            <li>Emoji React</li>
-            <li>Voice to Text</li>
-          </ul>
-        </div>
-        <div className="content">
-          <p className="header">Resources</p>
-          <ul>
-            <li>Insight Guide</li>
-            <li>Forum</li>
-            <li>Support</li>
-            <li>Events</li>
-          </ul>
-        </div>
-      </BottomMenu>
-
-      <Footer>
-        <ul>
-          <li>Terms & Privacy</li>
-        </ul>
-        <div>
-          <img src={appstr} alt="apple store" />
-          <img src={ps} alt="google playstore" />
-        </div>
-      </Footer>
+      <PrimaryFooter />
+      <SecondaryFooter />
     </Main>
   );
 };

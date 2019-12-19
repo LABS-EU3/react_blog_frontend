@@ -4,6 +4,7 @@ import DefaultNavigation from "../components/Navigation/Default";
 import Modal from "../components/Modal";
 import RegistrationSuccess from "./RegistrationSuccess";
 import Button from "../components/Button";
+import SecondaryFooter from '../components/Footer/SecondaryFooter';
 
 import {
   StyledContainer,
@@ -76,15 +77,7 @@ function Register({ register, loading, success, location }) {
           />
         </StyledAuth>
       </StyledContainer>
-      <StyledFooter>
-        <div className="footer-group">
-          <a href="/">Terms & Privacy</a>
-        </div>
-        <div className="footer-group footer-right">
-          <img src={appstr} alt="Apple Store logo" />
-          <img src={ps} alt="Play Store logo" />
-        </div>
-      </StyledFooter>
+      <SecondaryFooter />
     </>
   );
 }
