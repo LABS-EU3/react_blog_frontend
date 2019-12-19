@@ -13,7 +13,7 @@ export default function Home() {
       <Authed />
 
       {open && (
-        <Modal handleOpen={setOpen}><Login /></Modal>
+        <Modal height="425px" width="380px" handleOpen={setOpen}><Login /></Modal>
       )}
     </div>
   )

@@ -1,73 +1,88 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-background: #fffefe;
-/* text-align: center; */
-margin: auto;
-    /* width: 500px;   
-    margin: auto;
-    /* box-shadow: 0px 1px 3px 0px #aaa; */
-    /* height: 400px;
-    padding-top: 30px;
-    margin-top: 45px;
-    margin-bottom: 50px;  */
+  background: #fefefe;
 `;
 
-export const MyH2 = styled.h2`
- width: 400px;
-    margin: auto;
-    text-align: center;
-    padding-bottom: 25px;
-    font-size: 35px;
+export const Header2 = styled.h2`
+  font-family: Lato;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 65px;
+  text-align: center;
+  color: #636363;
+  margin-top: 2.0rem;
+  margin-bottom: 1.0rem;
 `;
 
 export const Div = styled.div`
-display: flex;
-    justify-content: center;
-    margin: 30px;
+    display: flex;
     flex-direction: column;
-    width: 400px;
-    margin: auto;
-    padding: 7px;
-    margin-bottom: 7px;
-`;
+    justify-content: center;
+    align-items: center;
 
-export const P = styled.p`
-text-align:center;
-line-height: 40px;
-color:#E16868;
-
-`;
-
-export const P2 = styled.p`
-text-align:center;
-line-height: 40px;
-border-top: 0.5px solid #cfcfcf;
-
-a {
-    color: #E16868;
+    .button {
+      padding: 1.3rem;
+      width: 80%;
+      margin-top:2.0rem;
+      
+      font-size: 14px;
+      line-height: 20px;
     }
 `;
 
 export const Input = styled.input`
+  width: 80%;
+  background: #ffffff;
+  border: 1.5px solid #e4e2e2;
+  box-sizing: border-box;
+  border-radius: 3px;
+  padding: 0.7rem;
+  margin-top: 2rem;
 
-    border: 1px solid #C4C4C4;
-    border-radius: 5px;
-    padding: 5px;
-    width:90%;
-    height:30px;
-    color:  #c4c4c4;
-    padding-left: 1rem;
-    margin-top:10px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 30px;
+
+  color: #636363;
+
+  ::placeholder {
+    color: #a09e9e;
+    font-weight: 500;
+  }
+
+  &:focus {
+    border: 1.5px solid #6f85fd;
+  }
 `;
 
-export const Button = styled.button`
- background: #276fd6;
-    border-radius: 5px;
-    border: 1px solid #276fd6;
-    color: white;
-    padding: 0.25em 1em;
-    height: 40px;
-    width: 95%;
-    margin-top:10px;
+export const P = styled.p`
+  text-align: center;
+  line-height: 40px;
+  color: #e16868;
+  font-weight: bold;
+  font-size: 14px;
+`;
+
+export const P2 = styled.p`
+  text-align: center;
+  line-height: 40px;
+  width: 70%;
+  margin: auto;
+  margin-top: 2.0rem;
+  border-top: 0.5px solid #cfcfcf;
+  font-weight: 300;
+  font-size: 14px;
+
+  a {
+    color: #e16868;
+    font-weight: 500;
+    font-size: 14px;
+
+    &:focus {
+      color: #6f85fd;
+    }
+  }
 `;
