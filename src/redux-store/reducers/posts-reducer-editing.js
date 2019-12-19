@@ -59,6 +59,6 @@ export const newPostReducer = (state = initialState, action) => {
       };
 
     default:
-      return false;
+      return state;
   }
 };

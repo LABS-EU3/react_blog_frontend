@@ -5,24 +5,26 @@ import "../fonts/HKGrotesk-Regular.woff";
 import EditorJs from "react-editor-js";
 import NavBar from "../components/NavBar";
 import styled from "styled-components";
+import { connect } from "react-redux";
+import {
+  savePostAsDraft,
+  publishPost,
+  handlePublishModal
+} from "../redux-store/actions/post-article-actions";
 
 import { EDITOR_JS_TOOLS } from "../utilities/editor-tools";
 
 class Editor extends Component {
   constructor(props) {
     super(props);
-    this.state = { isOn: true };
+    this.state = this.props.newPost;
     this.handlePublish = this.handlePublish.bind(this);
-    this.document = document.getElementsByClassName("ce-header");
+    this.publishPost = this.props.publishPost
   }
   async handlePublish() {
     const savedData = await this.editorInstance.save();
-    console.log(JSON.stringify(savedData));
-    console.log(this.document);
-    this.document[0].addEventListener("keydown", () => {
-      console.log("ehoo");
-      this.document[0].setAttribute("placeholder", "democlass");
-    });
+    this.publishPost(savedData)
+  
   }
 
   componentDidMount() {
@@ -33,8 +35,7 @@ class Editor extends Component {
     return (
       <div id="editor-page">
         <NavBar handlePublish={this.handlePublish} />
-        <ArticleModal handlePublish={this.handlePublish}/>
-        {/* <button onClick={this.handleSave}>DIDDDDDD</button> */}
+        <ArticleModal handlePublish={this.handlePublish} />
         <StyledEditor>
           <EditorJs
             tools={EDITOR_JS_TOOLS}
@@ -58,8 +59,6 @@ class Editor extends Component {
     );
   }
 }
-
-export default Editor;
 
 const StyledEditor = styled.div`
   @import url("../fonts/HKGrotesk-Regular.woff");
@@ -94,3 +93,15 @@ const StyledEditor = styled.div`
   }
   caret-color: #3d3e77;
 `;
+
+const mapStateToProps = state => {
+  return {
+    newPost: state.newPost
+  };
+};
+
+export default connect(mapStateToProps, {
+  handlePublishModal,
+  publishPost,
+  savePostAsDraft
+})(Editor);

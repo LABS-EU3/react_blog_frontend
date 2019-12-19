@@ -1,6 +1,12 @@
 import React from "react";
 import { Icon } from "react-icons-kit";
 import { bell } from "react-icons-kit/feather/bell";
+import {
+  publishPost,
+  savePostAsDraft,
+  handlePublishModal
+} from "../redux-store/actions/post-article-actions";
+import { connect } from "react-redux";
 import logo from "../assets/logo-gradient.png";
 import avatar from "../assets/random-avatar.jpeg";
 import styled from "styled-components";
@@ -92,22 +98,24 @@ const Nav = styled.ul`
   }
 `;
 
-const NavBar = props => {
- 
-  const handle = async e => {
-    await props.editorInstance();
+const EditorNavBar = props => {
+  const toggleModal = () => {
+    if (props.newPost.showModal) {
+      document.getElementById("root").style.filter = "blur(0px)";
+      document.getElementById("editor-page").style.pointerEvents = "auto";
+    } else {
+      document.getElementById("root").style.filter = "blur(4px)";
+      document.getElementById("editor-page").style.pointerEvents = "none";
+    }
+    props.handlePublishModal();
   };
 
   return (
     <Nav>
       <div className="left" style={{ width: "70%", margin: "0" }}>
         <div>
-          <img src={logo} alt="logo" onClick={e => handle()} />
+          <img src={logo} alt="logo" />
         </div>
-        {/* <div>
-          <div>Draft </div>
-          <div style={{ color: "grey" }}>Saving</div>
-        </div> */}
       </div>
 
       <div className="right" style={{ width: "30%" }}>
@@ -115,7 +123,7 @@ const NavBar = props => {
           <button className="draft">Save for Later</button>
         </div>
         <div>
-          <button>Publish</button>
+          <button onClick={() => toggleModal()}>Publish</button>
         </div>
         <div style={{ color: "#A9A9A9", paddingTop: "5px" }}>
           <Icon icon={bell} size={24} />
@@ -128,4 +136,14 @@ const NavBar = props => {
   );
 };
 
-export default NavBar;
+const mapStateToProps = state => {
+  return {
+    newPost: state.newPost
+  };
+};
+
+export default connect(mapStateToProps, {
+  handlePublishModal,
+  publishPost,
+  savePostAsDraft
+})(EditorNavBar);

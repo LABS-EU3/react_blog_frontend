@@ -2,6 +2,12 @@
 import React from "react";
 import Tags from "./Tags";
 import { createPortal } from "react-dom";
+import {
+  publishPost,
+  savePostAsDraft,
+  handlePublishModal
+} from "../redux-store/actions/post-article-actions";
+import { connect } from "react-redux";
 import styled from "styled-components";
 import logo from "../assets/logo-gradient.png";
 
@@ -23,14 +29,12 @@ class ArticleModal extends React.Component {
   }
 }
 
-export default class Home extends React.Component {
+class ModalContainer extends React.Component {
   constructor(props) {
     super(props);
     this.app = document.getElementById("root");
     this.editor = document.getElementById("editor-page");
-    this.state = {
-      showModal: false
-    };
+    this.handlePublishModal = this.props.handlePublishModal;
   }
 
   onTagsChanged = newTags => {
@@ -47,33 +51,29 @@ export default class Home extends React.Component {
   };
 
   toggleModal = () => {
-    console.log(this.editor);
-    if (this.state.showModal) {
+    if (this.props.newPost.showModal) {
       this.app.style.filter = "blur(0px)";
       document.getElementById("editor-page").style.pointerEvents = "auto";
     } else {
       this.app.style.filter = "blur(4px)";
       document.getElementById("editor-page").style.pointerEvents = "none";
     }
-
-    this.setState({
-      showModal: !this.state.showModal
-    });
+    this.props.handlePublishModal();
   };
 
   render() {
-    const { showModal } = this.state;
+    const { showModal } = this.props.newPost;
 
     return (
       <React.Fragment>
-        <button className="modal-toggle-button" onClick={this.toggleModal}>
-          {!showModal ? "Open Modal" : "Close Modal"}
-        </button>
         {showModal ? (
           <ArticleModal>
             <StyledModal>
               <div className="modal-row-1">
-                <div className="modal-row-1-div" onClick={this.toggleModal}>
+                <div
+                  className="modal-row-1-div"
+                  onClick={() => this.toggleModal()}
+                >
                   X
                 </div>
                 <div className="modal-row-1-div">
@@ -193,3 +193,15 @@ const StyledModal = styled.div`
     }
   }
 `;
+
+const mapStateToProps = state => {
+  return {
+    newPost: state.newPost
+  };
+};
+
+export default connect(mapStateToProps, {
+  handlePublishModal,
+  publishPost,
+  savePostAsDraft
+})(ModalContainer);
