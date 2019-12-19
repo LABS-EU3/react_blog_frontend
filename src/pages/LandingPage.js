@@ -7,6 +7,7 @@ import logo from "../assets/images/logo.png";
 import ps from "../assets/images/ps.png";
 import appstr from "../assets/images/appstr.png";
 import { Link } from "react-router-dom";
+import DefaultNav from "../components/Navigation/Default";
 
 const LandingPage = props => {
   const Main = styled.div`
@@ -238,20 +239,7 @@ const LandingPage = props => {
 
   return (
     <Main>
-      {/* <TopLp>
-                    <Logo>
-                        <p>Insight</p>
-                    </Logo>
-                    <LogIn>
-                        <ul className='button login' id="login" onClick={props.showModal}>
-                            <li id="login">Log In</li>
-                        </ul>
-                        <Link to="/register">
-                        <button className='button get-started'>Try for free</button>
-                        </Link>
-                    </LogIn>
-                </TopLp> */}
-
+      <DefaultNav {...props} />
       <MidContent>
         <About>
           <h3>Write Good Articles Effortlessy</h3>
