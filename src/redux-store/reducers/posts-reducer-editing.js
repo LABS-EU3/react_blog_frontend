@@ -15,7 +15,7 @@ const initialState = {
   isSaving: false
 };
 
-export const postsReducer = (state = initialState, action) => {
+export const newPostReducer = (state = initialState, action) => {
   switch (action.type) {
     case TOGGLE_MODAL:
       return {

@@ -4,7 +4,6 @@ import Tags from "./Tags";
 import { createPortal } from "react-dom";
 import styled from "styled-components";
 import logo from "../assets/logo-gradient.png";
-import send from "../assets/send.png";
 
 const modalRoot = document.getElementById("article-modal");
 

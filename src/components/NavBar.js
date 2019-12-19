@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Icon } from "react-icons-kit";
 import { bell } from "react-icons-kit/feather/bell";
 import logo from "../assets/logo-gradient.png";
