@@ -15,7 +15,7 @@ export default function Default(props) {
       {location !== "/register" && (
         <AuthButtons>
           <ul>
-            <li onClick={() => props.handleOpen(true)}>Log In</li>
+            <li onClick={() => props.handleOpen ? props.handleOpen(true) : null}>Log In</li>
           </ul>
           <Link to="/register">
             <Button label="Try for free" />
