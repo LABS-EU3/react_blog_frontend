@@ -2,9 +2,15 @@ import React from "react";
 import styled from "styled-components";
 
 export default function Button(props) {
+  const clickHandler = () => {
+    if (props.handleClick) {
+      props.handleClick();
+    }
+  }
+  
   return (
     <>
-      <ButtonD>{props.label}</ButtonD>
+      <ButtonD className={props.className} onClick={clickHandler}>{props.label}</ButtonD>
     </>
   );
 }
