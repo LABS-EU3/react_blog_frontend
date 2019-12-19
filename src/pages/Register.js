@@ -11,7 +11,7 @@ import * as actionCreators from "../redux-store/actions/actionCreators";
 import registration_jumbo from "../assets/images/registration-jumbo.png";
 import ps from "../assets/images/ps.png";
 import appstr from "../assets/images/appstr.png";
-import Modal from "./Modal";
+import Modal from "../components/Modal";
 import RegistrationSuccess from "./RegistrationSuccess";
 
 function Register({ register, registering }) {
