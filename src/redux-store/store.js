@@ -3,9 +3,12 @@ import { combineReducers, createStore, compose, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 
 import { newPostReducer } from "./reducers/posts-reducer-editing";
+import { loginReducer, registerReducer } from "./reducers/user-reducer"
 
 const rootReducer = combineReducers({
-  newPost: newPostReducer
+  newPost: newPostReducer,
+  login: loginReducer,
+  registering: registerReducer
 });
 
 const middleware = [thunk];

@@ -30,6 +30,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	
 }
 ol, ul {
 	list-style: none;
@@ -53,11 +54,6 @@ table {
   font-family: 'HK-Grotesk';
   src: local('HK-Grotesk'), url(./fonts/HKGrotesk-Regular.woff) format('truetype');
 }
-
-@font-face {
-	font-family: 'AtlasGrotesk';
-	src: local('AtlasGrotesk'), url(./fonts/AtlasGrotesk-Regular.woff) format('truetype');
-  }
 
 
 .ce-toolbar__actions--opened {

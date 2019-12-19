@@ -1,16 +1,48 @@
-import React from "react";
-import Editor from "./pages/Editor"
-import Home from './components/ArticleModal'
-import LandingPage from './pages/LandingPage'
-import { createGlobalStyle } from "styled-components";
-
+import React, { useState } from "react";
+import Modal from "./pages/Modal";
+import Editor from "./pages/Editor";
+import ArticleModal from "./components/ArticleModal";
+import LandingPage from "./pages/LandingPage";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import { Route } from "react-router-dom";
 
 function App() {
-  return <>
-  {/* <div className="App">Welcome to our blog publishing platform</div> */}
-  <Editor/>
-  <Home/>
-  </>;
-}
+  const [registerOpen, setRegisterOpen] = useState(true);
+  const [loginOpen, setLoginOpen] = useState(false);
 
+  const showModal = e => {
+    if (e.target.id === "register") {
+      setRegisterOpen(true);
+    } else if (e.target.id === "login") {
+      setLoginOpen(true);
+    }
+  };
+
+  const handleControl = e => {
+    if (registerOpen) {
+      setRegisterOpen(false);
+    } else if (loginOpen) {
+      setLoginOpen(false);
+    }
+  };
+
+  return (
+    <div className="App">
+      {loginOpen && (
+        <Modal handleControl={handleControl}>
+          <Login />
+        </Modal>
+      )}
+      <Route
+        exact
+        path="/"
+        render={props => <LandingPage {...props} showModal={showModal} />}
+      />
+      <Route exact path="/register" component={Register} />
+      <Route exact path="/newpost" component={Editor} />
+      <ArticleModal />
+    </div>
+  );
+}
 export default App;
