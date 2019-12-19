@@ -1,14 +1,18 @@
 import axios from "axios";
+import uuid from "uuid";
 
 import {
-    TOGGLE_MODAL,
-    PUBLISHING_FAIL,
-    PUBLISHING_SUCCESS,
-    PUBLISHING_START,
-    SAVING_FAIL,
-    SAVING_SUCCESS,
-    SAVING_START
-  } from "./types";
+  TOGGLE_MODAL,
+  PUBLISHING_FAIL,
+  PUBLISHING_SUCCESS,
+  PUBLISHING_START,
+  SAVING_FAIL,
+  SAVING_SUCCESS,
+  SAVING_START,
+  ADD_TAG,
+  REMOVE_TAG,
+  LOAD_TAGS
+} from "./types";
 
 export const handlePublishModal = () => dispatch => {
   dispatch({
@@ -47,3 +51,36 @@ export const savePostAsDraft = post => async dispatch => {
     dispatch({ type: SAVING_FAIL });
   }
 };
+
+export const addTag = inputValue => dispatch => {
+  dispatch({
+    type: ADD_TAG,
+    payload: { id: uuid(), name: inputValue }
+  });
+};
+
+export const removeTag = id => dispatch => {
+  dispatch({
+    type: REMOVE_TAG,
+    payload: id
+  });
+};
+
+export const loadTags = propTags => dispatch => {
+  if (propTags) {
+    dispatch({
+      type: LOAD_TAGS,
+      payload: propTags
+    });
+  }
+};
+
+// state => ({
+//   selectedTags: [
+//     ...state.selectedTags,
+//     {
+//       index: state.selectedTags.length + 1,
+//       displayValue: "#" + inputValue
+//     }
+//   ]
+// }),

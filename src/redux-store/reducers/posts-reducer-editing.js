@@ -5,12 +5,15 @@ import {
   PUBLISHING_START,
   SAVING_FAIL,
   SAVING_SUCCESS,
-  SAVING_START
+  SAVING_START,
+  ADD_TAG,
+  REMOVE_TAG,
+  LOAD_TAGS
 } from "../actions/types";
 
 const initialState = {
   showModal: false,
-  blocks: [],
+  tags: [],
   isPublishing: false,
   isSaving: false
 };
@@ -56,6 +59,24 @@ export const newPostReducer = (state = initialState, action) => {
       return {
         ...state,
         isSaving: false
+      };
+
+    case LOAD_TAGS:
+      return {
+        ...state,
+        tags: [...state.tags, action.payload]
+      };
+
+    case ADD_TAG:
+      return {
+        ...state,
+        tags: [...state.tags, action.payload]
+      };
+
+    case REMOVE_TAG:
+      return {
+        ...state,
+        tags: state.tags.filter(tag => tag.id !== action.payload)
       };
 
     default:
