@@ -42,6 +42,11 @@ export default class Home extends React.Component {
     console.log(`input value is now: ${e.target.value}`);
   };
 
+  handleSubmit = e => {
+    this.props.handlePublish();
+    this.toggleModal();
+  };
+
   toggleModal = () => {
     console.log(this.editor);
     if (this.state.showModal) {
@@ -90,7 +95,7 @@ export default class Home extends React.Component {
               </div>
               <div></div>
               <div className="modal-bottom">
-                <button>Publish Now</button>
+                <button onClick={() => this.handleSubmit()}>Publish Now</button>
               </div>
             </StyledModal>
           </ArticleModal>
