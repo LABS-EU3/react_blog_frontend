@@ -128,24 +128,25 @@ const LandingPage = props => {
   `;
 
   const Features = styled.div`
-    background-color: #c6d0eb;
+    background-color: #f1f6fd;
     display: flex;
     justify-content: space-around;
     margin-bottom: 30px;
-
+    width: 100%;
+    padding: 2.5% 4%;
     h3 {
-      font-family: "HK Grotesk SemiBold";
       color: #205284;
       padding: 20px 0;
-      font-size: 2rem;
+      font-size: 36px;
     }
-
     .feat {
-      width: 22%;
+      width: 30%;
+      // padding: 2rem;
     }
 
     p {
-      font-family: "HK Grotesk Light";
+      font-size: 22px;
+      color: #646f79;
       padding-bottom: 30px;
     }
   `;
