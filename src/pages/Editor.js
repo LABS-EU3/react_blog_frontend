@@ -13,6 +13,7 @@ import {
 } from "../redux-store/actions/post-article-actions";
 
 import { EDITOR_JS_TOOLS } from "../utilities/editor-tools";
+import uuid from "uuid";
 
 const StyledEditor = styled.div`
   font-family: "HKGrotesk-Regular";
@@ -55,8 +56,12 @@ class Editor extends Component {
     this.publishPost = this.props.publishPost;
   }
   async handlePublish() {
-    const savedData = await this.editorInstance.save();
-    this.publishPost(savedData);
+    const editorData = await this.editorInstance.save();
+    const post = { id: uuid(), ...editorData };
+    const tags = this.props.newPost.tags.map(tag => {
+      return { ...tag, articleId: post.id };
+    });
+    this.publishPost({ ...post, tags });
   }
 
   componentDidMount() {
