@@ -22,12 +22,12 @@ class TagInput extends Component {
   }
 
   componentDidMount() {
-    const { tags } = this.props.newPost;
-    const propTags = tags.map(tag => {
-      return tag;
-    });
+    // const { tags } = this.props.newPost;
+    // const propTags = tags.map(tag => {
+    //   return tag;
+    // });
 
-    this.props.loadTags(propTags); //redux store action
+    // this.props.loadTags(propTags); //WILL REVISIT
     this.focusInput();
   }
 

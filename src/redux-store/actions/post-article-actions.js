@@ -21,6 +21,7 @@ export const handlePublishModal = () => dispatch => {
 };
 
 export const publishPost = post => async dispatch => {
+  console.log(post)
   dispatch({
     type: PUBLISHING_START
   });
