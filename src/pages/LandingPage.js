@@ -8,7 +8,7 @@ import demo from '../assets/images/demo.GIF';
 import logo from '../assets/images/logo.png';
 import ps from '../assets/images/ps.png';
 import appstr from '../assets/images/appstr.png';
-import { tsPropertySignature } from '@babel/types';
+import { Link } from 'react-router-dom';
 
 const LandingPage = (props) => {
 
@@ -241,7 +241,9 @@ const LandingPage = (props) => {
                         <ul className='button login' id="login" onClick={props.showModal}>
                             <li id="login">Log In</li>
                         </ul>
+                        <Link to="/register">
                         <button className='button get-started'>Try for free</button>
+                        </Link>
                     </LogIn>
                 </TopLp>
 
