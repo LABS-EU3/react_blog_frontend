@@ -13,7 +13,7 @@ import logo from "../assets/logo-gradient.png";
 
 const modalRoot = document.getElementById("article-modal");
 
-class ArticleModal extends React.Component {
+export class ArticleModal extends React.Component {
   constructor(props) {
     super(props);
     this.element = document.createElement("div");

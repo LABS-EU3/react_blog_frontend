@@ -11,7 +11,7 @@ import {
   LOAD_TAGS
 } from "../actions/types";
 
-const initialState = {
+export const initialState = {
   showModal: false,
   tags: [],
   isPublishing: false,

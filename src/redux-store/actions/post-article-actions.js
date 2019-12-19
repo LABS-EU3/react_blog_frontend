@@ -21,7 +21,6 @@ export const handlePublishModal = () => dispatch => {
 };
 
 export const publishPost = post => async dispatch => {
-  console.log(post)
   dispatch({
     type: PUBLISHING_START
   });
@@ -34,6 +33,22 @@ export const publishPost = post => async dispatch => {
   } catch (error) {
     console.log(error);
     dispatch({ type: PUBLISHING_FAIL });
+  }
+};
+
+export const savePost = post => async dispatch => {
+  dispatch({
+    type: SAVING_START
+  });
+  try {
+    let res = await axios.post("http://localhost:3300/articles/save", post);
+    if (res)
+      dispatch({
+        type: SAVING_SUCCESS
+      });
+  } catch (error) {
+    console.log(error);
+    dispatch({ type: SAVING_FAIL });
   }
 };
 

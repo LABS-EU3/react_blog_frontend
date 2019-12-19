@@ -9,7 +9,8 @@ import { connect } from "react-redux";
 import {
   savePostAsDraft,
   publishPost,
-  handlePublishModal
+  handlePublishModal,
+  savePost
 } from "../redux-store/actions/post-article-actions";
 
 import { EDITOR_JS_TOOLS } from "../utilities/editor-tools";
@@ -53,25 +54,52 @@ class Editor extends Component {
     super(props);
     this.state = this.props.newPost;
     this.handlePublish = this.handlePublish.bind(this);
+    this.handleSave = this.handleSave.bind(this);
     this.publishPost = this.props.publishPost;
   }
   async handlePublish() {
     const editorData = await this.editorInstance.save();
-    const post = { id: uuid(), ...editorData };
+    const title = editorData.blocks[0].data.text;
+    const post = {
+      id: uuid(),
+      title,
+      body: editorData.blocks,
+      isPublished: true,
+      isEditing: false
+    };
     const tags = this.props.newPost.tags.map(tag => {
       return { ...tag, articleId: post.id };
     });
     this.publishPost({ ...post, tags });
   }
 
+
+  async handleSave () {
+    const editorData = await this.editorInstance.save();
+    const title = editorData.blocks[0].data.text;
+    const post = {
+      id: uuid(),
+      title,
+      body: editorData.blocks,
+      isPublished: false,
+      isEditing: true
+    };
+    const tags = this.props.newPost.tags.map(tag => {
+      return { ...tag, articleId: post.id };
+    });
+    this.props.savePost({ ...post, tags })
+  }
+  
+
+
   componentDidMount() {
-    this.editorInstance;
+    this.editorInstance
   }
 
   render() {
     return (
       <div id="editor-page">
-        <NavBar handlePublish={this.handlePublish} />
+        <NavBar handlePublish={this.handlePublish} handleSave={this.handleSave} />
         <ArticleModal handlePublish={this.handlePublish} />
         <StyledEditor>
           <EditorJs
@@ -106,5 +134,6 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, {
   handlePublishModal,
   publishPost,
-  savePostAsDraft
+  savePostAsDraft,
+  savePost
 })(Editor);

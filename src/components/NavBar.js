@@ -120,7 +120,7 @@ const EditorNavBar = props => {
 
       <div className="right" style={{ width: "30%" }}>
         <div>
-          <button className="draft">Save for Later</button>
+          <button className="draft" onClick={() => props.handleSave()}>Save for Later</button>
         </div>
         <div>
           <button onClick={() => toggleModal()}>Publish</button>
