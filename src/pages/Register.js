@@ -4,6 +4,7 @@ import {
   StyledContainer,
   StyledAuth,
   StyledNav,
+  PrimaryBtn,
   StyledFooter
 } from "../utilities/styles/RegisterStyles";
 import * as actionCreators from "../redux-store/actions/actionCreators";
@@ -12,7 +13,6 @@ import ps from "../assets/images/ps.png";
 import appstr from "../assets/images/appstr.png";
 import Modal from "./Modal";
 import RegistrationSuccess from "./RegistrationSuccess";
-import { PrimaryBtn } from "../utilities/styles/RegisterStyles";
 
 function Register({ register, registering }) {
   const fullname = useRef("");

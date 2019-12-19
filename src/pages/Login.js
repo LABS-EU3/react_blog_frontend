@@ -1,20 +1,24 @@
 import React, { useRef, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import {connect} from "react-redux"
-import { Container, MyH2, Div, P, Input, Button,P2 } from "../utilities/styles/LoginStyles"
+import { connect } from "react-redux";
+import { Container, MyH2, Div, P, Input, Button, P2 } from "../utilities/styles/LoginStyles";
+import {setLoginSuccess, setLoginFailure} from "../redux-store/actions/actionCreators";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 const Login = props => {
-    const nameRef = useRef();
+    const emailRef = useRef();
     const passwordRef = useRef();
 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
+    const [userInfo, setUserInfo] = useLocalStorage('userInfo', {});
+
     const validate = () => {
         let isError = false;
-        if (nameRef.current.value === "") {
-            setError("Please enter a valid Username!");
+        if (emailRef.current.value === "") {
+            setError("Please enter a valid Email!");
             isError = true;
         }
         if (passwordRef.current.value === "") {
@@ -29,19 +33,28 @@ const Login = props => {
         if (valid) {
             return;
         }
+
+        let dummyData = {
+            email: "damilola@yahoo.com",
+            token: "jkasaKLJajksdja"          
+        }
+        props.setLoginSuccess(dummyData)
+ 
         setLoading(true);
         axios
             .post("https://react-blog.herokuapp.com/auth/login", {
-                username: nameRef.current.value,
+                email: emailRef.current.value,
                 password: passwordRef.current.value
             })
             .then(response => {
                 setLoading(false);
-                window.localStorage.setItem("token", response.data.token);
+                setUserInfo(dummyData)
+        props.setLoginSuccess(dummyData)
 
             })
             .catch(error => {
                 setLoading(false);
+        props.setLoginFailure(error)
             });
     };
 
@@ -50,7 +63,7 @@ const Login = props => {
         <Container>
             <MyH2> Login </MyH2>
             <Div>
-                <Input ref={nameRef} type="text" autoComplete="username" placeholder="Username" />
+                <Input ref={emailRef} type="email" autoComplete="email" placeholder="Email" />
             </Div>
 
             <Div>
@@ -68,4 +81,4 @@ const Login = props => {
 };
 
 
-export default connect(state=>state, {})(Login)
+export default connect(state => state, {setLoginSuccess, setLoginFailure})(Login)

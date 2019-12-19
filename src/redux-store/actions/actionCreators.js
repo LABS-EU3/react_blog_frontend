@@ -14,3 +14,17 @@ export const register = user => dispatch => {
       dispatch({ type: types.REGISTER_FAILURE });
     });
 };
+
+export const setLoginSuccess = (user) => {
+  return {
+    type: types.LOGIN_SUCCESS,
+    user: user
+  };
+}
+
+export const setLoginFailure = (error) => {
+  return {
+    type: types.LOGIN_FAILURE,
+    error: error
+  };
+}

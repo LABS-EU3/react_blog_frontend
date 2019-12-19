@@ -17,7 +17,7 @@ const ModalInner = styled.div`
   padding: 0;
   background: #fff;
   display: inline-block;
-  min-height: 300px;
+  /* height: 400px;  */
   margin: 1rem;
   position: relative;
   min-width: 300px;
