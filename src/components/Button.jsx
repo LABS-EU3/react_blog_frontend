@@ -2,15 +2,16 @@ import React from "react";
 import styled from "styled-components";
 
 export default function Button(props) {
-  const clickHandler = () => {
+  const clickHandler = (e) => {
     if (props.handleClick) {
+      e.preventDefault();
       props.handleClick();
     }
   }
   
   return (
     <>
-      <ButtonD className={props.className} onClick={clickHandler}>{props.label}</ButtonD>
+      <ButtonD type="button" className={props.className} onClick={clickHandler} disabled={props.disabled}>{props.label}</ButtonD>
     </>
   );
 }
@@ -31,5 +32,10 @@ const ButtonD = styled.button`
   }
   &:hover {
     background: #5567cb;
+  }
+
+  &:disabled, button[disabled] {
+    background: #F0F3F5;
+    color: #FFFFFF;
   }
 `;

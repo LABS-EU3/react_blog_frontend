@@ -36,7 +36,7 @@ const ModalInner = styled.div`
 
 function Modal(props) {
   return ReactDOM.createPortal(
-    <ModalWrapper onClick={() => props.handleOpen(false)} id="modal-wrapper">
+    <ModalWrapper onClick={() => props.handleOpen ? props.handleOpen(false) : null} id="modal-wrapper">
       <ModalInner height={props.height} width={props.width} onClick={e => e.stopPropagation()}>
         {props.children}
       </ModalInner>
