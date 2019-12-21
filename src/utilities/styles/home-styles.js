@@ -114,9 +114,10 @@ export const Features = styled.div`
   margin-bottom: 30px;
   width: 100%;
   padding: 2.3rem;
+  padding-left: 2.0rem;
 
   .feat {
-    width: 25%;
+    width: 20%;
 
     h3 {
       font-weight: normal;
