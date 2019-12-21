@@ -9,12 +9,9 @@ import SecondaryFooter from '../components/Footer/SecondaryFooter';
 import {
   StyledContainer,
   StyledAuth,
-  StyledFooter
 } from "../utilities/styles/RegisterStyles";
 import { register } from "../redux-store/actions/auths";
 import registration_jumbo from "../assets/images/boy.svg";
-import ps from "../assets/images/ps.png";
-import appstr from "../assets/images/appstr.png";
 
 function Register({ register, loading, success, location }) {
   const fullname = useRef("");
