@@ -44,7 +44,6 @@ export default function Home(props) {
             <form>
               <div>
                 <input
-                  value={null}
                   type="email"
                   className="email"
                   placeholder="Enter your email address"
