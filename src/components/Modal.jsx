@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import styled from "styled-components";
 
 const ModalWrapper = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
@@ -12,20 +12,20 @@ const ModalWrapper = styled.div`
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1000000;
 `;
 const ModalInner = styled.div`
   padding: 0;
   background: #fff;
   display: inline-block;
-  /* height: 400px;  */
   margin: 1rem;
   position: relative;
   min-width: 300px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0px 1.88px 6.26px rgba(0, 0, 0, 0.25);
   justify-self: center;
-  width: 550px;
-  height: 450px;
-  border-radius: 5px;
+  width: ${props => props.width ? props.width : '550px'};
+  height: ${props => props.height ? props.height : '450px'};
+  border-radius: 3px;
 
   @media (max-width: 750px) {
     width: 90%;
@@ -37,8 +37,8 @@ const ModalInner = styled.div`
 
 function Modal(props) {
   return ReactDOM.createPortal(
-    <ModalWrapper onClick={props.handleControl} id="modal-wrapper">
-      <ModalInner onClick={e => e.stopPropagation()}>
+    <ModalWrapper onClick={() => props.handleOpen ? props.handleOpen(false) : null} id="modal-wrapper">
+      <ModalInner height={props.height} width={props.width} onClick={e => e.stopPropagation()}>
         {props.children}
       </ModalInner>
     </ModalWrapper>,

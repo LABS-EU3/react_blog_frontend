@@ -1,137 +1,104 @@
 import styled from "styled-components";
 
 export const StyledContainer = styled.div`
+  flex: 1 0 auto;
   width: 100%;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  img {
-    max-width: 15%;
-  }
+  margin-bottom: 1.5rem;
+  
   .laptop_man {
-    max-width: 10%;
-    max-height: 18vh;
+    max-width: 20%;
+    max-height: 25vh;
   }
-`;
-
-export const StyledNav = styled.div`
-  display: flex;
-  width: 100%;
-  padding: 1rem 0;
-  margin-bottom: 2rem;
-  min-height: 4vh;
-  .nav-left {
-    width: 50%;
-    padding-left: 2rem;
-    font-family: "HK Grotesk Bold";
-    color: #212c4f;
-    font-weight: 800;
-    font-size: 2rem;
-    margin-left: 30px;
-  }
-  .nav-right {
-    width: 50%;
-  }
-`;
-
-export const StyledFooter = styled.div`
-  background-color: #323c5c;
-  width: 100%;
-  min-height: 5vh;
-  padding: 4vh 0;
-  display: flex;
-  bottom: 0;
-  font-family: "Lato", sans-serif;
-  .footer-group {
-    width: 50%;
-    display: flex;
-    align-items: center;
-    padding-left: 2rem;
-    a {
-      color: white;
-      text-decoration: none;
-      font-size: 0.5rem;
-    }
-    &.footer-right {
-      justify-content: flex-end;
-      img {
-        border-radius: 10px;
-        border: 2px solid #323c5c;
-        margin-right: 5%;
-        max-width: 15%;
-        max-height: 80%;
-      }
-    }
-  }
-`;
-
-export const PrimaryBtn = styled.div`
-  background-color: #6f85fd;
-  width: 80%;
-  height: 6.3vh;
-  border-radius: 5px;
-  border: none;
-  font-size: 2vh;
-  color: white;
-  font-weight: 100;
-  margin: 1rem 0;
-  cursor: pointer;
-  padding: 1vh 0 1vh 2vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const SecondaryBtn = styled.div`
-  background-color: #323c5c;
-  width: 100%;
-  height: 90%;
-  border-radius: 5px;
-  border: none;
-  font-size: 2vh;
-  color: white;
-  font-weight: 100;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 export const StyledAuth = styled.form`
+  margin-top: 0;
   min-height: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  font-family: "Lato", sans-serif;
   text-align: center;
   color: #636363;
-  padding: 2rem;
+  // padding: 2rem;
   h1 {
-    font-size: 1.8rem;
+    font-weight: 500;
+    font-size: 34px;
+    line-height: 77px;
+    display: flex;
+    align-items: center;
+    text-align: center;
     color: #205284;
-    margin-bottom: 1rem;
   }
   p {
-    width: 70%;
-    margin-bottom: 10px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.03em;
+    width: 350px;
+    color: #646f79;
   }
-  input {
-    width: 80%;
-    height: 4vh;
-    border-radius: 5px;
-    border: 1px solid #c4c4c4;
-    padding: 1vh 0 1vh 2vh;
-    margin-top: 1rem;
+
+  .privacy {
+    width: 430px;
+    margin-top: 2rem;
+    text-align: center;
   }
-  label {
-    display: inline-block;
-  }
+
   a {
     color: #e16868;
     text-decoration: none;
+    font-size: 13px;
+  }
+
+  .button {
+    margin-top: 2.0rem;
+    padding: 1.5rem;
+    width: 100%;
+    margin-top:2.0rem;
+    
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .inputs {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    input {
+      width: 100%;
+      background: #ffffff;
+      border: 1.5px solid #e4e2e2;
+      box-sizing: border-box;
+      border-radius: 3px;
+      padding: 0.5rem;
+      padding-left: 1.0rem;
+      margin-top: 1.3rem;
+
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 30px;
+
+      color: #636363;
+
+      ::placeholder {
+        color: #a09e9e;
+        font-weight: 500;
+      }
+
+      &:focus {
+        border: 1.5px solid #6f85fd;
+      }
+    }
   }
 `;
 
@@ -159,12 +126,20 @@ export const StyledRegistrationSuccessModal = styled.div`
     h1 {
       font-size: 2rem;
       color: #205284;
+      font-weight: 500;
+    }
+    p {
+      font-size: 14px;
+      font-weight: 500;
+      text-align: center;
+      color: #646F79;
     }
     img {
       width: 28%;
       height: 30%;
     }
   }
+
   .regstr-modal-border {
     width: 100%;
     height: 30%;
@@ -179,6 +154,12 @@ export const StyledRegistrationSuccessModal = styled.div`
     border: none;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+  }
+
+  .button {
+    background: #323C5C;
+    margin-left: 2.0rem;
+    margin-top: 1.4rem;
   }
   a {
     width: 30%;

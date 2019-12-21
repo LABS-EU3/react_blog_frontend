@@ -5,21 +5,15 @@ import App from './App';
 import { BrowserRouter as Router } from "react-router-dom";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
-import { loginReducer } from "./redux-store/reducers/user-reducer";
-import { registerReducer } from "./redux-store/reducers/user-reducer";
+import {rootReducer} from './redux-store/reducers';
 import { Provider } from "react-redux";
-import { combineReducers, createStore, applyMiddleware, compose } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
 
-const bigReducer = combineReducers({
-  login: loginReducer,
-  registering: registerReducer
-
-});
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
-  bigReducer,
+  rootReducer,
   composeEnhancer(applyMiddleware(thunk, logger))
 );
 
@@ -31,6 +25,6 @@ ReactDOM.render(
   </Provider>, document.getElementById('root')
   );
 
-// // If you want your app to work offline and load faster, you can change
-// // unregister() to register() below. Note this comes with some pitfalls.
-// // Learn more about service workers: https://bit.ly/CRA-PWA
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA

@@ -1,84 +1,72 @@
-import React, { useRef, useState } from "react";
-import axios from "axios";
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { Container, MyH2, Div, P, Input, Button, P2 } from "../utilities/styles/LoginStyles";
-import {setLoginSuccess, setLoginFailure} from "../redux-store/actions/actionCreators";
-import useLocalStorage from "../hooks/useLocalStorage";
+import Button from '../components/Button'
+import {
+  Container,
+  Header2,
+  Div,
+  P,
+  Input,
+  P2
+} from "../utilities/styles/LoginStyles";
+
+import {
+  login
+} from "../redux-store/actions/auths";
 
 const Login = props => {
-    const emailRef = useRef();
-    const passwordRef = useRef();
+  const email = useRef();
+  const password = useRef();
 
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState("");
+  const handleSubmit = () => {
+    const userData = {
+      email: email.current.value,
+      password: password.current.value,
+    }
 
-    const [userInfo, setUserInfo] = useLocalStorage('userInfo', {});
+    if (userData.username && userData.password) {
+      props.login(userData)
+    }
+  };
 
-    const validate = () => {
-        let isError = false;
-        if (emailRef.current.value === "") {
-            setError("Please enter a valid Email!");
-            isError = true;
-        }
-        if (passwordRef.current.value === "") {
-            setError("Please enter a valid password!");
-            isError = true;
-        }
-        return isError;
-    };
-
-    const submit = () => {
-        let valid = validate();
-        if (valid) {
-            return;
-        }
-
-        let dummyData = {
-            email: "damilola@yahoo.com",
-            token: "jkasaKLJajksdja"          
-        }
-        props.setLoginSuccess(dummyData)
- 
-        setLoading(true);
-        axios
-            .post("https://react-blog.herokuapp.com/auth/login", {
-                email: emailRef.current.value,
-                password: passwordRef.current.value
-            })
-            .then(response => {
-                setLoading(false);
-                setUserInfo(dummyData)
-        props.setLoginSuccess(dummyData)
-
-            })
-            .catch(error => {
-                setLoading(false);
-        props.setLoginFailure(error)
-            });
-    };
-
-    return (
-
-        <Container>
-            <MyH2> Login </MyH2>
-            <Div>
-                <Input ref={emailRef} type="email" autoComplete="email" placeholder="Email" />
-            </Div>
-
-            <Div>
-                <Input ref={passwordRef} type="password" autoComplete="password" placeholder="Password" />
-            </Div >
-
-            <Div>
-                <Button onClick={submit}> {loading ? "Loading" : "Login"} </Button>
-            </Div>
-            <P> Forgot your Password? </P>
-            <P2> Dont have an account yet? <Link> Sign up here </Link> </P2>
-
-        </Container>
-    );
+  return (
+    <Container>
+      <Header2>Log In</Header2>
+      <Div>
+        <Input
+          ref={email}
+          type="email"
+          autoComplete="email"
+          placeholder="Email"
+          required
+        />
+        <Input
+          ref={password}
+          type="password"
+          autoComplete="password"
+          placeholder="Password"
+          required
+        />
+      </Div>
+      <Div>
+          <Button className="button" label={props.loading ? "Processing..." : "Log In"} handleClick={handleSubmit}/>
+      </Div>
+      <P> Forgot your Password? </P>
+      <P2>
+        {" "}
+        Dont have an account yet? &nbsp; <Link to="/register"> Sign up here </Link>{" "}
+      </P2>
+    </Container>
+  );
 };
 
+const mapStateToProps = store => {
+  return {
+    loading: store.auth.loading
+  }
+}
 
-export default connect(state => state, {setLoginSuccess, setLoginFailure})(Login)
+export default connect(mapStateToProps, {login})(
+  Login
+);
