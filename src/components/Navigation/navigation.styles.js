@@ -7,10 +7,11 @@ export const NavWrapper = styled.nav`
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem;
+  padding-top: 2.0rem;
 `;
 
 export const Logo = styled.div`
-  margin-left: 4.0rem;
+  margin-left: 10.0rem;
   width: 90px;
 
   img {

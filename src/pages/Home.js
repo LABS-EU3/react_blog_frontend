@@ -28,14 +28,14 @@ export default function Home(props) {
     <div>
       <Default handleOpen={setOpen} {...props} />
       {open && (
-        <Modal height="425px" width="380px" handleOpen={setOpen}>
+        <Modal height="450px" width="380px" handleOpen={setOpen}>
           <Login />
         </Modal>
       )}
       <Main>
         <MidContent>
           <About>
-            <h3>Write Good Articles Effortlessy</h3>
+            <h3>Write Good Articles Effortlessly</h3>
             <p>
               Insight is a writing and publishing platform that allows readers
               to highlight text and react to paragraph blocks with emojis and
@@ -50,7 +50,7 @@ export default function Home(props) {
                   placeholder="Enter your email address"
                 />
                 <Link to="/register" className="rgstr-link">
-                  <Button label="Try for free" />
+                  <Button className="button" label="Try for free" />
                 </Link>
               </div>
             </form>

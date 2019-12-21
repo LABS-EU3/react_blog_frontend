@@ -52,7 +52,7 @@ export const SecondaryFooterWrapper = styled.footer`
 
   div {
     display: flex;
-    width: 290px;
+    width: 310px;
     justify-content: space-between;
   }
 
@@ -63,5 +63,9 @@ export const SecondaryFooterWrapper = styled.footer`
     display: flex;
     align-items: center;
     color: #eef2f4;
+  }
+
+  img {
+    height: 40px;
   }
 `;
