@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const PrimaryFooterWrapper = styled.footer`
   min-height: 302px;
   background: #1d243b;
-
+  flex-shrink: 0;
   padding: 4rem;
   padding-left: 1rem;
 
@@ -46,6 +46,7 @@ export const SecondaryFooterWrapper = styled.footer`
   background: #323c5c;
   min-height: 130px;
   width: 100%;
+  flex-shrink: 0;
   display: flex;
   justify-content: space-around;
   align-items: center;
