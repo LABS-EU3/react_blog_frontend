@@ -57,8 +57,8 @@ const Nav = styled.nav`
 
   a,
   button {
-    background: #5759a9;
-    border-color: #5759a9;
+    background: #6F85FD;
+    border-color: #6F85FD;
     color: white;
     border-radius: 4px;
     // padding: 0.45rem 0.8rem;
@@ -72,9 +72,9 @@ const Nav = styled.nav`
     &:visited {
       outline: none;
       transition: all 0.2s ease-in-out;
-      background: #3d3e77;
+      background: #5567CB;
       &:after {
-        background: #5759a9;
+        background: #5567CB;
         width: calc(100% - 40px);
       }
     }
@@ -83,7 +83,7 @@ const Nav = styled.nav`
   button.draft {
     background: white;
     align-self: center;
-    border-color: #5759a9;
+    border-color: #6F85FD;
     color: #5759a9;
     &:hover,
     &:focus,

@@ -10,6 +10,7 @@ import {
 import { connect } from "react-redux";
 import styled from "styled-components";
 import logo from "../assets/logo-gradient.png";
+import Button from './Button';
 
 const modalRoot = document.getElementById("article-modal");
 
@@ -46,6 +47,7 @@ class ModalContainer extends React.Component {
   };
 
   handleSubmit = e => {
+    console.log('hello')
     this.props.handlePublish();
     this.toggleModal();
   };
@@ -94,7 +96,7 @@ class ModalContainer extends React.Component {
               </div>
               <div></div>
               <div className="modal-bottom">
-                <button onClick={() => this.handleSubmit()}>Publish Now</button>
+                <Button handleClick={this.handleSubmit} label="Publish Now" />
               </div>
             </StyledModal>
           </ArticleModal>
@@ -125,7 +127,6 @@ const StyledModal = styled.div`
     display: flex;
     div {
       width: 50%;
-      font-family: "Lato";
       display: flex;
       flex-direction: start;
       cursor: default;
@@ -133,36 +134,18 @@ const StyledModal = styled.div`
   }
 
   div.modal-quote {
+    font-family: Lato;
     font-size: 1.3rem;
-    font-family: "Lato";
+    font-weight: 500;
     color: #808080;
   }
 
   div.modal-bottom {
     display: flex;
     button {
-      background: #5759a9;
-      border-color: #5759a9;
-      width: 75%;
-      color: white;
-      border-radius: 4px;
-      padding: 0.45rem 0.8rem;
-      text-rendering: optimizeLegibility;
-      cursor: pointer;
-      font-size: 0.8em;
-      font-family: "Lato";
-      margin: 0 auto;
-      &:hover,
-      &:focus,
-      &:visited {
-        outline: none;
-        transition: all 0.2s ease-in-out;
-        background: #3d3e77;
-        &:after {
-          background: #5759a9;
-          width: calc(100% - 40px);
-        }
-      }
+      margin: auto;
+      width: 200px;
+      background: #323C5C;
     }
     img {
       height: 75%;
@@ -170,28 +153,7 @@ const StyledModal = styled.div`
     }
   }
 
-  button {
-    background: #5759a9;
-    border-color: #5759a9;
-    color: white;
-    border-radius: 4px;
-    padding: 0.45rem 0.8rem;
-    text-rendering: optimizeLegibility;
-    cursor: pointer;
-    font-size: 0.8em;
-    font-family: "Lato";
-    &:hover,
-    &:focus,
-    &:visited {
-      outline: none;
-      transition: all 0.2s ease-in-out;
-      background: #3d3e77;
-      &:after {
-        background: #5759a9;
-        width: calc(100% - 40px);
-      }
-    }
-  }
+  
 `;
 
 const mapStateToProps = state => {

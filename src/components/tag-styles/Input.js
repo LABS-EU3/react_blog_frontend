@@ -1,15 +1,15 @@
 import styled from 'styled-components'
 
 const Input = styled.input`
-  background: #F1F3F4;
+  background: transparent:
+  font-size: 13px;
+  font-weight: 500;
   border: none;
-  outline: none;
-  font-size: 0.8rem;
-  display: inline-block;
+  border-bottom: 1px solid black;
   width: 100%;
-  color: #69626D;
   &::-webkit-input-placeholder {
     font-weight: 100;
+    font-size: 13px;
     color: #69626D;
   }
 `;
