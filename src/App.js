@@ -10,7 +10,7 @@ function App() {
     <div className="App">
       <Route exact path='/' render={props => <Home {...props} />}/>
       <Route exact path='/register' component={Register}/>
-      <Route exact path="/newpost" component={Editor} />
+      <Route exact path="/create" component={Editor} />
       <ArticleModal />
     </div>
   );

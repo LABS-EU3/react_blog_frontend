@@ -11,18 +11,17 @@ import logo from "../assets/logo-gradient.png";
 import avatar from "../assets/random-avatar.jpeg";
 import styled from "styled-components";
 
-const Nav = styled.ul`
-  @import url("https://fonts.googleapis.com/css?family=Lato");
+const Nav = styled.nav`
   padding: 0.8rem;
   display: flex;
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
   max-width: 75%;
+  padding-top: 2.0rem;
 
   div.left {
     display: flex;
-    font-family: Lato;
     div {
       display: flex;
       div {
@@ -62,11 +61,12 @@ const Nav = styled.ul`
     border-color: #5759a9;
     color: white;
     border-radius: 4px;
-    padding: 0.45rem 0.8rem;
+    // padding: 0.45rem 0.8rem;
+    padding: 0.8rem;
+    width: 100px;
+    font-size: 12px;
     text-rendering: optimizeLegibility;
     cursor: pointer;
-    font-size: 0.8em;
-    font-family: "Lato";
     &:hover,
     &:focus,
     &:visited {
@@ -82,6 +82,7 @@ const Nav = styled.ul`
 
   button.draft {
     background: white;
+    align-self: center;
     border-color: #5759a9;
     color: #5759a9;
     &:hover,
