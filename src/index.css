@@ -171,7 +171,6 @@ p,
 input {
   font-family: 'Lato', sans-serif;
   font-weight: 300;
-  font-size: 1.8rem;
   line-height: 1.5;
 }
 
@@ -183,4 +182,13 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
+@font-face {
+  font-family: 'HK-Grotesk';
+  src: local('HK-Grotesk'), url(./fonts/HKGrotesk-Regular.woff) format('truetype');
+}
+}
+
+
+.ce-toolbar__actions--opened {
+    margin-right: 20%;
 }
