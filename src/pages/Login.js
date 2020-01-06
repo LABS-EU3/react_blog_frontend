@@ -55,7 +55,7 @@ const Login = props => {
         />
       </Div>
       <Div>
-          <Button className="button" label={props.loading ? "Processing..." : "Log In"} handleClick={handleSubmit}/>
+          <Button className="button" label={props.loading ? "Processing..." : "Log In"} handleClick={handleSubmit} id="login_btn"/>
       </Div>
       <P> Forgot your Password? </P>
       <P2>
