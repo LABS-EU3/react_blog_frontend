@@ -36,6 +36,13 @@ const mockTrendingArticles = [
 
 const mockUserInterestArticles = [];
 
+const mockUserReactions = [
+  { id: 1, text: "Johnson Ogwuru liked your post 'Internet of Thi...'" },
+  { id: 2, text: "Damilola Oluwami reacted to your post 'Internet of Thi...'" },
+  { id: 3, text: "User234 liked your post 'It's a Long Established..." },
+  { id: 4, text: "David Kuseh reacted to you post 'Internet of Thi...'" }
+];
+
 const StyledFeed = styled.div`
   width: 100%;
   padding: 2rem;
@@ -131,7 +138,6 @@ const StyledMainFeed = styled.div`
   display: flex;
   .main-insights {
     width: 65%;
-    min-height: 700px;
     border-top: 1px solid #333333;
     padding-top: 1rem;
     .main-header {
@@ -149,6 +155,27 @@ const StyledMainFeed = styled.div`
   }
   .main-reactions {
     width: 35%;
+    background-color: #f7f9fb;
+    margin-left: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    border-radius: 5px;
+    h4 {
+      color: #2fc2df;
+      font-family: Lato;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 24px;
+    }
+    .reaction-box {
+      padding: 1rem;
+      background-color: white;
+      width: 90%;
+      margin-top: 1rem;
+      color : #B7BBC0;
+    }
   }
 `;
 
@@ -225,7 +252,12 @@ export function Feed(props) {
               <img src={arrow} alt="Arrow icon" />
             </div>
           </div>
-          <div className="main-reactions"></div>
+          <div className="main-reactions">
+            <h4>Reactions</h4>
+            {mockUserReactions.map(reaction => {
+              return (<div className='reaction-box'><p>{reaction.text}</p></div>)
+            })}
+          </div>
         </StyledMainFeed>
       </StyledFeed>
     </div>
