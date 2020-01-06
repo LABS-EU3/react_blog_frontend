@@ -16,10 +16,11 @@ export const authReducer = (state = initialState, action) => {
         loading: true
       };
     case types.LOGIN_SUCCESS:
+      localStorage.setItem("token", action.payload);
       return {
         ...state,
         loading: false,
-        login_success: true
+        login_success: true,
       };
     case types.LOGIN_FAILURE:
       return {
