@@ -25,7 +25,7 @@ const Login = props => {
       password: password.current.value,
     }
 
-    if (userData.username && userData.password) {
+    if (userData.email && userData.password) {
       props.login(userData)
     }
   };
