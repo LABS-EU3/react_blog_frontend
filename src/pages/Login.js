@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { Link } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Button from '../components/Button'
 import {
@@ -30,8 +30,13 @@ const Login = props => {
     }
   };
 
+  if (props.login_success) {
+    return <Redirect to='/feed' />
+  }
+  
   return (
     <Container>
+      {console.log(props)}
       <Header2>Log In</Header2>
       <Div>
         <Input
@@ -63,7 +68,8 @@ const Login = props => {
 
 const mapStateToProps = store => {
   return {
-    loading: store.auth.loading
+    loading: store.auth.loading,
+    login_success: store.auth.login_success
   }
 }
 
