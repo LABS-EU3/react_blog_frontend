@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import DefaultNavigation from "../components/Navigation/Default";
 import AuthedNavigation from "../components/Navigation/Authed";
 import axios from "axios";
+import arrow from "../assets/images/Icons/arrow_icon.svg";
 import styled from "styled-components";
 
 const mockTrendingArticles = [
@@ -33,91 +34,121 @@ const mockTrendingArticles = [
   }
 ];
 
+const mockUserInterestArticles = [];
+
 const StyledFeed = styled.div`
   width: 100%;
   padding: 2rem;
   display: flex;
   flex-direction: column;
-  .trending {
+`;
+
+const StyledTrending = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  .trending-header button {
+    font-family: Lato;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 16px;
+    color: white;
+    background-color: #2fc2df;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0px 10px 10px rgba(47, 194, 223, 0.15);
+    padding: 1rem 2rem;
+    margin-bottom: 2rem;
+  }
+  .trending-content {
     width: 100%;
     display: flex;
-    flex-direction: column;
-    .trending-header button {
-      font-family: Lato;
-      font-style: normal;
-      font-weight: 800;
-      font-size: 16px;
-      color: white;
-      background-color: #2fc2df;
-      border: none;
-      border-radius: 30px;
-      box-shadow: 0px 10px 10px rgba(47, 194, 223, 0.15);
-      padding: 1rem 2rem;
-      margin-bottom: 2rem;
-    }
-    .trending-content {
-      width: 100%;
+    .trending-content-jumbo {
+      width: 40%;
+      background-color: grey;
+      min-height: 40vh;
+      border-radius: 10px;
+      background: url(${mockTrendingArticles[0].imageUrl});
+      background-repeat: no-repeat;
+      background-size: cover;
       display: flex;
-      .trending-content-jumbo {
-        width: 40%;
-        background-color: grey;
-        min-height: 40vh;
-        border-radius: 10px;
-        background: url(${mockTrendingArticles[0].imageUrl});
-        background-repeat: no-repeat;
-        background-size: cover;
+      align-items: flex-end;
+      h2 {
+        background: rgba(118, 116, 116, 0.62);
+        color: white;
+        padding: 2rem 2rem 1rem 2rem;
+        font-family: Lato;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 28px;
+        line-height: 43px;
+        border-radius: 0 0 10px 10px;
+      }
+    }
+    .trending-content-regular {
+      width: 60%;
+      display: flex;
+      flex-direction: column;
+      .row {
         display: flex;
-        align-items: flex-end;
-        h2 {
+        height: 50%;
+        &.top-margin {
+          margin-top: 1rem;
+        }
+        .content-box {
+          margin-left: 1rem;
+          width: 100%;
+          background-repeat: no-repeat;
+          background-size: cover;
+          height: 100%;
+          display: flex;
+          align-items: flex-end;
+          border-radius: 10px;
+        }
+        h4 {
           background: rgba(118, 116, 116, 0.62);
           color: white;
-          padding: 2rem 2rem 1rem 2rem;
+          padding: 1.5rem 1rem 1rem 1.5rem;
           font-family: Lato;
           font-style: normal;
           font-weight: bold;
-          font-size: 28px;
-          line-height: 43px;
+          font-size: 18px;
+          line-height: 33px;
           border-radius: 0 0 10px 10px;
-        }
-      }
-      .trending-content-regular {
-        width: 60%;
-        display: flex;
-        flex-direction: column;
-        .row {
-          display: flex;
+          width: 100%;
           height: 50%;
-          &.top-margin {
-            margin-top: 1rem;
-          }
-          .content-box {
-            margin-left: 1rem;
-            width: 100%;
-            background-repeat: no-repeat;
-            background-size: cover;
-            height: 100%;
-            display: flex;
-            align-items: flex-end;
-            border-radius: 10px;
-          }
-          h4 {
-            background: rgba(118, 116, 116, 0.62);
-            color: white;
-            padding: 1.5rem 1rem 1rem 1.5rem;
-            font-family: Lato;
-            font-style: normal;
-            font-weight: bold;
-            font-size: 18px;
-            line-height: 33px;
-            border-radius: 0 0 10px 10px;
-            width: 100%;
-            height: 50%;
-            display: flex;
-            align-items: flex-end;
-          }
+          display: flex;
+          align-items: flex-end;
         }
       }
     }
+  }
+`;
+
+const StyledMainFeed = styled.div`
+  width: 100%;
+  margin-top: 4rem;
+  display: flex;
+  .main-insights {
+    width: 65%;
+    min-height: 700px;
+    border-top: 1px solid #333333;
+    padding-top: 1rem;
+    .main-header {
+      display: flex;
+      h4 {
+        font-family: Lato;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 22px;
+        color: #333333;
+        margin-right: 1rem;
+      }
+    }
+  }
+  .main-reactions {
+    width: 35%;
   }
 `;
 
@@ -139,14 +170,13 @@ export function Feed(props) {
     <div>
       <AuthedNavigation />
       <StyledFeed>
-        {console.log(articles)}
-        <div className="trending">
+        <StyledTrending>
           <div className="trending-header">
             <button>TRENDING NOW</button>
           </div>
           <div className="trending-content">
             <div className="trending-content-jumbo">
-              <h2>{articles[0].title}</h2>
+              <h2>{mockTrendingArticles[0].title}</h2>
             </div>
             <div className="trending-content-regular">
               <div className="row">
@@ -156,7 +186,7 @@ export function Feed(props) {
                     background: `url(${mockTrendingArticles[1].imageUrl})`
                   }}
                 >
-                  <h4>{articles[1].title}</h4>
+                  <h4>{mockTrendingArticles[1].title}</h4>
                 </div>
                 <div
                   className="content-box"
@@ -164,7 +194,7 @@ export function Feed(props) {
                     background: `url(${mockTrendingArticles[2].imageUrl})`
                   }}
                 >
-                  <h4>{articles[2].title}</h4>
+                  <h4>{mockTrendingArticles[2].title}</h4>
                 </div>
               </div>
               <div className="row top-margin">
@@ -174,7 +204,7 @@ export function Feed(props) {
                     background: `url(${mockTrendingArticles[3].imageUrl})`
                   }}
                 >
-                  <h4>{articles[3].title}</h4>
+                  <h4>{mockTrendingArticles[3].title}</h4>
                 </div>
                 <div
                   className="content-box"
@@ -182,12 +212,21 @@ export function Feed(props) {
                     background: `url(${mockTrendingArticles[4].imageUrl})`
                   }}
                 >
-                  <h4>{articles[4].title}</h4>
+                  <h4>{mockTrendingArticles[4].title}</h4>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </StyledTrending>
+        <StyledMainFeed>
+          <div className="main-insights">
+            <div className="main-header">
+              <h4>INSIGHTS FROM YOUR INTERESTS</h4>
+              <img src={arrow} alt="Arrow icon" />
+            </div>
+          </div>
+          <div className="main-reactions"></div>
+        </StyledMainFeed>
       </StyledFeed>
     </div>
   );
