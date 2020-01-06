@@ -68,8 +68,8 @@ const Login = props => {
 
 const mapStateToProps = store => {
   return {
-    loading: store.loading,
-    login_success: store.login_success
+    loading: store.auth.loading,
+    login_success: store.auth.login_success
   }
 }
 

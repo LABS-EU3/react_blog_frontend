@@ -8,25 +8,27 @@ import { Provider } from "react-redux";
 import { authReducer } from "../redux-store/reducers/auths";
 
 const renderWithRedux = (
-    ui,
-    { initialState, store = createStore(authReducer, initialState) } = {}
-  ) => {
-    return {
-      ...render(
-        <Provider store={store}>
-          <BrowserRouter>{ui}</BrowserRouter>
-        </Provider>
-      ),
-      store
-    };
+  ui,
+  { initialState, store = createStore(authReducer, initialState) } = {}
+) => {
+  return {
+    ...render(
+      <Provider store={store}>
+        <BrowserRouter>{ui}</BrowserRouter>
+      </Provider>
+    ),
+    store
   };
-  
-  afterEach(cleanup);
+};
 
-  describe("Login component", () => {
-      test("Login component mounts without crashing", () => {
-            const { getByText } = renderWithRedux(<Login />);
-            const text = getByText(/Dont have an account yet/i);
-            expect(text).toBeInTheDocument();
-      })
-  })
+afterEach(cleanup);
+
+describe("Login component", () => {
+  test("Login component mounts without crashing", () => {
+    const { getByText } = renderWithRedux(<Login />, {
+      initialState: { auth: { loading: true } }
+    });
+    const text = getByText(/Dont have an account yet/i);
+    expect(text).toBeInTheDocument();
+  });
+});
