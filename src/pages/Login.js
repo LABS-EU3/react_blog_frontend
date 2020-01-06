@@ -33,7 +33,7 @@ const Login = props => {
   if (props.login_success) {
     return <Redirect to='/feed' />
   }
-  
+
   return (
     <Container>
       {console.log(props)}
@@ -68,8 +68,8 @@ const Login = props => {
 
 const mapStateToProps = store => {
   return {
-    loading: store.auth.loading,
-    login_success: store.auth.login_success
+    loading: store.loading,
+    login_success: store.login_success
   }
 }
 
