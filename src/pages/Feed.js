@@ -156,7 +156,7 @@ const mockUserReactions = [
 
 const StyledFeed = styled.div`
   width: 100%;
-  padding: 2rem;
+  padding: 4rem;
   display: flex;
   flex-direction: column;
 `;
@@ -182,9 +182,9 @@ const StyledTrending = styled.div`
     width: 100%;
     display: flex;
     .trending-content-jumbo {
-      width: 40%;
+      width: 45%;
       background-color: grey;
-      min-height: 40vh;
+      min-height: 60vh;
       border-radius: 10px;
       background: url(${mockTrendingArticles[0].imageUrl});
       background-repeat: no-repeat;
@@ -194,7 +194,8 @@ const StyledTrending = styled.div`
       h2 {
         background: rgba(118, 116, 116, 0.62);
         color: white;
-        padding: 2rem 2rem 1rem 2rem;
+        padding: 3rem 2rem 1rem 2rem;
+        width: 100%;
         font-family: Lato;
         font-style: normal;
         font-weight: bold;
@@ -204,7 +205,7 @@ const StyledTrending = styled.div`
       }
     }
     .trending-content-regular {
-      width: 60%;
+      width: 55%;
       display: flex;
       flex-direction: column;
       .row {
@@ -226,7 +227,7 @@ const StyledTrending = styled.div`
         h4 {
           background: rgba(118, 116, 116, 0.62);
           color: white;
-          padding: 1.5rem 1rem 1rem 1.5rem;
+          padding: 10% 1rem 1rem 1.5rem;
           font-family: Lato;
           font-style: normal;
           font-weight: bold;
@@ -234,7 +235,6 @@ const StyledTrending = styled.div`
           line-height: 33px;
           border-radius: 0 0 10px 10px;
           width: 100%;
-          height: 50%;
           display: flex;
           align-items: flex-end;
         }
