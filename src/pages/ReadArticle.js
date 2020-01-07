@@ -197,10 +197,11 @@ const MainPage = styled.div`
     `
 
 const ReadArticle = () => {
+
     return (
         <>
             <Nav className="navbar">
-              <NavBar />
+                <NavBar />
             </Nav>
             <MainPage>
                 <div className="back">
