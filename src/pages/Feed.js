@@ -363,10 +363,11 @@ const StyledMainFeed = styled.div`
     margin-left: 2rem;
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
     align-items: center;
-    padding: 2rem;
+    padding: 8% 2rem;
     border-radius: 5px;
-    max-height: 30vh;
+    height: 35vh;
     h4 {
       color: #2fc2df;
       font-family: Lato;
@@ -375,7 +376,10 @@ const StyledMainFeed = styled.div`
       font-size: 24px;
     }
     .reaction-box {
-      padding: 1rem;
+      height: 20%;
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
       background-color: white;
       width: 90%;
       margin-top: 1rem;
@@ -398,9 +402,9 @@ export function Feed(props) {
   //     });
   // }, []);
 
-  return localStorage.getItem("token") ? (
+  return(
     <div>
-      <AuthedNavigation />
+      {localStorage.getItem("token") ? <AuthedNavigation /> : <DefaultNavigation />} 
       <StyledFeed>
         <StyledTrending>
           <div className="trending-header">
@@ -496,8 +500,6 @@ export function Feed(props) {
         </StyledMainFeed>
       </StyledFeed>
     </div>
-  ) : (
-    <div>No articles</div>
   );
 }
 
