@@ -121,10 +121,10 @@ const EditorNavBar = props => {
 
       <div className="right" style={{ width: "30%" }}>
         <div>
-          <button className='draft' onClick={() => props.handleSave()}>{props.label}</button>
+          <button className='draft' onClick={() => props.handleSave()}>Save for Later</button>
         </div>
         <div>
-          <button onClick={() => toggleModal()}>{props.label2}</button>
+          <button onClick={() => toggleModal()}>Publish</button>
         </div>
         <div style={{ color: "#A9A9A9", paddingTop: "5px" }}>
           <Icon icon={bell} size={24} />
