@@ -125,6 +125,25 @@ const mockUserInterestArticles = [
     author: "Francis Bulus",
     imageUrl:
       "https://images.unsplash.com/photo-1565120130276-dfbd9a7a3ad7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+  },
+  {
+    title: "It's a Long Established Fact that You are Distracted",
+    tags: [
+      { id: 1, tag: "Tech" },
+      { id: 2, tag: "Health" }
+    ],
+    body: [
+      {
+        type: "paragraph",
+        data: {
+          text:
+            "Internet of Things is one of the booming technologies among the blockchain, AI, and smart technologies. New exciting solutions are coming"
+        }
+      }
+    ],
+    author: "Damilola Oluwami",
+    imageUrl:
+      "https://images.unsplash.com/photo-1440985465094-6ac443aab454?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
   }
 ];
 
@@ -308,6 +327,24 @@ const StyledMainFeed = styled.div`
           }
         }
       }
+      .read-more {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin: 2rem 0;
+        button {
+          box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+          width: 40%;
+          font-family: Lato;
+          font-style: normal;
+          font-weight: bold;
+          font-size: 25px;
+          color: #2fc2df;
+          border: none;
+          padding: 1rem 0;
+          cursor: pointer;
+        }
+      }
     }
   }
   .main-reactions {
@@ -431,6 +468,9 @@ export function Feed(props) {
                   </div>
                 );
               })}
+              <div className="read-more">
+                <button>Read More...</button>
+              </div>
             </div>
           </div>
           <div className="main-reactions">
