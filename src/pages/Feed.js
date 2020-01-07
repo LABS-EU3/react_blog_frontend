@@ -274,11 +274,20 @@ const StyledMainFeed = styled.div`
         display: flex;
         flex-direction: column;
         align-items: center;
+        &:hover {
+          cursor: pointer;
+          .main-article-content {
+            background: white;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
+          }
+        }
+
         img {
           width: 85%;
           height: 20vh;
           border-radius: 10px;
           margin-bottom: -9rem;
+          z-index: 1;
         }
 
         .main-article-content {
@@ -287,6 +296,7 @@ const StyledMainFeed = styled.div`
           width: 100%;
           z-index: -1;
           padding: 3rem;
+
           h3 {
             margin: 8rem 0 2rem 0;
             font-family: Lato;
