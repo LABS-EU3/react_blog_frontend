@@ -183,8 +183,10 @@ const StyledTrending = styled.div`
     display: flex;
     .trending-content-jumbo {
       width: 45%;
+      cursor: pointer;
       background-color: grey;
-      min-height: 60vh;
+      max-height: 60vh;
+      min-height: 40vh;
       border-radius: 10px;
       background: url(${mockTrendingArticles[0].imageUrl});
       background-repeat: no-repeat;
@@ -216,6 +218,7 @@ const StyledTrending = styled.div`
         }
         .content-box {
           margin-left: 1rem;
+          cursor: pointer;
           width: 100%;
           background-repeat: no-repeat;
           background-size: cover;
@@ -363,7 +366,7 @@ const StyledMainFeed = styled.div`
     margin-left: 2rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
     padding: 8% 2rem;
     border-radius: 5px;
@@ -402,9 +405,13 @@ export function Feed(props) {
   //     });
   // }, []);
 
-  return(
+  return (
     <div>
-      {localStorage.getItem("token") ? <AuthedNavigation /> : <DefaultNavigation />} 
+      {localStorage.getItem("token") ? (
+        <AuthedNavigation />
+      ) : (
+        <DefaultNavigation />
+      )}
       <StyledFeed>
         <StyledTrending>
           <div className="trending-header">
