@@ -4,6 +4,7 @@ import DefaultNavigation from "../components/Navigation/Default";
 import AuthedNavigation from "../components/Navigation/Authed";
 import axios from "axios";
 import arrow from "../assets/images/Icons/arrow_icon.svg";
+import blue_arrow from "../assets/images/Icons/blue_arrow.svg";
 import styled from "styled-components";
 
 const mockTrendingArticles = [
@@ -34,7 +35,98 @@ const mockTrendingArticles = [
   }
 ];
 
-const mockUserInterestArticles = [];
+const mockUserInterestArticles = [
+  {
+    title: "It's a Long Established Fact that You are Distracted",
+    tags: [
+      { id: 1, tag: "Tech" },
+      { id: 2, tag: "Health" }
+    ],
+    body: [
+      {
+        type: "paragraph",
+        data: {
+          text:
+            "Internet of Things is one of the booming technologies among the blockchain, AI, and smart technologies. New exciting solutions are coming"
+        }
+      }
+    ],
+    author: "Damilola Oluwami",
+    imageUrl:
+      "https://images.unsplash.com/photo-1440985465094-6ac443aab454?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+  },
+  {
+    title: "Internet of Things booming 15 Trillion Market",
+    tags: [
+      { id: 1, tag: "Tech" },
+      { id: 2, tag: "Business" }
+    ],
+    body: [
+      {
+        type: "paragraph",
+        data: {
+          text:
+            "Internet of Things is one of the booming technologies among the blockchain, AI, and smart technologies. New exciting solutions are coming"
+        }
+      }
+    ],
+    author: "David Kuseh",
+    imageUrl:
+      "https://images.unsplash.com/photo-1506645292803-579c17d4ba6a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+  },
+  {
+    title: "10 Tech Trends to Watch at CES 2020",
+    tags: [
+      { id: 1, tag: "Tech" },
+      { id: 2, tag: "Business" },
+      { id: 3, tag: "Events" }
+    ],
+    body: [
+      {
+        type: "paragraph",
+        data: {
+          text:
+            "Internet of Things is one of the booming technologies among the blockchain, AI, and smart technologies. New exciting solutions are coming"
+        }
+      }
+    ],
+    author: "Uzoamaka Anyanwu",
+    imageUrl:
+      "https://images.unsplash.com/photo-1490971588422-52f6262a237a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+  },
+  {
+    title: "These 5 Tech Trends Will Dominate 2020",
+    tags: [{ id: 1, tag: "Tech" }],
+    body: [
+      {
+        type: "paragraph",
+        data: {
+          text:
+            "Internet of Things is one of the booming technologies among the blockchain, AI, and smart technologies. New exciting solutions are coming"
+        }
+      }
+    ],
+    author: "Johnson Ogwuru",
+    imageUrl:
+      "https://images.unsplash.com/photo-1486649961855-75838619c131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+  },
+  {
+    title: "Building a Custom React Renderer",
+    tags: [{ id: 1, tag: "Tech" }],
+    body: [
+      {
+        type: "paragraph",
+        data: {
+          text:
+            "Internet of Things is one of the booming technologies among the blockchain, AI, and smart technologies. New exciting solutions are coming"
+        }
+      }
+    ],
+    author: "Francis Bulus",
+    imageUrl:
+      "https://images.unsplash.com/photo-1565120130276-dfbd9a7a3ad7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+  }
+];
 
 const mockUserReactions = [
   { id: 1, text: "Johnson Ogwuru liked your post 'Internet of Thi...'" },
@@ -152,6 +244,71 @@ const StyledMainFeed = styled.div`
         margin-right: 1rem;
       }
     }
+    .main-content {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      .main-article {
+        width: 40%;
+        margin: 2rem 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        img {
+          width: 85%;
+          height: 20vh;
+          border-radius: 10px;
+          margin-bottom: -9rem;
+        }
+
+        .main-article-content {
+          background: #f7f9fb;
+          border-radius: 5px;
+          width: 100%;
+          z-index: -1;
+          padding: 3rem;
+          h3 {
+            margin: 8rem 0 2rem 0;
+            font-family: Lato;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 25px;
+            line-height: 35px;
+          }
+          p {
+            font-family: Lato;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 17px;
+            color: #b7bbc0;
+            margin-bottom: 5rem;
+          }
+          .main-article-footer {
+            display: flex;
+            justify-content: space-between;
+            p {
+              font-style: italic;
+              margin-bottom: 0;
+            }
+            .article-link {
+              display: flex;
+              height: 2vh;
+              align-items: center;
+              img {
+                height: 20px;
+                width: 14px;
+                margin: 0 0 0 0.8rem;
+              }
+              a {
+                color: #2fc2df;
+              }
+            }
+          }
+        }
+      }
+    }
   }
   .main-reactions {
     width: 35%;
@@ -162,6 +319,7 @@ const StyledMainFeed = styled.div`
     align-items: center;
     padding: 2rem;
     border-radius: 5px;
+    max-height: 30vh;
     h4 {
       color: #2fc2df;
       font-family: Lato;
@@ -174,7 +332,7 @@ const StyledMainFeed = styled.div`
       background-color: white;
       width: 90%;
       margin-top: 1rem;
-      color : #B7BBC0;
+      color: #b7bbc0;
     }
   }
 `;
@@ -193,7 +351,7 @@ export function Feed(props) {
   //     });
   // }, []);
 
-  return (
+  return localStorage.getItem("token") ? (
     <div>
       <AuthedNavigation />
       <StyledFeed>
@@ -251,16 +409,45 @@ export function Feed(props) {
               <h4>INSIGHTS FROM YOUR INTERESTS</h4>
               <img src={arrow} alt="Arrow icon" />
             </div>
+            <div className="main-content">
+              {mockUserInterestArticles.map(article => {
+                return (
+                  <div className="main-article" key={article.id}>
+                    <img
+                      src={article.imageUrl}
+                      alt="Article description image"
+                    />
+                    <div className="main-article-content">
+                      <h3>{article.title}</h3>
+                      <p>{article.body[0].data.text}</p>
+                      <div className="main-article-footer">
+                        <p>{article.author}</p>
+                        <div className="article-link">
+                          <a href={`/article/${article.id}`}>Details</a>
+                          <img src={blue_arrow} alt="Blue Arrow" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
           <div className="main-reactions">
             <h4>Reactions</h4>
             {mockUserReactions.map(reaction => {
-              return (<div className='reaction-box'><p>{reaction.text}</p></div>)
+              return (
+                <div className="reaction-box">
+                  <p>{reaction.text}</p>
+                </div>
+              );
             })}
           </div>
         </StyledMainFeed>
       </StyledFeed>
     </div>
+  ) : (
+    <div>No articles</div>
   );
 }
 
