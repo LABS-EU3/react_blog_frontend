@@ -5,7 +5,6 @@ import NavBar from "../components/Navigation/Authed";
 import BackArrow from "../assets/images/arrow.svg";
 import iot from "../assets/images/iot.svg";
 import like from "../assets/images/like.svg";
-import Button from "../components/Button";
 
 const Nav = styled.div`
     position: absolute;
