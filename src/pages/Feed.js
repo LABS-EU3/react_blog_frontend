@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import DefaultNavigation from "../components/Navigation/Default";
 import AuthedNavigation from "../components/Navigation/Authed";
-import axios from "axios";
 import arrow from "../assets/images/Icons/arrow_icon.svg";
 import blue_arrow from "../assets/images/Icons/blue_arrow.svg";
 import icon_refresh from "../assets/images/Icons/icon-refresh.svg";
 import styled from "styled-components";
+import { getArticleFeed } from "../redux-store/actions/get-article-actions";
 
 const mockFavAuthorArticles = [
   {
@@ -458,6 +458,7 @@ const StyledMainFeed = styled.div`
       .fav-author-article {
         &:hover {
           box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
+          cursor: pointer;
         }
 
         h5 {
@@ -511,18 +512,9 @@ const StyledMainFeed = styled.div`
 `;
 
 export function Feed(props) {
-  const [articles, setArticles] = useState(mockTrendingArticles);
-
-  // useEffect(() => {
-  //   axios
-  //     .get("http://localhost:3300/api/articles")
-  //     .then(res => {
-  //       setArticles(res.data);
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  // }, []);
+  useEffect(() => {
+    props.getArticleFeed();
+  }, []);
 
   return (
     <div>
@@ -657,4 +649,10 @@ export function Feed(props) {
   );
 }
 
-export default connect(state => state, {})(Feed);
+const mapStateToProps = state => {
+  return {
+    articles: state.articles
+  };
+};
+
+export default connect(mapStateToProps, { getArticleFeed })(Feed);
