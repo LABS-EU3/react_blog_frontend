@@ -342,7 +342,7 @@ const StyledMainFeed = styled.div`
 
         img {
           width: 85%;
-          height: 20vh;
+          height: 25vh;
           border-radius: 10px;
           margin-bottom: -9rem;
           z-index: 1;
@@ -430,7 +430,7 @@ const StyledMainFeed = styled.div`
       align-items: center;
       width: 100%;
       padding: 2rem;
-      margin-bottom: 2rem;
+      margin-bottom: 4rem;
 
       h4 {
         color: #2fc2df;
