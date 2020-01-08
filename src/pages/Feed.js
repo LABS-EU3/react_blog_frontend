@@ -26,6 +26,7 @@ const mockFavAuthorArticles = [
       }
     ],
     author: "Uzoamaka Anyanwu",
+    createdAt: "2019-12-24",
     imageUrl:
       "https://images.unsplash.com/photo-1490971588422-52f6262a237a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
   },
@@ -42,6 +43,7 @@ const mockFavAuthorArticles = [
       }
     ],
     author: "Johnson Ogwuru",
+    createdAt: "2019-11-21",
     imageUrl:
       "https://images.unsplash.com/photo-1486649961855-75838619c131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
   },
@@ -58,6 +60,7 @@ const mockFavAuthorArticles = [
       }
     ],
     author: "Francis Bulus",
+    createdAt: "2019-11-22",
     imageUrl:
       "https://images.unsplash.com/photo-1565120130276-dfbd9a7a3ad7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
   }
@@ -471,25 +474,25 @@ const StyledMainFeed = styled.div`
           font-size: 20px;
           line-height: 31px;
           color: #b7bbc0;
-          margin: 1.5rem 0;
+          margin: 1.5rem 0 0 0;
+        }
+        p {
+          font-family: Lato;
+          font-style: italic;
+          font-weight: 500;
+          font-size: 14px;
+          color: #b7bbc0;
+          margin-right: 10px;
         }
 
         .fav-author-article-footer {
           display: flex;
           justify-content: space-between;
           flex-wrap: wrap;
+          margin-top: 1.5rem;
           .tags {
             display: flex;
             flex-wrap: wrap;
-
-            p {
-              font-family: Lato;
-              font-style: italic;
-              font-weight: 500;
-              font-size: 14px;
-              color: #b7bbc0;
-              margin-right: 10px;
-            }
           }
 
           .details {
@@ -628,6 +631,7 @@ export function Feed(props) {
                   <div className="fav-author-article">
                     <h5>{article.title}</h5>
                     <h6>{article.author}</h6>
+                    <p>{article.createdAt}</p>
                     <div className="fav-author-article-footer">
                       <div className="tags">
                         {article.tags.map(tag => {
