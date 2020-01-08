@@ -20,13 +20,16 @@ const Login = props => {
   const password = useRef();
 
   const handleSubmit = () => {
+    
     const userData = {
       email: email.current.value,
       password: password.current.value,
     }
 
-    if (userData.username && userData.password) {
-      props.login(userData)
+    if (userData.email && userData.password) {
+      props.login(userData).then(() => {
+        props.history.push('/feed');
+      })
     }
   };
 
