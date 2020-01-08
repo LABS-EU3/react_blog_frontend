@@ -5,7 +5,63 @@ import AuthedNavigation from "../components/Navigation/Authed";
 import axios from "axios";
 import arrow from "../assets/images/Icons/arrow_icon.svg";
 import blue_arrow from "../assets/images/Icons/blue_arrow.svg";
+import icon_refresh from "../assets/images/Icons/icon-refresh.svg";
 import styled from "styled-components";
+
+const mockFavAuthorArticles = [
+  {
+    title: "10 Tech Trends to Watch at CES 2020",
+    tags: [
+      { id: 1, tag: "Tech" },
+      { id: 2, tag: "Business" },
+      { id: 3, tag: "Events" }
+    ],
+    body: [
+      {
+        type: "paragraph",
+        data: {
+          text:
+            "Internet of Things is one of the booming technologies among the blockchain, AI, and smart technologies. New exciting solutions are coming"
+        }
+      }
+    ],
+    author: "Uzoamaka Anyanwu",
+    imageUrl:
+      "https://images.unsplash.com/photo-1490971588422-52f6262a237a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+  },
+  {
+    title: "These 5 Tech Trends Will Dominate 2020",
+    tags: [{ id: 1, tag: "Tech" }],
+    body: [
+      {
+        type: "paragraph",
+        data: {
+          text:
+            "Internet of Things is one of the booming technologies among the blockchain, AI, and smart technologies. New exciting solutions are coming"
+        }
+      }
+    ],
+    author: "Johnson Ogwuru",
+    imageUrl:
+      "https://images.unsplash.com/photo-1486649961855-75838619c131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+  },
+  {
+    title: "Building a Custom React Renderer",
+    tags: [{ id: 1, tag: "Tech" }],
+    body: [
+      {
+        type: "paragraph",
+        data: {
+          text:
+            "Internet of Things is one of the booming technologies among the blockchain, AI, and smart technologies. New exciting solutions are coming"
+        }
+      }
+    ],
+    author: "Francis Bulus",
+    imageUrl:
+      "https://images.unsplash.com/photo-1565120130276-dfbd9a7a3ad7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+  }
+];
 
 const mockTrendingArticles = [
   {
@@ -181,12 +237,11 @@ const StyledTrending = styled.div`
   .trending-content {
     width: 100%;
     display: flex;
+    min-height: 60vh;
     .trending-content-jumbo {
       width: 45%;
       cursor: pointer;
       background-color: grey;
-      max-height: 60vh;
-      min-height: 40vh;
       border-radius: 10px;
       background: url(${mockTrendingArticles[0].imageUrl});
       background-repeat: no-repeat;
@@ -360,33 +415,94 @@ const StyledMainFeed = styled.div`
       }
     }
   }
-  .main-reactions {
+  .content-right {
     width: 35%;
-    background-color: #f7f9fb;
     margin-left: 2rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    padding: 8% 2rem;
-    border-radius: 5px;
-    height: 35vh;
-    h4 {
-      color: #2fc2df;
-      font-family: Lato;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 24px;
-    }
-    .reaction-box {
-      height: 20%;
-      padding: 1.5rem;
+
+    .reactions,
+    .fav-author-feed {
+      border-radius: 5px;
+      background-color: #f7f9fb;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      background-color: white;
-      width: 90%;
-      margin-top: 1rem;
-      color: #b7bbc0;
+      width: 100%;
+      padding: 2rem;
+      margin-bottom: 2rem;
+
+      h4 {
+        color: #2fc2df;
+        font-family: Lato;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 24px;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        width: 60%;
+      }
+
+      .reaction-box,
+      .fav-author-article {
+        background-color: white;
+        padding: 1.5rem;
+        width: 90%;
+        margin-bottom: 1.5rem;
+        border-radius: 5px;
+      }
+
+      .fav-author-article {
+        &:hover {
+          box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        h5 {
+          font-family: Lato;
+          font-style: normal;
+          font-weight: bold;
+          font-size: 20px;
+        }
+
+        h6 {
+          font-family: Lato;
+          font-style: italic;
+          font-weight: normal;
+          font-size: 20px;
+          line-height: 31px;
+          color: #b7bbc0;
+          margin: 1.5rem 0;
+        }
+
+        .fav-author-article-footer {
+          display: flex;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          .tags {
+            display: flex;
+            flex-wrap: wrap;
+
+            p {
+              font-family: Lato;
+              font-style: italic;
+              font-weight: 500;
+              font-size: 14px;
+              color: #b7bbc0;
+              margin-right: 10px;
+            }
+          }
+
+          .details {
+            display: flex;
+
+            a {
+              color: #2fc2df;
+              margin-right: 5px;
+              cursor: pointer;
+            }
+          }
+        }
+      }
     }
   }
 `;
@@ -494,15 +610,42 @@ export function Feed(props) {
               </div>
             </div>
           </div>
-          <div className="main-reactions">
-            <h4>Reactions</h4>
-            {mockUserReactions.map(reaction => {
-              return (
-                <div className="reaction-box">
-                  <p>{reaction.text}</p>
-                </div>
-              );
-            })}
+          <div className="content-right">
+            <div className="reactions">
+              <h4>Reactions</h4>
+              {mockUserReactions.map(reaction => {
+                return (
+                  <div className="reaction-box">
+                    <p>{reaction.text}</p>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="fav-author-feed">
+              <h4>Recent Articles from your Favourite Authors</h4>
+              {mockFavAuthorArticles.map(article => {
+                return (
+                  <div className="fav-author-article">
+                    <h5>{article.title}</h5>
+                    <h6>{article.author}</h6>
+                    <div className="fav-author-article-footer">
+                      <div className="tags">
+                        {article.tags.map(tag => {
+                          return <p>{`#${tag.tag}`}</p>;
+                        })}
+                      </div>
+                      <div className="details">
+                        <a>Details</a>
+                        <img src={blue_arrow} />
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+              <div className="refresh">
+                <img src={icon_refresh} />
+              </div>
+            </div>
           </div>
         </StyledMainFeed>
       </StyledFeed>
