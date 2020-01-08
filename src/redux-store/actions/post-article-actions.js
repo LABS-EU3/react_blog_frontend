@@ -25,7 +25,7 @@ export const publishPost = post => async dispatch => {
     type: PUBLISHING_START
   });
   try {
-    let res = await axios.post("http://localhost:3300/articles/publish", post);
+    let res = await axios.post("http://localhost:5000/api/articles/publish", post);
     if (res)
       dispatch({
         type: PUBLISHING_SUCCESS
@@ -41,7 +41,7 @@ export const savePost = post => async dispatch => {
     type: SAVING_START
   });
   try {
-    let res = await axios.post("http://localhost:3300/articles/save", post);
+    let res = await axios.post("http://localhost:5000/api/articles/save", post);
     if (res)
       dispatch({
         type: SAVING_SUCCESS
@@ -57,7 +57,7 @@ export const savePostAsDraft = post => async dispatch => {
     type: SAVING_START
   });
   try {
-    let res = await axios.post("http://localhost:3300/articles/draft", post);
+    let res = await axios.post("http://localhost:5000/api/articles/draft", post);
     if (res)
       dispatch({
         type: SAVING_SUCCESS
@@ -67,6 +67,7 @@ export const savePostAsDraft = post => async dispatch => {
     dispatch({ type: SAVING_FAIL });
   }
 };
+
 
 export const addTag = inputValue => dispatch => {
   dispatch({
