@@ -1,4 +1,5 @@
 import React from 'react'
+import { useHistory } from "react-router-dom";
 import Button from '../Button';
 import {
   NavWrapper, StandLogo,Control
@@ -8,6 +9,13 @@ import avatar from '../../assets/images/avatar.svg'
 import notification from '../../assets/images/Icons/icon-notification.svg'
 import { Link } from 'react-router-dom';
 export default function Authed() {
+  const history = useHistory();
+
+  const handleClick = (event) => {
+    event.preventDefault();
+    history.push("/create")
+  }
+
   return (
     <NavWrapper>
       <StandLogo>

@@ -105,7 +105,7 @@ class Editor extends Component {
   render() {
     return (
       <div id="editor-page">
-        <NavBar handlePublish={this.handlePublish} handleSave={this.handleSave} />
+        <NavBar handlePublish={this.handlePublish} handleSave={this.handleSave}/>
         <ArticleModal handlePublish={this.handlePublish} />
         <StyledEditor>
           <EditorJs
