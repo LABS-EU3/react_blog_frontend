@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../Button";
+import Button from "../Buttons/Button";
 import { Link } from "react-router-dom";
 
 import { NavWrapper, Logo, AuthButtons } from "./navigation.styles";
