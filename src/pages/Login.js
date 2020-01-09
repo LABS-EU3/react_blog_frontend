@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { Link } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Button from '../components/Button'
 import {
@@ -27,11 +27,13 @@ const Login = props => {
     }
 
     if (userData.email && userData.password) {
-      props.login(userData).then(() => {
-        props.history.push('/feed');
-      })
+      props.login(userData)
     }
   };
+
+  if (props.login_success) {
+    return <Redirect to='/feed' />
+  }
 
   return (
     <Container>
@@ -53,7 +55,7 @@ const Login = props => {
         />
       </Div>
       <Div>
-          <Button className="button" label={props.loading ? "Processing..." : "Log In"} handleClick={handleSubmit}/>
+          <Button className="button" label={props.loading ? "Processing..." : "Log In"} handleClick={handleSubmit} id="login_btn"/>
       </Div>
       <P> Forgot your Password? </P>
       <P2>
@@ -66,7 +68,8 @@ const Login = props => {
 
 const mapStateToProps = store => {
   return {
-    loading: store.auth.loading
+    loading: store.auth.loading,
+    login_success: store.auth.login_success
   }
 }
 
