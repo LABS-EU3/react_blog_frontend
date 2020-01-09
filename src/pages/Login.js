@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { Redirect, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Button from '../components/Button'
 import {
@@ -32,7 +32,7 @@ const Login = props => {
   };
 
   if (props.login_success) {
-    return <Redirect to='/feed' />
+    window.location.href = '/feed';
   }
 
   return (
