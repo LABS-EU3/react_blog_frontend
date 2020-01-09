@@ -20,6 +20,7 @@ const Login = props => {
   const password = useRef();
 
   const handleSubmit = () => {
+    
     const userData = {
       email: email.current.value,
       password: password.current.value,
@@ -36,7 +37,6 @@ const Login = props => {
 
   return (
     <Container>
-      {console.log(props)}
       <Header2>Log In</Header2>
       <Div>
         <Input
