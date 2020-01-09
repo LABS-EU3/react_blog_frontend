@@ -13,6 +13,8 @@ import {
   savePost
 } from "../redux-store/actions/post-article-actions";
 
+import {  decodeToken } from '../utilities/checkToken';
+
 import { EDITOR_JS_TOOLS } from "../utilities/editor-tools";
 import uuid from "uuid";
 
@@ -60,15 +62,17 @@ class Editor extends Component {
   async handlePublish() {
     const editorData = await this.editorInstance.save();
     const title = editorData.blocks[0].data.text;
+    const { subject : userId } = decodeToken();
     const post = {
-      id: uuid(),
+      custom_id: uuid(),
       title,
+      authorId: userId,
       body: editorData.blocks,
       isPublished: true,
       isEditing: false
     };
     const tags = this.props.newPost.tags.map(tag => {
-      return { ...tag, articleId: post.id };
+      return { ...tag, articleId: post.custom_id };
     });
     this.publishPost({ ...post, tags });
   }
@@ -77,9 +81,11 @@ class Editor extends Component {
   async handleSave () {
     const editorData = await this.editorInstance.save();
     const title = editorData.blocks[0].data.text;
+    const { subject : userId } = decodeToken();
     const post = {
-      id: uuid(),
+      custom_id: uuid(),
       title,
+      authorId: userId,
       body: editorData.blocks,
       isPublished: false,
       isEditing: true

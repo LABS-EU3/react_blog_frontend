@@ -1,2 +1,1 @@
-export const productionAPIURL = '';
-export const stagingAPIURL = '';
+export const apiURL = 'http://localhost:5000/api';
