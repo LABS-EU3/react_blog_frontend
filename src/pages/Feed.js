@@ -8,90 +8,24 @@ import icon_refresh from "../assets/images/Icons/icon-refresh.svg";
 import styled from "styled-components";
 import { getArticleFeed } from "../redux-store/actions/get-article-actions";
 
-const mockFavAuthorArticles = [
+const mockTrendingArticleImages = [
   {
-    id: 1,
-    title: "10 Tech Trends to Watch at CES 2020",
-    tags: [
-      { id: 1, tag: "Tech" },
-      { id: 2, tag: "Business" },
-      { id: 3, tag: "Events" }
-    ],
-    body: [
-      {
-        type: "paragraph",
-        data: {
-          text:
-            "Internet of Things is one of the booming technologies among the blockchain, AI, and smart technologies. New exciting solutions are coming"
-        }
-      }
-    ],
-    author: "Uzoamaka Anyanwu",
-    createdAt: "2019-12-24",
-    imageUrl:
-      "https://images.unsplash.com/photo-1490971588422-52f6262a237a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-  },
-  {
-    id: 2,
-    title: "These 5 Tech Trends Will Dominate 2020",
-    tags: [{ id: 1, tag: "Tech" }],
-    body: [
-      {
-        type: "paragraph",
-        data: {
-          text:
-            "Internet of Things is one of the booming technologies among the blockchain, AI, and smart technologies. New exciting solutions are coming"
-        }
-      }
-    ],
-    author: "Johnson Ogwuru",
-    createdAt: "2019-11-21",
-    imageUrl:
-      "https://images.unsplash.com/photo-1486649961855-75838619c131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-  },
-  {
-    id: 3,
-    title: "Building a Custom React Renderer",
-    tags: [{ id: 1, tag: "Tech" }],
-    body: [
-      {
-        type: "paragraph",
-        data: {
-          text:
-            "Internet of Things is one of the booming technologies among the blockchain, AI, and smart technologies. New exciting solutions are coming"
-        }
-      }
-    ],
-    author: "Francis Bulus",
-    createdAt: "2019-11-22",
-    imageUrl:
-      "https://images.unsplash.com/photo-1565120130276-dfbd9a7a3ad7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-  }
-];
-
-const mockTrendingArticles = [
-  {
-    title: "It's a Long Established Fact that You are Distracted",
     imageUrl:
       "https://images.unsplash.com/photo-1440985465094-6ac443aab454?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
   },
   {
-    title: "Internet of Things booming 15 Trillion Market",
     imageUrl:
       "https://images.unsplash.com/photo-1506645292803-579c17d4ba6a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
   },
   {
-    title: "10 Tech Trends to Watch at CES 2020",
     imageUrl:
       "https://images.unsplash.com/photo-1490971588422-52f6262a237a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
   },
   {
-    title: "These 5 Tech Trends Will Dominate 2020",
     imageUrl:
       "https://images.unsplash.com/photo-1486649961855-75838619c131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
   },
   {
-    title: "Building a Custom React Renderer",
     imageUrl:
       "https://images.unsplash.com/photo-1565120130276-dfbd9a7a3ad7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
   }
@@ -255,7 +189,7 @@ const StyledTrending = styled.div`
       cursor: pointer;
       background-color: grey;
       border-radius: 10px;
-      background: url(${mockTrendingArticles[0].imageUrl});
+      background: url(${mockTrendingArticleImages[0].imageUrl});
       background-repeat: no-repeat;
       background-size: cover;
       display: flex;
@@ -534,9 +468,6 @@ export function Feed(props) {
       ) : (
         <DefaultNavigation />
       )}
-      {console.log(
-        !articles.articles.data ? "Loading" : articles.articles.data.trending
-      )}
       <StyledFeed>
         <StyledTrending>
           <div className="trending-header">
@@ -554,7 +485,7 @@ export function Feed(props) {
                   <div
                     className="content-box"
                     style={{
-                      background: `url(${mockTrendingArticles[1].imageUrl})`
+                      background: `url(${mockTrendingArticleImages[1].imageUrl})`
                     }}
                   >
                     <h4>{articles.articles.data.trending[0].title}</h4>
@@ -562,7 +493,7 @@ export function Feed(props) {
                   <div
                     className="content-box"
                     style={{
-                      background: `url(${mockTrendingArticles[2].imageUrl})`
+                      background: `url(${mockTrendingArticleImages[2].imageUrl})`
                     }}
                   >
                     <h4>{articles.articles.data.trending[0].title}</h4>
@@ -572,7 +503,7 @@ export function Feed(props) {
                   <div
                     className="content-box"
                     style={{
-                      background: `url(${mockTrendingArticles[3].imageUrl})`
+                      background: `url(${mockTrendingArticleImages[3].imageUrl})`
                     }}
                   >
                     <h4>{articles.articles.data.trending[0].title}</h4>
@@ -580,7 +511,7 @@ export function Feed(props) {
                   <div
                     className="content-box"
                     style={{
-                      background: `url(${mockTrendingArticles[4].imageUrl})`
+                      background: `url(${mockTrendingArticleImages[4].imageUrl})`
                     }}
                   >
                     <h4>{articles.articles.data.trending[0].title}</h4>
@@ -637,26 +568,26 @@ export function Feed(props) {
             </div>
             <div className="fav-author-feed">
               <h4>Recent Articles from your Favourite Authors</h4>
-              {mockFavAuthorArticles.map(article => {
-                return (
-                  <div className="fav-author-article" key={article.id}>
-                    <h5>{article.title}</h5>
-                    <h6>{article.author}</h6>
-                    <p>{article.createdAt}</p>
-                    <div className="fav-author-article-footer">
-                      <div className="tags">
-                        {article.tags.map(tag => {
-                          return <p key={tag.id}>{`#${tag.tag}`}</p>;
-                        })}
-                      </div>
-                      <div className="details">
-                        <a href="/">Details</a>
-                        <img src={blue_arrow} alt="Arrow" />
+              {!articles.articles.data
+                ? "Loading"
+                : articles.articles.data.following.map(article => (
+                    <div className="fav-author-article" key={article.id}>
+                      <h5>{article.title}</h5>
+                      <h6>{article.author}</h6>
+                      <p>{article.createdAt}</p>
+                      <div className="fav-author-article-footer">
+                        <div className="tags">
+                          {article.tags.map(tag => {
+                            return <p key={tag.id}>{`#${tag.name}`}</p>;
+                          })}
+                        </div>
+                        <div className="details">
+                          <a href="/">Details</a>
+                          <img src={blue_arrow} alt="Arrow" />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                );
-              })}
+                  ))}
               <div className="refresh">
                 <img src={icon_refresh} alt="Refresh feed icon" />
               </div>
