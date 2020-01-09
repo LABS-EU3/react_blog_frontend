@@ -7,7 +7,6 @@ export const StyledRow = styled.div`
     flex-wrap: wrap;
     margin-right: 15px;
     margin-left: 15px;
-    border: 2px solid purple;
 `;
 export const StyledContainer = styled.div`
     width: 100%;
@@ -21,7 +20,6 @@ export const StyledContainer = styled.div`
     }
 
 `
-
 export const StyledColumn = styled.div`
     position: relative;
     width: 100%;
@@ -46,6 +44,12 @@ export const StyledColumn6 = styled.div`
     -ms-flex: 0 0 50%;
     flex: 0 0 50%;
     max-width: 50%;
-    border: 3px solid orange
+
+`;
+
+export const StyledColumn12 = styled.div`
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
 
 `;

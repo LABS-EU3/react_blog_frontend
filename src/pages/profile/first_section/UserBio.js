@@ -1,5 +1,5 @@
 import React from 'react';
-import avatar from '../../assets/random-avatar.jpeg'
+import avatar from '../../../assets/random-avatar.jpeg'
 import SecondaryButton from '../../../components/Buttons/SecondaryButton';
 import { StyledUserBio } from '../../../components/styles/profile/StyledUserBio';
 export default function UserBio() {
