@@ -4,6 +4,7 @@ import Register from './pages/Register';
 import {Route} from 'react-router-dom';
 import Editor from "./pages/Editor";
 import ArticleModal from "./components/ArticleModal";
+import ProfileLandingPage from './pages/profile/profileLanding'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Route exact path='/register' component={Register}/>
       <Route exact path="/create" component={Editor} />
       <ArticleModal />
+      <Route exact path="/profile" component={ProfileLandingPage} />
     </div>
   );
 }

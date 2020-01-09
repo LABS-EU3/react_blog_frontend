@@ -10,7 +10,7 @@ import {
 import { connect } from "react-redux";
 import styled from "styled-components";
 import logo from "../assets/logo-gradient.png";
-import Button from './Button';
+import Button from './Buttons/Button';
 
 const modalRoot = document.getElementById("article-modal");
 

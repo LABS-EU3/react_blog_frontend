@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import Button from '../components/Button'
+import Button from '../components/Buttons/Button';
 import {
   Container,
   Header2,

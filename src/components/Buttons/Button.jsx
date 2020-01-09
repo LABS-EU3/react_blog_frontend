@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function Button(props) {
+export default function Button (props) {
   const clickHandler = (e) => {
     if (props.handleClick) {
       e.preventDefault();

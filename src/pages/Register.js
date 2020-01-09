@@ -1,9 +1,9 @@
 import React, { useRef } from "react";
 import { connect } from "react-redux";
 import DefaultNavigation from "../components/Navigation/Default";
-import Modal from "../components/Modal";
+import Modal from "../components/Others/Modal";
 import RegistrationSuccess from "./RegistrationSuccess";
-import Button from "../components/Button";
+import Button from "../components/Buttons/Button";
 import SecondaryFooter from '../components/Footer/SecondaryFooter';
 
 import {
