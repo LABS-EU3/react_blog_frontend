@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledUserBio = styled.div`
-    border: 1px solid red;
+    // border: 1px solid red;
     display: flex;
     // width: 40%
     padding: 1rem 2rem;
@@ -19,18 +19,18 @@ export const StyledUserBio = styled.div`
     }
 
     .other-info {
-        border: 1px solid;
+        // border: 1px solid;
         width: 70%;
 
         h6 {
-            font-size: 24px;
+            font-size: 26px;
             color: #36464f;
         }
         .bio-info {
             margin: 0.6rem 0;
             
             p {
-                font-size: 18px;
+                font-size: 16px;
             }
         }
 

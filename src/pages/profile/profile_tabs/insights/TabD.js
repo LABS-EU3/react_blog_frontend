@@ -5,7 +5,7 @@ import { StyledRow, StyledColumn, StyledContainer, StyledColumn12 } from '../../
 export default function TabD() {
     return (
         <div>
-            <StyledContainer>
+            <StyledContainer className="mt-3">
                 <StyledRow>
                     <StyledColumn>
                         <StyledColumn12>

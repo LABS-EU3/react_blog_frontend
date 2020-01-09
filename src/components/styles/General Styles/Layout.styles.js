@@ -16,7 +16,7 @@ export const StyledContainer = styled.div`
     margin-left: auto;
 
     &.mt-3 {
-        margin-top: 2.5rem;
+        margin-top: 3.5rem;
     }
 
 `
@@ -26,6 +26,9 @@ export const StyledColumn = styled.div`
     padding-right: 15px;
     padding-left: 15px;
 
+    &.d-r-flex {
+        display: flex;
+    }
 `
 export const StyledColumn4 = styled.div`
     -ms-flex: 0 0 33.333333%;
@@ -39,6 +42,7 @@ export const StyledColumn5 = styled.div`
     flex: 0 0 41.666667%;
     max-width: 41.666667%;
 
+    
 `;
 export const StyledColumn6 = styled.div`
     -ms-flex: 0 0 50%;

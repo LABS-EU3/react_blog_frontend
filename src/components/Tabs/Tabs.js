@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Tab from './Tab';
 import { StyledTabsList } from '../styles/tabs/tabsList.styles';
 export default function Tabs (props) {
-    console.log(props);
     // create a state that takes in an object that grabs the label of the first child in the array
     const [tabState, setTabState] = useState({
         activeTab: props.children[0].props.label
@@ -19,8 +18,6 @@ export default function Tabs (props) {
     // Get the active tab from the state;
     const { activeTab } = tabState;
     const { children } = props;
-    console.log(children);
-    console.log(activeTab)
 
     return (
         <div className="tabs">
