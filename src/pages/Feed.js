@@ -31,124 +31,6 @@ const mockTrendingArticleImages = [
   }
 ];
 
-const mockUserInterestArticles = [
-  {
-    id: 1,
-    title: "It's a Long Established Fact that You are Distracted",
-    tags: [
-      { id: 1, tag: "Tech" },
-      { id: 2, tag: "Health" }
-    ],
-    body: [
-      {
-        type: "paragraph",
-        data: {
-          text:
-            "Internet of Things is one of the booming technologies among the blockchain, AI, and smart technologies. New exciting solutions are coming"
-        }
-      }
-    ],
-    author: "Damilola Oluwami",
-    imageUrl:
-      "https://images.unsplash.com/photo-1440985465094-6ac443aab454?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-  },
-  {
-    id: 2,
-    title: "Internet of Things booming 15 Trillion Market",
-    tags: [
-      { id: 1, tag: "Tech" },
-      { id: 2, tag: "Business" }
-    ],
-    body: [
-      {
-        type: "paragraph",
-        data: {
-          text:
-            "Internet of Things is one of the booming technologies among the blockchain, AI, and smart technologies. New exciting solutions are coming"
-        }
-      }
-    ],
-    author: "David Kuseh",
-    imageUrl:
-      "https://images.unsplash.com/photo-1506645292803-579c17d4ba6a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-  },
-  {
-    id: 3,
-    title: "10 Tech Trends to Watch at CES 2020",
-    tags: [
-      { id: 1, tag: "Tech" },
-      { id: 2, tag: "Business" },
-      { id: 3, tag: "Events" }
-    ],
-    body: [
-      {
-        type: "paragraph",
-        data: {
-          text:
-            "Internet of Things is one of the booming technologies among the blockchain, AI, and smart technologies. New exciting solutions are coming"
-        }
-      }
-    ],
-    author: "Uzoamaka Anyanwu",
-    imageUrl:
-      "https://images.unsplash.com/photo-1490971588422-52f6262a237a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-  },
-  {
-    id: 4,
-    title: "These 5 Tech Trends Will Dominate 2020",
-    tags: [{ id: 1, tag: "Tech" }],
-    body: [
-      {
-        type: "paragraph",
-        data: {
-          text:
-            "Internet of Things is one of the booming technologies among the blockchain, AI, and smart technologies. New exciting solutions are coming"
-        }
-      }
-    ],
-    author: "Johnson Ogwuru",
-    imageUrl:
-      "https://images.unsplash.com/photo-1486649961855-75838619c131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-  },
-  {
-    id: 5,
-    title: "Building a Custom React Renderer",
-    tags: [{ id: 1, tag: "Tech" }],
-    body: [
-      {
-        type: "paragraph",
-        data: {
-          text:
-            "Internet of Things is one of the booming technologies among the blockchain, AI, and smart technologies. New exciting solutions are coming"
-        }
-      }
-    ],
-    author: "Francis Bulus",
-    imageUrl:
-      "https://images.unsplash.com/photo-1565120130276-dfbd9a7a3ad7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-  },
-  {
-    id: 6,
-    title: "It's a Long Established Fact that You are Distracted",
-    tags: [
-      { id: 1, tag: "Tech" },
-      { id: 2, tag: "Health" }
-    ],
-    body: [
-      {
-        type: "paragraph",
-        data: {
-          text:
-            "Internet of Things is one of the booming technologies among the blockchain, AI, and smart technologies. New exciting solutions are coming"
-        }
-      }
-    ],
-    author: "Damilola Oluwami",
-    imageUrl:
-      "https://images.unsplash.com/photo-1440985465094-6ac443aab454?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-  }
-];
-
 const mockUserReactions = [
   { id: 1, text: "Johnson Ogwuru liked your post 'Internet of Thi...'" },
   { id: 2, text: "Damilola Oluwami reacted to your post 'Internet of Thi...'" },
@@ -255,6 +137,11 @@ const StyledMainFeed = styled.div`
     width: 65%;
     border-top: 1px solid #333333;
     padding-top: 1rem;
+
+    &.dynamic {
+      width: 100%;
+    }
+
     .main-header {
       display: flex;
       h4 {
@@ -284,6 +171,9 @@ const StyledMainFeed = styled.div`
             background: white;
             box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
           }
+        }
+        &.dynamic {
+          width: 30%;
         }
 
         img {
@@ -366,6 +256,10 @@ const StyledMainFeed = styled.div`
     margin-left: 2rem;
     display: flex;
     flex-direction: column;
+
+    &.hide {
+      display: none;
+    }
 
     .reactions,
     .fav-author-feed {
@@ -456,10 +350,11 @@ const StyledMainFeed = styled.div`
 
 export function Feed(props) {
   const { getArticleFeed, articles } = props;
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     getArticleFeed();
-  }, []);
+  }, [getArticleFeed]);
 
   return (
     <div>
@@ -522,9 +417,9 @@ export function Feed(props) {
           )}
         </StyledTrending>
         <StyledMainFeed>
-          <div className="main-insights">
+          <div className={token ? "main-insights" : "main-insights dynamic"}>
             <div className="main-header">
-              {localStorage.getItem("token") ? (
+              {token ? (
                 <h4>INSIGHTS FROM YOUR INTERESTS</h4>
               ) : (
                 <h4>EXPLORE INSIGHTS</h4>
@@ -532,67 +427,79 @@ export function Feed(props) {
               <img src={arrow} alt="Arrow icon" />
             </div>
             <div className="main-content">
-              {mockUserInterestArticles.map(article => {
-                return (
-                  <div className="main-article" key={article.id}>
-                    <img src={article.imageUrl} alt="Article description" />
-                    <div className="main-article-content">
-                      <h3>{article.title}</h3>
-                      <p>{article.body[0].data.text}</p>
-                      <div className="main-article-footer">
-                        <p>{article.author}</p>
-                        <div className="article-link">
-                          <a href={`/articles/${article.id}`}>Details</a>
-                          <img src={blue_arrow} alt="Blue Arrow" />
+              {articles.articles.data
+                ? (
+                    articles.articles.data.mainFeed ||
+                    articles.articles.data.interests
+                  ).map(article => {
+                    return (
+                      <div
+                        className={
+                          token ? "main-article" : "main-article dynamic"
+                        }
+                        key={article.id}
+                      >
+                        <img src={article.imageUrl} alt="" />
+                        <div className="main-article-content">
+                          <h3>{article.title}</h3>
+                          <p>{article.body}</p>
+                          <div className="main-article-footer">
+                            <p>{article.author}</p>
+                            <div className="article-link">
+                              <a href={`/articles/${article.id}`}>Details</a>
+                              <img src={blue_arrow} alt="Blue Arrow" />
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                );
-              })}
+                    );
+                  })
+                : "Loading "}
               <div className="read-more">
                 <button>Read More...</button>
               </div>
             </div>
           </div>
-          <div className="content-right">
-            <div className="reactions">
-              <h4>Reactions</h4>
-              {mockUserReactions.map(reaction => {
-                return (
-                  <div className="reaction-box" key={reaction.id}>
-                    <p>{reaction.text}</p>
-                  </div>
-                );
-              })}
-            </div>
-            <div className="fav-author-feed">
-              <h4>Recent Articles from your Favourite Authors</h4>
-              {!articles.articles.data
-                ? "Loading"
-                : articles.articles.data.following.map(article => (
-                    <div className="fav-author-article" key={article.id}>
-                      <h5>{article.title}</h5>
-                      <h6>{article.author}</h6>
-                      <p>{article.createdAt}</p>
-                      <div className="fav-author-article-footer">
-                        <div className="tags">
-                          {article.tags.map(tag => {
-                            return <p key={tag.id}>{`#${tag.name}`}</p>;
-                          })}
-                        </div>
-                        <div className="details">
-                          <a href="/">Details</a>
-                          <img src={blue_arrow} alt="Arrow" />
+          {!token ? null : (
+            <div className="content-right">
+              <div className="reactions">
+                <h4>Reactions</h4>
+                {mockUserReactions.map(reaction => {
+                  return (
+                    <div className="reaction-box" key={reaction.id}>
+                      <p>{reaction.text}</p>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="fav-author-feed">
+                <h4>Recent Articles from your Favourite Authors</h4>
+                {!articles.articles.data
+                  ? "Loading"
+                  : articles.articles.data.following.map(article => (
+                      <div className="fav-author-article" key={article.id}>
+                        <h5>{article.title}</h5>
+                        <h6>{article.author}</h6>
+                        <p>{article.createdAt}</p>
+                        <div className="fav-author-article-footer">
+                          <div className="tags">
+                            {article.tags.map(tag => {
+                              return <p key={tag.id}>{`#${tag.name}`}</p>;
+                            })}
+                          </div>
+                          <div className="details">
+                            <a href="/">Details</a>
+                            <img src={blue_arrow} alt="Arrow" />
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
-              <div className="refresh">
-                <img src={icon_refresh} alt="Refresh feed icon" />
+                    ))}
+                <div className="refresh">
+                  <img src={icon_refresh} alt="Refresh feed icon" />
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </StyledMainFeed>
       </StyledFeed>
     </div>
