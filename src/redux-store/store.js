@@ -4,11 +4,13 @@ import thunk from "redux-thunk";
 
 import { newPostReducer } from "./reducers/posts-reducer-editing";
 import { loginReducer, registerReducer } from "./reducers/user-reducer"
+import { getArticlesReducer } from "./reducers/get-article-reducer";
 
 const rootReducer = combineReducers({
   newPost: newPostReducer,
   login: loginReducer,
-  registering: registerReducer
+  registering: registerReducer,
+  articles: getArticlesReducer
 });
 
 const middleware = [thunk];

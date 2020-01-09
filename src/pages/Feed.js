@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import DefaultNavigation from "../components/Navigation/Default";
 import AuthedNavigation from "../components/Navigation/Authed";
@@ -10,6 +10,7 @@ import { getArticleFeed } from "../redux-store/actions/get-article-actions";
 
 const mockFavAuthorArticles = [
   {
+    id: 1,
     title: "10 Tech Trends to Watch at CES 2020",
     tags: [
       { id: 1, tag: "Tech" },
@@ -31,6 +32,7 @@ const mockFavAuthorArticles = [
       "https://images.unsplash.com/photo-1490971588422-52f6262a237a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
   },
   {
+    id: 2,
     title: "These 5 Tech Trends Will Dominate 2020",
     tags: [{ id: 1, tag: "Tech" }],
     body: [
@@ -48,6 +50,7 @@ const mockFavAuthorArticles = [
       "https://images.unsplash.com/photo-1486649961855-75838619c131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
   },
   {
+    id: 3,
     title: "Building a Custom React Renderer",
     tags: [{ id: 1, tag: "Tech" }],
     body: [
@@ -96,6 +99,7 @@ const mockTrendingArticles = [
 
 const mockUserInterestArticles = [
   {
+    id: 1,
     title: "It's a Long Established Fact that You are Distracted",
     tags: [
       { id: 1, tag: "Tech" },
@@ -115,6 +119,7 @@ const mockUserInterestArticles = [
       "https://images.unsplash.com/photo-1440985465094-6ac443aab454?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
   },
   {
+    id: 2,
     title: "Internet of Things booming 15 Trillion Market",
     tags: [
       { id: 1, tag: "Tech" },
@@ -134,6 +139,7 @@ const mockUserInterestArticles = [
       "https://images.unsplash.com/photo-1506645292803-579c17d4ba6a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
   },
   {
+    id: 3,
     title: "10 Tech Trends to Watch at CES 2020",
     tags: [
       { id: 1, tag: "Tech" },
@@ -154,6 +160,7 @@ const mockUserInterestArticles = [
       "https://images.unsplash.com/photo-1490971588422-52f6262a237a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
   },
   {
+    id: 4,
     title: "These 5 Tech Trends Will Dominate 2020",
     tags: [{ id: 1, tag: "Tech" }],
     body: [
@@ -170,6 +177,7 @@ const mockUserInterestArticles = [
       "https://images.unsplash.com/photo-1486649961855-75838619c131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
   },
   {
+    id: 5,
     title: "Building a Custom React Renderer",
     tags: [{ id: 1, tag: "Tech" }],
     body: [
@@ -186,6 +194,7 @@ const mockUserInterestArticles = [
       "https://images.unsplash.com/photo-1565120130276-dfbd9a7a3ad7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
   },
   {
+    id: 6,
     title: "It's a Long Established Fact that You are Distracted",
     tags: [
       { id: 1, tag: "Tech" },
@@ -512,8 +521,10 @@ const StyledMainFeed = styled.div`
 `;
 
 export function Feed(props) {
+  const { getArticleFeed, articles } = props;
+
   useEffect(() => {
-    props.getArticleFeed();
+    getArticleFeed();
   }, []);
 
   return (
@@ -523,76 +534,84 @@ export function Feed(props) {
       ) : (
         <DefaultNavigation />
       )}
+      {console.log(
+        !articles.articles.data ? "Loading" : articles.articles.data.trending
+      )}
       <StyledFeed>
         <StyledTrending>
           <div className="trending-header">
             <button>TRENDING NOW</button>
           </div>
-          <div className="trending-content">
-            <div className="trending-content-jumbo">
-              <h2>{mockTrendingArticles[0].title}</h2>
-            </div>
-            <div className="trending-content-regular">
-              <div className="row">
-                <div
-                  className="content-box"
-                  style={{
-                    background: `url(${mockTrendingArticles[1].imageUrl})`
-                  }}
-                >
-                  <h4>{mockTrendingArticles[1].title}</h4>
+          {!articles.articles.data ? (
+            "Loading"
+          ) : (
+            <div className="trending-content">
+              <div className="trending-content-jumbo">
+                <h2>{articles.articles.data.trending[0].title}</h2>
+              </div>
+              <div className="trending-content-regular">
+                <div className="row">
+                  <div
+                    className="content-box"
+                    style={{
+                      background: `url(${mockTrendingArticles[1].imageUrl})`
+                    }}
+                  >
+                    <h4>{articles.articles.data.trending[0].title}</h4>
+                  </div>
+                  <div
+                    className="content-box"
+                    style={{
+                      background: `url(${mockTrendingArticles[2].imageUrl})`
+                    }}
+                  >
+                    <h4>{articles.articles.data.trending[0].title}</h4>
+                  </div>
                 </div>
-                <div
-                  className="content-box"
-                  style={{
-                    background: `url(${mockTrendingArticles[2].imageUrl})`
-                  }}
-                >
-                  <h4>{mockTrendingArticles[2].title}</h4>
+                <div className="row top-margin">
+                  <div
+                    className="content-box"
+                    style={{
+                      background: `url(${mockTrendingArticles[3].imageUrl})`
+                    }}
+                  >
+                    <h4>{articles.articles.data.trending[0].title}</h4>
+                  </div>
+                  <div
+                    className="content-box"
+                    style={{
+                      background: `url(${mockTrendingArticles[4].imageUrl})`
+                    }}
+                  >
+                    <h4>{articles.articles.data.trending[0].title}</h4>
+                  </div>
                 </div>
               </div>
-              <div className="row top-margin">
-                <div
-                  className="content-box"
-                  style={{
-                    background: `url(${mockTrendingArticles[3].imageUrl})`
-                  }}
-                >
-                  <h4>{mockTrendingArticles[3].title}</h4>
-                </div>
-                <div
-                  className="content-box"
-                  style={{
-                    background: `url(${mockTrendingArticles[4].imageUrl})`
-                  }}
-                >
-                  <h4>{mockTrendingArticles[4].title}</h4>
-                </div>
-              </div>
             </div>
-          </div>
+          )}
         </StyledTrending>
         <StyledMainFeed>
           <div className="main-insights">
             <div className="main-header">
-              <h4>INSIGHTS FROM YOUR INTERESTS</h4>
+              {localStorage.getItem("token") ? (
+                <h4>INSIGHTS FROM YOUR INTERESTS</h4>
+              ) : (
+                <h4>EXPLORE INSIGHTS</h4>
+              )}
               <img src={arrow} alt="Arrow icon" />
             </div>
             <div className="main-content">
               {mockUserInterestArticles.map(article => {
                 return (
                   <div className="main-article" key={article.id}>
-                    <img
-                      src={article.imageUrl}
-                      alt="Article description image"
-                    />
+                    <img src={article.imageUrl} alt="Article description" />
                     <div className="main-article-content">
                       <h3>{article.title}</h3>
                       <p>{article.body[0].data.text}</p>
                       <div className="main-article-footer">
                         <p>{article.author}</p>
                         <div className="article-link">
-                          <a href={`/article/${article.id}`}>Details</a>
+                          <a href={`/articles/${article.id}`}>Details</a>
                           <img src={blue_arrow} alt="Blue Arrow" />
                         </div>
                       </div>
@@ -610,7 +629,7 @@ export function Feed(props) {
               <h4>Reactions</h4>
               {mockUserReactions.map(reaction => {
                 return (
-                  <div className="reaction-box">
+                  <div className="reaction-box" key={reaction.id}>
                     <p>{reaction.text}</p>
                   </div>
                 );
@@ -620,26 +639,26 @@ export function Feed(props) {
               <h4>Recent Articles from your Favourite Authors</h4>
               {mockFavAuthorArticles.map(article => {
                 return (
-                  <div className="fav-author-article">
+                  <div className="fav-author-article" key={article.id}>
                     <h5>{article.title}</h5>
                     <h6>{article.author}</h6>
                     <p>{article.createdAt}</p>
                     <div className="fav-author-article-footer">
                       <div className="tags">
                         {article.tags.map(tag => {
-                          return <p>{`#${tag.tag}`}</p>;
+                          return <p key={tag.id}>{`#${tag.tag}`}</p>;
                         })}
                       </div>
                       <div className="details">
-                        <a>Details</a>
-                        <img src={blue_arrow} />
+                        <a href="/">Details</a>
+                        <img src={blue_arrow} alt="Arrow" />
                       </div>
                     </div>
                   </div>
                 );
               })}
               <div className="refresh">
-                <img src={icon_refresh} />
+                <img src={icon_refresh} alt="Refresh feed icon" />
               </div>
             </div>
           </div>

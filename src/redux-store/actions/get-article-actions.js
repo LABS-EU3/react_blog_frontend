@@ -5,12 +5,14 @@ import {
   GET_ALL_ARTICLES_FAIL
 } from "./types";
 
+import axiosWithAuth from "../../utilities/axios/index";
+
 export const getArticleFeed = () => async dispatch => {
   dispatch({
     type: GET_ALL_ARTICLES_START
   });
   try {
-    let response = await axios.get("http://localhost:3300/api/articles");
+    let response = await axiosWithAuth().get("http://localhost:3300/api/articles");
     if (response) {
       dispatch({ type: GET_ALL_ARTICLES_SUCCESS, payload: response.data });
     }
