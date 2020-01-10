@@ -476,7 +476,13 @@ export function Feed(props) {
                   : !articles.articles.data.following
                   ? null
                   : articles.articles.data.following.map(article => (
-                      <div className="fav-author-article" key={article.id}>
+                      <div
+                        className="fav-author-article"
+                        key={article.id}
+                        onClick={() =>
+                          props.history.push(`/articles/${article.id}`)
+                        }
+                      >
                         <h5>{article.title}</h5>
                         <h6>{article.author}</h6>
                         <p>{article.createdAt}</p>
