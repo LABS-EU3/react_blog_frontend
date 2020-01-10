@@ -20,12 +20,12 @@ function Register({ register, loading, success, location }) {
 
   const handleSubmit = () => {
     const userData = {
-      username: fullname.current.value,
+      fullname: fullname.current.value,
       email: email.current.value,
       password: password.current.value
     };
 
-    if (userData.username && userData.email && userData.password) {
+    if (userData.fullname && userData.email && userData.password) {
       register(userData);
     }
   };

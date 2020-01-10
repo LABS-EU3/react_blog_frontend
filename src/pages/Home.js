@@ -29,7 +29,7 @@ export default function Home(props) {
       <Default handleOpen={setOpen} {...props} />
       {open && (
         <Modal height="450px" width="380px" handleOpen={setOpen}>
-          <Login />
+          <Login {...props} />
         </Modal>
       )}
       <Main>
