@@ -80,6 +80,7 @@ class Editor extends Component {
 
   async handleSave () {
     const editorData = await this.editorInstance.save();
+    console.log(editorData)
     const title = editorData.blocks[0].data.text;
     const { subject : userId } = decodeToken();
     const post = {

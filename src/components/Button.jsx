@@ -4,7 +4,7 @@ import styled from "styled-components";
 export default function Button(props) {
   return (
     <>
-      <ButtonD type="button" className={props.className} onClick={props.clickHandler} disabled={props.disabled}>{props.label}</ButtonD>
+      <ButtonD type="button" className={props.className} onClick={props.handleClick} disabled={props.disabled}>{props.label}</ButtonD>
     </>
   );
 }

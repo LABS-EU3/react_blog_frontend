@@ -14,8 +14,8 @@ function App() {
       <Route path='/register' component={Register}/>
       <Route path="/profile" component={Profile} />
       <Route path="/create" component={Editor} />
+      <Route path="/read" component={ReadArticle}/>
       <ArticleModal />
-      <Route exact path="/read" component={ReadArticle}/>
     </div>
   );
 }
