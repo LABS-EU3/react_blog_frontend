@@ -435,6 +435,9 @@ export function Feed(props) {
                           token ? "main-article" : "main-article dynamic"
                         }
                         key={article.id}
+                        onClick={() =>
+                          props.history.push(`/articles/${article.id}`)
+                        }
                       >
                         <img src={article.imageUrl} alt="" />
                         <div className="main-article-content">
