@@ -6,13 +6,13 @@ import { NavWrapper, Logo, AuthButtons } from "./navigation.styles";
 import insight from "../../assets/images/Insight.svg";
 
 export default function Default(props) {
-  const location = props.location.pathname;
+  // const location = props.location.pathname;
   return (
     <NavWrapper>
       <Logo>
         <img alt="logo" src={insight} />
       </Logo>
-      {location !== "/register" && (
+      {/* {location !== "/register" && ( */}
         <AuthButtons>
           <ul>
             <li onClick={() => props.handleOpen ? props.handleOpen(true) : null}>Log In</li>
@@ -21,7 +21,7 @@ export default function Default(props) {
             <Button label="Try for free" />
           </Link>
         </AuthButtons>
-      )}
+      {/* )} */}
     </NavWrapper>
   );
 }

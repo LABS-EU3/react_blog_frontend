@@ -4,7 +4,7 @@ import {
   GET_ALL_ARTICLES_FAIL
 } from "./types";
 
-import axiosWithAuth from "../../utilities/axios/index";
+import { axiosWithAuth } from "../../utilities/axios/index";
 
 export const getArticleFeed = () => async dispatch => {
   dispatch({

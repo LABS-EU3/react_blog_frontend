@@ -7,6 +7,7 @@ import blue_arrow from "../assets/images/Icons/blue_arrow.svg";
 import icon_refresh from "../assets/images/Icons/icon-refresh.svg";
 import styled from "styled-components";
 import { getArticleFeed } from "../redux-store/actions/get-article-actions";
+import { getToken } from "../utilities/authentication";
 
 const mockTrendingArticleImages = [
   {
@@ -350,7 +351,7 @@ const StyledMainFeed = styled.div`
 
 export function Feed(props) {
   const { getArticleFeed, articles } = props;
-  const token = localStorage.getItem("token");
+  const token = getToken();
 
   useEffect(() => {
     getArticleFeed();
@@ -358,11 +359,7 @@ export function Feed(props) {
 
   return (
     <div>
-      {localStorage.getItem("token") ? (
-        <AuthedNavigation />
-      ) : (
-        <DefaultNavigation />
-      )}
+      {token ? <AuthedNavigation /> : <DefaultNavigation />}
       <StyledFeed>
         <StyledTrending>
           <div className="trending-header">
@@ -476,6 +473,8 @@ export function Feed(props) {
                 <h4>Recent Articles from your Favourite Authors</h4>
                 {!articles.articles.data
                   ? "Loading"
+                  : !articles.articles.data.following
+                  ? null
                   : articles.articles.data.following.map(article => (
                       <div className="fav-author-article" key={article.id}>
                         <h5>{article.title}</h5>
