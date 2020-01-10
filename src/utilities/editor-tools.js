@@ -12,6 +12,7 @@ import Marker from "@editorjs/marker";
 import Delimiter from "@editorjs/delimiter";
 import InlineCode from "@editorjs/inline-code";
 import SimpleImage from "@editorjs/simple-image";
+import {apiURL} from './urls';
 
 export const EDITOR_JS_TOOLS = {
   embed: Embed,
@@ -25,7 +26,7 @@ export const EDITOR_JS_TOOLS = {
     class: Image,
     config: {
       endpoints: {
-        byFile: "http://localhost:5000/api/articles/uploadFile", // Your backend file uploader endpoint
+        byFile: `${apiURL}/articles/uploadFile`, // Your backend file uploader endpoint
         byUrl: "http://localhost:8008/api/articlesfetchUrl" // Your endpoint that provides uploading by Url
       },
     }
