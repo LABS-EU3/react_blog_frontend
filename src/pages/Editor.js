@@ -40,6 +40,10 @@ const StyledEditor = styled.div`
     font-size: 1.8rem;
   }
 
+  .ce-paragraph  {
+    font-size: 1.7rem !important;
+  }
+
   a {
     color: hotpink;
     text-decoration: none;
