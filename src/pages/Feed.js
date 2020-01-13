@@ -9,7 +9,7 @@ import styled from "styled-components";
 import { getArticleFeed } from "../redux-store/actions/get-article-actions";
 import { getToken } from "../utilities/authentication";
 
-const mockTrendingArticleImages = [
+const mockImages = [
   {
     imageUrl:
       "https://images.unsplash.com/photo-1440985465094-6ac443aab454?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
@@ -72,7 +72,7 @@ const StyledTrending = styled.div`
       cursor: pointer;
       background-color: grey;
       border-radius: 10px;
-      background: url(${mockTrendingArticleImages[0].imageUrl});
+      background: url(${mockImages[0].imageUrl});
       background-repeat: no-repeat;
       background-size: cover;
       display: flex;
@@ -370,7 +370,7 @@ export function Feed(props) {
                     <div
                       className="content-box"
                       style={{
-                        background: `url(${mockTrendingArticleImages[2].imageUrl})`
+                        background: `url(${mockImages[2].imageUrl})`
                       }}
                       key={article.id}
                     >
@@ -383,7 +383,7 @@ export function Feed(props) {
                     <div
                       className="content-box"
                       style={{
-                        background: `url(${mockTrendingArticleImages[2].imageUrl})`
+                        background: `url(${mockImages[2].imageUrl})`
                       }}
                       key={article.id}
                     >
@@ -398,7 +398,7 @@ export function Feed(props) {
         <StyledMainFeed>
           <div className={token ? "main-insights" : "main-insights dynamic"}>
             <div className="main-header">
-              {token ? (
+              {articles.articles.data && articles.articles.data.interests ? (
                 <h4>INSIGHTS FROM YOUR INTERESTS</h4>
               ) : (
                 <h4>EXPLORE INSIGHTS</h4>
