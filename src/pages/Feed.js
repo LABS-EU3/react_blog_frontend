@@ -93,38 +93,32 @@ const StyledTrending = styled.div`
     .trending-content-regular {
       width: 55%;
       display: flex;
-      flex-direction: column;
-      .row {
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+      .content-box {
+        margin-left: 1rem;
+        cursor: pointer;
+        width: 45%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 45%;
         display: flex;
-        height: 50%;
-        &.top-margin {
-          margin-top: 1rem;
-        }
-        .content-box {
-          margin-left: 1rem;
-          cursor: pointer;
-          width: 100%;
-          background-repeat: no-repeat;
-          background-size: cover;
-          height: 100%;
-          display: flex;
-          align-items: flex-end;
-          border-radius: 10px;
-        }
-        h4 {
-          background: rgba(118, 116, 116, 0.62);
-          color: white;
-          padding: 10% 1rem 1rem 1.5rem;
-          font-family: Lato;
-          font-style: normal;
-          font-weight: bold;
-          font-size: 18px;
-          line-height: 33px;
-          border-radius: 0 0 10px 10px;
-          width: 100%;
-          display: flex;
-          align-items: flex-end;
-        }
+        align-items: flex-end;
+        border-radius: 10px;
+      }
+      h4 {
+        background: rgba(118, 116, 116, 0.62);
+        color: white;
+        padding: 10% 1rem 1rem 1.5rem;
+        font-family: Lato;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 33px;
+        border-radius: 0 0 10px 10px;
+        width: 100%;
+        display: flex;
+        align-items: flex-end;
       }
     }
   }
@@ -291,9 +285,7 @@ const StyledMainFeed = styled.div`
         width: 90%;
         margin-bottom: 1.5rem;
         border-radius: 5px;
-      }
 
-      .fav-author-article {
         &:hover {
           box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
           cursor: pointer;
@@ -373,42 +365,32 @@ export function Feed(props) {
                 <h2>{articles.articles.data.trending[0].title}</h2>
               </div>
               <div className="trending-content-regular">
-                <div className="row">
-                  <div
-                    className="content-box"
-                    style={{
-                      background: `url(${mockTrendingArticleImages[1].imageUrl})`
-                    }}
-                  >
-                    <h4>{articles.articles.data.trending[0].title}</h4>
-                  </div>
-                  <div
-                    className="content-box"
-                    style={{
-                      background: `url(${mockTrendingArticleImages[2].imageUrl})`
-                    }}
-                  >
-                    <h4>{articles.articles.data.trending[0].title}</h4>
-                  </div>
-                </div>
-                <div className="row top-margin">
-                  <div
-                    className="content-box"
-                    style={{
-                      background: `url(${mockTrendingArticleImages[3].imageUrl})`
-                    }}
-                  >
-                    <h4>{articles.articles.data.trending[0].title}</h4>
-                  </div>
-                  <div
-                    className="content-box"
-                    style={{
-                      background: `url(${mockTrendingArticleImages[4].imageUrl})`
-                    }}
-                  >
-                    <h4>{articles.articles.data.trending[0].title}</h4>
-                  </div>
-                </div>
+                {articles.articles.data.trending.map(article => {
+                  return (
+                    <div
+                      className="content-box"
+                      style={{
+                        background: `url(${mockTrendingArticleImages[2].imageUrl})`
+                      }}
+                      key={article.id}
+                    >
+                      <h4>{article.title}</h4>
+                    </div>
+                  );
+                })}
+                {articles.articles.data.trending.map(article => {
+                  return (
+                    <div
+                      className="content-box"
+                      style={{
+                        background: `url(${mockTrendingArticleImages[2].imageUrl})`
+                      }}
+                      key={article.id}
+                    >
+                      <h4>{article.title}</h4>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           )}
@@ -472,40 +454,40 @@ export function Feed(props) {
                   );
                 })}
               </div>
-              <div className="fav-author-feed">
-                <h4>Recent Articles from your Favourite Authors</h4>
-                {!articles.articles.data
-                  ? "Loading"
-                  : !articles.articles.data.following
-                  ? null
-                  : articles.articles.data.following.map(article => (
-                      <div
-                        className="fav-author-article"
-                        key={article.id}
-                        onClick={() =>
-                          props.history.push(`/articles/${article.id}`)
-                        }
-                      >
-                        <h5>{article.title}</h5>
-                        <h6>{article.author}</h6>
-                        <p>{article.createdAt}</p>
-                        <div className="fav-author-article-footer">
-                          <div className="tags">
-                            {article.tags.map(tag => {
-                              return <p key={tag.id}>{`#${tag.name}`}</p>;
-                            })}
-                          </div>
-                          <div className="details">
-                            <a href="/">Details</a>
-                            <img src={blue_arrow} alt="Arrow" />
-                          </div>
+
+              {!articles.articles.data ||
+              !articles.articles.data.following ? null : (
+                <div className="fav-author-feed">
+                  <h4>Recent Articles from your Favourite Authors</h4>
+                  {articles.articles.data.following.map(article => (
+                    <div
+                      className="fav-author-article"
+                      key={article.id}
+                      onClick={() =>
+                        props.history.push(`/articles/${article.id}`)
+                      }
+                    >
+                      <h5>{article.title}</h5>
+                      <h6>{article.author}</h6>
+                      <p>{article.createdAt}</p>
+                      <div className="fav-author-article-footer">
+                        <div className="tags">
+                          {article.tags.map(tag => {
+                            return <p key={tag.id}>{`#${tag.name}`}</p>;
+                          })}
+                        </div>
+                        <div className="details">
+                          <a href="/">Details</a>
+                          <img src={blue_arrow} alt="Arrow" />
                         </div>
                       </div>
-                    ))}
-                <div className="refresh">
-                  <img src={icon_refresh} alt="Refresh feed icon" />
+                    </div>
+                  ))}
+                  <div className="refresh">
+                    <img src={icon_refresh} alt="Refresh feed icon" />
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           )}
         </StyledMainFeed>
