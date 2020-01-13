@@ -1,5 +1,7 @@
 import React from 'react';
 import { StyledRecentActivity } from "../../../components/styles/profile/recentActivities.styles";
+import TinyAvatar from '../../../assets/random-avatar.jpeg'
+
 export default function RecentActivity() {
     return (
         <StyledRecentActivity>
@@ -9,7 +11,7 @@ export default function RecentActivity() {
                 </div>
                 <div className="body">
                     <div className="img-wrapper">
-                        <img />
+                        <img src={TinyAvatar}/>
                     </div>
                     <div className="activity-wrapper">
                         <p><strong>DammyOluwa</strong> <span>started following you</span></p>

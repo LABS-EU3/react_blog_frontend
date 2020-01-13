@@ -7,7 +7,14 @@ import insight from '../../assets/images/insight-stand.png'
 import avatar from '../../assets/images/avatar.svg'
 import notification from '../../assets/images/Icons/icon-notification.svg'
 import { Link } from 'react-router-dom';
-export default function Authed() {
+import { clearLocalStorage } from '../../utilities/authentication'
+export default function Authed(props) {
+
+  function logout() {
+    clearLocalStorage();
+  }
+  
+  let name = "btn"
   return (
     <NavWrapper>
       <StandLogo>
@@ -21,6 +28,7 @@ export default function Authed() {
         <div className="avatar">
           <img alt="avatar" src={avatar}/>
         </div>
+        <Button label="Logout" handleClick={logout} className={name}/>
       </Control>
     </NavWrapper>
   )
