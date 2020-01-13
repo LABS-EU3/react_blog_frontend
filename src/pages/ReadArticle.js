@@ -41,11 +41,21 @@ const Wrapper = styled.div`
 `;
 
 const StyledDetailsLeft = styled.div`
-  width: 50%;
+  width: 45%;
   padding: 0rem 3rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  .bottom {
+    display: flex;
+    p {
+      padding-right: 5rem;
+      color: #2fc2df;
+      font-style: italic;
+      font-size: 1.5rem;
+    }
+  }
 
   .tags {
     display: flex;
@@ -53,16 +63,16 @@ const StyledDetailsLeft = styled.div`
       padding: 0.8rem;
       font-size: 1.6rem;
       font-style: italic;
-      color: #B7BBC0;
+      color: #b7bbc0;
     }
   }
 `;
 
 const StyledDetailsRight = styled.div`
-  width: 50%;
+  width: 55%;
   img {
     width: 100%;
-    max-width: 500px;
+    max-width: 550px;
   }
 `;
 
@@ -88,10 +98,14 @@ const ReadArticle = () => {
               {data.tags ? data.tags.map(tag => <p>#{tag}</p>) : ""}
             </div>
             <h2 className="title">{content[0].data.text}</h2>
-            <p className="author">Johnson Ogwuru</p>
-            <p className="readTimeLength">{`${readTime(
-              data.body
-            )} min read`}</p>
+            <div className="bottom">
+              <p className="author">
+                Johnson <br /> Ogwuru
+              </p>
+              <p className="readTimeLength">{`${readTime(
+                data.body
+              )} min read`}</p>
+            </div>
           </StyledDetailsLeft>
           <StyledDetailsRight>
             <img src={iot} alt="IoT" />
