@@ -32,6 +32,14 @@ const mockImages = [
   }
 ];
 
+const mockParagraph = {
+  type: "paragraph",
+  data: {
+    text:
+      "Hey. Meet the new Editor. On this page you can see it in action — try to edit this text."
+  }
+};
+
 const mockUserReactions = [
   { id: 1, text: "Johnson Ogwuru liked your post 'Internet of Thi...'" },
   { id: 2, text: "Damilola Oluwami reacted to your post 'Internet of Thi...'" },
@@ -246,94 +254,95 @@ const StyledMainFeed = styled.div`
       }
     }
   }
-  .content-right {
-    width: 35%;
-    margin-left: 2rem;
+`;
+
+export const StyledLoggedInFeed = styled.div`
+  width: 35%;
+  margin-left: 2rem;
+  display: flex;
+  flex-direction: column;
+
+  &.hide {
+    display: none;
+  }
+
+  .reactions,
+  .fav-author-feed {
+    border-radius: 5px;
+    background-color: #f7f9fb;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 2rem;
+    margin-bottom: 4rem;
 
-    &.hide {
-      display: none;
+    h4 {
+      color: #2fc2df;
+      font-family: Lato;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 24px;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      width: 60%;
     }
 
-    .reactions,
-    .fav-author-feed {
+    .reaction-box,
+    .fav-author-article {
+      background-color: white;
+      padding: 1.5rem;
+      width: 90%;
+      margin-bottom: 1.5rem;
       border-radius: 5px;
-      background-color: #f7f9fb;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-      padding: 2rem;
-      margin-bottom: 4rem;
 
-      h4 {
-        color: #2fc2df;
-        font-family: Lato;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 24px;
-        text-align: center;
-        margin-bottom: 1.5rem;
-        width: 60%;
+      &:hover {
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
+        cursor: pointer;
       }
 
-      .reaction-box,
-      .fav-author-article {
-        background-color: white;
-        padding: 1.5rem;
-        width: 90%;
-        margin-bottom: 1.5rem;
-        border-radius: 5px;
+      h5 {
+        font-family: Lato;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 20px;
+      }
 
-        &:hover {
-          box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
-          cursor: pointer;
-        }
+      h6 {
+        font-family: Lato;
+        font-style: italic;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 31px;
+        color: #b7bbc0;
+        margin: 1.5rem 0 0 0;
+      }
+      p {
+        font-family: Lato;
+        font-style: italic;
+        font-weight: 500;
+        font-size: 14px;
+        color: #b7bbc0;
+        margin-right: 10px;
+      }
 
-        h5 {
-          font-family: Lato;
-          font-style: normal;
-          font-weight: bold;
-          font-size: 20px;
-        }
-
-        h6 {
-          font-family: Lato;
-          font-style: italic;
-          font-weight: normal;
-          font-size: 20px;
-          line-height: 31px;
-          color: #b7bbc0;
-          margin: 1.5rem 0 0 0;
-        }
-        p {
-          font-family: Lato;
-          font-style: italic;
-          font-weight: 500;
-          font-size: 14px;
-          color: #b7bbc0;
-          margin-right: 10px;
-        }
-
-        .fav-author-article-footer {
+      .fav-author-article-footer {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-top: 1.5rem;
+        .tags {
           display: flex;
-          justify-content: space-between;
           flex-wrap: wrap;
-          margin-top: 1.5rem;
-          .tags {
-            display: flex;
-            flex-wrap: wrap;
-          }
+        }
 
-          .details {
-            display: flex;
+        .details {
+          display: flex;
 
-            a {
-              color: #2fc2df;
-              margin-right: 5px;
-              cursor: pointer;
-            }
+          a {
+            color: #2fc2df;
+            margin-right: 5px;
+            cursor: pointer;
           }
         }
       }
@@ -424,7 +433,7 @@ export function Feed(props) {
                         <img src={article.imageUrl} alt="" />
                         <div className="main-article-content">
                           <h3>{article.title}</h3>
-                          <p>{article.body}</p>
+                          <p>{mockParagraph.data.text}</p>
                           <div className="main-article-footer">
                             <p>{article.author}</p>
                             <div className="article-link">
@@ -443,7 +452,7 @@ export function Feed(props) {
             </div>
           </div>
           {!token ? null : (
-            <div className="content-right">
+            <StyledLoggedInFeed>
               <div className="reactions">
                 <h4>Reactions</h4>
                 {mockUserReactions.map(reaction => {
@@ -472,9 +481,9 @@ export function Feed(props) {
                       <p>{article.createdAt}</p>
                       <div className="fav-author-article-footer">
                         <div className="tags">
-                          {article.tags.map(tag => {
+                          {/* {article.tags.map(tag => {
                             return <p key={tag.id}>{`#${tag.name}`}</p>;
-                          })}
+                          })} */}
                         </div>
                         <div className="details">
                           <a href="/">Details</a>
@@ -483,12 +492,9 @@ export function Feed(props) {
                       </div>
                     </div>
                   ))}
-                  <div className="refresh">
-                    <img src={icon_refresh} alt="Refresh feed icon" />
-                  </div>
                 </div>
               )}
-            </div>
+            </StyledLoggedInFeed>
           )}
         </StyledMainFeed>
       </StyledFeed>
