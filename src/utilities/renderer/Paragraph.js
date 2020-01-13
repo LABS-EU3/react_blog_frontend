@@ -1,7 +1,7 @@
 import React from "react";
 import ReactHtmlParser from "react-html-parser";
 
-const Paragraph = data => {
+const Paragraph = (data, index) => {
   if (!data) return "";
 
   let content;
@@ -14,7 +14,7 @@ const Paragraph = data => {
   )
     content = data.text;
 
-  return content ? <p>{ReactHtmlParser(content)}</p> : "";
+  return content ? <p key={index}>{ReactHtmlParser(content)}</p> : "";
 };
 
 export default Paragraph;

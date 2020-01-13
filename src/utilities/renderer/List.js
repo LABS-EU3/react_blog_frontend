@@ -1,7 +1,7 @@
 import React from "react";
 import ReactHtmlParser from "react-html-parser";
 
-const List = data => {
+const List = (data, index) => {
   if (!data) return "";
 
   let content = [],
@@ -22,9 +22,13 @@ const List = data => {
   if (content.length <= 0) return "";
   // eslint-disable-next-line no-unused-expressions
   type === "ordered" ? (
-    <ol className="cdx-block cdx-list--ordered">{content}</ol>
+    <ol className="cdx-block cdx-list--ordered" key={index}>
+      {content}
+    </ol>
   ) : (
-    <ul className="cdx-block cdx-list--unordered">{content}</ul>
+    <ul className="cdx-block cdx-list--unordered" key={index}>
+      {content}
+    </ul>
   );
 };
 

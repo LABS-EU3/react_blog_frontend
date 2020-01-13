@@ -1,7 +1,7 @@
 import React from "react";
 import ReactHtmlParser from "react-html-parser";
 
-const SimpleImage = data => {
+const SimpleImage = (data, index) => {
   if (!data || !data || !data.url) return "";
 
   console.log(data)
@@ -12,7 +12,7 @@ const SimpleImage = data => {
   };
 
   return (
-    <div className="cdx-block cdx-simple-image">
+    <div className="cdx-block cdx-simple-image" key={index}>
       <div className="cdx-simple-image__picture">
         <img src={data.url} alt={data.caption || ""} />
       </div>
