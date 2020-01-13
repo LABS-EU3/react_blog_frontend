@@ -5,10 +5,11 @@ import List from "./List";
 import Table from "./Table";
 import Delimiter from "./Delimiter";
 
-const Renderer = editorData => {
-  if (!editorData || typeof editorData !== "object") return "";
+const Renderer = data => {
+  if (!data || typeof data !== "object") return "";
+  const content = JSON.parse(data.body);
 
-  return editorData.blocks.map(block => {
+  return content.map(block => {
     switch (block.type) {
       case "header":
         return Header(block.data);
@@ -29,4 +30,4 @@ const Renderer = editorData => {
   });
 };
 
-export default Renderer
+export default Renderer;
