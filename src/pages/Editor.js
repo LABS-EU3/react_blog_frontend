@@ -66,8 +66,7 @@ class Editor extends Component {
   async handlePublish() {
     const editorData = await this.editorInstance.save();
     const title = editorData.blocks[0].data.text;
-    
-    const userId = 1
+    const { subject : userId } = decodeToken();
     const post = {
       custom_id: uuid(),
       title,

@@ -14,11 +14,7 @@ const Paragraph = data => {
   )
     content = data.text;
 
-  return content ? (
-    <div className="ce-paragraph cdx-block">{ReactHtmlParser(content)}</div>
-  ) : (
-    ""
-  );
+  return content ? <p>{ReactHtmlParser(content)}</p> : "";
 };
 
 export default Paragraph;

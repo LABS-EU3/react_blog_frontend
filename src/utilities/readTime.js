@@ -7,6 +7,6 @@ export default function calculateReadTime(data) {
     return str !== "";
   }).length;
 
-  let time = Math.ceil(count / 265);
+  let time = Math.floor(count / 265);
   return time;
 }

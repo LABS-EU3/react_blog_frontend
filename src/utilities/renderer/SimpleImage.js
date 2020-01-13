@@ -1,8 +1,8 @@
 import React from "react";
 import ReactHtmlParser from "react-html-parser";
 
-const ImageOutput = data => {
-  if (!data || !data.file || !data.file.url) return "";
+const SimpleImage = data => {
+  if (!data || !data || !data.url) return "";
 
   console.log(data)
 
@@ -14,7 +14,7 @@ const ImageOutput = data => {
   return (
     <div className="cdx-block cdx-simple-image">
       <div className="cdx-simple-image__picture">
-        <img src={data.file.url} alt={data.caption || ""} />
+        <img src={data.url} alt={data.caption || ""} />
       </div>
       {data.caption && (
         <figcaption style={captionStyle}>
@@ -25,4 +25,4 @@ const ImageOutput = data => {
   );
 };
 
-export default ImageOutput;
+export default SimpleImage;
