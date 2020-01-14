@@ -13,10 +13,14 @@ import {
   savePost
 } from "../redux-store/actions/post-article-actions";
 
-import {  decodeToken } from '../utilities/checkToken';
+import { decodeToken } from "../utilities/checkToken";
 
 import { EDITOR_JS_TOOLS } from "../utilities/editor-tools";
 import uuid from "uuid";
+
+const StyledTitleInput = styled.div`
+  margin: 0 auto;
+`;
 
 const StyledEditor = styled.div`
   font-family: "HKGrotesk-Regular";
@@ -40,7 +44,7 @@ const StyledEditor = styled.div`
     font-size: 1.8rem;
   }
 
-  .ce-paragraph  {
+  .ce-paragraph {
     font-size: 1.7rem !important;
   }
 
@@ -53,6 +57,17 @@ const StyledEditor = styled.div`
     }
   }
   caret-color: #3d3e77;
+
+  input {
+    font-family: "HKGrotesk-Regular";
+    background-color: transparent;
+    border: 0px solid;
+    color: black;
+    font-size: 4rem;
+    margin-left: 30%;
+    margin-top: 5rem;
+    min-width: 100%;
+  }
 `;
 
 class Editor extends Component {
@@ -62,11 +77,13 @@ class Editor extends Component {
     this.handlePublish = this.handlePublish.bind(this);
     this.handleSave = this.handleSave.bind(this);
     this.publishPost = this.props.publishPost;
+    this.titleRef = React.createRef()
   }
   async handlePublish() {
     const editorData = await this.editorInstance.save();
-    const title = editorData.blocks[0].data.text;
-    const { subject : userId } = decodeToken();
+    const title = this.titleRef.current.value;
+    console.log(title)
+    const { subject: userId } = decodeToken();
     const post = {
       custom_id: uuid(),
       title,
@@ -81,12 +98,11 @@ class Editor extends Component {
     this.publishPost({ ...post, tags });
   }
 
-
-  async handleSave () {
+  async handleSave() {
     const editorData = await this.editorInstance.save();
-    console.log(editorData)
-    const title = editorData.blocks[0].data.text;
-    const { subject : userId } = decodeToken();
+    console.log(editorData);
+    const title = this.titleRef.current.value;
+    const { subject: userId } = decodeToken();
     const post = {
       custom_id: uuid(),
       title,
@@ -98,37 +114,37 @@ class Editor extends Component {
     const tags = this.props.newPost.tags.map(tag => {
       return { ...tag, articleId: post.id };
     });
-    this.props.savePost({ ...post, tags })
+    this.props.savePost({ ...post, tags });
   }
-  
-
 
   componentDidMount() {
-    this.editorInstance
+    this.editorInstance;
   }
 
   render() {
     return (
       <div id="editor-page">
-        <NavBar handlePublish={this.handlePublish} handleSave={this.handleSave}/>
+        <NavBar
+          handlePublish={this.handlePublish}
+          handleSave={this.handleSave}
+        />
         <ArticleModal handlePublish={this.handlePublish} />
         <StyledEditor>
+          <StyledTitleInput>
+            <input
+              type="text"
+              id="name"
+              name="title"
+              placeholder="Insert legendary title here..."
+              autoComplete="off"
+              ref={this.titleRef}
+            />
+          </StyledTitleInput>
           <EditorJs
             tools={EDITOR_JS_TOOLS}
             placeholder={"Be Insightful"}
             instanceRef={instance => (this.editorInstance = instance)}
-            data={{
-              time: 1556098174501,
-              blocks: [
-                {
-                  type: "header",
-                  data: {
-                    text: "Title here...",
-                    level: 1
-                  }
-                }
-              ]
-            }}
+            data={{}}
           />
         </StyledEditor>
       </div>
