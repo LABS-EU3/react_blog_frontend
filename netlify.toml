@@ -1,5 +1,10 @@
 # “command” is your build command.
 # “publish” is the directory to publish (relative to the root of your repo).
-[build]
-  command = "CI=true npm run test && npm run build"
-  publish = "build"
+# [build]
+  # command = "CI=true npm run test && npm run build"
+  # publish = "build"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
