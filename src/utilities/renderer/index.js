@@ -9,7 +9,7 @@ import SimpleImage from './SimpleImage'
 const Renderer = data => {
   if (!data || typeof data !== "object") return "";
 
-  return data.slice(1).map((block, index) => {
+  return data.map((block, index) => {
     switch (block.type) {
       case "header":
         return Header(block.data, index);
