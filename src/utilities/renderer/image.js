@@ -4,7 +4,7 @@ import ReactHtmlParser from "react-html-parser";
 const ImageOutput = (data, index) => {
   if (!data || !data.file || !data.file.url) return "";
 
-  console.log(data)
+  console.log(data);
 
   const captionStyle = {
     margin: "0 auto",
@@ -12,10 +12,8 @@ const ImageOutput = (data, index) => {
   };
 
   return (
-    <div className="cdx-block cdx-simple-image" key={index}>
-      <div className="cdx-simple-image__picture">
-        <img src={data.file.url} alt={data.caption || ""} />
-      </div>
+    <div className="body-image"key={index}>
+      <img src={data.file.url} alt={data.caption || ""} />
       {data.caption && (
         <figcaption style={captionStyle}>
           {ReactHtmlParser(data.caption)}
