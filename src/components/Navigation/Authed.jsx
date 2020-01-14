@@ -9,10 +9,7 @@ import { Link } from 'react-router-dom';
 import ProfileImageDropdown from '../Navigation/ProfileImageDropdown';
 
 export default function Authed(props) {
-
- 
   
-  let name = "btn"
   return (
     <NavWrapper>
       <StandLogo>

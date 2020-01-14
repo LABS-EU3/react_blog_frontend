@@ -26,12 +26,12 @@ export default function ProfileImageDropdown(props) {
                         <p>@davidkuseh</p>
                     </li>
                     <li className="list-item-separator"></li>
-                <li className="dropdown-links">
+                    <li className="dropdown-links">
                         <Link to="">New Insight</Link>
                         <Link to="">Insights</Link>
                         <Link to="">Stats</Link>
-                        <button handleClick={logout}>Logout</button>
-                </li>
+                        <button onClick={logout}>Logout</button>
+                    </li>
                 </ul>
             </div>
         </StyledProfileImageDropdown>
