@@ -46,6 +46,10 @@ export const StyledAuth = styled.form`
     width: 350px;
     color: #646f79;
   }
+  div p{
+    color:red;
+  }
+  
 
   .privacy {
     width: 430px;
