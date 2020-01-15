@@ -8,6 +8,10 @@ import insight from '../../assets/images/insight-stand.png'
 import avatar from '../../assets/images/avatar.svg'
 import notification from '../../assets/images/Icons/icon-notification.svg'
 
+
+
+import { Link } from 'react-router-dom';
+
 export default function Authed() {
   const history = useHistory();
 
@@ -22,7 +26,11 @@ export default function Authed() {
         <img alt="insight logo" src={insight}/>
       </StandLogo>
       <Control>
+
         <Button label="Write" clickHandler={handleClick}/>
+
+        <Link to="/create"><Button label="Write" /></Link>
+
         <div className="notification">
           <img alt="notification" src={notification}/>
         </div>
