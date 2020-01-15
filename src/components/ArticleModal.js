@@ -141,6 +141,39 @@ function ModalContainer(props) {
     toggleModal();
   };
 
+
+  const [files, setFiles] = useState([]);
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: "image/*",
+    onDrop: acceptedFiles => {
+      setFiles(
+        acceptedFiles.map(file =>
+          Object.assign(file, {
+            preview: URL.createObjectURL(file)
+          })
+        )
+      );
+    }
+  });
+
+  const thumbs = files.map(file => (
+    <div style={thumb} key={file.name}>
+      <div style={thumbInner}>
+        <img src={file.preview} style={img} alt="cover" />
+      </div>
+    </div>
+  ));
+
+  useEffect(
+    () => () => {
+      files.forEach(file => URL.revokeObjectURL(file.preview));
+    },
+    [files]
+  );
+
+
+
+
   const toggleModal = () => {
     const app = document.getElementById("root");
     if (props.newPost.showModal) {
