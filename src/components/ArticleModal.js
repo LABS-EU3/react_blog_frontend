@@ -82,7 +82,9 @@ const placeholder = {
   height: '100%'
 };
 
-function UploadCover() {
+
+function ModalContainer(props) {
+
   const [files, setFiles] = useState([]);
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
@@ -112,21 +114,6 @@ function UploadCover() {
     [files]
   );
 
-  return (
-      <div {...getRootProps({ className: "dropzone" })}>
-        <input {...getInputProps()} placeholde="here" />
-        {!files.length ? (
-          <div style={thumbsContainer2}>
-            <p style={placeholder}>Upload a cover image</p>
-          </div>
-        ) : (
-          <div style={thumbsContainer}>{thumbs}</div>
-        )}
-      </div>
-  );
-}
-
-function ModalContainer(props) {
   const onTagsChanged = newTags => {
     console.log("tags changed to: ", newTags);
   };
@@ -140,38 +127,19 @@ function ModalContainer(props) {
     props.handlePublish();
     toggleModal();
   };
-
-
-  const [files, setFiles] = useState([]);
-  const { getRootProps, getInputProps } = useDropzone({
-    accept: "image/*",
-    onDrop: acceptedFiles => {
-      setFiles(
-        acceptedFiles.map(file =>
-          Object.assign(file, {
-            preview: URL.createObjectURL(file)
-          })
-        )
-      );
-    }
-  });
-
-  const thumbs = files.map(file => (
-    <div style={thumb} key={file.name}>
-      <div style={thumbInner}>
-        <img src={file.preview} style={img} alt="cover" />
-      </div>
+  
+ const Upload = () => (
+    <div {...getRootProps({ className: "dropzone" })}>
+      <input {...getInputProps()} placeholde="here" />
+      {!files.length ? (
+        <div style={thumbsContainer2}>
+          <p style={placeholder}>Upload a cover image</p>
+        </div>
+      ) : (
+        <div style={thumbsContainer}>{thumbs}</div>
+      )}
     </div>
-  ));
-
-  useEffect(
-    () => () => {
-      files.forEach(file => URL.revokeObjectURL(file.preview));
-    },
-    [files]
-  );
-
-
+);
 
 
   const toggleModal = () => {
@@ -213,7 +181,7 @@ function ModalContainer(props) {
               />
             </div>
             <div>
-              <UploadCover />
+              <Upload />
             </div>
             <div className="modal-bottom">
               <Button handleClick={handleSubmit} label="Publish Now" />
