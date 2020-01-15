@@ -9,29 +9,6 @@ import styled from "styled-components";
 import { getArticleFeed } from "../redux-store/actions/get-article-actions";
 import { getToken } from "../utilities/authentication";
 
-const mockImages = [
-  {
-    imageUrl:
-      "https://images.unsplash.com/photo-1440985465094-6ac443aab454?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-  },
-  {
-    imageUrl:
-      "https://images.unsplash.com/photo-1506645292803-579c17d4ba6a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-  },
-  {
-    imageUrl:
-      "https://images.unsplash.com/photo-1490971588422-52f6262a237a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-  },
-  {
-    imageUrl:
-      "https://images.unsplash.com/photo-1486649961855-75838619c131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-  },
-  {
-    imageUrl:
-      "https://images.unsplash.com/photo-1565120130276-dfbd9a7a3ad7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-  }
-];
-
 const mockParagraph = {
   type: "paragraph",
   data: {
@@ -39,13 +16,6 @@ const mockParagraph = {
       "Hey. Meet the new Editor. On this page you can see it in action — try to edit this text."
   }
 };
-
-const mockUserReactions = [
-  { id: 1, text: "Johnson Ogwuru liked your post 'Internet of Thi...'" },
-  { id: 2, text: "Damilola Oluwami reacted to your post 'Internet of Thi...'" },
-  { id: 3, text: "User234 liked your post 'It's a Long Established..." },
-  { id: 4, text: "David Kuseh reacted to you post 'Internet of Thi...'" }
-];
 
 const StyledFeed = styled.div`
   width: 100%;
