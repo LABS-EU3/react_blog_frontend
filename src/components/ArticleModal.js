@@ -1,5 +1,5 @@
 // Modal.js
-import React, { useCallback, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 import Tags from "./Tags";
 import { createPortal } from "react-dom";
@@ -83,7 +83,7 @@ const placeholder = {
 
 function ModalContainer(props) {
   const [files, setFiles] = useState([]);
-  const { getRootProps, getInputProps } = useDropzone({
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: "image/*",
     onDrop: acceptedFiles => {
       setFiles(
@@ -130,7 +130,11 @@ function ModalContainer(props) {
       <input {...getInputProps()} placeholde="here" />
       {!files.length ? (
         <div style={thumbsContainer2}>
-          <p style={placeholder}>Upload a cover image</p>
+          {isDragActive ? (
+            <p style={placeholder}>Drop the image here</p>
+          ) : (
+            <p style={placeholder}>Upload a cover image</p>
+          )}
         </div>
       ) : (
         <div style={thumbsContainer}>{thumbs}</div>
