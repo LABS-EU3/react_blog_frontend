@@ -1,5 +1,6 @@
 // Modal.js
-import React from "react";
+import React, { useCallback, useState, useEffect } from "react";
+import { useDropzone } from "react-dropzone";
 import Tags from "./Tags";
 import { createPortal } from "react-dom";
 import {
@@ -28,6 +29,101 @@ export class ArticleModal extends React.Component {
   render() {
     return createPortal(this.props.children, this.element);
   }
+}
+
+const thumbsContainer = {
+  display: "flex",
+  flexDirection: "row",
+  flexWrap: "wrap",
+  minHeight: "100px",
+  width: "100%",
+  border: "3px dashed #eaeaea"
+};
+
+const thumbsContainer2 = {
+  display: "flex",
+  alignContent: 'center',
+  minHeight: "100px",
+  width: "100%",
+  border: "3px dashed #eaeaea"
+};
+
+
+const thumb = {
+  display: "inline-flex",
+  borderRadius: 2,
+  height: 100,
+  padding: 4,
+  boxSizing: "border-box",
+  width: "100%",
+  justifyContent: "center"
+};
+
+const thumbInner = {
+  display: "flex",
+  minWidth: 0,
+  overflow: "hidden",
+  justifyContent: "center"
+};
+
+const img = {
+  display: "block",
+  width: "auto",
+  height: "100%",
+  padding: "1rem"
+};
+
+const placeholder = {
+  display: "flex",
+  margin: "0 auto",
+  alignSelf: "center",
+  color: "grey",
+  fontSize: "1.4rem",
+  height: '100%'
+};
+
+function UploadCover() {
+  const [files, setFiles] = useState([]);
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: "image/*",
+    onDrop: acceptedFiles => {
+      setFiles(
+        acceptedFiles.map(file =>
+          Object.assign(file, {
+            preview: URL.createObjectURL(file)
+          })
+        )
+      );
+    }
+  });
+
+  const thumbs = files.map(file => (
+    <div style={thumb} key={file.name}>
+      <div style={thumbInner}>
+        <img src={file.preview} style={img} alt="cover" />
+      </div>
+    </div>
+  ));
+
+  useEffect(
+    () => () => {
+      files.forEach(file => URL.revokeObjectURL(file.preview));
+    },
+    [files]
+  );
+
+  return (
+      <div {...getRootProps({ className: "dropzone" })}>
+        <input {...getInputProps()} placeholde="here" />
+        {!files.length ? (
+          <div style={thumbsContainer2}>
+            <p style={placeholder}>Upload a cover image</p>
+          </div>
+        ) : (
+          <div style={thumbsContainer}>{thumbs}</div>
+        )}
+      </div>
+  );
 }
 
 function ModalContainer(props) {
@@ -83,7 +179,9 @@ function ModalContainer(props) {
                 placeholder="Add a tag for your Insight..."
               />
             </div>
-            <div></div>
+            <div>
+              <UploadCover />
+            </div>
             <div className="modal-bottom">
               <Button handleClick={handleSubmit} label="Publish Now" />
             </div>
