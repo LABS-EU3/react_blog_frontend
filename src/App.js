@@ -5,6 +5,7 @@ import {Route} from 'react-router-dom';
 import Editor from "./pages/Editor";
 import Profile from "./pages/Profile";
 import ArticleModal from "./components/ArticleModal";
+import AboutUs from "./pages/AboutUs";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Route path='/register' component={Register}/>
       <Route path="/profile" component={Profile} />
       <Route path="/create" component={Editor} />
+      <Route path="/about" component={AboutUs}/>
       <ArticleModal />
     </div>
   );

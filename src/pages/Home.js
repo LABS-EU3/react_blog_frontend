@@ -8,7 +8,7 @@ import demo from "../assets/images/demo.GIF";
 import PrimaryFooter from "../components/Footer/PrimaryFooter";
 import SecondaryFooter from "../components/Footer/SecondaryFooter";
 import Button from "../components/Button";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 
 import {
   Main,
@@ -20,6 +20,7 @@ import {
   Space,
   Pitch
 } from "../utilities/styles/home-styles";
+import AboutUs from "./AboutUs";
 
 
 export default function Home(props) {
@@ -114,7 +115,7 @@ export default function Home(props) {
       </Main>
       <PrimaryFooter />
       <SecondaryFooter />
-     
+
     </div>
   );
 }
