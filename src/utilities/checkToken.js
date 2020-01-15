@@ -1,5 +1,5 @@
-import decode from "jwt-decode";
-import { getToken } from "./authentication";
+import decode from 'jwt-decode';
+import { getToken } from './authentication';
 
 export const decodeToken = () => {
   const token = getToken();

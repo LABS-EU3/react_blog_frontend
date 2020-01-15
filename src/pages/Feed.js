@@ -78,13 +78,10 @@ const StyledTrending = styled.div`
     .trending-content-jumbo {
       width: 45%;
       cursor: pointer;
-      background-color: grey;
       border-radius: 10px;
-      background: url(${mockImages[0].imageUrl});
-      background-repeat: no-repeat;
-      background-size: cover;
       display: flex;
       align-items: flex-end;
+      background-size: cover;
       h2 {
         background: rgba(118, 116, 116, 0.62);
         color: white;
@@ -101,32 +98,38 @@ const StyledTrending = styled.div`
     .trending-content-regular {
       width: 55%;
       display: flex;
-      justify-content: space-evenly;
-      flex-wrap: wrap;
-      .content-box {
-        margin-left: 1rem;
-        cursor: pointer;
-        width: 45%;
-        background-repeat: no-repeat;
-        background-size: cover;
-        height: 45%;
+      flex-direction: column;
+      justify-content: space-between;
+      .trending-row {
         display: flex;
-        align-items: flex-end;
-        border-radius: 10px;
-      }
-      h4 {
-        background: rgba(118, 116, 116, 0.62);
-        color: white;
-        padding: 10% 1rem 1rem 1.5rem;
-        font-family: Lato;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 18px;
-        line-height: 33px;
-        border-radius: 0 0 10px 10px;
         width: 100%;
-        display: flex;
-        align-items: flex-end;
+        height: 48%;
+        justify-content: space-evenly;
+        .content-box {
+          margin-left: 2rem;
+          cursor: pointer;
+          width: 50%;
+          height: 100%;
+          background-repeat: no-repeat;
+          background-size: cover;
+          display: flex;
+          align-items: flex-end;
+          border-radius: 10px;
+        }
+        h4 {
+          background: rgba(118, 116, 116, 0.62);
+          color: white;
+          padding: 10% 1rem 1rem 1.5rem;
+          font-family: Lato;
+          font-style: normal;
+          font-weight: bold;
+          font-size: 18px;
+          line-height: 33px;
+          border-radius: 0 0 10px 10px;
+          width: 100%;
+          display: flex;
+          align-items: flex-end;
+        }
       }
     }
   }
@@ -366,43 +369,58 @@ export function Feed(props) {
           <div className="trending-header">
             <button>TRENDING NOW</button>
           </div>
-          {!articles.articles.data ? (
-            "Loading"
-          ) : (
-            <div className="trending-content">
-              <div className="trending-content-jumbo">
-                <h2>{articles.articles.data.trending[0].title}</h2>
-              </div>
-              <div className="trending-content-regular">
-                {articles.articles.data.trending.map(article => {
-                  return (
-                    <div
-                      className="content-box"
-                      style={{
-                        background: `url(${mockImages[2].imageUrl})`
-                      }}
-                      key={article.id}
-                    >
-                      <h4>{article.title}</h4>
+          {articles.loading
+            ? null
+            : articles.data.trending && (
+                <div className="trending-content">
+                  <div
+                    className="trending-content-jumbo"
+                    style={{
+                      backgroundImage: `url(${articles.data.trending[0].coverImageUrl})`
+                    }}
+                  >
+                    <h2>{articles.data.trending[0].title}</h2>
+                  </div>
+                  <div className="trending-content-regular">
+                    <div className="trending-row">
+                      <div
+                        className="content-box"
+                        style={{
+                          backgroundImage: `url(${articles.data.trending[1].coverImageUrl})`
+                        }}
+                      >
+                        <h4>{articles.data.trending[1].title}</h4>
+                      </div>
+                      <div
+                        className="content-box"
+                        style={{
+                          backgroundImage: `url(${articles.data.trending[2].coverImageUrl})`
+                        }}
+                      >
+                        <h4>{articles.data.trending[2].title}</h4>
+                      </div>
                     </div>
-                  );
-                })}
-                {articles.articles.data.trending.map(article => {
-                  return (
-                    <div
-                      className="content-box"
-                      style={{
-                        background: `url(${mockImages[2].imageUrl})`
-                      }}
-                      key={article.id}
-                    >
-                      <h4>{article.title}</h4>
+                    <div className="trending-row">
+                      <div
+                        className="content-box"
+                        style={{
+                          backgroundImage: `url(${articles.data.trending[3].coverImageUrl})`
+                        }}
+                      >
+                        <h4>{articles.data.trending[3].title}</h4>
+                      </div>
+                      <div
+                        className="content-box"
+                        style={{
+                          backgroundImage: `url(${articles.data.trending[4].coverImageUrl})`
+                        }}
+                      >
+                        <h4>{articles.data.trending[4].title}</h4>
+                      </div>
                     </div>
-                  );
-                })}
-              </div>
-            </div>
-          )}
+                  </div>
+                </div>
+              )}
         </StyledTrending>
         <StyledMainFeed>
           <div className={token ? "main-insights" : "main-insights dynamic"}>
@@ -430,7 +448,7 @@ export function Feed(props) {
                           props.history.push(`/articles/${article.id}`)
                         }
                       >
-                        <img src={article.imageUrl} alt="" />
+                        <img src={article.coverImageUrl} alt="" />
                         <div className="main-article-content">
                           <h3>{article.title}</h3>
                           <p>{mockParagraph.data.text}</p>
@@ -481,9 +499,9 @@ export function Feed(props) {
                       <p>{article.createdAt}</p>
                       <div className="fav-author-article-footer">
                         <div className="tags">
-                          {/* {article.tags.map(tag => {
+                          {article.tags.map(tag => {
                             return <p key={tag.id}>{`#${tag.name}`}</p>;
-                          })} */}
+                          })}
                         </div>
                         <div className="details">
                           <a href="/">Details</a>

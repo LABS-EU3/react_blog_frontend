@@ -6,7 +6,7 @@ import {
 
 export const initState = {
   loading: false,
-  articles: []
+  data: []
 };
 
 export const getArticlesReducer = (state = initState, action) => {
@@ -20,7 +20,7 @@ export const getArticlesReducer = (state = initState, action) => {
       return {
         ...state,
         loading: false,
-        articles: action.payload
+        data: action.payload
       };
     case GET_ALL_ARTICLES_FAIL:
       return {

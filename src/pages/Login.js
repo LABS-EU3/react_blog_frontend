@@ -20,6 +20,7 @@ const Login = props => {
   const password = useRef();
 
   const handleSubmit = () => {
+    
     const userData = {
       email: email.current.value,
       password: password.current.value,
@@ -29,6 +30,10 @@ const Login = props => {
       props.login(userData)
     }
   };
+
+  if (props.login_success) {
+    window.location.href = '/feed';
+  }
 
   return (
     <Container>
@@ -50,7 +55,7 @@ const Login = props => {
         />
       </Div>
       <Div>
-          <Button className="button" label={props.loading ? "Processing..." : "Log In"} handleClick={handleSubmit}/>
+          <Button className="button" label={props.loading ? "Processing..." : "Log In"} handleClick={handleSubmit} id="login_btn"/>
       </Div>
       <P> Forgot your Password? </P>
       <P2>
@@ -63,7 +68,8 @@ const Login = props => {
 
 const mapStateToProps = store => {
   return {
-    loading: store.auth.loading
+    loading: store.auth.loading,
+    login_success: store.auth.login_success
   }
 }
 

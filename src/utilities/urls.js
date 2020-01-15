@@ -1,2 +1,1 @@
-export const productionAPIURL = '';
-export const stagingAPIURL = '';
+export const apiURL = 'https://getinsightly-staging.herokuapp.com/api';
