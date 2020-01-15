@@ -42,12 +42,11 @@ const thumbsContainer = {
 
 const thumbsContainer2 = {
   display: "flex",
-  alignContent: 'center',
+  alignContent: "center",
   minHeight: "100px",
   width: "100%",
   border: "3px dashed #eaeaea"
 };
-
 
 const thumb = {
   display: "inline-flex",
@@ -79,12 +78,10 @@ const placeholder = {
   alignSelf: "center",
   color: "grey",
   fontSize: "1.4rem",
-  height: '100%'
+  height: "100%"
 };
 
-
 function ModalContainer(props) {
-
   const [files, setFiles] = useState([]);
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
@@ -127,8 +124,8 @@ function ModalContainer(props) {
     props.handlePublish();
     toggleModal();
   };
-  
- const Upload = () => (
+
+  const Upload = () => (
     <div {...getRootProps({ className: "dropzone" })}>
       <input {...getInputProps()} placeholde="here" />
       {!files.length ? (
@@ -139,8 +136,7 @@ function ModalContainer(props) {
         <div style={thumbsContainer}>{thumbs}</div>
       )}
     </div>
-);
-
+  );
 
   const toggleModal = () => {
     const app = document.getElementById("root");
@@ -180,9 +176,7 @@ function ModalContainer(props) {
                 placeholder="Add a tag for your Insight..."
               />
             </div>
-            <div>
-              <Upload />
-            </div>
+            <div>{Upload()}</div>
             <div className="modal-bottom">
               <Button handleClick={handleSubmit} label="Publish Now" />
             </div>
