@@ -481,16 +481,18 @@ export function Feed(props) {
           {!articles.loading &&
             (articles.data.following || articles.data.reactions) && (
               <StyledLoggedInFeed>
-                <div className="reactions">
-                  <h4>Reactions</h4>
-                  {mockUserReactions.map(reaction => {
-                    return (
-                      <div className="reaction-box" key={reaction.id}>
-                        <p>{reaction.text}</p>
-                      </div>
-                    );
-                  })}
-                </div>
+                {articles.data.reactions && (
+                  <div className="reactions">
+                    <h4>Reactions</h4>
+                    {articles.data.reactions.map(reaction => {
+                      return (
+                        <div className="reaction-box" key={reaction.id}>
+                          <p>{reaction.text}</p>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
 
                 {articles.data.following && (
                   <div className="fav-author-feed">
