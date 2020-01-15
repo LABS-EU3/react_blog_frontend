@@ -21,6 +21,7 @@ import {
   Pitch
 } from "../utilities/styles/home-styles";
 
+
 export default function Home(props) {
   const [open, setOpen] = useState(false);
 
@@ -113,6 +114,7 @@ export default function Home(props) {
       </Main>
       <PrimaryFooter />
       <SecondaryFooter />
+     
     </div>
   );
 }
