@@ -10,7 +10,7 @@ import {
 import { connect } from "react-redux";
 import styled from "styled-components";
 import logo from "../assets/logo-gradient.png";
-import Button from './Button';
+import Button from "./Button";
 
 const modalRoot = document.getElementById("article-modal");
 
@@ -30,80 +30,68 @@ export class ArticleModal extends React.Component {
   }
 }
 
-class ModalContainer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.app = document.getElementById("root");
-    this.editor = document.getElementById("editor-page");
-    this.handlePublishModal = this.props.handlePublishModal;
-  }
-
-  onTagsChanged = newTags => {
+function ModalContainer(props) {
+  const onTagsChanged = newTags => {
     console.log("tags changed to: ", newTags);
   };
 
-  onInputChanged = e => {
+  const onInputChanged = e => {
     console.log(`input value is now: ${e.target.value}`);
   };
 
-  handleSubmit = e => {
-    console.log('hello')
-    this.props.handlePublish();
-    this.toggleModal();
+  const handleSubmit = e => {
+    console.log("hello");
+    props.handlePublish();
+    toggleModal();
   };
 
-  toggleModal = () => {
-    if (this.props.newPost.showModal) {
-      this.app.style.filter = "blur(0px)";
+  const toggleModal = () => {
+    const app = document.getElementById("root");
+    if (props.newPost.showModal) {
+      app.style.filter = "blur(0px)";
       document.getElementById("editor-page").style.pointerEvents = "auto";
     } else {
-      this.app.style.filter = "blur(4px)";
+      app.style.filter = "blur(4px)";
       document.getElementById("editor-page").style.pointerEvents = "none";
     }
-    this.props.handlePublishModal();
+    props.handlePublishModal();
   };
+  const { showModal } = props.newPost;
 
-  render() {
-    const { showModal } = this.props.newPost;
-
-    return (
-      <React.Fragment>
-        {showModal ? (
-          <ArticleModal>
-            <StyledModal>
-              <div className="modal-row-1">
-                <div
-                  className="modal-row-1-div"
-                  onClick={() => this.toggleModal()}
-                >
-                  X
-                </div>
-                <div className="modal-row-1-div">
-                  <img src={logo} alt="logo" />
-                </div>
+  return (
+    <React.Fragment>
+      {showModal ? (
+        <ArticleModal>
+          <StyledModal>
+            <div className="modal-row-1">
+              <div className="modal-row-1-div" onClick={() => toggleModal()}>
+                X
               </div>
-              <div className="modal-quote">
-                "Don't tell me the moon is shining; show me the glint of light
-                on broken glass."
+              <div className="modal-row-1-div">
+                <img src={logo} alt="logo" />
               </div>
-              <div className="modal-top">
-                <Tags
-                  tags={[]}
-                  onTagsChanged={this.onTagsChanged}
-                  onInputChanged={this.onInputChanged}
-                  placeholder="Add a tag for your Insight..."
-                />
-              </div>
-              <div></div>
-              <div className="modal-bottom">
-                <Button handleClick={this.handleSubmit} label="Publish Now" />
-              </div>
-            </StyledModal>
-          </ArticleModal>
-        ) : null}
-      </React.Fragment>
-    );
-  }
+            </div>
+            <div className="modal-quote">
+              "Don't tell me the moon is shining; show me the glint of light on
+              broken glass."
+            </div>
+            <div className="modal-top">
+              <Tags
+                tags={[]}
+                onTagsChanged={onTagsChanged}
+                onInputChanged={onInputChanged}
+                placeholder="Add a tag for your Insight..."
+              />
+            </div>
+            <div></div>
+            <div className="modal-bottom">
+              <Button handleClick={handleSubmit} label="Publish Now" />
+            </div>
+          </StyledModal>
+        </ArticleModal>
+      ) : null}
+    </React.Fragment>
+  );
 }
 
 const StyledModal = styled.div`
@@ -145,15 +133,13 @@ const StyledModal = styled.div`
     button {
       margin: auto;
       width: 200px;
-      background: #323C5C;
+      background: #323c5c;
     }
     img {
       height: 75%;
       width: 50%;
     }
   }
-
-  
 `;
 
 const mapStateToProps = state => {
