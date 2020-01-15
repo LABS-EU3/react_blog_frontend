@@ -423,97 +423,106 @@ export function Feed(props) {
               )}
         </StyledTrending>
         <StyledMainFeed>
-          <div className={token ? "main-insights" : "main-insights dynamic"}>
-            <div className="main-header">
-              {articles.articles.data && articles.articles.data.interests ? (
-                <h4>INSIGHTS FROM YOUR INTERESTS</h4>
-              ) : (
-                <h4>EXPLORE INSIGHTS</h4>
-              )}
-              <img src={arrow} alt="Arrow icon" />
+          {!articles.loading && (
+            <div
+              className={
+                (articles.data.mainFeed || articles.data.interests) &&
+                articles.data.following
+                  ? "main-insights"
+                  : "main-insights dynamic"
+              }
+            >
+              <div className="main-header">
+                {articles.data.interests ? (
+                  <h4>INSIGHTS FROM YOUR INTERESTS</h4>
+                ) : (
+                  <h4>EXPLORE INSIGHTS</h4>
+                )}
+                <img src={arrow} alt="Arrow icon" />
+              </div>
+              <div className="main-content">
+                {(articles.data.mainFeed || articles.data.interests) &&
+                  (articles.data.mainFeed || articles.data.interests).map(
+                    article => {
+                      return (
+                        <div
+                          className={
+                            articles.data.following
+                              ? "main-article"
+                              : "main-article dynamic"
+                          }
+                          key={article.id}
+                          onClick={() =>
+                            props.history.push(`/articles/${article.id}`)
+                          }
+                        >
+                          <img src={article.coverImageUrl} alt="" />
+                          <div className="main-article-content">
+                            <h3>{article.title}</h3>
+                            <p>{mockParagraph.data.text}</p>
+                            <div className="main-article-footer">
+                              <p>{article.author}</p>
+                              <div className="article-link">
+                                <a href={`/articles/${article.id}`}>Details</a>
+                                <img src={blue_arrow} alt="Blue Arrow" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    }
+                  )}
+                <div className="read-more">
+                  <button>Read More...</button>
+                </div>
+              </div>
             </div>
-            <div className="main-content">
-              {articles.articles.data
-                ? (
-                    articles.articles.data.mainFeed ||
-                    articles.articles.data.interests
-                  ).map(article => {
+          )}
+          {!articles.loading &&
+            (articles.data.following || articles.data.reactions) && (
+              <StyledLoggedInFeed>
+                <div className="reactions">
+                  <h4>Reactions</h4>
+                  {mockUserReactions.map(reaction => {
                     return (
+                      <div className="reaction-box" key={reaction.id}>
+                        <p>{reaction.text}</p>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {articles.data.following && (
+                  <div className="fav-author-feed">
+                    <h4>Recent Articles from your Favourite Authors</h4>
+                    {articles.data.following.map(article => (
                       <div
-                        className={
-                          token ? "main-article" : "main-article dynamic"
-                        }
+                        className="fav-author-article"
                         key={article.id}
                         onClick={() =>
                           props.history.push(`/articles/${article.id}`)
                         }
                       >
-                        <img src={article.coverImageUrl} alt="" />
-                        <div className="main-article-content">
-                          <h3>{article.title}</h3>
-                          <p>{mockParagraph.data.text}</p>
-                          <div className="main-article-footer">
-                            <p>{article.author}</p>
-                            <div className="article-link">
-                              <a href={`/articles/${article.id}`}>Details</a>
-                              <img src={blue_arrow} alt="Blue Arrow" />
-                            </div>
+                        <h5>{article.title}</h5>
+                        <h6>{article.author}</h6>
+                        <p>{article.createdAt}</p>
+                        <div className="fav-author-article-footer">
+                          <div className="tags">
+                            {article.tags.map(tag => {
+                              return <p key={tag.id}>{`#${tag.name}`}</p>;
+                            })}
+                          </div>
+                          <div className="details">
+                            <a href="/">Details</a>
+                            <img src={blue_arrow} alt="Arrow" />
                           </div>
                         </div>
                       </div>
-                    );
-                  })
-                : "Loading "}
-              <div className="read-more">
-                <button>Read More...</button>
-              </div>
-            </div>
-          </div>
-          {!token ? null : (
-            <StyledLoggedInFeed>
-              <div className="reactions">
-                <h4>Reactions</h4>
-                {mockUserReactions.map(reaction => {
-                  return (
-                    <div className="reaction-box" key={reaction.id}>
-                      <p>{reaction.text}</p>
-                    </div>
-                  );
-                })}
-              </div>
-
-              {!articles.articles.data ||
-              !articles.articles.data.following ? null : (
-                <div className="fav-author-feed">
-                  <h4>Recent Articles from your Favourite Authors</h4>
-                  {articles.articles.data.following.map(article => (
-                    <div
-                      className="fav-author-article"
-                      key={article.id}
-                      onClick={() =>
-                        props.history.push(`/articles/${article.id}`)
-                      }
-                    >
-                      <h5>{article.title}</h5>
-                      <h6>{article.author}</h6>
-                      <p>{article.createdAt}</p>
-                      <div className="fav-author-article-footer">
-                        <div className="tags">
-                          {article.tags.map(tag => {
-                            return <p key={tag.id}>{`#${tag.name}`}</p>;
-                          })}
-                        </div>
-                        <div className="details">
-                          <a href="/">Details</a>
-                          <img src={blue_arrow} alt="Arrow" />
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </StyledLoggedInFeed>
-          )}
+                    ))}
+                  </div>
+                )}
+              </StyledLoggedInFeed>
+            )}
         </StyledMainFeed>
       </StyledFeed>
     </div>
