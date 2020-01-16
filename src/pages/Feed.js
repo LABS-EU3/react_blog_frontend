@@ -331,9 +331,7 @@ export function Feed(props) {
           <div className="trending-header">
             <button>TRENDING NOW</button>
           </div>
-          {articles.loading
-            ? null
-            : articles.data.trending && (
+          {!articles.loading && articles.data.trending && (
                 <div className="trending-content">
                   <div
                     className="trending-content-jumbo"
@@ -388,8 +386,7 @@ export function Feed(props) {
           {!articles.loading && (
             <div
               className={
-                (articles.data.mainFeed || articles.data.interests) &&
-                articles.data.following
+                articles.data.following || articles.data.reactions
                   ? "main-insights"
                   : "main-insights dynamic"
               }
