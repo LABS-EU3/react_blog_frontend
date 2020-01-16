@@ -21,8 +21,8 @@ function AboutUs() {
                     <P>From Nigeria, Damilola is a full stack web developer. I am committed to a lifelong learning, creating value and making positive impact to my community.</P>
                     <ul>
                         <li>
-                            <Anchor href="https://github.com/Damilolawumi" target="_blank" rel="noopener noreferrer">Github </Anchor> 
-                            <Anchor href="https://www.linkedin.com/in/damilola-olawumi/" target="_blank" rel="noopener noreferrer">LinkedIn </Anchor>
+                            <Anchor href="https://github.com/Damilolawumi"  className="fab fa-github-square" target="_blank" rel="noopener noreferrer"> </Anchor> 
+                            <Anchor href="https://www.linkedin.com/in/damilola-olawumi/" className="fab fa-linkedin" target="_blank" rel="noopener noreferrer"> </Anchor>
                         </li>
                     </ul>
                 </Div>
@@ -33,8 +33,8 @@ function AboutUs() {
                     <P>Ghanaian, full stack Web developer, avid fan of sports and video games. Striving to improve each day.</P>
                     <ul>
                         <li>
-                            <Anchor href="https://github.com/davidkuseh" target="_blank" rel="noopener noreferrer">Github </Anchor> 
-                            <Anchor href="https://www.linkedin.com/in/david-kuseh" target="_blank" rel="noopener noreferrer">LinkedIn </Anchor>
+                            <Anchor href="https://github.com/davidkuseh"  className="fab fa-github-square" target="_blank" rel="noopener noreferrer"> </Anchor> 
+                            <Anchor href="https://www.linkedin.com/in/david-kuseh" className="fab fa-linkedin" target="_blank" rel="noopener noreferrer"> </Anchor>
                         </li>
                     </ul>
                 </Div>
@@ -45,8 +45,8 @@ function AboutUs() {
                     <P>Full Stack Web Development student from Dublin with an interest in UI effects, I enjoy bringing pages to life to create unique and dynamic user experiences.</P>
                     <ul>
                         <li>
-                            <Anchor href="https://github.com/Megan0145" target="_blank" rel="noopener noreferrer">Github </Anchor> 
-                            <Anchor href="https://www.linkedin.com/in/megan-ennis-1391a8124/" target="_blank" rel="noopener noreferrer">LinkedIn </Anchor>
+                            <Anchor href="https://github.com/Megan0145"  className="fab fa-github-square" target="_blank" rel="noopener noreferrer"> </Anchor> 
+                            <Anchor href="https://www.linkedin.com/in/megan-ennis-1391a8124/" className="fab fa-linkedin" target="_blank" rel="noopener noreferrer"> </Anchor>
                         </li>
                     </ul>
                 </Div>
@@ -57,8 +57,8 @@ function AboutUs() {
                     <P>From Nigeria, Francis is a full stack web developer. I am committed to a lifelong learning, creating value and making positive impact to my community.</P>
                     <ul>
                         <li>
-                            <Anchor href="https://github.com/fosterferret" target="_blank" rel="noopener noreferrer">Github </Anchor> 
-                            <Anchor href="https://www.linkedin.com/in/francis-bulus-b61098191/" target="_blank" rel="noopener noreferrer">LinkedIn </Anchor>
+                            <Anchor href="https://github.com/fosterferret"  className="fab fa-github-square" target="_blank" rel="noopener noreferrer"> </Anchor> 
+                            <Anchor href="https://www.linkedin.com/in/francis-bulus-b61098191/" className="fab fa-linkedin" target="_blank" rel="noopener noreferrer"> </Anchor>
                         </li>
                     </ul>
                 </Div>
@@ -69,8 +69,8 @@ function AboutUs() {
                     <P>Uzoamaka Anyanwu is a fullstack developer, who is skilled in JavaScript, React, Vue, NodeJs, Postgres. I love building products and is dedicated to finding ways to create better user experiences.</P>
                     <ul>
                         <li>
-                            <Anchor href="https://github.com/Uzoamaka126" target="_blank" rel="noopener noreferrer">Github </Anchor> 
-                            <Anchor href="https://www.linkedin.com/in/grace-anyanwu-ga/" target="_blank" rel="noopener noreferrer">LinkedIn </Anchor>
+                            <Anchor href="https://github.com/Uzoamaka126"  className="fab fa-github-square" target="_blank" rel="noopener noreferrer"> </Anchor> 
+                            <Anchor href="https://www.linkedin.com/in/grace-anyanwu-ga/" className="fab fa-linkedin" target="_blank" rel="noopener noreferrer"> </Anchor>
                         </li>
                     </ul>
                 </Div>
@@ -81,8 +81,8 @@ function AboutUs() {
                     <P>Johnson is a software Engineer and a passionate problem solver. He loves to work with people.</P>
                     <ul>
                         <li>
-                            <Anchor href="https://github.com/ogwurujohnson" target="_blank" rel="noopener noreferrer">Github </Anchor> 
-                            <Anchor href="https://linkedin.com/in/ogwurujohnson" target="_blank" rel="noopener noreferrer">LinkedIn </Anchor>
+                            <Anchor href="https://github.com/ogwurujohnson"  className="fab fa-github-square" target="_blank" rel="noopener noreferrer"> </Anchor> 
+                            <Anchor href="https://linkedin.com/in/ogwurujohnson" className="fab fa-linkedin" target="_blank" rel="noopener noreferrer"> </Anchor>
                         </li>
                     </ul>
                 </Div>

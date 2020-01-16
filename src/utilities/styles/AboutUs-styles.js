@@ -32,11 +32,12 @@ export const P = styled.p`
 font-size: 1.36rem;
 text-align: center;
 margin:5px;
+font-family: Lato;
 `;
 
 export const H6 = styled.h6`
 font-size: 2.3em;
-font-family: cursive;
+font-family: Lato;
 margin-top: 10px;
 `;
 
@@ -44,10 +45,11 @@ export const H4 = styled.h4`
 text-align: center;
 font-size: 2.8rem;
 margin-top: 15px;
+font-family: Lato;
 `;
 
 export const Anchor = styled.a`
 margin: 15px;
-font-size: 13px;
-color: blue;
+font-size: 25px;
+color: #070707;
 `;
