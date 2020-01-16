@@ -321,7 +321,7 @@ export function Feed(props) {
 
   useEffect(() => {
     getArticleFeed();
-  }, [getArticleFeed]);
+  }, []);
 
   return (
     <div>
