@@ -1,26 +1,20 @@
 export default {
   preload: [
-    "https://fonts.googleapis.com/css?family=Inconsolata|La+Belle+Aurore&display=swap",
-    "https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap"
+    "https://fonts.googleapis.com/css?family=Roboto&display=swap",
+    "https://fonts.googleapis.com/css?family=Lato&display=swap"
   ],
   colors: {
-    darkNavyStart: "#1C3451",
-    darkNavyEnd: "#0C1F2C",
-    lightYellow: "#FCE257",
-    darkYellow: "#FCDD3B",
-    bookYellow: "#E5E5E5",
-    darkGrey: "#828D99",
-    textNavy: "#1D344E",
-    titleWhite: "#E5E5E5",
-    hoverYellow: "#EAD87B",
-    cardGrey: "#2A405C",
-    lightGrey: "#ADBBCA",
-    darkNavyEndLite: "#163245"
+    primary: "#6F85FD",
+    secondary: "#2FC2DF",
+    bannerBlue: "#F1F6FD",
+    textGrey: "#646F79",
+    footerNavy: "#1D243B",
+    footerLightNavy: "#323C5C"
   },
   borderRadius: "3px",
   fonts: {
-    Lato:
-      "Futura PT, Montserrat, Roboto, -apple-system, system-ui, BlinkMacSystemFont"
+    Lato: "Lato, Montserrat, -apple-system, system-ui, BlinkMacSystemFont",
+    Roboto: "Roboto, Montserrat, -apple-system, system-ui, BlinkMacSystemFont"
   },
 
   fontSizes: {
