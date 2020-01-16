@@ -126,6 +126,7 @@ const StyledMainFeed = styled.div`
       display: flex;
       flex-wrap: wrap;
       justify-content: space-around;
+      align-items: flex-end;
       .main-article {
         width: 40%;
         margin: 2rem 0;
@@ -420,7 +421,12 @@ export function Feed(props) {
                           <img src={article.coverImageUrl} alt="" />
                           <div className="main-article-content">
                             <h3>{article.title}</h3>
-                            <p>{JSON.parse(article.body).find(block => block.type === 'paragraph').data.text.substring(0,150)}...</p>
+                            <p>
+                              {JSON.parse(article.body)
+                                .find(block => block.type === "paragraph")
+                                .data.text.substring(0, 150)}
+                              ...
+                            </p>
                             <div className="main-article-footer">
                               <p>{article.author}</p>
                               <div className="article-link">
