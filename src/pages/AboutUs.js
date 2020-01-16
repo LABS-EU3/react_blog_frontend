@@ -30,7 +30,7 @@ function AboutUs() {
                 <Div>
                     <Img src={david} alt="david.jpg" />
                     <H6>David Kuseh</H6>
-                    <P>Ghanaian, full stack Web developer, avid fan of sports and video games. Striving to improve each day.</P>
+                    <P>From Ghana, David is a full stack Web developer an avid fan of sports and video games. Striving hard to improve in all aspect each day.</P>
                     <ul>
                         <li>
                             <Anchor href="https://github.com/davidkuseh"  className="fab fa-github-square" target="_blank" rel="noopener noreferrer"> </Anchor> 
