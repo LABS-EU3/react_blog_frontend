@@ -49,4 +49,5 @@ margin-top: 15px;
 export const Anchor = styled.a`
 margin: 15px;
 font-size: 13px;
+color: blue;
 `;
