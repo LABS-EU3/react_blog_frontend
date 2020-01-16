@@ -9,7 +9,7 @@ import styled from "styled-components";
 
 const MainDiv = styled.div`
 /* background-color:#04203D; */
-/* background-image: linear-gradient(#F5F7FA, #FFFFFF );  */
+/* background-image: linear-gradient(#cc2b5e, #753a88 );  */
 width:100%;
 `;
 
