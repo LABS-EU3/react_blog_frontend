@@ -1,9 +1,9 @@
 import { createGlobalStyle } from "styled-components";
+import media from "./mediaQueries";
 import theme from "./theme";
-import media from "./media";
 import reset from "styled-reset";
 import LocalFonts from "./fonts";
-const { colors, fontSizes, fonts } = theme;
+const { fontSizes, fonts } = theme;
 
 export default createGlobalStyle`
 ${props => props.theme.preload.map(url => '@import url("' + url + '");')}
@@ -36,7 +36,6 @@ ${props => props.theme.preload.map(url => '@import url("' + url + '");')}
   }
 
   body {
-    background-color: ${colors.darkNavyEnd};
     width: 100%;
     overflow-x: hidden;
     color: #fff;
