@@ -18,7 +18,6 @@ display:flex;
 width: 100%;
 flex-wrap: wrap;
 text-align: center;
- /* background-image: linear-gradient(#8693AB, #BDD4E7 );  */
 
 `;
 
@@ -31,7 +30,6 @@ const Div = styled.div`
 background: #fffefe;
 width: 400px;
 margin: auto;
-/* box-shadow: 0px 1px 3px 0px #aaa; */
 height: 425px;
 padding-top: 10px;
 margin-top: 20px;
@@ -40,8 +38,6 @@ margin-top: 20px;
 const P = styled.p`
 font-size: 1.36rem;
 text-align: center;
-/* margin-left: 15px;
-margin-top: 15px; */
 margin:5px;
 `;
 
@@ -55,7 +51,6 @@ const H4 = styled.h4`
 text-align: center;
 font-size: 2.8rem;
 margin-top: 15px;
-/* color:white; */
 `;
 
 const Anchor = styled.a`
