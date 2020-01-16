@@ -23,7 +23,8 @@ export const Div = styled.div`
 background: #fffefe;
 width: 400px;
 margin: auto;
-height: 425px;
+height: 445px;
+box-shadow: 0px 1px 3px 0px #aaa;
 padding-top: 10px;
 margin-top: 20px;
 `;

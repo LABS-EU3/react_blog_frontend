@@ -78,7 +78,7 @@ function AboutUs() {
                 <Div>
                     <Img src={johnson} alt="johnson.jpg" />
                     <H6>Johnson Ogwuru</H6>
-                    <P>Johnson is a software Engineer and a passionate problem solver. He loves to work with people.</P>
+                    <P>Johnson is a software Engineer and a passionate problem solver.  He loves taking code to production and the feeling of excitement he gets when he sees someone served by his innovations. </P>
                     <ul>
                         <li>
                             <Anchor href="https://github.com/ogwurujohnson"  className="fab fa-github-square" target="_blank" rel="noopener noreferrer"> </Anchor> 
