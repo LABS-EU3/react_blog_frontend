@@ -24,7 +24,9 @@ background: #fffefe;
 width: 400px;
 margin: auto;
 height: 445px;
-box-shadow: 0px 1px 3px 0px #aaa;
+:hover {
+  box-shadow: 0px 1px 3px 0px #aaa;
+}
 padding-top: 10px;
 margin-top: 20px;
 `;

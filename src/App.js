@@ -14,7 +14,7 @@ function App() {
       <Route path='/register' component={Register}/>
       <Route path="/profile" component={Profile} />
       <Route path="/create" component={Editor} />
-      <Route path="/about" component={AboutUs}/>
+      <Route path="/team" component={AboutUs}/>
       <ArticleModal />
     </div>
   );
