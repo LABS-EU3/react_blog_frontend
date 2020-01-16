@@ -35,8 +35,64 @@ const userWithInterests = {
         { id: 5, title: "Test Article 5", coverImageUrl: "" }
       ],
       interests: [
-        { id: 6, title: "Test Article 6", coverImageUrl: "", body: '[{"type":"paragraph","data":{"text":"In 2020, it seems almost pointless to bemoan the pervasiveness of technology."}}]' },
-        { id: 7, title: "Test Article 7", coverImageUrl: "", body: '[{"type":"paragraph","data":{"text":"In 2020, it seems almost pointless to bemoan the pervasiveness of technology."}}]'}
+        {
+          id: 6,
+          title: "Test Article 6",
+          coverImageUrl: "",
+          body:
+            '[{"type":"paragraph","data":{"text":"In 2020, it seems almost pointless to bemoan the pervasiveness of technology."}}]'
+        },
+        {
+          id: 7,
+          title: "Test Article 7",
+          coverImageUrl: "",
+          body:
+            '[{"type":"paragraph","data":{"text":"In 2020, it seems almost pointless to bemoan the pervasiveness of technology."}}]'
+        }
+      ]
+    }
+  }
+};
+const userFollowsAuthors = {
+  articles: {
+    loading: false,
+    data: {
+      trending: [
+        { id: 1, title: "Test Article 1", coverImageUrl: "" },
+        { id: 2, title: "Test Article 2", coverImageUrl: "" },
+        { id: 3, title: "Test Article 3", coverImageUrl: "" },
+        { id: 4, title: "Test Article 4", coverImageUrl: "" },
+        { id: 5, title: "Test Article 5", coverImageUrl: "" }
+      ],
+      interests: [
+        {
+          id: 6,
+          title: "Test Article 6",
+          coverImageUrl: "",
+          body:
+            '[{"type":"paragraph","data":{"text":"In 2020, it seems almost pointless to bemoan the pervasiveness of technology."}}]'
+        },
+        {
+          id: 7,
+          title: "Test Article 7",
+          coverImageUrl: "",
+          body:
+            '[{"type":"paragraph","data":{"text":"In 2020, it seems almost pointless to bemoan the pervasiveness of technology."}}]'
+        }
+      ],
+      following: [
+        {
+          id: 8,
+          title: "Test Article 8",
+          coverImageUrl: "",
+          body:
+            '[{"type":"paragraph","data":{"text":"In 2020, it seems almost pointless to bemoan the pervasiveness of technology."}}]',
+          tags: [
+            { id: 1, name: "Business" },
+            { id: 2, name: "Tech" }
+          ],
+          createdAt: "2019-10-12"
+        }
       ]
     }
   }
@@ -81,5 +137,12 @@ describe("Article Feed component", () => {
     const defaultHeading = queryByText(/EXPLORE INSIGHTS/i);
     expect(userHasInterestsHeading).toBeInTheDocument();
     expect(defaultHeading).not.toBeInTheDocument();
+  });
+  test("If user follows other authors, renders feed of articles written by them", () => {
+    const { getByText } = renderWithRedux(<Feed />, {
+      initialState: userFollowsAuthors
+    });
+    const userFollowingFeedHeading = getByText(/Recent Articles from your Favourite Authors/i);
+    expect(userFollowingFeedHeading).toBeInTheDocument();
   });
 });
