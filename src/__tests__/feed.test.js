@@ -145,4 +145,11 @@ describe("Article Feed component", () => {
     const userFollowingFeedHeading = getByText(/Recent Articles from your Favourite Authors/i);
     expect(userFollowingFeedHeading).toBeInTheDocument();
   });
+  test("If user does not follow other authors, does not render feed of relevant articles ", () => {
+    const { queryByText } = renderWithRedux(<Feed />, {
+      initialState: userWithInterests
+    });
+    const userFollowingFeedHeading = queryByText(/Recent Articles from your Favourite Authors/i);
+    expect(userFollowingFeedHeading).not.toBeInTheDocument();
+  });
 });
