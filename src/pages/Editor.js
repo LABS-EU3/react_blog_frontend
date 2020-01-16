@@ -77,18 +77,19 @@ class Editor extends Component {
     this.handlePublish = this.handlePublish.bind(this);
     this.handleSave = this.handleSave.bind(this);
     this.publishPost = this.props.publishPost;
-    this.titleRef = React.createRef()
+    this.titleRef = React.createRef();
   }
-  async handlePublish() {
+  async handlePublish(coverImage) {
     const editorData = await this.editorInstance.save();
     const title = this.titleRef.current.value;
-    console.log(title)
-    const { subject: userId } = decodeToken();
+    console.log(title);
+    // const { subject: userId } = decodeToken();
     const post = {
       custom_id: uuid(),
       title,
-      authorId: userId,
+      authorId: 1,
       body: editorData.blocks,
+      coverFile: coverImage ? { ...coverImage, name: coverImage.name } : "",
       isPublished: true,
       isEditing: false
     };

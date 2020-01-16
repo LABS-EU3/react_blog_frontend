@@ -113,21 +113,27 @@ function ModalContainer(props) {
 
   const onTagsChanged = newTags => {
     console.log("tags changed to: ", newTags);
+    console.log(files[0]);
   };
 
   const onInputChanged = e => {
     console.log(`input value is now: ${e.target.value}`);
+    console.log(files[0]);
   };
 
   const handleSubmit = e => {
-    console.log("hello");
-    props.handlePublish();
-    toggleModal();
+    if (files.length) {
+      props.handlePublish(files[0]);
+      toggleModal();
+    } else {
+      props.handlePublish();
+      toggleModal();
+    }
   };
 
   const Upload = () => (
     <div {...getRootProps({ className: "dropzone" })}>
-      <input {...getInputProps()} placeholde="here" />
+      <input {...getInputProps()} />
       {!files.length ? (
         <div style={thumbsContainer2}>
           {isDragActive ? (
