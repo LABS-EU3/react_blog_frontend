@@ -7,6 +7,10 @@ import uzoamaka from "../assets/images/uzoamaka.jpg";
 import johnson from "../assets/images/johnson.jpg";
 import styled from "styled-components";
 
+const MainDiv = styled.div`
+/* background-color:#04203D; */
+width:100%;
+`;
 
 const Section = styled.section`
 display:flex;
@@ -14,7 +18,7 @@ width: 100%;
 flex-wrap: wrap;
 text-align: center;
  /* background-image: linear-gradient(#8693AB, #BDD4E7 );  */
-background-image: linear-gradient(#F5F7FA, #FFFFFF );
+/* background-image: linear-gradient(#F5F7FA, #FFFFFF ); */
 `;
 
 const Img = styled.img`
@@ -29,7 +33,7 @@ margin: auto;
 box-shadow: 0px 1px 3px 0px #aaa;
 height: 425px;
 padding-top: 10px;
-margin-top: 45px;
+margin-top: 20px;
 `;
 
 const P = styled.p`
@@ -45,12 +49,19 @@ font-family: cursive;
 margin-top: 10px;
 `;
 
+const H4 = styled.h4`
+text-align: center;
+font-size: 2.8rem;
+margin-top: 15px;
+/* color:white; */
+`;
+
 function AboutUs() {
 
     return (
-        <div>
-            <h4>Meet The Team</h4>
-            <p > Meet the amazing team that put the Insight web app all together. </p>
+        <MainDiv>
+            <H4>Meet The Team</H4>
+            {/* <p > Meet the amazing team that put the Insight web app all together. </p> */}
             <Section>
                 <Div>
                     <Img src={dammy} alt="dammy.png" />
@@ -125,7 +136,7 @@ function AboutUs() {
                 </Div>
             </Section>
 
-        </div>
+        </MainDiv>
     )
 }
 
