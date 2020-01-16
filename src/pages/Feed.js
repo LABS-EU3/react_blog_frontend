@@ -4,18 +4,9 @@ import DefaultNavigation from "../components/Navigation/Default";
 import AuthedNavigation from "../components/Navigation/Authed";
 import arrow from "../assets/images/Icons/arrow_icon.svg";
 import blue_arrow from "../assets/images/Icons/blue_arrow.svg";
-import icon_refresh from "../assets/images/Icons/icon-refresh.svg";
 import styled from "styled-components";
 import { getArticleFeed } from "../redux-store/actions/get-article-actions";
 import { getToken } from "../utilities/authentication";
-
-const mockParagraph = {
-  type: "paragraph",
-  data: {
-    text:
-      "Hey. Meet the new Editor. On this page you can see it in action — try to edit this text."
-  }
-};
 
 const StyledFeed = styled.div`
   width: 100%;
@@ -423,17 +414,17 @@ export function Feed(props) {
                           }
                           key={article.id}
                           onClick={() =>
-                            props.history.push(`/articles/${article.id}`)
+                            props.history.push(`/read/${article.id}`)
                           }
                         >
                           <img src={article.coverImageUrl} alt="" />
                           <div className="main-article-content">
                             <h3>{article.title}</h3>
-                            <p>{mockParagraph.data.text}</p>
+                            <p>{JSON.parse(article.body).find(block => block.type === 'paragraph').data.text.substring(0,150)}...</p>
                             <div className="main-article-footer">
                               <p>{article.author}</p>
                               <div className="article-link">
-                                <a href={`/articles/${article.id}`}>Details</a>
+                                <a href={`/read/${article.id}`}>Details</a>
                                 <img src={blue_arrow} alt="Blue Arrow" />
                               </div>
                             </div>
@@ -472,7 +463,7 @@ export function Feed(props) {
                         className="fav-author-article"
                         key={article.id}
                         onClick={() =>
-                          props.history.push(`/articles/${article.id}`)
+                          props.history.push(`/read/${article.id}`)
                         }
                       >
                         <h5>{article.title}</h5>
