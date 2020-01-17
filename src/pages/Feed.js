@@ -7,7 +7,7 @@ import blue_arrow from "../assets/images/Icons/blue_arrow.svg";
 import styled from "styled-components";
 import { getArticleFeed } from "../redux-store/actions/get-article-actions";
 import { getToken } from "../utilities/authentication";
-
+import altimage from "../assets/images/altimage.png";
 const StyledFeed = styled.div`
   width: 100%;
   padding: 4rem;
@@ -336,7 +336,7 @@ export function Feed(props) {
                   <div
                     className="trending-content-jumbo"
                     style={{
-                      backgroundImage: `url(${articles.data.trending[0].coverImageUrl})`
+                      backgroundImage: `url(${articles.data.trending[0].coverImageUrl || altimage})`
                     }}
                   >
                     <h2>{articles.data.trending[0].title}</h2>
@@ -346,7 +346,7 @@ export function Feed(props) {
                       <div
                         className="content-box"
                         style={{
-                          backgroundImage: `url(${articles.data.trending[1].coverImageUrl})`
+                          backgroundImage: `url(${articles.data.trending[1].coverImageUrl || altimage})`
                         }}
                       >
                         <h4>{articles.data.trending[1].title}</h4>
@@ -354,7 +354,7 @@ export function Feed(props) {
                       <div
                         className="content-box"
                         style={{
-                          backgroundImage: `url(${articles.data.trending[2].coverImageUrl})`
+                          backgroundImage: `url(${articles.data.trending[2].coverImageUrl || altimage})`
                         }}
                       >
                         <h4>{articles.data.trending[2].title}</h4>
@@ -364,7 +364,7 @@ export function Feed(props) {
                       <div
                         className="content-box"
                         style={{
-                          backgroundImage: `url(${articles.data.trending[3].coverImageUrl})`
+                          backgroundImage: `url(${articles.data.trending[3].coverImageUrl || altimage})`
                         }}
                       >
                         <h4>{articles.data.trending[3].title}</h4>
@@ -372,7 +372,7 @@ export function Feed(props) {
                       <div
                         className="content-box"
                         style={{
-                          backgroundImage: `url(${articles.data.trending[4].coverImageUrl})`
+                          backgroundImage: `url(${articles.data.trending[4].coverImageUrl || altimage})`
                         }}
                       >
                         <h4>{articles.data.trending[4].title}</h4>
@@ -415,7 +415,7 @@ export function Feed(props) {
                             props.history.push(`/read/${article.id}`)
                           }
                         >
-                          <img src={article.coverImageUrl} alt="" />
+                          <img src={article.coverImageUrl || altimage} alt=""/>
                           <div className="main-article-content">
                             <h3>{article.title}</h3>
                             <p>
