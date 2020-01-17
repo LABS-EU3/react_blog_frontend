@@ -152,4 +152,12 @@ describe("Article Feed component", () => {
     const userFollowingFeedHeading = queryByText(/Recent Articles from your Favourite Authors/i);
     expect(userFollowingFeedHeading).not.toBeInTheDocument();
   });
+  test("If user does not follow other authors and does not have any recent reactions associated with their content, main feed of articles dynamic - spans whole width of screen", () => {
+    const { container } = renderWithRedux(<Feed />, {
+      initialState: initState
+    });
+    const mainFeed = container.querySelector('.main-insights');
+    expect(mainFeed.className).toEqual("main-insights dynamic");
+    expect(mainFeed.className).not.toEqual("main-insights");
+  });
 });
