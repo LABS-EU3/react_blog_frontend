@@ -82,6 +82,7 @@ class Editor extends Component {
   async handlePublish(files) {
     const editorData = await this.editorInstance.save();
     const title = this.titleRef.current.value;
+    const { subject: userId } = decodeToken();
     const formData = new FormData();
     const coverFile = files ? files[0] : null;
     const custom_id = uuid();
@@ -100,7 +101,7 @@ class Editor extends Component {
     const post = {
       custom_id: uuid(),
       title,
-      authorId: 1,
+      authorId: userId,
       body: editorData.blocks,
       isPublished: true,
       isEditing: false
