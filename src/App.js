@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Register from './pages/Register';
 import {Route} from 'react-router-dom';
 import Editor from "./pages/Editor";
+import Feed from "./pages/Feed";
 import Profile from "./pages/Profile";
 import ArticleModal from "./components/ArticleModal";
 import ReadArticle from './pages/ReadArticle';
@@ -15,6 +16,7 @@ function App() {
       <Route path='/register' component={Register}/>
       <Route path="/profile" component={Profile} />
       <Route path="/create" component={Editor} />
+      <Route path="/feed" component={Feed} />
       <Route path="/read" component={ReadArticle}/>
       <Route path="/team" component={AboutUs}/>
       <ArticleModal />

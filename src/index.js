@@ -3,20 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { BrowserRouter as Router } from "react-router-dom";
-import thunk from "redux-thunk";
-import logger from "redux-logger";
-import {rootReducer} from './redux-store/reducers';
 import { Provider } from "react-redux";
-import { createStore, applyMiddleware, compose } from "redux";
-
-import { setToken } from './utilities/authentication';
-
-const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-const store = createStore(
-  rootReducer,
-  composeEnhancer(applyMiddleware(thunk, setToken, logger))
-);
+import store from "./redux-store/store";
 
 ReactDOM.render(
   <Provider store={store}>
