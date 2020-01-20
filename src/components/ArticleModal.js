@@ -1,5 +1,6 @@
 // Modal.js
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useDropzone } from "react-dropzone";
 import Tags from "./Tags";
 import { createPortal } from "react-dom";
 import {
@@ -10,7 +11,7 @@ import {
 import { connect } from "react-redux";
 import styled from "styled-components";
 import logo from "../assets/logo-gradient.png";
-import Button from './Button';
+import Button from "./Button";
 
 const modalRoot = document.getElementById("article-modal");
 
@@ -30,80 +31,164 @@ export class ArticleModal extends React.Component {
   }
 }
 
-class ModalContainer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.app = document.getElementById("root");
-    this.editor = document.getElementById("editor-page");
-    this.handlePublishModal = this.props.handlePublishModal;
-  }
+const thumbsContainer = {
+  display: "flex",
+  flexDirection: "row",
+  flexWrap: "wrap",
+  minHeight: "100px",
+  width: "100%",
+  border: "3px dashed #eaeaea"
+};
 
-  onTagsChanged = newTags => {
+const thumbsContainer2 = {
+  display: "flex",
+  alignContent: "center",
+  minHeight: "100px",
+  width: "100%",
+  border: "3px dashed #eaeaea"
+};
+
+const thumb = {
+  display: "inline-flex",
+  borderRadius: 2,
+  height: 100,
+  padding: 4,
+  boxSizing: "border-box",
+  width: "100%",
+  justifyContent: "center"
+};
+
+const thumbInner = {
+  display: "flex",
+  minWidth: 0,
+  overflow: "hidden",
+  justifyContent: "center"
+};
+
+const img = {
+  display: "block",
+  width: "auto",
+  height: "100%",
+  padding: "1rem"
+};
+
+const placeholder = {
+  display: "flex",
+  margin: "0 auto",
+  alignSelf: "center",
+  color: "grey",
+  fontSize: "1.4rem",
+  height: "100%"
+};
+
+function ModalContainer(props) {
+  const [files, setFiles] = useState([]);
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    accept: "image/*",
+    onDrop: acceptedFiles => {
+      setFiles(
+        acceptedFiles.map(file =>
+          Object.assign(file, {
+            preview: URL.createObjectURL(file)
+          })
+        )
+      );
+    }
+  });
+
+  const thumbs = files.map(file => (
+    <div style={thumb} key={file.name}>
+      <div style={thumbInner}>
+        <img src={file.preview} style={img} alt="cover" />
+      </div>
+    </div>
+  ));
+
+  useEffect(
+    () => () => {
+      files.forEach(file => URL.revokeObjectURL(file.preview));
+    },
+    [files]
+  );
+
+  const onTagsChanged = newTags => {
     console.log("tags changed to: ", newTags);
   };
 
-  onInputChanged = e => {
+  const onInputChanged = e => {
     console.log(`input value is now: ${e.target.value}`);
   };
 
-  handleSubmit = e => {
-    console.log('hello')
-    this.props.handlePublish();
-    this.toggleModal();
+  const handleSubmit = e => {
+    console.log("hello");
+    props.handlePublish(files);
+    toggleModal();
   };
 
-  toggleModal = () => {
-    if (this.props.newPost.showModal) {
-      this.app.style.filter = "blur(0px)";
+  const Upload = () => (
+    <div {...getRootProps({ className: "dropzone" })}>
+      <input {...getInputProps()} placeholde="here" />
+      {!files.length ? (
+        <div style={thumbsContainer2}>
+          {isDragActive ? (
+            <p style={placeholder}>Drop the image here</p>
+          ) : (
+            <p style={placeholder}>Upload a cover image</p>
+          )}
+        </div>
+      ) : (
+        <div style={thumbsContainer}>{thumbs}</div>
+      )}
+    </div>
+  );
+
+  const toggleModal = () => {
+    const app = document.getElementById("root");
+    if (props.newPost.showModal) {
+      app.style.filter = "blur(0px)";
       document.getElementById("editor-page").style.pointerEvents = "auto";
     } else {
-      this.app.style.filter = "blur(4px)";
+      app.style.filter = "blur(4px)";
       document.getElementById("editor-page").style.pointerEvents = "none";
     }
-    this.props.handlePublishModal();
+    props.handlePublishModal();
   };
+  const { showModal } = props.newPost;
 
-  render() {
-    const { showModal } = this.props.newPost;
-
-    return (
-      <React.Fragment>
-        {showModal ? (
-          <ArticleModal>
-            <StyledModal>
-              <div className="modal-row-1">
-                <div
-                  className="modal-row-1-div"
-                  onClick={() => this.toggleModal()}
-                >
-                  X
-                </div>
-                <div className="modal-row-1-div">
-                  <img src={logo} alt="logo" />
-                </div>
+  return (
+    <React.Fragment>
+      {showModal ? (
+        <ArticleModal>
+          <StyledModal>
+            <div className="modal-row-1">
+              <div className="modal-row-1-div" onClick={() => toggleModal()}>
+                X
               </div>
-              <div className="modal-quote">
-                "Don't tell me the moon is shining; show me the glint of light
-                on broken glass."
+              <div className="modal-row-1-div">
+                <img src={logo} alt="logo" />
               </div>
-              <div className="modal-top">
-                <Tags
-                  tags={[]}
-                  onTagsChanged={this.onTagsChanged}
-                  onInputChanged={this.onInputChanged}
-                  placeholder="Add a tag for your Insight..."
-                />
-              </div>
-              <div></div>
-              <div className="modal-bottom">
-                <Button handleClick={this.handleSubmit} label="Publish Now" />
-              </div>
-            </StyledModal>
-          </ArticleModal>
-        ) : null}
-      </React.Fragment>
-    );
-  }
+            </div>
+            <div className="modal-quote">
+              "Don't tell me the moon is shining; show me the glint of light on
+              broken glass."
+            </div>
+            <div className="modal-top">
+              <Tags
+                tags={[]}
+                onTagsChanged={onTagsChanged}
+                onInputChanged={onInputChanged}
+                placeholder="Add a tag for your Insight..."
+              />
+            </div>
+            <div>{Upload()}</div>
+            <div className="modal-bottom">
+              <Button handleClick={handleSubmit} label="Publish Now" />
+            </div>
+          </StyledModal>
+        </ArticleModal>
+      ) : null}
+    </React.Fragment>
+  );
 }
 
 const StyledModal = styled.div`
@@ -145,15 +230,13 @@ const StyledModal = styled.div`
     button {
       margin: auto;
       width: 200px;
-      background: #323C5C;
+      background: #323c5c;
     }
     img {
       height: 75%;
       width: 50%;
     }
   }
-
-  
 `;
 
 const mapStateToProps = state => {
