@@ -85,23 +85,28 @@ class Editor extends Component {
     const formData = new FormData();
     const coverFile = files ? files[0] : "";
     const custom_id = uuid();
+    coverFile["articleId"] = custom_id;
     const tags = this.props.newPost.tags.map(tag => {
       return { ...tag, articleId: custom_id };
     });
     formData.append("image", coverFile);
+    formData.append("articleId", custom_id);
 
     console.log(title);
-    // const { subject: userId } = decodeToken();
+    const { subject: userId } = decodeToken();
     const post = {
       custom_id: uuid(),
       title,
-      authorId: 1,
+      authorId: userId,
       body: editorData.blocks,
       isPublished: true,
       isEditing: false
     };
 
-    this.publishPost({ article: { ...post, tags }, formData });
+    this.publishPost({
+      article: { ...post, tags },
+      file: formData
+    });
   }
 
   async handleSave() {
