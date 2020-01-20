@@ -84,33 +84,32 @@ class Editor extends Component {
     const title = this.titleRef.current.value;
     const { subject: userId } = decodeToken();
     const formData = new FormData();
+    let body = editorData.blocks
     const coverFile = files ? files[0] : null;
     const custom_id = uuid();
     if (coverFile) {
       coverFile["articleId"] = custom_id;
     }
-    const tags = this.props.newPost.tags.map(tag => {
+    let tags = this.props.newPost.tags.map(tag => {
       return { ...tag, articleId: custom_id };
     });
 
+    tags = JSON.stringify(tags)
+    body = JSON.stringify(body)
+
     if (files) {
       formData.append("image", coverFile);
-      formData.append("articleId", custom_id);
     }
 
-    const post = {
-      custom_id: uuid(),
-      title,
-      authorId: userId,
-      body: editorData.blocks,
-      isPublished: true,
-      isEditing: false
-    };
+    formData.append("custom_id", custom_id);
+    formData.append("title", title);
+    formData.append("authorId", userId);
+    formData.append("body", body);
+    formData.append("isPublished", true);
+    formData.append("isEditing", false);
+    formData.append("tags", tags);
 
-    this.publishPost({
-      article: { ...post, tags },
-      file: coverFile ? formData : null
-    });
+    this.publishPost(formData);
   }
 
   async handleSave() {

@@ -22,15 +22,13 @@ export const handlePublishModal = () => dispatch => {
 };
 
 export const publishPost = post => async dispatch => {
-  console.log(post.file);
+  console.log(post);
   dispatch({
     type: PUBLISHING_START
   });
   try {
-    if (post.file) {
-      await axios.post(`${apiURL}/articles/uploadCover`, post.file);
-    }
-    let res = await axios.post(`${apiURL}/articles/publish`, post.article);
+    
+    let res = await axios.post(`${apiURL}/articles/publish`, post);
     if (res)
       dispatch({
         type: PUBLISHING_SUCCESS
