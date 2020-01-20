@@ -6,6 +6,8 @@ import Editor from "./pages/Editor";
 import Feed from "./pages/Feed";
 import Profile from "./pages/Profile";
 import ArticleModal from "./components/ArticleModal";
+import ReadArticle from './pages/ReadArticle';
+import AboutUs from "./pages/AboutUs";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
       <Route path="/profile" component={Profile} />
       <Route path="/create" component={Editor} />
       <Route path="/feed" component={Feed} />
+      <Route path="/read" component={ReadArticle}/>
+      <Route path="/team" component={AboutUs}/>
       <ArticleModal />
     </div>
   );
