@@ -192,3 +192,8 @@ body {
 .ce-toolbar__actions--opened {
     margin-right: 20%;
 }
+
+.invalid {
+  color: red
+}
+
