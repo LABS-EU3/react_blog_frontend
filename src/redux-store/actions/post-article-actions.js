@@ -26,7 +26,8 @@ export const publishPost = post => async dispatch => {
     type: PUBLISHING_START
   });
   try {
-    let res = await axios.post(`${apiURL}/articles/publish`, post);
+    // let image = await axios.post(`${apiURL}/articles/uploadFile`, post.formData);
+    let res = await axios.post(`${apiURL}/articles/publish`, post.article);
     if (res)
       dispatch({
         type: PUBLISHING_SUCCESS

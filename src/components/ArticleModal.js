@@ -117,11 +117,12 @@ function ModalContainer(props) {
 
   const onInputChanged = e => {
     console.log(`input value is now: ${e.target.value}`);
+    console.log({ ...files[0], name: files[0]['name']})
   };
 
   const handleSubmit = e => {
     console.log("hello");
-    props.handlePublish();
+    props.handlePublish(files);
     toggleModal();
   };
 
