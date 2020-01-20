@@ -8,6 +8,7 @@ import styled from "styled-components";
 import { getArticleFeed } from "../redux-store/actions/get-article-actions";
 import { getToken } from "../utilities/authentication";
 import altimage from "../assets/images/altimage.png";
+import { Link } from "react-router-dom";
 const StyledFeed = styled.div`
   width: 100%;
   padding: 4rem;
@@ -38,12 +39,11 @@ const StyledTrending = styled.div`
     min-height: 60vh;
     .trending-content-jumbo {
       width: 45%;
-      cursor: pointer;
       border-radius: 10px;
       display: flex;
       align-items: flex-end;
       background-size: cover;
-      h2 {
+      a {
         background: rgba(118, 116, 116, 0.62);
         color: white;
         padding: 3rem 2rem 1rem 2rem;
@@ -68,7 +68,6 @@ const StyledTrending = styled.div`
         justify-content: space-evenly;
         .content-box {
           margin-left: 2rem;
-          cursor: pointer;
           width: 50%;
           height: 100%;
           background-repeat: no-repeat;
@@ -77,7 +76,7 @@ const StyledTrending = styled.div`
           align-items: flex-end;
           border-radius: 10px;
         }
-        h4 {
+        a {
           background: rgba(118, 116, 116, 0.62);
           color: white;
           padding: 10% 1rem 1rem 1.5rem;
@@ -332,55 +331,70 @@ export function Feed(props) {
             <button>TRENDING NOW</button>
           </div>
           {!articles.loading && articles.data.trending && (
-                <div className="trending-content">
+            <div className="trending-content">
+              <div
+                className="trending-content-jumbo"
+                style={{
+                  backgroundImage: `url(${articles.data.trending[0]
+                    .coverImageUrl || altimage})`
+                }}
+              >
+                <Link to={`/read/${articles.data.trending[0].id}`}>
+                  {articles.data.trending[0].title}
+                </Link>
+              </div>
+              <div className="trending-content-regular">
+                <div className="trending-row">
                   <div
-                    className="trending-content-jumbo"
+                    className="content-box"
                     style={{
-                      backgroundImage: `url(${articles.data.trending[0].coverImageUrl || altimage})`
+                      backgroundImage: `url(${articles.data.trending[1]
+                        .coverImageUrl || altimage})`
                     }}
                   >
-                    <h2>{articles.data.trending[0].title}</h2>
+                    <Link to={`/read/${articles.data.trending[1].id}`}>
+                      {articles.data.trending[1].title}
+                    </Link>
                   </div>
-                  <div className="trending-content-regular">
-                    <div className="trending-row">
-                      <div
-                        className="content-box"
-                        style={{
-                          backgroundImage: `url(${articles.data.trending[1].coverImageUrl || altimage})`
-                        }}
-                      >
-                        <h4>{articles.data.trending[1].title}</h4>
-                      </div>
-                      <div
-                        className="content-box"
-                        style={{
-                          backgroundImage: `url(${articles.data.trending[2].coverImageUrl || altimage})`
-                        }}
-                      >
-                        <h4>{articles.data.trending[2].title}</h4>
-                      </div>
-                    </div>
-                    <div className="trending-row">
-                      <div
-                        className="content-box"
-                        style={{
-                          backgroundImage: `url(${articles.data.trending[3].coverImageUrl || altimage})`
-                        }}
-                      >
-                        <h4>{articles.data.trending[3].title}</h4>
-                      </div>
-                      <div
-                        className="content-box"
-                        style={{
-                          backgroundImage: `url(${articles.data.trending[4].coverImageUrl || altimage})`
-                        }}
-                      >
-                        <h4>{articles.data.trending[4].title}</h4>
-                      </div>
-                    </div>
+                  <div
+                    className="content-box"
+                    style={{
+                      backgroundImage: `url(${articles.data.trending[2]
+                        .coverImageUrl || altimage})`
+                    }}
+                  >
+                    <Link to={`/read/${articles.data.trending[2].id}`}>
+                      {articles.data.trending[2].title}
+                    </Link>
                   </div>
                 </div>
-              )}
+                <div className="trending-row">
+                  <div
+                    className="content-box"
+                    style={{
+                      backgroundImage: `url(${articles.data.trending[3]
+                        .coverImageUrl || altimage})`
+                    }}
+                  >
+                    <Link to={`/read/${articles.data.trending[3].id}`}>
+                      {articles.data.trending[3].title}
+                    </Link>
+                  </div>
+                  <div
+                    className="content-box"
+                    style={{
+                      backgroundImage: `url(${articles.data.trending[4]
+                        .coverImageUrl || altimage})`
+                    }}
+                  >
+                    <Link to={`/read/${articles.data.trending[4].id}`}>
+                      {articles.data.trending[4].title}
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </StyledTrending>
         <StyledMainFeed>
           {!articles.loading && (
@@ -415,7 +429,7 @@ export function Feed(props) {
                             props.history.push(`/read/${article.id}`)
                           }
                         >
-                          <img src={article.coverImageUrl || altimage} alt=""/>
+                          <img src={article.coverImageUrl || altimage} alt="" />
                           <div className="main-article-content">
                             <h3>{article.title}</h3>
                             <p>
