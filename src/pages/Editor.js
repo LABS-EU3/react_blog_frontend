@@ -83,9 +83,11 @@ class Editor extends Component {
     const editorData = await this.editorInstance.save();
     const title = this.titleRef.current.value;
     const formData = new FormData();
-    const coverFile = files ? files[0] : "";
+    const coverFile = files ? files[0] : null;
     const custom_id = uuid();
-    coverFile["articleId"] = custom_id;
+    if (coverFile) {
+      coverFile["articleId"] = custom_id;
+    }
     const tags = this.props.newPost.tags.map(tag => {
       return { ...tag, articleId: custom_id };
     });
@@ -95,12 +97,10 @@ class Editor extends Component {
       formData.append("articleId", custom_id);
     }
 
-    console.log(title);
-    const { subject: userId } = decodeToken();
     const post = {
       custom_id: uuid(),
       title,
-      authorId: userId,
+      authorId: 1,
       body: editorData.blocks,
       isPublished: true,
       isEditing: false
@@ -108,7 +108,7 @@ class Editor extends Component {
 
     this.publishPost({
       article: { ...post, tags },
-      file: files ? formData : ""
+      file: coverFile ? formData : null
     });
   }
 
