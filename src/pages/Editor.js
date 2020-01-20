@@ -89,8 +89,11 @@ class Editor extends Component {
     const tags = this.props.newPost.tags.map(tag => {
       return { ...tag, articleId: custom_id };
     });
-    formData.append("image", coverFile);
-    formData.append("articleId", custom_id);
+
+    if (files) {
+      formData.append("image", coverFile);
+      formData.append("articleId", custom_id);
+    }
 
     console.log(title);
     const { subject: userId } = decodeToken();
@@ -105,7 +108,7 @@ class Editor extends Component {
 
     this.publishPost({
       article: { ...post, tags },
-      file: formData
+      file: files ? formData : ""
     });
   }
 
