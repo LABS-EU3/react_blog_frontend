@@ -99,7 +99,7 @@ class Editor extends Component {
     }
 
     const post = {
-      custom_id: uuid(),
+      custom_id,
       title,
       authorId: userId,
       body: editorData.blocks,
