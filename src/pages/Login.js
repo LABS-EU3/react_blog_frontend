@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import Button from '../components/Button'
+import Button from '../components/Buttons/Button';
 import {
     Container,
     Header2,
@@ -40,7 +40,7 @@ const Login = props => {
 
     const validate = () => {
         let isError = false;
-        var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        var emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 
         if (password.current.value.length < 5) {
@@ -57,7 +57,10 @@ const Login = props => {
     };
 
     if (props.login_success) {
-        window.location.href = '/feed';
+        const targetRoute = localStorage.getItem('target-route');
+        console.log(targetRoute);
+        const goToLocation = targetRoute !== 'undefined' ? targetRoute : '/feed';
+        props.history.push(goToLocation);
     }
 
     return (

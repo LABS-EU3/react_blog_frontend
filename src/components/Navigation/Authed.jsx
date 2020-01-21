@@ -1,13 +1,15 @@
 import React from 'react'
 import { useHistory } from "react-router-dom";
-import Button from '../Button';
+import Button from '../Buttons/Button';
 import {
   NavWrapper, StandLogo,Control
 } from './navigation.styles';
 import insight from '../../assets/images/insight-stand.png'
-import avatar from '../../assets/images/avatar.svg'
-import notification from '../../assets/images/Icons/icon-notification.svg'
-export default function Authed() {
+import notification from '../../assets/images/Icons/icon-notification.svg';
+import ProfileImageDropdown from '../Navigation/ProfileImageDropdown';
+
+export default function Authed(props) {
+
   const history = useHistory();
 
   const handleClick = (event) => {
@@ -26,7 +28,8 @@ export default function Authed() {
           <img alt="notification" src={notification}/>
         </div>
         <div className="avatar">
-          <img alt="avatar" src={avatar}/>
+          {/* <img alt="avatar" src={avatar}/> */}
+          <ProfileImageDropdown />
         </div>
       </Control>
     </NavWrapper>

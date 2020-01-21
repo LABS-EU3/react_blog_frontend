@@ -58,7 +58,6 @@ const StyledEditor = styled.div`
     }
   }
   caret-color: #3d3e77;
-
   input {
     font-family: "HKGrotesk-Regular";
     background-color: transparent;
