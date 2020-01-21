@@ -23,7 +23,7 @@ const StyledTitleInput = styled.div`
 `;
 
 const StyledEditor = styled.div`
-  font-family: "HKGrotesk-Regular";
+  font-family: "HKGrotesk-Regular" !important;
   h1 {
     font-size: 3.2rem;
   }
