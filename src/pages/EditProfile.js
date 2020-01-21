@@ -5,7 +5,10 @@ import styled from "styled-components";
 import david from "../assets/images/david.jpg";
 import Button from "../components/Button";
 import { decodeToken } from "../utilities/checkToken";
-import { getUserProfile, updateUserProfile } from "../redux-store/actions/user-profile-actions";
+import {
+  getUserProfile,
+  updateUserProfile
+} from "../redux-store/actions/user-profile-actions";
 
 const StyledProfile = styled.div`
   display: flex;
@@ -84,14 +87,20 @@ const StyledProfileInfo = styled.div`
 
 export function EditProfile(props) {
   const fullname = useRef();
+  const bio = useRef();
   const { subject: userId } = decodeToken();
   const { user, getUserProfile, updateUserProfile } = props;
 
   const handleSave = () => {
     const data = {
-        fullname: fullname.current.value
-    }  
+      fullname: fullname.current.value
+    };
     updateUserProfile(userId, data);
+  };
+
+  const handleCancel = () => {
+    fullname.current.value = user.fullname || null;
+    bio.current.value = user.bio || null;
   };
 
   useEffect(() => {
@@ -123,6 +132,7 @@ export function EditProfile(props) {
                   id="bio"
                   name="bio"
                   placeholder="Enter a short bio..."
+                  ref={bio}
                   defaultValue={user.bio || null}
                 />
                 <div className="profileButtons">
@@ -131,7 +141,11 @@ export function EditProfile(props) {
                     className="save"
                     handleClick={handleSave}
                   />
-                  <Button label="Cancel" className="cancel" />
+                  <Button
+                    label="Cancel"
+                    className="cancel"
+                    handleClick={handleCancel}
+                  />
                 </div>
               </div>
             </StyledProfileInfo>
@@ -151,4 +165,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { getUserProfile, updateUserProfile })(EditProfile);
+export default connect(mapStateToProps, { getUserProfile, updateUserProfile })(
+  EditProfile
+);
