@@ -1,10 +1,11 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { connect } from "react-redux";
 import AuthedNavigation from "../components/Navigation/Authed";
 import styled from "styled-components";
 import david from "../assets/images/david.jpg";
 import Button from "../components/Button";
 import { decodeToken } from "../utilities/checkToken";
+import { getUserProfile } from "../redux-store/actions/user-profile-actions";
 import axios from "axios";
 
 const mockUser =
@@ -89,9 +90,10 @@ const StyledProfileInfo = styled.div`
 
 export function EditProfile(props) {
   const fullname = useRef();
-
+  const { subject: userId } = decodeToken();
+  const { user, getUserProfile } = props;
+  
   const handleSave = () => {
-    const { subject: userId } = decodeToken();
     axios
       .put(`http://localhost:3300/api/users/${userId}`, {
         fullname: fullname.current.value
@@ -105,41 +107,48 @@ export function EditProfile(props) {
     console.log(fullname.current.value, userId);
   };
 
+  useEffect(() => {
+    getUserProfile(userId);
+  }, []);
+
   return (
     <div>
       <AuthedNavigation />
       <StyledProfile>
         <StyledCard>
           <h3>Edit Profile</h3>
-          <StyledProfileInfo>
-            <div className="profileImage">
-              <img src={david} />
-            </div>
-            <div className="profileInfo">
-              <input
-                type="text"
-                id="fullname"
-                name="fullname"
-                placeholder="Full Name"
-                ref={fullname}
-                defaultValue={parsedMockUser.fullname}
-              />
-              <textarea
-                type="text"
-                id="bio"
-                name="bio"
-                placeholder="Enter a short bio..."
-              />
-              <div className="profileButtons">
-                <Button
-                  label="Save"
-                  className="save"
-                  handleClick={handleSave}
-                />
-                <Button label="Cancel" className="cancel" />
+          {user && (
+            <StyledProfileInfo>
+              <div className="profileImage">
+                <img src={user.avatarUrl || david} alt="User profile" />
               </div>
-            </div>
-          </StyledProfileInfo>
+              <div className="profileInfo">
+                <input
+                  type="text"
+                  id="fullname"
+                  name="fullname"
+                  placeholder="Full Name"
+                  ref={fullname}
+                  defaultValue={user.fullname || null}
+                />
+                <textarea
+                  type="text"
+                  id="bio"
+                  name="bio"
+                  placeholder="Enter a short bio..."
+                  defaultValue={user.bio || null}
+                />
+                <div className="profileButtons">
+                  <Button
+                    label="Save"
+                    className="save"
+                    handleClick={handleSave}
+                  />
+                  <Button label="Cancel" className="cancel" />
+                </div>
+              </div>
+            </StyledProfileInfo>
+          )}
         </StyledCard>
         <StyledCard>
           <h3>Update Interests</h3>
@@ -149,10 +158,10 @@ export function EditProfile(props) {
   );
 }
 
-// const mapStateToProps = state => {
-//     return {
-//       user: state.auth.user
-//     };
-//   };
+const mapStateToProps = state => {
+  return {
+    user: state.userProfile.data
+  };
+};
 
-export default connect(state => state, {})(EditProfile);
+export default connect(mapStateToProps, { getUserProfile })(EditProfile);
