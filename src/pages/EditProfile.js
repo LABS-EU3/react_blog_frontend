@@ -1,9 +1,11 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { connect } from "react-redux";
 import AuthedNavigation from "../components/Navigation/Authed";
 import styled from "styled-components";
 import david from "../assets/images/david.jpg";
 import Button from "../components/Button";
+import { decodeToken } from "../utilities/checkToken";
+import axios from "axios";
 
 const mockUser =
   '{"id":1, "email":"test1@yahoo.com", "bio" : "", "fullname": "Megan Ennis", "jwt": "3ed22c344313ab4", "avatarUrl" : null, "isVerified" : false}';
@@ -62,7 +64,7 @@ const StyledProfileInfo = styled.div`
       font-size: 24px;
     }
     textarea {
-      font-size: 21px;
+      font-size: 18px;
     }
     .profileButtons {
       width: 80%;
@@ -86,8 +88,22 @@ const StyledProfileInfo = styled.div`
 `;
 
 export function EditProfile(props) {
-  const fullName = useRef(parsedMockUser.fullname);
-  const bio = useRef();
+  const fullname = useRef();
+
+  const handleSave = () => {
+    const { subject: userId } = decodeToken();
+    axios
+      .put(`http://localhost:3300/api/users/${userId}`, {
+        fullname: fullname.current.value
+      })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    console.log(fullname.current.value, userId);
+  };
 
   return (
     <div>
@@ -101,13 +117,25 @@ export function EditProfile(props) {
             </div>
             <div className="profileInfo">
               <input
-                ref={fullName}
                 type="text"
-                placeholder={parsedMockUser.fullname}
+                id="fullname"
+                name="fullname"
+                placeholder="Full Name"
+                ref={fullname}
+                defaultValue={parsedMockUser.fullname}
               />
-              <textarea />
+              <textarea
+                type="text"
+                id="bio"
+                name="bio"
+                placeholder="Enter a short bio..."
+              />
               <div className="profileButtons">
-                <Button label="Save" className="save" />
+                <Button
+                  label="Save"
+                  className="save"
+                  handleClick={handleSave}
+                />
                 <Button label="Cancel" className="cancel" />
               </div>
             </div>
