@@ -57,7 +57,10 @@ const Login = props => {
     };
 
     if (props.login_success) {
-        window.location.href = '/feed';
+        const targetRoute = localStorage.getItem('target-route');
+        console.log(targetRoute);
+        const goToLocation = targetRoute !== 'undefined' ? targetRoute : '/feed';
+        props.history.push(goToLocation);
     }
 
     return (
