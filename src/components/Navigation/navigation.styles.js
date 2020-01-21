@@ -8,6 +8,8 @@ export const NavWrapper = styled.nav`
   align-items: center;
   padding: 0.5rem;
   padding-top: 2.0rem;
+
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
 `;
 
 export const Logo = styled.div`

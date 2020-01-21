@@ -8,6 +8,7 @@ import Profile from "./pages/Profile";
 import ArticleModal from "./components/ArticleModal";
 import ReadArticle from './pages/ReadArticle';
 import AboutUs from "./pages/AboutUs";
+import ProfileLandingPage from './pages/profile/profileLanding'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <Route path="/read" component={ReadArticle}/>
       <Route path="/team" component={AboutUs}/>
       <ArticleModal />
+      <Route exact path="/profile" component={ProfileLandingPage} />
     </div>
   );
 }

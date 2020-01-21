@@ -7,10 +7,10 @@ import {
 } from "../redux-store/actions/post-article-actions";
 import { connect } from "react-redux";
 
-import Wrapper from "./tag-styles/Wrapper";
-import Tag from "./tag-styles/Tag";
-import Input from "./tag-styles/Input";
-import TagDelete from "./tag-styles/TagDelete";
+import Wrapper from "./styles/tag-styles/Wrapper";
+import Tag from "./styles/tag-styles/Tag";
+import Input from "./styles/tag-styles/Input";
+import TagDelete from "./styles/tag-styles/TagDelete";
 
 class TagInput extends Component {
   constructor(props) {

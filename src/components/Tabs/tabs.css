@@ -1,0 +1,46 @@
+.tab-items {
+    display: inline-block;
+    list-style: none;
+    margin-bottom: -1px;
+    padding: 0.5rem 0.75rem;
+    /* border: 1px solid red; */
+    cursor: pointer;
+    /* width: 100%; */
+}
+
+.tab-list-active {
+    background-color: white;
+    border: solid #ccc;
+    border-width: 1px 1px 0 1px;
+
+}
+
+.card {
+    height: auto;
+    border: 1px solid #eee;
+    padding: 1.5rem;
+}
+
+.card .title {
+    margin-bottom: 0.5rem;
+}
+.card .title h5 {
+    font-size: 22px;
+    color: #333;
+}
+
+.card .title p {
+    font-size: 12px;
+    color: #4f4f4f;
+}
+
+.card .body {
+    font-size: 16px;
+    color: #0e0e0e;
+    margin: 2rem 0;
+
+}
+
+.card button {
+    width: fit-content;
+}

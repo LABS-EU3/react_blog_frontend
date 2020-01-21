@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Default from "../components/Navigation/Default";
-import Modal from "../components/Modal";
+import Modal from "../components/Others/Modal";
 import Login from "./Login";
 
 import lp from "../assets/images/landing-jumbo.svg";

@@ -6,8 +6,8 @@ import { verify } from "../redux-store/actions/auths";
 
 function Profile(props) {
   useEffect(() => {
-    const { subject : userId } = decodeToken();
-    const location = props.location.search;
+    const { subject : userId } = decodeToken(); // I don't understand this line
+    const location = props.location.search; // Also this too
     if (location) {
       const verificationId = location.split('=');
       props.verify(verificationId[1], userId)

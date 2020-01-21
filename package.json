@@ -43,7 +43,8 @@
     "redux-mock-store": "^1.5.4",
     "redux-thunk": "^2.3.0",
     "styled-components": "^4.4.1",
-    "uuid": "^3.3.3"
+    "uuid": "^3.3.3",
+    "workbox-webpack-plugin": "^4.3.1"
   },
   "scripts": {
     "start": "react-scripts start",
