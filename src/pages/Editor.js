@@ -20,6 +20,7 @@ import uuid from "uuid";
 
 const StyledTitleInput = styled.div`
   margin: 0 auto;
+  margin: 0 auto;
 `;
 
 const StyledEditor = styled.div`
