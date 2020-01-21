@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import Tab from './Tab';
 import { StyledTabsList } from '../styles/tabs/tabsList.styles';
 export default function Tabs (props) {

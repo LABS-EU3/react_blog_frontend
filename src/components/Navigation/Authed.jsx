@@ -1,6 +1,6 @@
 import React from 'react'
 import { useHistory } from "react-router-dom";
-import Button from '../Button';
+import Button from '../Buttons/Button';
 import {
   NavWrapper, StandLogo,Control
 } from './navigation.styles';

@@ -9,7 +9,7 @@ export default function RecentActivity() {
                 </div>
                 <div className="body">
                     <div className="img-wrapper">
-                        <img />
+                        {/* <img alt /> */}
                     </div>
                     <div className="activity-wrapper">
                         <p><strong>DammyOluwa</strong> <span>started following you</span></p>
