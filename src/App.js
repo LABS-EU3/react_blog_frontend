@@ -8,15 +8,16 @@ import Profile from "./pages/Profile";
 import ArticleModal from "./components/ArticleModal";
 import ReadArticle from './pages/ReadArticle';
 import AboutUs from "./pages/AboutUs";
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
     <div className="App">
       <Route exact path='/' render={props => <Home {...props} />}/>
       <Route path='/register' component={Register}/>
-      <Route path="/profile" component={Profile} />
-      <Route path="/create" component={Editor} />
-      <Route path="/feed" component={Feed} />
+      <ProtectedRoute path="/profile" component={Profile} />
+      <ProtectedRoute path="/create" component={Editor} />
+      <ProtectedRoute path="/feed" component={Feed} />
       <Route path="/read" component={ReadArticle}/>
       <Route path="/team" component={AboutUs}/>
       <ArticleModal />
