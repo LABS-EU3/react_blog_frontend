@@ -5,12 +5,6 @@ import ProfileReactionsTab from '../profile_tabs/ProfileReactionsTab';
 
 export default function ProfileTabContainer() {
     return (
-        <div>
-            
-
-
-
-
-        </div>
+        <div></div>
     )
 }

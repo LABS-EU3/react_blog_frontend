@@ -9,25 +9,26 @@ export const StyledUserBio = styled.div`
     align-items: center;
 
     .avatar-div {
-        width: 30%;
+        width: 35%;
 
         img {
-            width: 70%;
-            height: 70%;
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
         }
     }
 
     .other-info {
         // border: 1px solid;
-        width: 70%;
+        width: 60%;
 
         h6 {
             font-size: 26px;
             color: #36464f;
         }
         .bio-info {
-            margin: 0.6rem 0;
+            margin: 2rem 0;
+            // margin-top: 2rem;
             
             p {
                 font-size: 16px;

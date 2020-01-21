@@ -6,5 +6,5 @@ import { getArticlesReducer } from "./get-article-reducer";
 export const rootReducer = combineReducers({
   auth: authReducer,
   newPost: newPostReducer,
-  articles: getArticlesReducer
+  articles: getArticlesReducer,
 });

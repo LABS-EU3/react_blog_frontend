@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Tab from './Tab';
 import { StyledTabsList } from '../styles/tabs/tabsList.styles';
+import { StyledColumn12, StyledContainer, StyledRow } from '../styles/General Styles/Layout.styles'
+
 export default function Tabs (props) {
     // create a state that takes in an object that grabs the label of the first child in the array
     const [tabState, setTabState] = useState({
@@ -19,27 +21,34 @@ export default function Tabs (props) {
     const { children } = props;
 
     return (
-        <div className="tabs">
-            <StyledTabsList>
-                {children.map((child) => {
-                    const { label } = child.props;
-
-                    return (
-                        <Tab 
-                            activeTab={activeTab}
-                            key={label}
-                            label={label}
-                            onClick={onClickTabItem}
-                        />
-                    )
-                })}
-            </StyledTabsList>
-            <div className="tab-content">
-                {children.map((child) => {
-                    if(child.props.label !== activeTab) return undefined;
-                    return child.props.children;
-                })}
-            </div>
-        </div>
+        <section>
+            <StyledContainer>
+                <StyledRow>
+                    <StyledColumn12>
+                        <div className="tabs">
+                            <StyledTabsList>
+                                {children.map((child) => {
+                                    const { label } = child.props;
+                                    return (
+                                        <Tab 
+                                            activeTab={activeTab}
+                                            key={label}
+                                            label={label}
+                                            onClick={onClickTabItem}
+                                        />
+                                    )
+                                })}
+                            </StyledTabsList>
+                            <div className="tab-content">
+                                {children.map((child) => {
+                                    if(child.props.label !== activeTab) return undefined;
+                                    return child.props.children;
+                                })}
+                            </div>
+                        </div>
+                    </StyledColumn12>
+                </StyledRow>
+            </StyledContainer>
+        </section>
     )
 }

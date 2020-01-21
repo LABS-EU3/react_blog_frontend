@@ -1,23 +1,28 @@
+.tabs {
+    margin-top: 6rem;
+    /* border: 1px solid red; */
+}
+
 .tab-items {
     display: inline-block;
     list-style: none;
     margin-bottom: -1px;
     padding: 0.5rem 0.75rem;
-    /* border: 1px solid red; */
+    font-size: 2.2rem;
+    margin-right: 1.5rem;
+    color: #636363;
     cursor: pointer;
     /* width: 100%; */
 }
 
 .tab-list-active {
-    background-color: white;
-    border: solid #ccc;
-    border-width: 1px 1px 0 1px;
-
+    color: #6f85fd;
+    border: none;
 }
 
 .card {
     height: auto;
-    border: 1px solid #eee;
+    border: 1px solid #d1d0d0;
     padding: 1.5rem;
 }
 
