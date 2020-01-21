@@ -89,7 +89,7 @@ export function EditProfile(props) {
   const fullname = useRef();
   const bio = useRef();
   const { subject: userId } = decodeToken();
-  const { user, getUserProfile, updateUserProfile } = props;
+  const { user, loading, getUserProfile, updateUserProfile } = props;
 
   const handleSave = () => {
     const data = {
@@ -137,7 +137,7 @@ export function EditProfile(props) {
                 />
                 <div className="profileButtons">
                   <Button
-                    label="Save"
+                    label={!loading ? "Save" : "Loading"}
                     className="save"
                     handleClick={handleSave}
                   />
@@ -161,7 +161,8 @@ export function EditProfile(props) {
 
 const mapStateToProps = state => {
   return {
-    user: state.userProfile.data
+    user: state.userProfile.data,
+    loading: state.userProfile.loading
   };
 };
 

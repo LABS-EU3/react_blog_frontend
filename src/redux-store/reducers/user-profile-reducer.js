@@ -2,7 +2,9 @@ import {
   GET_USER_PROFILE_START,
   GET_USER_PROFILE_SUCCESS,
   GET_USER_PROFILE_FAIL,
-  UPDATE_USER_PROFILE_START
+  UPDATE_USER_PROFILE_START,
+  UPDATE_USER_PROFILE_SUCCESS,
+  UPDATE_USER_PROFILE_FAIL
 } from "../actions/types";
 
 export const initState = {
@@ -17,18 +19,29 @@ export const userProfileReducer = (state = initState, action) => {
         ...state,
         loading: true
       };
-      case UPDATE_USER_PROFILE_START:
-        return {
-          ...state,
-          loading: true
-        };
+    case UPDATE_USER_PROFILE_START:
+      return {
+        ...state,
+        loading: true
+      };
     case GET_USER_PROFILE_SUCCESS:
       return {
         ...state,
         loading: false,
         data: action.payload
       };
+    case UPDATE_USER_PROFILE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        data: action.payload
+      };
     case GET_USER_PROFILE_FAIL:
+      return {
+        ...state,
+        loading: false
+      };
+    case UPDATE_USER_PROFILE_FAIL:
       return {
         ...state,
         loading: false
