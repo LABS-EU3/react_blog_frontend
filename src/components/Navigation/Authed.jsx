@@ -5,8 +5,7 @@ import {
   NavWrapper, StandLogo,Control
 } from './navigation.styles';
 import insight from '../../assets/images/insight-stand.png'
-import notification from '../../assets/images/Icons/icon-notification.svg'
-import { Link } from 'react-router-dom';
+import notification from '../../assets/images/Icons/icon-notification.svg';
 import ProfileImageDropdown from '../Navigation/ProfileImageDropdown';
 
 export default function Authed(props) {
