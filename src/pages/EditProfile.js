@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import AuthedNavigation from "../components/Navigation/Authed";
 import styled from "styled-components";
@@ -9,6 +9,7 @@ import {
   getUserProfile,
   updateUserProfile
 } from "../redux-store/actions/user-profile-actions";
+import Dropzone from "react-dropzone";
 
 const StyledProfile = styled.div`
   display: flex;
@@ -41,9 +42,20 @@ const StyledProfileInfo = styled.div`
     align-items: center;
   }
   .profileImage {
-    img {
-      border-radius: 50%;
-      max-width: 60%;
+    section,
+    div {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img {
+        border-radius: 50%;
+        width: 60%;
+        &:hover {
+          opacity: 0.3;
+          cursor: pointer;
+        }
+      }
     }
   }
   .profileInfo {
@@ -90,11 +102,16 @@ export function EditProfile(props) {
   const bio = useRef();
   const { subject: userId } = decodeToken();
   const { user, loading, getUserProfile, updateUserProfile } = props;
+  const [files, setFiles] = useState([]);
 
   const handleSave = () => {
-    const data = {
-      fullname: fullname.current.value
-    };
+    const data = new FormData();
+    if (files.length) {
+      files.forEach(file => URL.revokeObjectURL(file.preview));
+      data.append("image", files[0]);
+    }
+    data.append("fullname", fullname.current.value);
+    // data.append("bio", null);
     updateUserProfile(userId, data);
   };
 
@@ -116,7 +133,31 @@ export function EditProfile(props) {
           {user && (
             <StyledProfileInfo>
               <div className="profileImage">
-                <img src={user.avatarUrl || david} alt="User profile" />
+                <Dropzone
+                  onDrop={acceptedFiles => {
+                    setFiles(
+                      acceptedFiles.map(file =>
+                        Object.assign(file, {
+                          preview: URL.createObjectURL(file)
+                        })
+                      )
+                    );
+                  }}
+                >
+                  {({ getRootProps, getInputProps }) => (
+                    <section>
+                      <div {...getRootProps()}>
+                        <input {...getInputProps()} />
+                        <img
+                          src={
+                            !files.length ? user.avatarUrl : files[0].preview
+                          }
+                          alt="User profile"
+                        />
+                      </div>
+                    </section>
+                  )}
+                </Dropzone>
               </div>
               <div className="profileInfo">
                 <input
