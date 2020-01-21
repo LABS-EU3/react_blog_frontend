@@ -2,11 +2,11 @@ import { authReducer } from "./auths";
 import { combineReducers } from "redux";
 import { newPostReducer } from "./posts-reducer-editing";
 import { getArticlesReducer } from "./get-article-reducer";
-import { getUserProfileReducer } from "./get-user-profile-reducer";
+import { userProfileReducer } from "./user-profile-reducer";
 
 export const rootReducer = combineReducers({
   auth: authReducer,
   newPost: newPostReducer,
   articles: getArticlesReducer,
-  userProfile: getUserProfileReducer
+  userProfile: userProfileReducer
 });

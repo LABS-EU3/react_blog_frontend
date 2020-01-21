@@ -5,13 +5,7 @@ import styled from "styled-components";
 import david from "../assets/images/david.jpg";
 import Button from "../components/Button";
 import { decodeToken } from "../utilities/checkToken";
-import { getUserProfile } from "../redux-store/actions/user-profile-actions";
-import axios from "axios";
-
-const mockUser =
-  '{"id":1, "email":"test1@yahoo.com", "bio" : "", "fullname": "Megan Ennis", "jwt": "3ed22c344313ab4", "avatarUrl" : null, "isVerified" : false}';
-
-const parsedMockUser = JSON.parse(mockUser);
+import { getUserProfile, updateUserProfile } from "../redux-store/actions/user-profile-actions";
 
 const StyledProfile = styled.div`
   display: flex;
@@ -91,20 +85,13 @@ const StyledProfileInfo = styled.div`
 export function EditProfile(props) {
   const fullname = useRef();
   const { subject: userId } = decodeToken();
-  const { user, getUserProfile } = props;
-  
+  const { user, getUserProfile, updateUserProfile } = props;
+
   const handleSave = () => {
-    axios
-      .put(`http://localhost:3300/api/users/${userId}`, {
+    const data = {
         fullname: fullname.current.value
-      })
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-    console.log(fullname.current.value, userId);
+    }  
+    updateUserProfile(userId, data);
   };
 
   useEffect(() => {
@@ -164,4 +151,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { getUserProfile })(EditProfile);
+export default connect(mapStateToProps, { getUserProfile, updateUserProfile })(EditProfile);
