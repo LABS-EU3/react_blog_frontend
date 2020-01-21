@@ -81,6 +81,7 @@ class Editor extends Component {
   }
   async handlePublish(files) {
     const editorData = await this.editorInstance.save();
+    console.log(editorData)
     const title = this.titleRef.current.value;
     const { subject: userId } = decodeToken();
     const formData = new FormData();
