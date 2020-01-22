@@ -1,4 +1,5 @@
 import React, { Component, createRef } from "react";
+import "./styles.css";
 
 export default class Highlighter extends Component {
   constructor(props) {
@@ -40,7 +41,7 @@ export default class Highlighter extends Component {
     const endNode = selectionRange.endContainer.parentNode;
 
     const highlightable = this.highlight.current;
-    const highlightableRegion = highlightable.querySelector(".pop-area");
+    const highlightableRegion = highlightable.querySelector(".h-popable");
 
     if (highlightableRegion) {
       if (
@@ -97,7 +98,7 @@ export default class Highlighter extends Component {
               popoverItems(itemClass)
             ) : (
               <span role="button" className={itemClass}>
-                random
+                Add yours
               </span>
             )}
           </div>
@@ -107,3 +108,4 @@ export default class Highlighter extends Component {
     );
   }
 }
+

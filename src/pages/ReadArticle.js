@@ -6,6 +6,7 @@ import NavBar from "../components/Navigation/Authed";
 import BackArrow from "../assets/images/arrow.svg";
 import iot from "../assets/images/iot.svg";
 import like from "../assets/images/like.svg";
+import Highligter from "../components/Highlight";
 
 //Simulating data from the backend for now because we don't have the feed page yet
 const data = {
@@ -39,7 +40,6 @@ const Wrapper = styled.div`
   margin-top: 10rem;
 
   .like {
-    
   }
 `;
 
@@ -139,7 +139,10 @@ const ReadArticle = () => {
             <img src={iot} alt="IoT" />
           </StyledDetailsRight>
         </Details>
-        <Body>{Renderer(content)}</Body>
+        <Highligter>
+          {" "}
+          <Body>{Renderer(content)}</Body>
+        </Highligter>
         <div className="like">
           <img src={like} alt="like icon" />
         </div>
