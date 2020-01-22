@@ -8,6 +8,7 @@ export const StyledRecentActivity = styled.div`
         height: auto;
         border: none;
         padding: 1.5rem;
+        background-color:#F9F9F9;
     }
 
     .card .title {
