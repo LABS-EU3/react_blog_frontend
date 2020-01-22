@@ -63,14 +63,25 @@ const StyledProfileInfo = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-
+    align-items: center;
     .profileInfo {
-      width: 100%;
+      width: 80%;
       display: flex;
       flex-direction: column;
       align-items: center;
+      h3 {
+          text-align: center;
+
+      }
       p {
         font-size: 21px;
+      }
+      input, textarea {
+          width: 80%;
+          margin-top: 1.5rem;
+          padding: 1rem;
+          border-radius: 5px;
+          border: 1px solid #C6D0EB;
       }
     }
 
@@ -103,7 +114,7 @@ export function EditProfile(props) {
   const { subject: userId } = decodeToken();
   const { user, loading, getUserProfile, updateUserProfile } = props;
   const [files, setFiles] = useState([]);
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(true);
 
   const handleSave = () => {
     if (files.length || user.fullname !== fullname.current.value) {
@@ -119,10 +130,6 @@ export function EditProfile(props) {
     toggleEditing();
   };
 
-  const handleCancel = () => {
-    fullname.current.value = user.fullname || null;
-    bio.current.value = user.bio || null;
-  };
   const toggleEditing = () => {
     setIsEditing(!isEditing);
   };
@@ -209,7 +216,7 @@ export function EditProfile(props) {
                   <Button
                     label="Cancel"
                     className="cancel"
-                    handleClick={handleCancel}
+                    handleClick={toggleEditing}
                   />
                 </>
               )}
