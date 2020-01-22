@@ -18,7 +18,7 @@ function App() {
       <ProtectedRoute path="/profile" component={Profile} />
       <ProtectedRoute path="/create" component={Editor} />
       <ProtectedRoute path="/feed" component={Feed} />
-      <Route path="/read" component={ReadArticle}/>
+      <Route path="/article/:id" component={ReadArticle}/>
       <Route path="/team" component={AboutUs}/>
       <ArticleModal />
     </div>
