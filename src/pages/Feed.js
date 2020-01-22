@@ -40,7 +40,7 @@ export function Feed(props) {
                     .coverImageUrl || altimage})`
                 }}
               >
-                <Link to={`/read/${articles.data.trending[0].id}`}>
+                <Link to={`/article/${articles.data.trending[0].custom_id}`}>
                   {articles.data.trending[0].title}
                 </Link>
               </div>
@@ -49,13 +49,14 @@ export function Feed(props) {
                 {articles.data.trending.slice(1).map(trend => {
                   return (
                       <div
+                        key={trend.id}
                         className="content-box"
                         style={{
                           backgroundImage: `url(${trend
                             .coverImageUrl})`
                         }}
                       >
-                        <Link to={`/read/${trend.id}`}>
+                        <Link to={`/article/${trend.custom_id}`}>
                           {trend.title}
                         </Link>
                       </div>
@@ -95,10 +96,10 @@ export function Feed(props) {
                           }
                           key={article.id}
                           onClick={() =>
-                            props.history.push(`/read/${article.id}`)
+                            props.history.push(`/article/${article.custom_id}`)
                           }
                         >
-                          <img src={article.coverImageUrl || altimage} alt="" />
+                          <img src={article.coverImageUrl} alt="" />
                           <div className="main-article-content">
                             <h3>{article.title}</h3>
                             <p>
@@ -110,7 +111,7 @@ export function Feed(props) {
                             <div className="main-article-footer">
                               <p>{article.author}</p>
                               <div className="article-link">
-                                <a href={`/read/${article.id}`}>Details</a>
+                                <Link to={`/article/${article.custom_id}`}>Details</Link>
                                 <img src={blue_arrow} alt="Blue Arrow" />
                               </div>
                             </div>
@@ -119,9 +120,9 @@ export function Feed(props) {
                       );
                     }
                   )}
-                <div className="read-more">
+                {/* <div className="read-more">
                   <button>Read More...</button>
-                </div>
+                </div> */}
               </div>
             </div>
           )}
@@ -149,7 +150,7 @@ export function Feed(props) {
                         className="fav-author-article"
                         key={article.id}
                         onClick={() =>
-                          props.history.push(`/read/${article.id}`)
+                          props.history.push(`/article/${article.custom_id}`)
                         }
                       >
                         <h5>{article.title}</h5>
@@ -162,7 +163,7 @@ export function Feed(props) {
                             })}
                           </div>
                           <div className="details">
-                            <a href="/">Details</a>
+                            <Link to={`/article/${article.custom_id}`}>Details</Link>
                             <img src={blue_arrow} alt="Arrow" />
                           </div>
                         </div>
