@@ -9,6 +9,7 @@ import ArticleModal from "./components/ArticleModal";
 import ReadArticle from './pages/ReadArticle';
 import AboutUs from "./pages/AboutUs";
 import ProtectedRoute from './components/ProtectedRoute';
+import '../src/index.css';
 
 function App() {
   return (
