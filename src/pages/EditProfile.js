@@ -70,18 +70,24 @@ const StyledProfileInfo = styled.div`
       flex-direction: column;
       align-items: center;
       h3 {
-          text-align: center;
-
+        text-align: center;
       }
       p {
         font-size: 21px;
       }
-      input, textarea {
-          width: 80%;
-          margin-top: 1.5rem;
-          padding: 1rem;
-          border-radius: 5px;
-          border: 1px solid #C6D0EB;
+      input,
+      textarea {
+        width: 80%;
+        margin-top: 1.5rem;
+        padding: 1rem;
+        border-radius: 5px;
+        border: 1px solid #c6d0eb;
+      }
+      textarea {
+        max-width: 80%;
+        min-width: 80%;
+        max-height: 30vh;
+        min-height: 8vh;
       }
     }
 
