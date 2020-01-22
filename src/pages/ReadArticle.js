@@ -140,7 +140,6 @@ const ReadArticle = () => {
           </StyledDetailsRight>
         </Details>
         <Highligter>
-          {" "}
           <Body>{Renderer(content)}</Body>
         </Highligter>
         <div className="like">
