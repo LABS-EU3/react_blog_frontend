@@ -1,8 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import { connect } from "react-redux";
-import AuthedNavigation from "../components/Navigation/Authed";
 import styled from "styled-components";
-import david from "../assets/images/david.jpg";
 import Button from "../components/Button";
 import { decodeToken } from "../utilities/checkToken";
 import {
@@ -19,65 +17,57 @@ const StyledProfile = styled.div`
   font-family: Lato;
 `;
 
-const StyledCard = styled.div`
-  width: 80%;
-  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.15);
+const StyledProfileInterests = styled.div`
+  width: 100%;
   padding: 3rem;
-  margin: 2rem 0;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  border-bottom: 1px solid grey;
 `;
 
 const StyledProfileInfo = styled.div`
+  width: 100%;
   display: flex;
-  padding: 3rem;
-  justify-content: space-between;
+  padding: 4rem;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 1px solid grey;
 
-  .profileImage,
-  .profileInfo {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
   .profileImage {
-    section,
-    div {
+    width: 50%;
+    margin-bottom: 3rem;
+    .imageContainer {
       width: 100%;
       display: flex;
       justify-content: center;
-      align-items: center;
       img {
         border-radius: 50%;
-        width: 60%;
-        &:hover {
-          opacity: 0.3;
-          cursor: pointer;
-        }
+        width: 35vw;
+        height: 35vw;
+        border: 1px solid grey;
+      }
+
+      &.dropzone {
+          &:hover {
+              cursor: pointer;
+              img {
+                  opacity: 0.3;
+              }
+          }
       }
     }
   }
-  .profileInfo {
-    input,
-    textarea {
-      width: 60%;
-      max-width: 80%;
-      min-width: 80%;
-      max-height: 200px;
-      margin: 1.5rem 0;
-      border: 1px solid #c6d0eb;
-      padding: 1rem 2rem;
-      border-radius: 5px;
-    }
-    input {
-      font-size: 24px;
-    }
-    textarea {
-      font-size: 18px;
-    }
+
+  .profileDetails {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
     .profileButtons {
-      width: 80%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
       margin-top: 1.5rem;
       button {
         width: 30%;
@@ -103,6 +93,7 @@ export function EditProfile(props) {
   const { subject: userId } = decodeToken();
   const { user, loading, getUserProfile, updateUserProfile } = props;
   const [files, setFiles] = useState([]);
+  const [isEditing, setIsEditing] = useState(true);
 
   const handleSave = () => {
     const data = new FormData();
@@ -111,7 +102,6 @@ export function EditProfile(props) {
       data.append("image", files[0]);
     }
     data.append("fullname", fullname.current.value);
-    // data.append("bio", null);
     updateUserProfile(userId, data);
   };
 
@@ -125,13 +115,77 @@ export function EditProfile(props) {
   }, []);
 
   return (
-    <div>
-      <AuthedNavigation />
-      <StyledProfile>
-        <StyledCard>
-          <h3>Edit Profile</h3>
-          {user && (
-            <StyledProfileInfo>
+    <StyledProfile>
+      {user && (
+        <StyledProfileInfo>
+          <div className="profileImage">
+            {!isEditing ? (
+              <div className="imageContainer">
+                <img src={user.avatarUrl} alt="User profile" />
+              </div>
+            ) : (
+              <Dropzone
+                onDrop={acceptedFiles => {
+                  setFiles(
+                    acceptedFiles.map(file =>
+                      Object.assign(file, {
+                        preview: URL.createObjectURL(file)
+                      })
+                    )
+                  );
+                }}
+              >
+                {({ getRootProps, getInputProps }) => (
+                  <div {...getRootProps()} className="imageContainer dropzone">
+                    <input {...getInputProps()} />
+                    <img
+                      src={!files.length ? user.avatarUrl : files[0].preview}
+                      alt="User profile"
+                    />
+                  </div>
+                )}
+              </Dropzone>
+            )}
+          </div>
+          <div className="profileDetails">
+            <input
+              type="text"
+              id="fullname"
+              name="fullname"
+              placeholder="Full Name"
+              ref={fullname}
+              defaultValue={user.fullname || null}
+            />
+            <textarea
+              type="text"
+              id="bio"
+              name="bio"
+              placeholder="Enter a short bio..."
+              ref={bio}
+              defaultValue={user.bio || null}
+            />
+            <div className="profileButtons">
+              <Button
+                label={!loading ? "Save" : "Loading"}
+                className="save"
+                handleClick={handleSave}
+              />
+              <Button
+                label="Cancel"
+                className="cancel"
+                handleClick={handleCancel}
+              />
+            </div>
+          </div>
+        </StyledProfileInfo>
+      )}
+      {user && (
+        <StyledProfileInterests>
+          <h3>Interests Section</h3>
+        </StyledProfileInterests>
+      )}
+      {/* {user && (
+           
               <div className="profileImage">
                 <Dropzone
                   onDrop={acceptedFiles => {
@@ -189,14 +243,9 @@ export function EditProfile(props) {
                   />
                 </div>
               </div>
-            </StyledProfileInfo>
-          )}
-        </StyledCard>
-        <StyledCard>
-          <h3>Update Interests</h3>
-        </StyledCard>
-      </StyledProfile>
-    </div>
+            
+          )} */}
+    </StyledProfile>
   );
 }
 
