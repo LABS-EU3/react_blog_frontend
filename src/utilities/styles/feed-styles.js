@@ -83,9 +83,9 @@ export const StyledMainFeed = styled.div`
   margin-top: 4rem;
   display: flex;
   .main-insights {
-    width: 65%;
-    border-top: 1px solid #333333;
-    padding-top: 1rem;
+    width: 80%;
+    border-top: 1px solid #b7bbc0;
+    padding-top: 2.5rem;
 
     &.dynamic {
       width: 100%;
@@ -93,44 +93,44 @@ export const StyledMainFeed = styled.div`
 
     .main-header {
       display: flex;
+      margin-top: 1.5rem;
       h4 {
         font-family: Lato;
         font-style: normal;
         font-weight: 600;
-        font-size: 18px;
+        font-size: 16px;
         line-height: 22px;
         color: #333333;
         margin-right: 1rem;
       }
     }
     .main-content {
-      width: 100%;
+      width: 90%;
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-around;
-      align-items: flex-end;
+      justify-content: flex-start;
+      flex: 3;
       .main-article {
-        width: 40%;
+        width: 32%;
         margin: 2rem 0;
+        margin-right: 1.3rem;
         display: flex;
         flex-direction: column;
         align-items: center;
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.13);
         &:hover {
           cursor: pointer;
-          .main-article-content {
-            background: white;
-            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
-          }
+          box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.20);
         }
         &.dynamic {
           width: 30%;
         }
 
         img {
-          width: 85%;
+          width: 100%;
           height: 25vh;
-          border-radius: 10px;
-          margin-bottom: -9rem;
+          border-radius: 3px 3px 0px 0px;
+          margin-bottom: -10rem;
           z-index: 1;
         }
 
@@ -139,7 +139,8 @@ export const StyledMainFeed = styled.div`
           border-radius: 5px;
           width: 100%;
           z-index: -1;
-          padding: 3rem;
+          padding: 2rem;
+          padding-top: 3rem;
 
           h3 {
             margin: 8rem 0 2rem 0;
@@ -154,12 +155,13 @@ export const StyledMainFeed = styled.div`
             font-style: normal;
             font-weight: normal;
             font-size: 14px;
-            line-height: 17px;
+            line-height: 23px;
             color: #b7bbc0;
             margin-bottom: 5rem;
           }
           .main-article-footer {
             display: flex;
+            align-items: center;
             justify-content: space-between;
             p {
               font-style: italic;
@@ -176,6 +178,8 @@ export const StyledMainFeed = styled.div`
               }
               a {
                 color: #2fc2df;
+                font-size: 13px;
+                font-weight: 500;
               }
             }
           }
@@ -186,13 +190,14 @@ export const StyledMainFeed = styled.div`
         display: flex;
         justify-content: center;
         margin: 2rem 0;
+        margin-top: 4.0rem;
         button {
-          box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
-          width: 40%;
+          box-shadow: 0px 1px 3px rgba(0,0,0,0.30);
+          width: 20%;
           font-family: Lato;
           font-style: normal;
           font-weight: bold;
-          font-size: 25px;
+          font-size: 13px;
           color: #2fc2df;
           border: none;
           padding: 1rem 0;
@@ -204,47 +209,49 @@ export const StyledMainFeed = styled.div`
 `;
 
 export const StyledLoggedInFeed = styled.div`
-  width: 35%;
-  margin-left: 2rem;
+  flex: 1;
   display: flex;
   flex-direction: column;
-
+  margin-top: 5.5rem;
   &.hide {
     display: none;
   }
 
   .reactions,
   .fav-author-feed {
-    border-radius: 5px;
-    background-color: #f7f9fb;
+    border-radius: 3px;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    padding: 2rem;
+    padding: 1.5rem;
     margin-bottom: 4rem;
+    margin-top: 2.0rem;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.10);
 
     h4 {
       color: #2fc2df;
       font-family: Lato;
       font-style: normal;
       font-weight: 500;
-      font-size: 24px;
+      font-size: 16px;
       text-align: center;
       margin-bottom: 1.5rem;
+      margin-top: 2.0rem;
       width: 60%;
     }
 
     .reaction-box,
     .fav-author-article {
-      background-color: white;
+      background-color: #f7f9fb;
       padding: 1.5rem;
       width: 90%;
-      margin-bottom: 1.5rem;
-      border-radius: 5px;
+      height: 70%;
+      margin-bottom: 1.4rem;
+      border-radius: 3px;
+      box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.15);
 
       &:hover {
-        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
         cursor: pointer;
       }
 
