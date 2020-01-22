@@ -29,6 +29,7 @@ export const StyledTrending = styled.div`
     display: flex;
     min-height: 55vh;
     .trending-content-jumbo {
+      height: 390px;
       width: 47%;
       border-radius: 3px;
       display: flex;
@@ -39,6 +40,7 @@ export const StyledTrending = styled.div`
         background: rgba(118, 116, 116, 0.62);
         color: white;
         padding: 1.6rem;
+        height: 30%;
         width: 100%;
         font-weight: 400;
         font-size: 20px;

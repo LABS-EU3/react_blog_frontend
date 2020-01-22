@@ -35,9 +35,13 @@ export function Feed(props) {
             <div className="trending-content">
               <div
                 className="trending-content-jumbo"
+                onClick={() =>
+                  props.history.push(`/article/${articles.data.trending[0].custom_id}`)
+                }
                 style={{
                   backgroundImage: `url(${articles.data.trending[0]
-                    .coverImageUrl || altimage})`
+                    .coverImageUrl || altimage})`,
+                  cursor: `pointer`
                 }}
               >
                 <Link to={`/article/${articles.data.trending[0].custom_id}`}>
@@ -50,10 +54,14 @@ export function Feed(props) {
                   return (
                       <div
                         key={trend.id}
+                        onClick={() =>
+                          props.history.push(`/article/${trend.custom_id}`)
+                        }
                         className="content-box"
                         style={{
                           backgroundImage: `url(${trend
-                            .coverImageUrl})`
+                            .coverImageUrl})`,
+                          cursor: `pointer`
                         }}
                       >
                         <Link to={`/article/${trend.custom_id}`}>
