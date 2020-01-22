@@ -110,7 +110,6 @@ class Editor extends Component {
     formData.append("tags", tags);
 
     this.publishPost(formData).then((res) => {
-      console.log(res);
       if (res) {
         this.props.history.push(`/article/${res.custom_id}`)
       }
