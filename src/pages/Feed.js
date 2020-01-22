@@ -132,6 +132,7 @@ export function Feed(props) {
                 {articles.data.reactions && (
                   <div className="reactions">
                     <h4>Reactions</h4>
+                    <div style={{padding: `1.5rem`}}>
                     {articles.data.reactions.map(reaction => {
                       return (
                         <div className="reaction-box" key={reaction.id}>
@@ -139,6 +140,7 @@ export function Feed(props) {
                         </div>
                       );
                     })}
+                    </div>
                   </div>
                 )}
 

@@ -224,7 +224,7 @@ export const StyledLoggedInFeed = styled.div`
     flex-direction: column;
     align-items: center;
     width: 100%;
-    padding: 1.5rem;
+    // padding: 1.5rem;
     margin-bottom: 4rem;
     margin-top: 2.0rem;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.10);
@@ -241,9 +241,10 @@ export const StyledLoggedInFeed = styled.div`
       width: 60%;
     }
 
+   
     .reaction-box,
     .fav-author-article {
-      background-color: #f7f9fb;
+      background-color: #fafbfd;
       padding: 1.5rem;
       width: 90%;
       height: 70%;
@@ -258,16 +259,15 @@ export const StyledLoggedInFeed = styled.div`
       h5 {
         font-family: Lato;
         font-style: normal;
-        font-weight: bold;
-        font-size: 20px;
+        font-weight: 400;
+        font-size: 15px;
       }
 
       h6 {
         font-family: Lato;
         font-style: italic;
         font-weight: normal;
-        font-size: 20px;
-        line-height: 31px;
+        font-size: 15px;
         color: #b7bbc0;
         margin: 1.5rem 0 0 0;
       }
@@ -275,7 +275,7 @@ export const StyledLoggedInFeed = styled.div`
         font-family: Lato;
         font-style: italic;
         font-weight: 500;
-        font-size: 14px;
+        font-size: 13px;
         color: #b7bbc0;
         margin-right: 10px;
       }
@@ -288,6 +288,11 @@ export const StyledLoggedInFeed = styled.div`
         .tags {
           display: flex;
           flex-wrap: wrap;
+
+          p {
+            font-size: 11px;
+            font-weight: bold;
+          }
         }
 
         .details {
@@ -297,6 +302,7 @@ export const StyledLoggedInFeed = styled.div`
             color: #2fc2df;
             margin-right: 5px;
             cursor: pointer;
+            font-weight: bold;
           }
         }
       }
