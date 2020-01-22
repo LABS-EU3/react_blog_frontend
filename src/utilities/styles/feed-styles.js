@@ -17,10 +17,10 @@ export const StyledTrending = styled.div`
     font-weight: 800;
     font-size: 16px;
     color: white;
-    background-color: #2fc2df;
+    background-color: #3652BF;
     border: none;
-    border-radius: 30px;
-    box-shadow: 0px 10px 10px rgba(47, 194, 223, 0.15);
+    border-radius: 3px;
+    // box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.1);
     padding: 1rem 2rem;
     margin-bottom: 2rem;
   }
@@ -34,6 +34,7 @@ export const StyledTrending = styled.div`
       display: flex;
       align-items: flex-end;
       background-size: cover;
+      box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.10);
       a {
         background: rgba(118, 116, 116, 0.62);
         color: white;
@@ -50,6 +51,7 @@ export const StyledTrending = styled.div`
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
+      
       .content-box {
         margin-left: 2rem;
         width: 47%;
@@ -59,6 +61,7 @@ export const StyledTrending = styled.div`
         display: flex;
         align-items: flex-end;
         border-radius: 3px;
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.10);
         
         a {
           background: rgba(118, 116, 116, 0.62);
@@ -94,14 +97,25 @@ export const StyledMainFeed = styled.div`
     .main-header {
       display: flex;
       margin-top: 1.5rem;
-      h4 {
+      button {
         font-family: Lato;
         font-style: normal;
-        font-weight: 600;
-        font-size: 16px;
-        line-height: 22px;
-        color: #333333;
-        margin-right: 1rem;
+        font-weight: 800;
+        font-size: 14px;
+        color: white;
+        background-color: #3652BF;
+        border: none;
+        border-radius: 3px;
+        // box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.1);
+        padding: 1rem 2rem;
+        margin-bottom: 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        img {
+          width: 25px;
+        }
       }
     }
     .main-content {
@@ -138,7 +152,6 @@ export const StyledMainFeed = styled.div`
           background: #f7f9fb;
           border-radius: 5px;
           width: 100%;
-          z-index: -1;
           padding: 2rem;
           padding-top: 3rem;
 
@@ -177,7 +190,7 @@ export const StyledMainFeed = styled.div`
                 margin: 0 0 0 0.8rem;
               }
               a {
-                color: #2fc2df;
+                color: #3652BF;
                 font-size: 13px;
                 font-weight: 500;
               }
@@ -213,6 +226,7 @@ export const StyledLoggedInFeed = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 5.5rem;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.10);
   &.hide {
     display: none;
   }
@@ -227,10 +241,10 @@ export const StyledLoggedInFeed = styled.div`
     // padding: 1.5rem;
     margin-bottom: 4rem;
     margin-top: 2.0rem;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.10);
+    
 
     h4 {
-      color: #2fc2df;
+      color: #3652BF;
       font-family: Lato;
       font-style: normal;
       font-weight: 500;
@@ -250,7 +264,7 @@ export const StyledLoggedInFeed = styled.div`
       height: 70%;
       margin-bottom: 1.4rem;
       border-radius: 3px;
-      box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.15);
+      box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.10);
 
       &:hover {
         cursor: pointer;
@@ -299,7 +313,7 @@ export const StyledLoggedInFeed = styled.div`
           display: flex;
 
           a {
-            color: #2fc2df;
+            color: #3652BF;
             margin-right: 5px;
             cursor: pointer;
             font-weight: bold;

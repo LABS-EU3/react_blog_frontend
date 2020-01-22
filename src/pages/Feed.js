@@ -77,11 +77,10 @@ export function Feed(props) {
             >
               <div className="main-header">
                 {articles.data.interests ? (
-                  <h4>INSIGHTS FROM YOUR INTERESTS</h4>
+                  <button>INSIGHTS FROM YOUR INTERESTS <img src={arrow} alt="Arrow icon" /></button>
                 ) : (
-                  <h4>EXPLORE INSIGHTS</h4>
+                  <button>EXPLORE INSIGHTS <img src={arrow} alt="Arrow icon" /></button>
                 )}
-                <img src={arrow} alt="Arrow icon" />
               </div>
               <div className="main-content">
                 {(articles.data.mainFeed || articles.data.interests) &&
