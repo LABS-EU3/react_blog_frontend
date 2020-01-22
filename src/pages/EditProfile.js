@@ -49,12 +49,12 @@ const StyledProfileInfo = styled.div`
       }
 
       &.dropzone {
-          &:hover {
-              cursor: pointer;
-              img {
-                  opacity: 0.3;
-              }
+        &:hover {
+          cursor: pointer;
+          img {
+            opacity: 0.3;
           }
+        }
       }
     }
   }
@@ -63,6 +63,16 @@ const StyledProfileInfo = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
+
+    .profileInfo {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      p {
+        font-size: 21px;
+      }
+    }
 
     .profileButtons {
       width: 100%;
@@ -93,21 +103,23 @@ export function EditProfile(props) {
   const { subject: userId } = decodeToken();
   const { user, loading, getUserProfile, updateUserProfile } = props;
   const [files, setFiles] = useState([]);
-  const [isEditing, setIsEditing] = useState(true);
+  const [isEditing, setIsEditing] = useState(false);
 
   const handleSave = () => {
     const data = new FormData();
     if (files.length) {
-      files.forEach(file => URL.revokeObjectURL(file.preview));
       data.append("image", files[0]);
     }
     data.append("fullname", fullname.current.value);
-    updateUserProfile(userId, data);
+    updateUserProfile(userId, data).then(() => toggleEditing());
   };
 
   const handleCancel = () => {
     fullname.current.value = user.fullname || null;
     bio.current.value = user.bio || null;
+  };
+  const toggleEditing = () => {
+    setIsEditing(!isEditing);
   };
 
   useEffect(() => {
@@ -148,89 +160,42 @@ export function EditProfile(props) {
             )}
           </div>
           <div className="profileDetails">
-            <input
-              type="text"
-              id="fullname"
-              name="fullname"
-              placeholder="Full Name"
-              ref={fullname}
-              defaultValue={user.fullname || null}
-            />
-            <textarea
-              type="text"
-              id="bio"
-              name="bio"
-              placeholder="Enter a short bio..."
-              ref={bio}
-              defaultValue={user.bio || null}
-            />
-            <div className="profileButtons">
-              <Button
-                label={!loading ? "Save" : "Loading"}
-                className="save"
-                handleClick={handleSave}
-              />
-              <Button
-                label="Cancel"
-                className="cancel"
-                handleClick={handleCancel}
-              />
+            <div className={!isEditing ? "profileInfo" : "profileInfo editing"}>
+              {!isEditing ? (
+                <>
+                  <h3>{user.fullname}</h3>
+                  <p>UI Designer at Fireart Studio</p>
+                </>
+              ) : (
+                <>
+                  <input
+                    type="text"
+                    id="fullname"
+                    name="fullname"
+                    placeholder="Full Name"
+                    ref={fullname}
+                    defaultValue={user.fullname || null}
+                  />
+                  <textarea
+                    type="text"
+                    id="bio"
+                    name="bio"
+                    placeholder="Enter a short bio..."
+                    ref={bio}
+                    defaultValue={user.bio || null}
+                  />
+                </>
+              )}
             </div>
-          </div>
-        </StyledProfileInfo>
-      )}
-      {user && (
-        <StyledProfileInterests>
-          <h3>Interests Section</h3>
-        </StyledProfileInterests>
-      )}
-      {/* {user && (
-           
-              <div className="profileImage">
-                <Dropzone
-                  onDrop={acceptedFiles => {
-                    setFiles(
-                      acceptedFiles.map(file =>
-                        Object.assign(file, {
-                          preview: URL.createObjectURL(file)
-                        })
-                      )
-                    );
-                  }}
-                >
-                  {({ getRootProps, getInputProps }) => (
-                    <section>
-                      <div {...getRootProps()}>
-                        <input {...getInputProps()} />
-                        <img
-                          src={
-                            !files.length ? user.avatarUrl : files[0].preview
-                          }
-                          alt="User profile"
-                        />
-                      </div>
-                    </section>
-                  )}
-                </Dropzone>
-              </div>
-              <div className="profileInfo">
-                <input
-                  type="text"
-                  id="fullname"
-                  name="fullname"
-                  placeholder="Full Name"
-                  ref={fullname}
-                  defaultValue={user.fullname || null}
+            <div className="profileButtons">
+              {!isEditing ? (
+                <Button
+                  label="Edit Profile"
+                  className="cancel"
+                  handleClick={toggleEditing}
                 />
-                <textarea
-                  type="text"
-                  id="bio"
-                  name="bio"
-                  placeholder="Enter a short bio..."
-                  ref={bio}
-                  defaultValue={user.bio || null}
-                />
-                <div className="profileButtons">
+              ) : (
+                <>
                   <Button
                     label={!loading ? "Save" : "Loading"}
                     className="save"
@@ -241,10 +206,17 @@ export function EditProfile(props) {
                     className="cancel"
                     handleClick={handleCancel}
                   />
-                </div>
-              </div>
-            
-          )} */}
+                </>
+              )}
+            </div>
+          </div>
+        </StyledProfileInfo>
+      )}
+      {user && (
+        <StyledProfileInterests>
+          <h3>Interests Section</h3>
+        </StyledProfileInterests>
+      )}
     </StyledProfile>
   );
 }
