@@ -12,7 +12,6 @@ import {
 } from "../utilities/styles/feed-styles";
 import { getArticleFeed } from "../redux-store/actions/get-article-actions";
 import { getToken } from "../utilities/authentication";
-import altimage from "../assets/images/altimage.png";
 import { Link } from "react-router-dom";
 
 export function Feed(props) {
@@ -40,7 +39,7 @@ export function Feed(props) {
                 }
                 style={{
                   backgroundImage: `url(${articles.data.trending[0]
-                    .coverImageUrl || altimage})`,
+                    .coverImageUrl})`,
                   cursor: `pointer`
                 }}
               >
