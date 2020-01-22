@@ -30,6 +30,7 @@ export const getSingleArticle = (id) => async dispatch => {
     const response = await axiosWithAuth()
       .get(`${apiURL}/articles/${id}`);
     dispatch({ type: GET_SINGLE_SUCCESS, payload: response.data.response });
+    console.log(response)
   }
   catch (err) {
     console.log(err);

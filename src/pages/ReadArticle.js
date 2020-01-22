@@ -1,11 +1,11 @@
 import React, {useEffect} from "react";
 import {connect} from 'react-redux'
-import { Nav, Wrapper, Details, StyledDetailsLeft, StyledDetailsRight, Body } from '../utilities/styles/read-styles';
+import { Wrapper, Details, StyledDetailsLeft, StyledDetailsRight, Body } from '../utilities/styles/read-styles';
 import Renderer from "../utilities/renderer";
 import readTime from "../utilities/readTime";
 import NavBar from "../components/Navigation/Authed";
 import BackArrow from "../assets/images/arrow.svg";
-import like from "../assets/images/like.svg";
+import like from "../assets/images/like-icon.svg";
 
 import { getSingleArticle } from '../redux-store/actions/get-article-actions'
 import { Link } from "react-router-dom";
@@ -25,9 +25,7 @@ const ReadArticle = (props) => {
   const content = JSON.parse(articleBody);
   return (
     <>
-      <Nav className="navbar">
-        <NavBar />
-      </Nav>
+      <NavBar />
       <Wrapper>
         <Details>
           <StyledDetailsLeft>
@@ -36,7 +34,7 @@ const ReadArticle = (props) => {
             </div>
             <div className="tags">
               {singleArticle.tags
-                ? singleArticle.tags.map((tag, index) => <p key={index}>#{tag}</p>)
+                ? singleArticle.tags.map((tag, index) => <p key={tag.id}>#{tag.name}</p>)
                 : ""}
             </div>
             <h2 className="title">{singleArticle.title}</h2>
@@ -49,8 +47,6 @@ const ReadArticle = (props) => {
                 )} min read`}</p>
               )}
               </div>
-            
-            
           </StyledDetailsLeft>
           <StyledDetailsRight>
             <img src={singleArticle.coverImageUrl} alt="IoT" />
@@ -59,6 +55,7 @@ const ReadArticle = (props) => {
           <Body>{Renderer(content)}</Body>
         <div className="like">
           <img src={like} alt="like icon" />
+          <p>22</p>
         </div>
       </Wrapper>
     </>
