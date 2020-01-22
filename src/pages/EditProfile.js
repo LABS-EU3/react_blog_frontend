@@ -106,12 +106,17 @@ export function EditProfile(props) {
   const [isEditing, setIsEditing] = useState(false);
 
   const handleSave = () => {
-    const data = new FormData();
-    if (files.length) {
-      data.append("image", files[0]);
+    if (files.length || user.fullname !== fullname.current.value) {
+      const data = new FormData();
+      if (files.length) {
+        data.append("image", files[0]);
+      }
+      if (user.fullname !== fullname.current.value) {
+        data.append("fullname", fullname.current.value);
+      }
+      updateUserProfile(userId, data).then(() => toggleEditing());
     }
-    data.append("fullname", fullname.current.value);
-    updateUserProfile(userId, data).then(() => toggleEditing());
+    toggleEditing();
   };
 
   const handleCancel = () => {
