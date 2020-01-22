@@ -44,9 +44,7 @@ const StyledToolTip = styled.div`
 export const ToolTip = props => {
   return (
     <StyledToolTip style={props.toolTipLocStyle}>
-      <button className="button-tooltip" onClick={() => props.onHighLight()}>
-        Sleep
-      </button>
+      <button className="tool-tip-item">Bleh</button>
     </StyledToolTip>
   );
 };
