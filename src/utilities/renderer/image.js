@@ -4,8 +4,6 @@ import ReactHtmlParser from "react-html-parser";
 const ImageOutput = (data, index) => {
   if (!data || !data.file || !data.file.url) return "";
 
-  console.log(data);
-
   const captionStyle = {
     margin: "0 auto",
     fontStyle: "italic"
