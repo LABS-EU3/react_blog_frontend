@@ -14,7 +14,7 @@ export default function RecentActivity() {
                         <img alt="avatar" src={TinyAvatar}/>
                     </div>
                     <div className="activity-wrapper">
-                        <p><strong>Damilolawumi</strong> <span>started following you</span></p>
+                        <p><b>Damilolawumi</b> <span>started following you</span></p>
                         <p>Date here</p>
                     </div>
                 </div>

@@ -15,14 +15,30 @@ display: flex;
 const Div = styled.div`
 background-color:white;
 width:25%;
-height:100vh;
+height:800px;
 text-align: center;
+img{
+    width:50%;
+border-radius: 50%;
+}
+h3{
+    font-size: 25px;
+    margin-top: 34px;
+}
+p{
+    font-size:15px;
+    margin-top: 34px;
+    margin-bottom: 40px;
+}
 `;
 
-const Img = styled.img`
-width:50%;
-border-radius: 50%;
-`;
+const Anchor = styled.a`
+margin: 40px;
+font-size: 20px;
+padding: 20px;
+   
+  ` ;
+
 
 const SecondDiv = styled.div`
 width:70%;
@@ -39,6 +55,7 @@ a{
     }
     height: 35px;
     padding-top: 8px;
+    cursor: pointer;
 }
 
 h4{
@@ -70,22 +87,70 @@ background-color: white;
 
 img{
     width: 240px;
-    margin: 30px;}
-    `;
+    margin: 30px;
+}`;
 
 const P = styled.p`
     font-size: 15px;    
     padding-bottom: 15px;
 `;
 
+const FourthDiv = styled.div`
+color: #828282;
+box-shadow: 0px 0px 0px 0px #aaa;
+margin-left: 40px;
+margin-top: 40px;
+background-color: white;
+img{
+    width: 450px;
+    margin: 30px;
+}
+p{
+    font-size: 16px;
+    color: #090909;
+    font-weight: bold;
+}
+`;
+
+const FifthDiv = styled.div`
+display: flex;
+align-items: center;
+box-shadow: 0px 0px 0px 0px #aaa;
+margin-left: 40px;
+background-color: white;
+margin-top: 40px;
+height: 65px;
+width: 400px;
+img{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    margin: 30px;
+}
+
+p{
+    font-size: 17px;
+    color:#828282;
+    strong{
+        color:#5D6489;
+    }
+   }
+   
+`;
+
+
 function ProfileCard() {
 
     return (
         <Section>
             <Div>
-                <Img src={johnson} alt="The user avatar goes here" />
+                <img src={johnson} alt="The user avatar goes here" />
                 <h3> John Doe</h3>
-                <p>and also here some info goes</p>
+                <p> I am a Software developer, I love writing, reading and making an impact in my community</p>
+
+                <Anchor>Followers</Anchor>
+                <Anchor>Following</Anchor>
+
             </Div>
 
             <SecondDiv>
@@ -115,6 +180,20 @@ function ProfileCard() {
                         <img src={fitness} alt="#" />
                         <P>Fitness</P>
                     </ThirdDiv>
+
+                </section>
+
+                <section className="second-section">
+
+                    <FourthDiv>
+                        <img src={yoga} alt="#" />
+                    </FourthDiv>
+
+                    <FifthDiv>
+                        <img src={johnson} alt="#" />
+                        {/* <p>Recent Activity</p> */}
+                        <p><strong>Damilolawumi</strong> <span>started following you</span></p>
+                    </FifthDiv>
 
                 </section>
 
