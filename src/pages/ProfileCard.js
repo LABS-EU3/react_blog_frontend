@@ -33,12 +33,11 @@ p{
 `;
 
 const Anchor = styled.a`
-margin: 40px;
+margin: 30px;
 font-size: 20px;
 padding: 20px;
    
   ` ;
-
 
 const SecondDiv = styled.div`
 width:70%;
