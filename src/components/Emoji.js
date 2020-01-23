@@ -18,3 +18,14 @@ export const Emoji = ({ emoji, handleEmoji, string }) => {
     </span>
   );
 };
+
+export default ({ handleEmoji, string }) => {
+  return (
+    <div>
+      {emojis.map(emoji => (
+        <Emoji emoji={emoji} handleEmoji={handleEmoji} string={string} />
+      ))}
+      ;
+    </div>
+  );
+};
