@@ -6,6 +6,7 @@ import { decodeToken } from "../utilities/checkToken";
 import {
   getUserProfile,
   updateUserProfile,
+  updateUserInterests,
   getTags
 } from "../redux-store/actions/user-profile-actions";
 import Dropzone from "react-dropzone";
@@ -193,12 +194,15 @@ export function EditProfile(props) {
     loading,
     getUserProfile,
     updateUserProfile,
+    updateUserInterests,
     getTags,
-    tags
+    tags,
+    interests
   } = props;
   const [files, setFiles] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
-  const [interestsToUpdate, setInterestsToUpdate] = useState([]);
+  const [addInterests, setAddInterests] = useState([]);
+  const [removeInterests, setRemoveInterests] = useState([]);
 
   const handleSave = () => {
     if (files.length || user.fullname !== fullname.current.value) {
@@ -219,13 +223,42 @@ export function EditProfile(props) {
   };
 
   const handleInterestClick = e => {
-    setInterestsToUpdate(
-      interestsToUpdate.concat({
-        name: e.target.id,
-        action: e.target.textContent === "-" ? "remove" : "add"
-      })
-    );
+    console.log(e.target.textContent === "-");
+    if (e.target.textContent === "-") {
+      setRemoveInterests(removeInterests.concat(e.target.id));
+    } else {
+      setAddInterests(addInterests.concat(e.target.id));
+    }
+    console.log(e.target.id, e.target.textContent, removeInterests);
     e.target.classList.add("clicked");
+    e.target.setAttribute("disabled", "");
+  };
+
+  const handleInterestCancel = () => {
+    setAddInterests([]);
+    setRemoveInterests([]);
+    document.querySelectorAll(".clicked").forEach(button => {
+      button.removeAttribute("disabled");
+      button.classList.remove("clicked");
+    });
+  };
+
+  const handleInterestSave = e => {
+    let data = {};
+    if (addInterests.length) {
+      data.add = addInterests;
+      setAddInterests([]);
+    }
+    if (removeInterests.length) {
+      console.log(removeInterests);
+      data.remove = removeInterests;
+      setRemoveInterests([]);
+    }
+    updateUserInterests(data);
+    document.querySelectorAll(".clicked").forEach(button => {
+      button.removeAttribute("disabled");
+      button.classList.remove("clicked");
+    });
   };
 
   useEffect(() => {
@@ -294,7 +327,11 @@ export function EditProfile(props) {
                 </>
               )}
             </div>
-            <div className={!isEditing ? "profileButtons" : "profileButtons editing"}>
+            <div
+              className={
+                !isEditing ? "profileButtons" : "profileButtons editing"
+              }
+            >
               {!isEditing ? (
                 <Button
                   label="Edit Profile"
@@ -331,12 +368,12 @@ export function EditProfile(props) {
           </div>
         </StyledProfileFollowCount>
       )}
-      {user && (
+      {interests && (
         <StyledProfileInterests>
           <h1>Interests</h1>
-          {user.interests &&
+          {interests &&
             tags.map(tag => {
-              let interested = user.interests.find(interest => {
+              let interested = interests.find(interest => {
                 return interest.name === tag.name;
               });
 
@@ -355,12 +392,12 @@ export function EditProfile(props) {
             <Button
               label={!loading ? "Save" : "Loading"}
               className="save"
-              handleClick={handleSave}
+              handleClick={handleInterestSave}
             />
             <Button
               label="Cancel"
               className="cancel"
-              handleClick={toggleEditing}
+              handleClick={handleInterestCancel}
             />
           </div>
         </StyledProfileInterests>
@@ -373,12 +410,14 @@ const mapStateToProps = state => {
   return {
     user: state.userProfile.data,
     loading: state.userProfile.loading,
-    tags: state.userProfile.tags
+    tags: state.userProfile.tags,
+    interests: state.userProfile.interests
   };
 };
 
 export default connect(mapStateToProps, {
   getUserProfile,
   updateUserProfile,
+  updateUserInterests,
   getTags
 })(EditProfile);
