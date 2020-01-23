@@ -15,6 +15,8 @@ import {
   LOAD_TAGS
 } from "./types";
 
+import { axiosWithAuth } from "../../utilities/axios/index";
+
 export const handlePublishModal = () => dispatch => {
   dispatch({
     type: TOGGLE_MODAL
@@ -22,17 +24,17 @@ export const handlePublishModal = () => dispatch => {
 };
 
 export const publishPost = post => async dispatch => {
-  console.log("dddd", post);
   dispatch({
     type: PUBLISHING_START
   });
   try {
     
-    let res = await axios.post(`${apiURL}/articles/publish`, post);
+    let res = await axiosWithAuth().post(`${apiURL}/articles/publish`, post);
     if (res)
       dispatch({
         type: PUBLISHING_SUCCESS
       });
+    return res.data;
   } catch (error) {
     console.log(error);
     dispatch({ type: PUBLISHING_FAIL });
@@ -44,7 +46,7 @@ export const savePost = post => async dispatch => {
     type: SAVING_START
   });
   try {
-    let res = await axios.post(`${apiURL}/articles/save`, post);
+    let res = await axiosWithAuth().post(`${apiURL}/articles/save`, post);
     if (res)
       dispatch({
         type: SAVING_SUCCESS

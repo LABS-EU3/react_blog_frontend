@@ -206,3 +206,6 @@ body {
   display:flex;
   flex-wrap: wrap;
 }
+.App {
+  background-color: #F1F6FD;
+}

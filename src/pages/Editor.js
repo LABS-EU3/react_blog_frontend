@@ -110,7 +110,11 @@ class Editor extends Component {
     formData.append("isEditing", false);
     formData.append("tags", tags);
 
-    this.publishPost(formData);
+    this.publishPost(formData).then((res) => {
+      if (res) {
+        this.props.history.push(`/article/${res.custom_id}`)
+      }
+    });
   }
 
   async handleSave() {

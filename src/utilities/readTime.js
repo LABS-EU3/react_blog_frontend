@@ -6,7 +6,6 @@ export default function calculateReadTime(data) {
   let count = string.split(" ").filter(function(str) {
     return str !== "";
   }).length;
-  console.log(count);
   let time = Math.ceil(count / 265);
   return time;
 }
