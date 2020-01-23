@@ -11,8 +11,8 @@ export default function Button(props) {
 
 const ButtonD = styled.button`
   width: 90px;
-  background: #6f85fd;
-  box-shadow: 0px 10px 20px rgba(111, 133, 253, 0.15);
+  background: #3652BF;
+  box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.1);
   border-radius: 3px;
   padding: 0.7rem;
   color: #ffffff;

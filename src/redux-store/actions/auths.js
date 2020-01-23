@@ -1,6 +1,7 @@
 import * as types from "./actionTypes";
 import axios from "axios";
 import { apiURL } from '../../utilities/urls';
+import { axiosWithAuth } from "../../utilities/axios/index";
 
 export const register = user => dispatch => {
   dispatch({ type: types.REGISTER_REQUEST });
@@ -38,5 +39,19 @@ export const verify = (token, id) => dispatch => {
     .catch(err => {
       console.log(err);
       dispatch({ type: types.VERIFICATION_FAILURE });
+    });
+}
+
+export const declareInterest = (interests) => dispatch => {
+  dispatch({ type: types.INTEREST_START })
+  return axiosWithAuth()
+    .post(`${apiURL}/interests`, interests)
+    .then(res => {
+      console.log(res)
+      dispatch({ type: types.INTEREST_SUCCESS })
+    })
+    .catch(err => {
+      console.log(err);
+      dispatch({ type: types.INTEREST_FAILURE });
     });
 }

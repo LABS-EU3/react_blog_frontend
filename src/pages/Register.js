@@ -1,9 +1,9 @@
 import React, { useRef, useState } from "react";
 import { connect } from "react-redux";
 import DefaultNavigation from "../components/Navigation/Default";
-import Modal from "../components/Modal";
+import Modal from "../components/Others/Modal";
 import RegistrationSuccess from "./RegistrationSuccess";
-import Button from "../components/Button";
+import Button from "../components/Buttons/Button";
 import SecondaryFooter from '../components/Footer/SecondaryFooter';
 
 import {
@@ -12,8 +12,9 @@ import {
 } from "../utilities/styles/RegisterStyles";
 import { register } from "../redux-store/actions/auths";
 import registration_jumbo from "../assets/images/boy.svg";
+import { Redirect } from "react-router-dom";
 
-function Register({ register, loading, success, location }) {
+function Register({ register, loading, success, location, history }) {
   const fullname = useRef("");
   const email = useRef("");
   const password = useRef("");
@@ -40,7 +41,7 @@ function Register({ register, loading, success, location }) {
 
   const validate = () => {
     let isError = false;
-    var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    var emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     if (fullname.current.value === "") {
       setFullNameError("Username cannot be empty!");
@@ -65,9 +66,10 @@ function Register({ register, loading, success, location }) {
       <DefaultNavigation location={location} />
       <StyledContainer>
         {success && (
-          <Modal height="425px" width="420px">
-            <RegistrationSuccess />
-          </Modal>
+          // <Modal height="425px" width="420px">
+          //   <RegistrationSuccess />
+          // </Modal>
+          history.push('/final')
         )}
         <img
           src={registration_jumbo}

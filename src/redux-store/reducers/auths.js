@@ -8,11 +8,28 @@ const initialState = {
   login_error: false,
   login_success: false,
   verification_error: false,
-  verification_success: false
+  verification_success: false,
+  interest_success: false
 };
 
 export const authReducer = (state = initialState, action) => {
   switch (action.type) {
+    case types.INTEREST_START:
+      return {
+        ...state,
+        loading: true
+      };
+    case types.INTEREST_SUCCESS:
+      return {
+        ...state,
+        interest_success: true,
+        loading: false,
+      };
+    case types.INTEREST_FAILURE:
+      return {
+        ...state,
+        loading: false,
+      };
     case types.VERIFICATION_START:
       return {
         ...state,

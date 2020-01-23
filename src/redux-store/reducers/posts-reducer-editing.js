@@ -34,7 +34,7 @@ export const newPostReducer = (state = initialState, action) => {
     case PUBLISHING_SUCCESS:
       return {
         ...state,
-        isPublishing: true
+        isPublishing: false
       };
 
     case PUBLISHING_FAIL:
@@ -52,7 +52,7 @@ export const newPostReducer = (state = initialState, action) => {
     case SAVING_SUCCESS:
       return {
         ...state,
-        isSaving: true
+        isSaving: false
       };
 
     case SAVING_FAIL:
