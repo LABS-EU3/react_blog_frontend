@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 
 const emojis = [
   { name: "laugh", visual: "😂" },
@@ -6,6 +7,11 @@ const emojis = [
   { name: "cool", visual: "😎" },
   { name: "sob", visual: "😭" }
 ];
+
+const StyledEmojiWrapper = styled.div`
+  display: "flex";
+  justify-content: space-between;
+`;
 
 const Emoji = ({ emoji, handleEmoji, string }) => {
   return (
@@ -21,11 +27,11 @@ const Emoji = ({ emoji, handleEmoji, string }) => {
 
 export default ({ handleEmoji, string }) => {
   return (
-    <div>
+    <StyledEmojiWrapper>
       {emojis.map(emoji => (
         <Emoji emoji={emoji} handleEmoji={handleEmoji} string={string} />
       ))}
       ;
-    </div>
+    </StyledEmojiWrapper>
   );
 };

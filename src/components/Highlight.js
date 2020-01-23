@@ -1,4 +1,4 @@
-import React, { useState, createRef } from "react";
+import React, { useState } from "react";
 import ToolTip from "./Tooltip";
 import { positionToolTip } from "../utilities/highlightHelpers";
 
@@ -35,7 +35,7 @@ function Highlighter(props) {
       <ToolTip toolTipLocStyle={toolTip} setToolTip={setToolTip} />
       <div
         onMouseUp={e => handleMouseUp(e)}
-        onMouseDown={e => handleMouseDown()}
+        onMouseDown={() => handleMouseDown()}
         className="h-popable"
       >
         {props.children}
