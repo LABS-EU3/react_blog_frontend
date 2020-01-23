@@ -12,8 +12,9 @@ import {
 } from "../utilities/styles/RegisterStyles";
 import { register } from "../redux-store/actions/auths";
 import registration_jumbo from "../assets/images/boy.svg";
+import { Redirect } from "react-router-dom";
 
-function Register({ register, loading, success, location }) {
+function Register({ register, loading, success, location, history }) {
   const fullname = useRef("");
   const email = useRef("");
   const password = useRef("");
@@ -65,9 +66,10 @@ function Register({ register, loading, success, location }) {
       <DefaultNavigation location={location} />
       <StyledContainer>
         {success && (
-          <Modal height="425px" width="420px">
-            <RegistrationSuccess />
-          </Modal>
+          // <Modal height="425px" width="420px">
+          //   <RegistrationSuccess />
+          // </Modal>
+          history.push('/final')
         )}
         <img
           src={registration_jumbo}
