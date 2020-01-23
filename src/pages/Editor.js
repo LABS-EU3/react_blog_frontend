@@ -20,10 +20,11 @@ import uuid from "uuid";
 
 const StyledTitleInput = styled.div`
   margin: 0 auto;
+  margin: 0 auto;
 `;
 
 const StyledEditor = styled.div`
-  font-family: "HKGrotesk-Regular";
+  font-family: "HKGrotesk-Regular" !important;
   h1 {
     font-size: 3.2rem;
   }
