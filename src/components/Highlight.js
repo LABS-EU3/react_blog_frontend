@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, createRef } from "react";
 import ToolTip from "./Tooltip";
 import { positionToolTip } from "../utilities/highlightHelpers";
 
@@ -8,13 +8,17 @@ function Highlighter(props) {
   console.log(lastSelection);
 
   const handleMouseUp = e => {
-    showToolTip();
     const selection = window.getSelection();
+    // const selectionRange = selection.getRangeAt(0);
+    // const startNode = selectionRange.startContainer.parentNode;
+    // const endNode = selectionRange.endContainer.parentNode;
+
+    showToolTip();
     const selectedText = selection.toString().trim();
     console.log(selectedText);
   };
 
-  const handleMouseDown = e => {
+  const handleMouseDown = () => {
     setToolTip({ display: "none" });
   };
 
@@ -23,6 +27,7 @@ function Highlighter(props) {
       setLastSelection(document.getSelection().getRangeAt(0));
       setToolTip(positionToolTip(document.getSelection()));
     }
+    else return;
   };
 
   return (
@@ -30,7 +35,8 @@ function Highlighter(props) {
       <ToolTip toolTipLocStyle={toolTip} setToolTip={setToolTip} />
       <div
         onMouseUp={e => handleMouseUp(e)}
-        onMouseDown={e => handleMouseDown(e)}
+        onMouseDown={e => handleMouseDown()}
+        className="h-popable"
       >
         {props.children}
       </div>
