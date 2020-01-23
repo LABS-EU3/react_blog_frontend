@@ -5,7 +5,8 @@ import Button from "../components/Button";
 import { decodeToken } from "../utilities/checkToken";
 import {
   getUserProfile,
-  updateUserProfile
+  updateUserProfile,
+  getTags
 } from "../redux-store/actions/user-profile-actions";
 import Dropzone from "react-dropzone";
 
@@ -17,13 +18,80 @@ const StyledProfile = styled.div`
   font-family: Lato;
 `;
 
+const StyledProfileFollowCount = styled.div`
+  width: 100%;
+  display: flex;
+  border-bottom: 1px solid #dfdfdf;
+  .box {
+    padding: 3rem;
+    width: 50%;
+    text-align: center;
+    height: 100%;
+    &.border-right {
+      border-right: 1px solid #dfdfdf;
+    }
+  }
+`;
+
 const StyledProfileInterests = styled.div`
   width: 100%;
   padding: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid #dfdfdf;
+  h1 {
+    font-size: 4rem;
+  }
+  .interest-row {
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+    p {
+      font-size: 30px;
+    }
+    button {
+      border-radius: 20px;
+      width: 30px;
+      height: 30px;
+      text-align: center;
+      padding: 0;
+      margin-left: 2rem;
+      font-size: 18px;
+      color: #22387d;
+      &:hover {
+        cursor: pointer;
+        background: #ededed;
+        box-shadow: 0px 8px 8px rgba(111, 133, 253, 0.15);
+      }
+      &.clicked {
+        border: 2px solid #6f85fd;
+      }
+    }
+  }
+  .updateInterestsBtns {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4rem;
+    button {
+      width: 50%;
+      height: 5vh;
+      &.save {
+        margin-right: 2rem;
+      }
+      &.cancel {
+        background: white;
+        color: #22387d;
+        border: 1px solid #22387d;
+        &:hover {
+          background: #ededed;
+        }
+      }
+    }
+  }
 `;
 
 const StyledProfileInfo = styled.div`
@@ -32,7 +100,7 @@ const StyledProfileInfo = styled.div`
   padding: 4rem;
   flex-direction: column;
   align-items: center;
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid #dfdfdf;
 
   .profileImage {
     width: 50%;
@@ -45,7 +113,7 @@ const StyledProfileInfo = styled.div`
         border-radius: 50%;
         width: 35vw;
         height: 35vw;
-        border: 1px solid grey;
+        border: 1px solid #dfdfdf;
       }
 
       &.dropzone {
@@ -65,13 +133,11 @@ const StyledProfileInfo = styled.div`
     flex-direction: column;
     align-items: center;
     .profileInfo {
-      width: 80%;
+      width: 100%;
       display: flex;
       flex-direction: column;
+      text-align: center;
       align-items: center;
-      h3 {
-        text-align: center;
-      }
       p {
         font-size: 21px;
       }
@@ -92,12 +158,16 @@ const StyledProfileInfo = styled.div`
     }
 
     .profileButtons {
-      width: 100%;
+      width: 80%;
       display: flex;
-      justify-content: center;
       margin-top: 1.5rem;
+      justify-content: center;
+
+      &.editing {
+        justify-content: space-between;
+      }
       button {
-        width: 30%;
+        width: 50%;
         &.save {
           margin-right: 2rem;
         }
@@ -118,9 +188,17 @@ export function EditProfile(props) {
   const fullname = useRef();
   const bio = useRef();
   const { subject: userId } = decodeToken();
-  const { user, loading, getUserProfile, updateUserProfile } = props;
+  const {
+    user,
+    loading,
+    getUserProfile,
+    updateUserProfile,
+    getTags,
+    tags
+  } = props;
   const [files, setFiles] = useState([]);
-  const [isEditing, setIsEditing] = useState(true);
+  const [isEditing, setIsEditing] = useState(false);
+  const [interestsToUpdate, setInterestsToUpdate] = useState([]);
 
   const handleSave = () => {
     if (files.length || user.fullname !== fullname.current.value) {
@@ -131,7 +209,7 @@ export function EditProfile(props) {
       if (user.fullname !== fullname.current.value) {
         data.append("fullname", fullname.current.value);
       }
-      updateUserProfile(userId, data).then(() => toggleEditing());
+      updateUserProfile(userId, data).then(() => !loading && toggleEditing());
     }
     toggleEditing();
   };
@@ -140,8 +218,19 @@ export function EditProfile(props) {
     setIsEditing(!isEditing);
   };
 
+  const handleInterestClick = e => {
+    setInterestsToUpdate(
+      interestsToUpdate.concat({
+        name: e.target.id,
+        action: e.target.textContent === "-" ? "remove" : "add"
+      })
+    );
+    e.target.classList.add("clicked");
+  };
+
   useEffect(() => {
     getUserProfile(userId);
+    getTags();
   }, []);
 
   return (
@@ -200,12 +289,12 @@ export function EditProfile(props) {
                     name="bio"
                     placeholder="Enter a short bio..."
                     ref={bio}
-                    defaultValue={user.bio || null}
+                    defaultValue={user.bio || "UI Designer at Fireart Studio"}
                   />
                 </>
               )}
             </div>
-            <div className="profileButtons">
+            <div className={!isEditing ? "profileButtons" : "profileButtons editing"}>
               {!isEditing ? (
                 <Button
                   label="Edit Profile"
@@ -231,8 +320,49 @@ export function EditProfile(props) {
         </StyledProfileInfo>
       )}
       {user && (
+        <StyledProfileFollowCount>
+          <div className="box border-right">
+            <p>Following</p>
+            <h3>{user.following}</h3>
+          </div>
+          <div className="box">
+            <p>Followers</p>
+            <h3>{user.followers}</h3>
+          </div>
+        </StyledProfileFollowCount>
+      )}
+      {user && (
         <StyledProfileInterests>
-          <h3>Interests Section</h3>
+          <h1>Interests</h1>
+          {user.interests &&
+            tags.map(tag => {
+              let interested = user.interests.find(interest => {
+                return interest.name === tag.name;
+              });
+
+              return (
+                <div key={tag.id} className="interest-row">
+                  <p className={interested ? "interested" : "uninterested"}>
+                    {tag.name}
+                  </p>
+                  <button onClick={handleInterestClick} id={tag.name}>
+                    {interested ? "-" : "+"}
+                  </button>
+                </div>
+              );
+            })}
+          <div className="updateInterestsBtns">
+            <Button
+              label={!loading ? "Save" : "Loading"}
+              className="save"
+              handleClick={handleSave}
+            />
+            <Button
+              label="Cancel"
+              className="cancel"
+              handleClick={toggleEditing}
+            />
+          </div>
         </StyledProfileInterests>
       )}
     </StyledProfile>
@@ -242,10 +372,13 @@ export function EditProfile(props) {
 const mapStateToProps = state => {
   return {
     user: state.userProfile.data,
-    loading: state.userProfile.loading
+    loading: state.userProfile.loading,
+    tags: state.userProfile.tags
   };
 };
 
-export default connect(mapStateToProps, { getUserProfile, updateUserProfile })(
-  EditProfile
-);
+export default connect(mapStateToProps, {
+  getUserProfile,
+  updateUserProfile,
+  getTags
+})(EditProfile);
