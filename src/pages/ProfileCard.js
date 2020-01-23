@@ -161,13 +161,14 @@ function ProfileCard() {
 
                 </MiniDiv>
 
-                <h4> Articles you might be interested in </h4>
+                <h4> Your Insights </h4>
 
                 <section className="new-section">
 
                     <ThirdDiv>
                         <img src={words} alt="#" />
                         <P>Advise</P>
+                        <button>Delete</button>
                     </ThirdDiv>
 
                     <ThirdDiv>
