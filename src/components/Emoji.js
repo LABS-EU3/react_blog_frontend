@@ -1,13 +1,13 @@
 import React from "react";
 
-export const emojis = [
+const emojis = [
   { name: "laugh", visual: "😂" },
   { name: "love", visual: "❤️" },
   { name: "cool", visual: "😎" },
   { name: "sob", visual: "😭" }
 ];
 
-export const Emoji = ({ emoji, handleEmoji, string }) => {
+const Emoji = ({ emoji, handleEmoji, string }) => {
   return (
     <span
       role="img"
