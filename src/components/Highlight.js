@@ -5,6 +5,7 @@ import { positionToolTip } from "../utilities/highlightHelpers";
 function Highlighter(props) {
   const [lastSelection, setLastSelection] = useState({});
   const [toolTip, setToolTip] = useState({ opacity: 0 });
+  const [selectedText, setSelectedText] = useState("");
   console.log(lastSelection);
 
   const handleMouseUp = e => {
@@ -14,7 +15,8 @@ function Highlighter(props) {
     // const endNode = selectionRange.endContainer.parentNode;
 
     showToolTip();
-    const selectedText = selection.toString().trim();
+    const string = selection.toString().trim();
+    setSelectedText(string)
     console.log(selectedText);
   };
 
@@ -26,13 +28,17 @@ function Highlighter(props) {
     if (document.getSelection() && document.getSelection().toString() !== "") {
       setLastSelection(document.getSelection().getRangeAt(0));
       setToolTip(positionToolTip(document.getSelection()));
-    }
-    else return;
+    } else return;
   };
 
   return (
     <div toolTipLocStyle={toolTip}>
-      <ToolTip toolTipLocStyle={toolTip} setToolTip={setToolTip} />
+      <ToolTip
+        toolTipLocStyle={toolTip}
+        setToolTip={setToolTip}
+        article={props.article}
+        string={selectedText}
+      />
       <div
         onMouseUp={e => handleMouseUp(e)}
         onMouseDown={() => handleMouseDown()}

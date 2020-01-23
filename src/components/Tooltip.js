@@ -1,11 +1,11 @@
 import React from "react";
-import Emojis from './Emoji'
+import Emojis from "./Emoji";
 import "../utilities/styles/tooltip.css";
 
-export default props => {
+export default ({ article, string, toolTipLocStyle }) => {
   return (
-    <div style={props.toolTipLocStyle} className="tooltip">
-     <Emojis/>
+    <div style={toolTipLocStyle} className="tooltip">
+      <Emojis article={article} string={string} />
     </div>
   );
 };

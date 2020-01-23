@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { decodeToken } from "../utilities/checkToken";
 
 const emojis = [
   { name: "laugh", visual: "😂" },
@@ -23,7 +24,21 @@ const StyledEmoji = styled.span`
   }
 `;
 
-const Emoji = ({ emoji, handleEmoji, string }) => {
+const Emoji = ({ article, emoji, string }) => {
+  const { subject: reactorId } = decodeToken();
+
+  const handleEmoji = (name, string) => {
+    const reaction = {
+      authorId: article.authorId,
+      reactorId,
+      name,
+      string,
+      articleId: article.authorId
+    };
+
+    console.log(reaction);
+  };
+
   return (
     <StyledEmoji
       role="img"
@@ -35,12 +50,24 @@ const Emoji = ({ emoji, handleEmoji, string }) => {
   );
 };
 
-export default ({ handleEmoji, string }) => {
+export default ({ article, string }) => {
+  console.log(string, "here");
   return (
     <StyledEmojiWrapper>
       {emojis.map(emoji => (
-        <Emoji emoji={emoji} handleEmoji={handleEmoji} string={string} />
+        <Emoji
+          emoji={emoji}
+          string={string}
+          key={emoji.name}
+          article={article}
+        />
       ))}
     </StyledEmojiWrapper>
   );
+};
+
+const mapStateToProps = store => {
+  return {
+    singleArticle: store.articles.singleArticle
+  };
 };
