@@ -129,7 +129,7 @@ const ReadArticle = () => {
             </div>
             <h2 className="title">{data.title}</h2>
             <div className="bottom">
-              <p className="author" style={{fontSize: "55px"}}>{data.authorName}</p>
+              <p className="author">{data.authorName}</p>
               <p className="readTimeLength">{`${readTime(
                 data.body
               )} min read`}</p>
