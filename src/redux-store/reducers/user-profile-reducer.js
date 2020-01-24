@@ -17,8 +17,7 @@ import {
 export const initState = {
   loading: false,
   data: [],
-  tags: [],
-  interests: []
+  tags: []
 };
 
 export const userProfileReducer = (state = initState, action) => {
@@ -31,13 +30,18 @@ export const userProfileReducer = (state = initState, action) => {
         ...state,
         loading: true
       };
-    case GET_USER_PROFILE_SUCCESS || UPDATE_USER_PROFILE_SUCCESS:
+    case GET_USER_PROFILE_SUCCESS:
       return {
         ...state,
         loading: false,
-        data: action.payload,
-        interests: action.payload.interests
+        data: action.payload
       };
+      case UPDATE_USER_PROFILE_SUCCESS: 
+      return {
+        ...state,
+        loading: false,
+        data: {...action.payload}
+      }
     case GET_TAGS_SUCCESS:
       return {
         ...state,
@@ -48,26 +52,24 @@ export const userProfileReducer = (state = initState, action) => {
       return {
         ...state,
         loading: false,
-        interests: [
-          ...state.interests,
-          ...action.payload.map(interest => {
-            return { name: interest };
-          })
-        ]
+        data: {
+          ...state.data,
+          interests: [
+            ...state.data.interests,
+            ...action.payload.map(interest => {
+              return { name: interest };
+            })
+          ]
+        }
       };
     case REMOVE_USER_INTERESTS_SUCCESS:
       return {
         ...state,
         loading: false,
-        interests: [
-          state.interests.map(interest => {
-            action.payload.map(i => {
-              if (i !== interest.name) {
-                return { name: interest.name };
-              }
-            });
-          })
-        ]
+        data: {
+          ...state.data,
+          interests: action.payload
+        }
       };
     case GET_USER_PROFILE_FAIL ||
       UPDATE_USER_PROFILE_FAIL ||

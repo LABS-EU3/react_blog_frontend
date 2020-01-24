@@ -116,12 +116,27 @@ const StyledProfileInfo = styled.div`
         height: 35vw;
         border: 1px solid #dfdfdf;
       }
-
       &.dropzone {
-        &:hover {
-          cursor: pointer;
-          img {
-            opacity: 0.3;
+        .dropImg {
+          border-radius: 50%;
+          border: 1px solid #dfdfdf;
+          width: 35vw;
+          height: 35vw;
+          border-radius: 50%;
+          background-size: cover;
+          background-position: center;
+          .overlay {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &:hover {
+              cursor: pointer;
+              background-color: rgba(202, 202, 202, 0.3);
+            }
           }
         }
       }
@@ -196,8 +211,7 @@ export function EditProfile(props) {
     updateUserProfile,
     updateUserInterests,
     getTags,
-    tags,
-    interests
+    tags
   } = props;
   const [files, setFiles] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
@@ -213,9 +227,10 @@ export function EditProfile(props) {
       if (user.fullname !== fullname.current.value) {
         data.append("fullname", fullname.current.value);
       }
-      updateUserProfile(userId, data).then(() => !loading && toggleEditing());
+      updateUserProfile(userId, data);
+      
     }
-    toggleEditing();
+    setIsEditing(false)
   };
 
   const toggleEditing = () => {
@@ -223,13 +238,11 @@ export function EditProfile(props) {
   };
 
   const handleInterestClick = e => {
-    console.log(e.target.textContent === "-");
-    if (e.target.textContent === "-") {
-      setRemoveInterests(removeInterests.concat(e.target.id));
+    if (e.target.name === "add") {
+        setAddInterests(addInterests.concat(e.target.id));
     } else {
-      setAddInterests(addInterests.concat(e.target.id));
+        setRemoveInterests(removeInterests.concat(e.target.id));
     }
-    console.log(e.target.id, e.target.textContent, removeInterests);
     e.target.classList.add("clicked");
     e.target.setAttribute("disabled", "");
   };
@@ -245,20 +258,20 @@ export function EditProfile(props) {
 
   const handleInterestSave = e => {
     let data = {};
-    if (addInterests.length) {
+    if (addInterests) {
       data.add = addInterests;
-      setAddInterests([]);
     }
     if (removeInterests.length) {
-      console.log(removeInterests);
       data.remove = removeInterests;
-      setRemoveInterests([]);
     }
-    updateUserInterests(data);
-    document.querySelectorAll(".clicked").forEach(button => {
-      button.removeAttribute("disabled");
-      button.classList.remove("clicked");
-    });
+    updateUserInterests(data).then(() => {
+        document.querySelectorAll(".clicked").forEach(button => {
+          button.removeAttribute("disabled");
+          button.classList.remove("clicked");
+        });
+        setRemoveInterests([]);
+        setAddInterests([]);
+    })
   };
 
   useEffect(() => {
@@ -273,7 +286,7 @@ export function EditProfile(props) {
           <div className="profileImage">
             {!isEditing ? (
               <div className="imageContainer">
-                <img src={user.avatarUrl} alt="User profile" />
+                <img src={user.avatarUrl} alt="" />
               </div>
             ) : (
               <Dropzone
@@ -290,10 +303,16 @@ export function EditProfile(props) {
                 {({ getRootProps, getInputProps }) => (
                   <div {...getRootProps()} className="imageContainer dropzone">
                     <input {...getInputProps()} />
-                    <img
-                      src={!files.length ? user.avatarUrl : files[0].preview}
-                      alt="User profile"
-                    />
+                    <div
+                      className="dropImg"
+                      style={{
+                        "background-image": `url(${
+                          !files.length ? user.avatarUrl : files[0].preview
+                        })`
+                      }}
+                    >
+                      <div className="overlay"></div>
+                    </div>
                   </div>
                 )}
               </Dropzone>
@@ -368,12 +387,12 @@ export function EditProfile(props) {
           </div>
         </StyledProfileFollowCount>
       )}
-      {interests && (
+      {user && (
         <StyledProfileInterests>
           <h1>Interests</h1>
-          {interests &&
+          {user.interests && tags &&
             tags.map(tag => {
-              let interested = interests.find(interest => {
+              let interested = user.interests.find(interest => {
                 return interest.name === tag.name;
               });
 
@@ -382,7 +401,7 @@ export function EditProfile(props) {
                   <p className={interested ? "interested" : "uninterested"}>
                     {tag.name}
                   </p>
-                  <button onClick={handleInterestClick} id={tag.name}>
+                  <button onClick={handleInterestClick} id={tag.name} name={interested ? "remove" : "add"}>
                     {interested ? "-" : "+"}
                   </button>
                 </div>
@@ -410,8 +429,7 @@ const mapStateToProps = state => {
   return {
     user: state.userProfile.data,
     loading: state.userProfile.loading,
-    tags: state.userProfile.tags,
-    interests: state.userProfile.interests
+    tags: state.userProfile.tags
   };
 };
 

@@ -20,7 +20,6 @@ export const getTags = () => async dispatch => {
   dispatch({ type: GET_TAGS_START });
   try {
     const response = await axios.get(`http://localhost:5000/api/articles/tags`);
-    console.log(response);
     dispatch({ type: GET_TAGS_SUCCESS, payload: response.data });
   } catch (err) {
     console.log(err);
@@ -60,19 +59,23 @@ export const updateUserInterests = data => async dispatch => {
     if (data.remove) {
       const response = await axiosWithAuth().delete(
         "http://localhost:5000/api/interests",
-        { data: data.remove }
+        { data: [...data.remove] }
       );
-      dispatch({
-        type: REMOVE_USER_INTERESTS_SUCCESS,
-        payload: response.data.interests
-      });
+      if (response) {
+        dispatch({
+          type: REMOVE_USER_INTERESTS_SUCCESS,
+          payload: response.data.newInterests
+        });
+      }
     }
     if (data.add) {
       const response = await axiosWithAuth().post(
         "http://localhost:5000/api/interests",
         data.add
       );
-      dispatch({ type: ADD_USER_INTERESTS_SUCCESS, payload: data.add });
+      if (response) {
+        dispatch({ type: ADD_USER_INTERESTS_SUCCESS, payload: data.add });
+      }
     }
   } catch (error) {
     console.log(error);
