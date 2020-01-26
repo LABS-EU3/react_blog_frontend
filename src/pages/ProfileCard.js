@@ -7,7 +7,7 @@ import words from '../assets/images/words.jpg';
 
 
 const Section = styled.section`
-background-color:#F9F9F9;
+/* background-color:#F9F9F9; */
 width:100%;
 display: flex;
 `;
@@ -67,6 +67,7 @@ h4{
 const MiniDiv = styled.div`
 display: flex;
 align-items: center;
+box-shadow: 0px 8px 8px rgba(0,0,0,0.1);
 justify-content: space-around;
 background-color: #3F51B6;
 border: 1px solid #3F51B6;
@@ -79,10 +80,15 @@ width: 100%;
 const ThirdDiv = styled.div`
 text-align:center;
 color: #828282;
-box-shadow: 0px 0px 0px 0px #aaa;
+box-shadow: 0px 5px 10px rgba(0,0,0,0.15);
 margin-left: 40px;
 margin-top: 40px;
 background-color: white;
+
+button{
+    margin-bottom: 10px;
+
+}
 
 img{
     width: 240px;
@@ -169,16 +175,6 @@ function ProfileCard() {
                         <img src={words} alt="#" />
                         <P>Advise</P>
                         <button>Delete</button>
-                    </ThirdDiv>
-
-                    <ThirdDiv>
-                        <img src={yoga} alt="#" />
-                        <P>Yoga</P>
-                    </ThirdDiv>
-
-                    <ThirdDiv>
-                        <img src={fitness} alt="#" />
-                        <P>Fitness</P>
                     </ThirdDiv>
 
                 </section>
