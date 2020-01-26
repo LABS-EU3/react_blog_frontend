@@ -11,6 +11,7 @@ import {
 } from "../redux-store/actions/user-profile-actions";
 import Dropzone from "react-dropzone";
 import camera_icon from "../assets/images/Icons/camera-icon.png";
+import userIcon from "../assets/images/usericon.svg";
 
 const StyledProfile = styled.div`
   display: flex;
@@ -124,8 +125,9 @@ const StyledProfileInfo = styled.div`
           width: 35vw;
           height: 35vw;
           border-radius: 50%;
-          background-size: cover;
+          background-size: contain;
           background-position: center;
+          background-repeat: no-repeat;
           .overlay {
             width: 100%;
             height: 100%;
@@ -141,7 +143,7 @@ const StyledProfileInfo = styled.div`
             }
             &:hover {
               cursor: pointer;
-              background-color: rgba(202, 202, 202, 0.5);
+              background-color: rgba(202, 202, 202, 0.7);
               .camera-icon,
               p {
                 display: block;
@@ -304,7 +306,7 @@ export function EditProfile(props) {
           <div className="profileImage">
             {!isEditing ? (
               <div className="imageContainer">
-                <img src={user.avatarUrl} alt="" />
+                <img src={user.avatarUrl || userIcon} alt="" />
               </div>
             ) : (
               <Dropzone
@@ -325,7 +327,7 @@ export function EditProfile(props) {
                       className="dropImg"
                       style={{
                         "background-image": `url(${
-                          !files.length ? user.avatarUrl : files[0].preview
+                          !files.length ? (user.avatarUrl || userIcon ) : files[0].preview
                         })`
                       }}
                     >
