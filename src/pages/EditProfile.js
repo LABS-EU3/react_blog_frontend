@@ -235,7 +235,7 @@ export function EditProfile(props) {
     tags
   } = props;
   const [files, setFiles] = useState([]);
-  const [isEditing, setIsEditing] = useState(true);
+  const [isEditing, setIsEditing] = useState(false);
   const [addInterests, setAddInterests] = useState([]);
   const [removeInterests, setRemoveInterests] = useState([]);
 
@@ -326,7 +326,7 @@ export function EditProfile(props) {
                     <div
                       className="dropImg"
                       style={{
-                        "background-image": `url(${
+                        "backgroundImage": `url(${
                           !files.length ? (user.avatarUrl || userIcon ) : files[0].preview
                         })`
                       }}
@@ -406,11 +406,11 @@ export function EditProfile(props) {
         <StyledProfileFollowCount>
           <div className="box border-right">
             <p>Following</p>
-            <h3>{user.following}</h3>
+            <h3 className="following">{user.following}</h3>
           </div>
           <div className="box">
             <p>Followers</p>
-            <h3>{user.followers}</h3>
+            <h3 className="followers">{user.followers}</h3>
           </div>
         </StyledProfileFollowCount>
       )}

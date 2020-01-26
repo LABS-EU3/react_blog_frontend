@@ -47,7 +47,7 @@ describe("Edit Profile component", () => {
     const btn = getByText(/Edit Profile/i);
     expect(btn).toBeInTheDocument();
   });
-  it("Renders without crashing", () => {
+  it("Displays input field for user to edit their username when in edit mode", () => {
     const dummyToken =
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoxLCJpYXQiOjE1ODAwNTU3MjgsImV4cCI6MTU4MDE0MjEyOH0.KJBwGnrLKdhQRX4RZP7_bPnFLbYNGmTdpjmkh5YH1a8";
     localStorage.setItem("token", dummyToken);
@@ -61,5 +61,22 @@ describe("Edit Profile component", () => {
     fireEvent.click(btn, "click");
     const fullnameInputField = getByPlaceholderText("Full Name");
     expect(fullnameInputField).toBeInTheDocument();
+  });
+  it("Displays number of followers user has and number of users they are following", () => {
+    const dummyToken =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoxLCJpYXQiOjE1ODAwNTU3MjgsImV4cCI6MTU4MDE0MjEyOH0.KJBwGnrLKdhQRX4RZP7_bPnFLbYNGmTdpjmkh5YH1a8";
+    localStorage.setItem("token", dummyToken);
+    const { container } = renderWithRedux(<EditProfile />, {
+      initialState: {
+        userProfile: {
+          ...defaultState,
+          data: { ...defaultState.data, followers: 3, following: 2 }
+        }
+      }
+    });
+    const following = container.querySelector(".following");
+    const followers = container.querySelector(".followers");
+    expect(following).toHaveTextContent("2");
+    expect(followers).toHaveTextContent("3");
   });
 });
