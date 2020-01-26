@@ -10,6 +10,7 @@ import {
   getTags
 } from "../redux-store/actions/user-profile-actions";
 import Dropzone from "react-dropzone";
+import camera_icon from "../assets/images/Icons/camera-icon.png";
 
 const StyledProfile = styled.div`
   display: flex;
@@ -130,12 +131,30 @@ const StyledProfileInfo = styled.div`
             height: 100%;
             border-radius: 50%;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-
+            text-align: center;
+            .camera-icon,
+            p {
+              display: none;
+            }
             &:hover {
               cursor: pointer;
-              background-color: rgba(202, 202, 202, 0.3);
+              background-color: rgba(202, 202, 202, 0.5);
+              .camera-icon,
+              p {
+                display: block;
+              }
+              .camera-icon {
+                border: none;
+                width: 30%;
+                height: 30%;
+              }
+              p {
+                font-size: 14px;
+                width: 80%;
+              }
             }
           }
         }
@@ -214,7 +233,7 @@ export function EditProfile(props) {
     tags
   } = props;
   const [files, setFiles] = useState([]);
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(true);
   const [addInterests, setAddInterests] = useState([]);
   const [removeInterests, setRemoveInterests] = useState([]);
 
@@ -228,9 +247,8 @@ export function EditProfile(props) {
         data.append("fullname", fullname.current.value);
       }
       updateUserProfile(userId, data);
-      
     }
-    setIsEditing(false)
+    setIsEditing(false);
   };
 
   const toggleEditing = () => {
@@ -239,9 +257,9 @@ export function EditProfile(props) {
 
   const handleInterestClick = e => {
     if (e.target.name === "add") {
-        setAddInterests(addInterests.concat(e.target.id));
+      setAddInterests(addInterests.concat(e.target.id));
     } else {
-        setRemoveInterests(removeInterests.concat(e.target.id));
+      setRemoveInterests(removeInterests.concat(e.target.id));
     }
     e.target.classList.add("clicked");
     e.target.setAttribute("disabled", "");
@@ -265,13 +283,13 @@ export function EditProfile(props) {
       data.remove = removeInterests;
     }
     updateUserInterests(data).then(() => {
-        document.querySelectorAll(".clicked").forEach(button => {
-          button.removeAttribute("disabled");
-          button.classList.remove("clicked");
-        });
-        setRemoveInterests([]);
-        setAddInterests([]);
-    })
+      document.querySelectorAll(".clicked").forEach(button => {
+        button.removeAttribute("disabled");
+        button.classList.remove("clicked");
+      });
+      setRemoveInterests([]);
+      setAddInterests([]);
+    });
   };
 
   useEffect(() => {
@@ -311,7 +329,14 @@ export function EditProfile(props) {
                         })`
                       }}
                     >
-                      <div className="overlay"></div>
+                      <div className="overlay">
+                        <img
+                          src={camera_icon}
+                          className="camera-icon"
+                          alt="camera"
+                        />
+                        <p>Click to add or drag and drop files here.</p>
+                      </div>
                     </div>
                   </div>
                 )}
@@ -390,7 +415,8 @@ export function EditProfile(props) {
       {user && (
         <StyledProfileInterests>
           <h1>Interests</h1>
-          {user.interests && tags &&
+          {user.interests &&
+            tags &&
             tags.map(tag => {
               let interested = user.interests.find(interest => {
                 return interest.name === tag.name;
@@ -401,7 +427,11 @@ export function EditProfile(props) {
                   <p className={interested ? "interested" : "uninterested"}>
                     {tag.name}
                   </p>
-                  <button onClick={handleInterestClick} id={tag.name} name={interested ? "remove" : "add"}>
+                  <button
+                    onClick={handleInterestClick}
+                    id={tag.name}
+                    name={interested ? "remove" : "add"}
+                  >
                     {interested ? "-" : "+"}
                   </button>
                 </div>
