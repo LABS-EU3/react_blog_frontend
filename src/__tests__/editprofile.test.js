@@ -79,4 +79,23 @@ describe("Edit Profile component", () => {
     expect(following).toHaveTextContent("2");
     expect(followers).toHaveTextContent("3");
   });
+  it("Displays number of followers user has and number of users they are following", () => {
+    const dummyToken =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoxLCJpYXQiOjE1ODAwNTU3MjgsImV4cCI6MTU4MDE0MjEyOH0.KJBwGnrLKdhQRX4RZP7_bPnFLbYNGmTdpjmkh5YH1a8";
+    localStorage.setItem("token", dummyToken);
+    const { container } = renderWithRedux(<EditProfile />, {
+      initialState: {
+        userProfile: {
+          ...defaultState,
+          loading: false,
+          data: { ...defaultState.data, interests: [{ name: "Business" }] },
+          tags: [{ name: "Business" }, { name: "Technology" }]
+        }
+      }
+    });
+    const interested = container.querySelector(".interested");
+    const uninterested = container.querySelector(".uninterested");
+    expect(interested).toHaveTextContent("Business");
+    expect(uninterested).toHaveTextContent("Technology");
+  });
 });
