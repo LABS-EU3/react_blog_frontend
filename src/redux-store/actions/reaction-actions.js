@@ -2,14 +2,19 @@ import { axiosWithAuth } from "../../utilities/axios/index";
 import { apiURL } from "../../utilities/urls";
 
 export const postReaction = reaction => async dispatch => {
+  console.log(reaction);
   dispatch({
     type: "REACTING_START"
   });
   try {
-    let res = await axiosWithAuth().post(`${apiURL}/articles/publish`, reaction);
+    let res = await axiosWithAuth().post(
+      `http://localhost:5000/api/reactions`,
+      reaction
+    );
     if (res)
       dispatch({
-        type: "REACTING_SUCCESS"
+        type: "REACTING_SUCCESS",
+        payload: reaction.name
       });
     return res.data;
   } catch (error) {

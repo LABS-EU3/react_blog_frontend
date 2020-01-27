@@ -1,21 +1,25 @@
 export const initialState = {
-  isReacting: false
+  isReacting: false,
+  emoji: ""
 };
 
 export const reactionReducer = (state = initialState, action) => {
   switch (action.type) {
     case "REACTING_START":
       return {
-        isReacting: true
+        isReacting: true,
+        emoji: action.payload
       };
     case "REACTING_SUCCESS":
       return {
-        isPublishing: true
+        isPublishing: true,
+        emoji: action.payload
       };
 
     case "REACTING_FAIL":
       return {
-        isPublishing: false
+        isPublishing: false,
+        emoji: ""
       };
 
     default:
