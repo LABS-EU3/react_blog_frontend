@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import yoga from '../assets/images/yoga.jpg';
 import fitness from '../assets/images/fitness.jpg';
 import words from '../assets/images/words.jpg';
+import EditProfile from '../pages/EditProfile';
 
 
 const Section = styled.section`
@@ -149,12 +150,13 @@ function ProfileCard() {
     return (
         <Section>
             <Div>
-                <img src={johnson} alt="The user avatar goes here" />
+                {/* <img src={johnson} alt="The user avatar goes here" />
                 <h3> John Doe</h3>
                 <p> I am a Software developer, I love writing, reading and making an impact in my community</p>
 
                 <Anchor>Followers</Anchor>
-                <Anchor>Following</Anchor>
+                <Anchor>Following</Anchor> */}
+                <EditProfile/>
 
             </Div>
 
@@ -162,7 +164,7 @@ function ProfileCard() {
                 <MiniDiv>
 
                     <a> INSIGHTS</a>
-                    <a> TABS </a>
+                    <a> DRAFTS </a>
                     <a> REACTIONS</a>
 
                 </MiniDiv>

@@ -11,6 +11,7 @@ import AboutUs from "./pages/AboutUs";
 import ProtectedRoute from './components/ProtectedRoute';
 import '../src/index.css';
 import Interest from "./pages/Final";
+import EditProfile from "./pages/EditProfile";
 
 function App() {
   return (
@@ -26,7 +27,15 @@ function App() {
         <ProtectedRoute path="/final" component={Interest} />
         <Route render={() => <Redirect to="/" />} />
       </Switch>
-
+{/* 
+      <Route exact path='/' render={props => <Home {...props} />}/>
+      <Route path='/register' component={Register}/>
+      <Route path="/profile" component={Profile} />
+      <Route path="/create" component={Editor} />
+      <Route path="/feed" component={Feed} />
+      <Route path="/read" component={ReadArticle}/>
+      <Route path="/team" component={AboutUs}/> */}
+      <Route path="/editprofile" component={EditProfile}/>
       <ArticleModal />
     </div>
   );
