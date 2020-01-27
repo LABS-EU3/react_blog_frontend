@@ -19,35 +19,37 @@ const StyledProfile = styled.div`
   align-items: center;
   width: 100%;
   font-family: Lato;
+  height: 100%;
 `;
-
 const StyledProfileFollowCount = styled.div`
   width: 100%;
   display: flex;
-  border-bottom: 1px solid #dfdfdf;
+  border-bottom: 1px solid #DFDFDF;
+  min-height: 10%;
   .box {
     padding: 3rem;
     width: 50%;
     text-align: center;
     height: 100%;
     &.border-right {
-      border-right: 1px solid #dfdfdf;
+      border-right: 1px solid #DFDFDF;
     }
   }
 `;
-
 const StyledProfileInterests = styled.div`
   width: 100%;
   padding: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-bottom: 1px solid #dfdfdf;
+  border-bottom: 1px solid #DFDFDF;
+  min-height: 60%;
   h1 {
     font-size: 4rem;
   }
   .interest-row {
     width: 60%;
+    height: 40%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -63,14 +65,14 @@ const StyledProfileInterests = styled.div`
       padding: 0;
       margin-left: 2rem;
       font-size: 18px;
-      color: #22387d;
+      color: #22387D;
       &:hover {
         cursor: pointer;
-        background: #ededed;
+        background: #EDEDED;
         box-shadow: 0px 8px 8px rgba(111, 133, 253, 0.15);
       }
       &.clicked {
-        border: 2px solid #6f85fd;
+        border: 2px solid #6F85FD;
       }
     }
   }
@@ -87,43 +89,44 @@ const StyledProfileInterests = styled.div`
       }
       &.cancel {
         background: white;
-        color: #22387d;
-        border: 1px solid #22387d;
+        color: #22387D;
+        border: 1px solid #22387D;
         &:hover {
-          background: #ededed;
+          background: #EDEDED;
         }
       }
     }
   }
 `;
-
 const StyledProfileInfo = styled.div`
   width: 100%;
+  min-height: 40%;
   display: flex;
   padding: 4rem;
   flex-direction: column;
   align-items: center;
-  border-bottom: 1px solid #dfdfdf;
-
+  border-bottom: 1px solid #DFDFDF;
   .profileImage {
-    width: 50%;
+    width: 15vw;
+    height: 15vw;
     margin-bottom: 3rem;
     .imageContainer {
       width: 100%;
+      height: 100%;
       display: flex;
       justify-content: center;
       img {
         border-radius: 50%;
-        width: 35vw;
-        height: 35vw;
-        border: 1px solid #dfdfdf;
+        width: 100%;
+        height: 100%;
+        border: 1px solid #DFDFDF;
       }
       &.dropzone {
         .dropImg {
           border-radius: 50%;
-          border: 1px solid #dfdfdf;
-          width: 35vw;
-          height: 35vw;
+          border: 1px solid #DFDFDF;
+          width: 100%;
+          height: 100%;
           border-radius: 50%;
           background-size: contain;
           background-position: center;
@@ -147,6 +150,7 @@ const StyledProfileInfo = styled.div`
               .camera-icon,
               p {
                 display: block;
+                margin-top: 0;
               }
               .camera-icon {
                 border: none;
@@ -163,9 +167,9 @@ const StyledProfileInfo = styled.div`
       }
     }
   }
-
   .profileDetails {
     width: 100%;
+    height: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -184,7 +188,7 @@ const StyledProfileInfo = styled.div`
         margin-top: 1.5rem;
         padding: 1rem;
         border-radius: 5px;
-        border: 1px solid #c6d0eb;
+        border: 1px solid #C6D0EB;
       }
       textarea {
         max-width: 80%;
@@ -193,13 +197,11 @@ const StyledProfileInfo = styled.div`
         min-height: 8vh;
       }
     }
-
     .profileButtons {
       width: 80%;
       display: flex;
       margin-top: 1.5rem;
       justify-content: center;
-
       &.editing {
         justify-content: space-between;
       }
@@ -210,10 +212,10 @@ const StyledProfileInfo = styled.div`
         }
         &.cancel {
           background: white;
-          color: #22387d;
-          border: 1px solid #22387d;
+          color: #22387D;
+          border: 1px solid #22387D;
           &:hover {
-            background: #ededed;
+            background: #EDEDED;
           }
         }
       }
