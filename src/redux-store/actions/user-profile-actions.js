@@ -59,12 +59,12 @@ export const updateUserInterests = data => async dispatch => {
     if (data.remove) {
       const response = await axiosWithAuth().delete(
         "http://localhost:5000/api/interests",
-        { data: [...data.remove] }
+        { data: data.remove }
       );
       if (response) {
         dispatch({
           type: REMOVE_USER_INTERESTS_SUCCESS,
-          payload: response.data.newInterests
+          payload: response.data.new
         });
       }
     }
