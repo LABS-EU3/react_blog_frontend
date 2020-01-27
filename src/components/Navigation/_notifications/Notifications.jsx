@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBell } from '@fortawesome/free-solid-svg-icons'
 import Dropdown from '../NavigationDropdown';
 export default function ProfileImageDropdown(props) {
-    console.log(props);
-
     const [state, setState] = useState(false);
 
     function toggleDropdown() {
         setState(!state);
-            document.getElementById('dropdown-content').classList.toggle('show');
+            document.getElementById('dropdown-notifications-content').classList.toggle('show');
     }
 
     return (
         <Dropdown>
-            <FontAwesomeIcon icon="coffee" onClick={props.toggleDropdown}/>
-             <div className="dropdown-content" id="dropdown-content">
+            <span id="dropdown-content-notifications">
+                <FontAwesomeIcon icon={faBell} onClick={toggleDropdown}/>
+            </span>
+             <div className="dropdown-content" id="dropdown-notifications-content">
                  <ul>
                      <li className="dropdown-user-bio">
                          <p>David Kuseh</p>

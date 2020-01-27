@@ -5,19 +5,24 @@ export default function Dropdown(props) {
 
     function toggleDropdown() {
         setToggleOpen(!toggleOpen);
-        document.getElementById('dropdown-content').classList.toggle('show');
+        var profileImage = document.getElementById('dropdown-content-profile');
+        var notifications = document.getElementById('dropdown-content-notifications');
+
+            if(profileImage) {
+                console.log(profileImage);
+                document.getElementById('dropdown-content-profile').classList.toggle('show');
+            } else if(notifications) {
+                console.log(notifications)
+                document.getElementById('dropdown-notifications-content').classList.toggle('show');
+            } else {
+                return;
+            }
     };
 
     return (
         <>
-            <StyledProfileImageDropdown>
-                {/* <img src={props.src} alt={props.alt} className={props.className} onClick={toggleDropdown} />
-                <div className={props.className} id={props.id}>
-                    <ul className={props.className}>
-
-                    </ul>
-                </div> */}
-                {this.props.children}
+            <StyledProfileImageDropdown >
+               {props.children}         
             </StyledProfileImageDropdown>
         </>
     )

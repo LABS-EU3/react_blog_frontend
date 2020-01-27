@@ -13,7 +13,7 @@ export default function ProfileImageDropdown(props) {
 
     function toggleDropdown() {
         setState(!state);
-            document.getElementById('dropdown-content').classList.toggle('show');
+            document.getElementById('dropdown-content-profile').classList.toggle('show');
     }
 
     return (
@@ -36,8 +36,8 @@ export default function ProfileImageDropdown(props) {
         //     </div>
         // </StyledProfileImageDropdown>
         <Dropdown>
-            <img className="dropbtn" src={avatar} alt="avatar" onClick={props.toggleDropdown} />
-             <div className="dropdown-content" id="dropdown-content">
+            <img id="dropdown-content" onClick={toggleDropdown} className="dropbtn" src={avatar} alt="avatar"  />
+             <div className="dropdown-content" id="dropdown-content-profile">
                  <ul>
                      <li className="dropdown-user-bio">
                          <p>David Kuseh</p>
