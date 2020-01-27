@@ -32,7 +32,7 @@ function Highlighter(props) {
   };
 
   return (
-    <div toolTipLocStyle={toolTip}>
+    <div >
       <ToolTip
         toolTipLocStyle={toolTip}
         setToolTip={setToolTip}
