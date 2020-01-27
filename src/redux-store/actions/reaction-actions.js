@@ -1,7 +1,7 @@
 import { axiosWithAuth } from "../../utilities/axios/index";
 import { apiURL } from "../../utilities/urls";
 
-export const publishPost = reaction => async dispatch => {
+export const postReaction = reaction => async dispatch => {
   dispatch({
     type: "REACTING_START"
   });

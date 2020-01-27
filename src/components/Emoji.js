@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { postReaction } from "../redux-store/actions/reaction-actions";
 import { decodeToken } from "../utilities/checkToken";
+import { connect } from "react-redux";
 
 const emojis = [
   { name: "laugh", visual: "😂" },
@@ -31,12 +33,12 @@ const Emoji = ({ article, emoji, string }) => {
     const reaction = {
       authorId: article.authorId,
       reactorId,
-      name,
-      string,
+      emoji: name,
+      highlighted_text: string,
       articleId: article.authorId
     };
 
-    console.log(reaction);
+    postReaction(reaction);
   };
 
   return (
@@ -50,7 +52,7 @@ const Emoji = ({ article, emoji, string }) => {
   );
 };
 
-export default ({ article, string }) => {
+const Emojis = ({ article, string }) => {
   console.log(string, "here");
   return (
     <StyledEmojiWrapper>
@@ -66,8 +68,12 @@ export default ({ article, string }) => {
   );
 };
 
-const mapStateToProps = store => {
+const mapStateToProps = state => {
   return {
-    singleArticle: store.articles.singleArticle
+    reaction: state.reaction
   };
 };
+
+export default connect(mapStateToProps, {
+  postReaction
+})(Emojis);
