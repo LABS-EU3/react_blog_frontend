@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import Button from "../components/Button";
+import Button from "../components/Buttons/Button";
 import { decodeToken } from "../utilities/checkToken";
 import {
   getUserProfile,
