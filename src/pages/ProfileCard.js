@@ -2,7 +2,6 @@ import React from 'react';
 import johnson from '../assets/images/johnson.jpg'
 import styled from 'styled-components';
 import yoga from '../assets/images/yoga.jpg';
-import fitness from '../assets/images/fitness.jpg';
 import words from '../assets/images/words.jpg';
 import EditProfile from '../pages/EditProfile';
 
@@ -16,29 +15,10 @@ display: flex;
 const Div = styled.div`
 background-color:white;
 width:25%;
-height:800px;
+min-height:100vh;
 text-align: center;
-img{
-    width:50%;
-border-radius: 50%;
-}
-h3{
-    font-size: 25px;
-    margin-top: 34px;
-}
-p{
-    font-size:15px;
-    margin-top: 34px;
-    margin-bottom: 40px;
-}
-`;
 
-const Anchor = styled.a`
-margin: 30px;
-font-size: 20px;
-padding: 20px;
-   
-  ` ;
+`;
 
 const SecondDiv = styled.div`
 width:70%;
@@ -150,14 +130,7 @@ function ProfileCard() {
     return (
         <Section>
             <Div>
-                {/* <img src={johnson} alt="The user avatar goes here" />
-                <h3> John Doe</h3>
-                <p> I am a Software developer, I love writing, reading and making an impact in my community</p>
-
-                <Anchor>Followers</Anchor>
-                <Anchor>Following</Anchor> */}
-                <EditProfile/>
-
+                <EditProfile />
             </Div>
 
             <SecondDiv>
