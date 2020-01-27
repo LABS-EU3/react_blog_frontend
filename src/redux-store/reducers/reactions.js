@@ -1,6 +1,5 @@
 export const initialState = {
-  isReacting: false,
-  reaction: {}
+  isReacting: false
 };
 
 export const reactionReducer = (state = initialState, action) => {
