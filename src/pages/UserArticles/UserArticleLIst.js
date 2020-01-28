@@ -1,5 +1,5 @@
 /* eslint-disable no-shadow */
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import {
@@ -8,6 +8,9 @@ import {
 } from "../../redux-store/actions/get-author-article";
 import blue_arrow from "../../assets/images/Icons/blue_arrow.svg";
 import { MainDiv } from "../../utilities/styles/profile-styles";
+import Modal from "../../components/Others/Modal";
+import DeleteArticleModal from "../../components/DeleteArticleModal";
+import {  decodeToken } from '../../utilities/checkToken';
 
 export const UserArticleList = ({
   isFetching,
@@ -16,17 +19,29 @@ export const UserArticleList = ({
   userArticles: { userArticles }
 }) => {
   useEffect(() => {
-    getAuthorArticle();
+    getAuthorArticle(userId);
   }, []);
 
   const history = useHistory();
-
-  const handleDelete = e => {
-    deleteAuthorArticle(e.target.id);
+  const { subject : userId } = decodeToken();
+  const [modalOpen, setModalOpen] = useState(false);
+  const [articleToDelete, setArticleToDelete] = useState(null);
+  const handleDelete = id => {
+    deleteAuthorArticle(id);
   };
 
   return (
     <MainDiv>
+      {modalOpen && (
+        <Modal height="250px" width="380px" handleOpen={setModalOpen}>
+          <DeleteArticleModal
+            handleDelete={handleDelete}
+            articleToDelete={articleToDelete}
+            setModalOpen={setModalOpen}
+            setArticleToDelete={setArticleToDelete}
+          />
+        </Modal>
+      )}
       {!isFetching ? (
         <section className="new-section">
           {userArticles.length !== 0 ? (
@@ -49,14 +64,17 @@ export const UserArticleList = ({
                     ...
                   </p>
                   <div className="main-article-footer">
-                      <button
-                        onClick={handleDelete}
-                        id={article.id}
-                        name="delete"
-                        className="delete"
-                      >
-                        Delete
-                      </button>
+                    <button
+                      onClick={() => {
+                        setModalOpen(true);
+                        setArticleToDelete(article.id);
+                      }}
+                      id={article.id}
+                      name="delete"
+                      className="delete"
+                    >
+                      Delete
+                    </button>
                     <div className="article-link">
                       <Link to={`/article/${article.custom_id}`}>Details</Link>
                       <img src={blue_arrow} alt="Blue Arrow" />
