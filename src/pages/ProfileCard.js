@@ -136,9 +136,9 @@ function ProfileCard() {
 
             <SecondDiv>
                 <MiniDiv>
-                    <button id="insights" onClick={handleClick}>INSIGHTS</button>
-                    <button id="drafts" onClick={handleClick}>DRAFTS</button>
-                    <button id="reactions" onClick={handleClick}>REACTIONS</button>
+                    <button id="insights" onClick={handleClick} className="fas fa-newspaper">INSIGHTS</button>
+                    <button id="drafts" onClick={handleClick} className="fas fa-feather-alt">DRAFTS</button>
+                    <button id="reactions" onClick={handleClick}className="fas fa-smile-beam" >REACTIONS</button>
                 </MiniDiv>
 
                 {clicked === "reactions" ? (
