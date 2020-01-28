@@ -5,23 +5,38 @@ export default function Dropdown(props) {
 
     function toggleDropdown() {
         setToggleOpen(!toggleOpen);
-        var profileImage = document.getElementById('dropdown-content-profile');
-        var notifications = document.getElementById('dropdown-content-notifications');
+        var profileImage = document.getElementById('dropdown-content').addEventListener('click', function() {
+            document.getElementById('dropdown-profile-content').classList.toggle('show');
+            document.getElementById('dropdown-notifications-content').classList.remove('show');
+            setToggleOpen(!toggleOpen)
 
-            if(profileImage) {
-                console.log(profileImage);
-                document.getElementById('dropdown-content-profile').classList.toggle('show');
-            } else if(notifications) {
-                console.log(notifications)
-                document.getElementById('dropdown-notifications-content').classList.toggle('show');
-            } else {
-                return;
-            }
+            return profileImage;
+        });
+        var notifications = document.getElementById('dropdown-content-notifications').addEventListener('click', function() {
+            document.getElementById('dropdown-notifications-content').classList.toggle('show');
+            document.getElementById('dropdown-profile-content').classList.remove('show');
+            setToggleOpen(!toggleOpen)
+            return notifications;
+        });
     };
+
+    // function toggleDropdown(id) {
+    //     var dropdowns = document.getElementsByClassName("dropdown-content");
+    //     var i;
+    //     for (i = 0; i < dropdowns.length; i++) {
+    //         var openDropdown = dropdowns[i];
+    //         if ( dropdowns[i] !== document.getElementById(`${id}`) ) {
+    //             setToggleOpen(false)
+    //             openDropdown.classList.remove('show');
+    //         }
+    //     }
+    //     setToggleOpen(true);
+    //     document.getElementById(id).classList.toggle("show");
+    // }
 
     return (
         <>
-            <StyledProfileImageDropdown >
+            <StyledProfileImageDropdown toggleDropdown={toggleDropdown}>
                {props.children}         
             </StyledProfileImageDropdown>
         </>
