@@ -1,13 +1,10 @@
 import React, { useState } from "react";
-import johnson from "../assets/images/johnson.jpg";
 import styled from "styled-components";
-import yoga from "../assets/images/yoga.jpg";
-import words from "../assets/images/words.jpg";
 import EditProfile from "../pages/EditProfile";
+import UserArticleList from "../pages/UserArticles/UserArticleLIst";
 
 const Section = styled.section`
-  /* background-color:#F9F9F9; */
-  width: 100%;
+   width: 100%;
   display: flex;
 `;
 
@@ -21,7 +18,7 @@ const Div = styled.div`
 const SecondDiv = styled.div`
   width: 70%;
 
-  a {
+  button {
     color: white;
     border: 1px solid #6f86ff;
     font-size: 13px;
@@ -32,7 +29,7 @@ const SecondDiv = styled.div`
       background-color: #5b6dc0;
     }
     height: 35px;
-    padding-top: 8px;
+    /* padding-top: 8px; */
     cursor: pointer;
   }
 
@@ -55,129 +52,129 @@ const MiniDiv = styled.div`
   width: 100%;
 `;
 
-const ThirdDiv = styled.div`
-  text-align: center;
-  color: #828282;
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
-  margin-left: 40px;
-  margin-top: 40px;
-  background-color: white;
+// const ThirdDiv = styled.div`
+//   text-align: center;
+//   color: #828282;
+//   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
+//   margin-left: 40px;
+//   margin-top: 40px;
+//   background-color: white;
 
-  button {
-    margin-bottom: 10px;
-  }
+//   button {
+//     margin-bottom: 10px;
+//   }
 
-  img {
-    width: 240px;
-    margin: 30px;
-  }
-`;
+//   img {
+//     width: 240px;
+//     margin: 30px;
+//   }
+// `;
 
-const P = styled.p`
-  font-size: 15px;
-  padding-bottom: 15px;
-`;
+// const P = styled.p`
+//   font-size: 15px;
+//   padding-bottom: 15px;
+// `;
 
-const FourthDiv = styled.div`
-  color: #828282;
-  box-shadow: 0px 0px 0px 0px #aaa;
-  margin-left: 40px;
-  margin-top: 40px;
-  background-color: white;
-  img {
-    width: 450px;
-    margin: 30px;
-  }
-  p {
-    font-size: 16px;
-    color: #090909;
-    font-weight: bold;
-  }
-`;
+// const FourthDiv = styled.div`
+//   color: #828282;
+//   box-shadow: 0px 0px 0px 0px #aaa;
+//   margin-left: 40px;
+//   margin-top: 40px;
+//   background-color: white;
+//   img {
+//     width: 450px;
+//     margin: 30px;
+//   }
+//   p {
+//     font-size: 16px;
+//     color: #090909;
+//     font-weight: bold;
+//   }
+// `;
 
-const FifthDiv = styled.div`
-  display: flex;
-  align-items: center;
-  box-shadow: 0px 0px 0px 0px #aaa;
-  margin-left: 40px;
-  background-color: white;
-  margin-top: 40px;
-  height: 65px;
-  width: 400px;
-  img {
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
-    margin: 30px;
-  }
+// const FifthDiv = styled.div`
+//   display: flex;
+//   align-items: center;
+//   box-shadow: 0px 0px 0px 0px #aaa;
+//   margin-left: 40px;
+//   background-color: white;
+//   margin-top: 40px;
+//   height: 65px;
+//   width: 400px;
+//   img {
+//     height: 40px;
+//     width: 40px;
+//     border-radius: 50%;
+//     margin: 30px;
+//   }
 
-  p {
-    font-size: 17px;
-    color: #828282;
-    strong {
-      color: #5d6489;
-    }
-  }
-`;
+//   p {
+//     font-size: 17px;
+//     color: #828282;
+//     strong {
+//       color: #5d6489;
+//     }
+//   }
+// `;
 
 function ProfileCard() {
-  const [clicked, setClicked] = useState();
+    const [clicked, setClicked] = useState();
 
-  const handleClick = e => {
-    setClicked(e.target.id);
-  };
+    const handleClick = e => {
+        setClicked(e.target.id);
+    };
 
-  const getInsights = insightType => {
-    if (insightType === "insights") {
-    }
-  };
-  return (
-    <Section>
-      <Div>
-        <EditProfile />
-      </Div>
+    const getInsights = insightType => {
+        if (insightType === "insights") {
+        }
+    };
+    return (
+        <Section>
+            <Div>
+                <EditProfile />
+            </Div>
 
-      <SecondDiv>
-        <MiniDiv>
-          <button id="insights" onClick={handleClick}>INSIGHTS</button>
-          <button id="drafts" onClick={handleClick}>DRAFTS</button>
-          <button id="reactions" onClick={handleClick}>REACTIONS</button>
-        </MiniDiv>
+            <SecondDiv>
+                <MiniDiv>
+                    <button id="insights" onClick={handleClick}>INSIGHTS</button>
+                    <button id="drafts" onClick={handleClick}>DRAFTS</button>
+                    <button id="reactions" onClick={handleClick}>REACTIONS</button>
+                </MiniDiv>
 
-        {clicked === "reactions" ? (
-          <div>Reactions</div>
-        ) : clicked === "drafts" ? (
-          <div>Drafts</div>
-        ) : (
-          <div>Insights</div>
-        )}
+                {clicked === "reactions" ? (
+                    <div>Reactions</div>
+                ) : clicked === "drafts" ? (
+                    <div>Drafts</div>
+                ) : (
+                            <UserArticleList />
+                        )}
 
-        <h4> Your Insights </h4>
-
+                {/* <h4> Your Insights </h4> */}
+                {/* 
         <section className="new-section">
           <ThirdDiv>
             <img src={words} alt="#" />
-            <P>Advise</P>
+            <P>Advice</P>
             <button>Delete</button>
           </ThirdDiv>
-        </section>
+        </section> */}
 
-        <section className="second-section">
-          <FourthDiv>
+                <section className="second-section">
+                    {/* <FourthDiv>
             <img src={yoga} alt="#" />
-          </FourthDiv>
-
+          </FourthDiv> */}
+                    {/* 
           <FifthDiv>
             <img src={johnson} alt="#" />
-            {/* <p>Recent Activity</p> */}
+           
             <p>
               <strong>Damilolawumi</strong> <span>started following you</span>
             </p>
-          </FifthDiv>
-        </section>
-      </SecondDiv>
-    </Section>
-  );
+          </FifthDiv> */}
+                </section>
+            </SecondDiv>
+        </Section>
+    );
 }
 
 export default ProfileCard;
