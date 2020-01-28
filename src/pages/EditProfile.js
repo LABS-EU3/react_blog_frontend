@@ -24,7 +24,7 @@ const StyledProfile = styled.div`
 const StyledProfileFollowCount = styled.div`
   width: 100%;
   display: flex;
-  border-bottom: 1px solid #DFDFDF;
+  border-bottom: 1px solid #dfdfdf;
   min-height: 10%;
   .box {
     padding: 3rem;
@@ -32,7 +32,7 @@ const StyledProfileFollowCount = styled.div`
     text-align: center;
     height: 100%;
     &.border-right {
-      border-right: 1px solid #DFDFDF;
+      border-right: 1px solid #dfdfdf;
     }
   }
 `;
@@ -42,7 +42,7 @@ const StyledProfileInterests = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-bottom: 1px solid #DFDFDF;
+  border-bottom: 1px solid #dfdfdf;
   min-height: 60%;
   h1 {
     font-size: 4rem;
@@ -65,14 +65,14 @@ const StyledProfileInterests = styled.div`
       padding: 0;
       margin-left: 2rem;
       font-size: 18px;
-      color: #22387D;
+      color: #22387d;
       &:hover {
         cursor: pointer;
-        background: #EDEDED;
+        background: #ededed;
         box-shadow: 0px 8px 8px rgba(111, 133, 253, 0.15);
       }
       &.clicked {
-        border: 2px solid #6F85FD;
+        border: 2px solid #6f85fd;
       }
     }
   }
@@ -89,10 +89,10 @@ const StyledProfileInterests = styled.div`
       }
       &.cancel {
         background: white;
-        color: #22387D;
-        border: 1px solid #22387D;
+        color: #22387d;
+        border: 1px solid #22387d;
         &:hover {
-          background: #EDEDED;
+          background: #ededed;
         }
       }
     }
@@ -105,7 +105,7 @@ const StyledProfileInfo = styled.div`
   padding: 4rem;
   flex-direction: column;
   align-items: center;
-  border-bottom: 1px solid #DFDFDF;
+  border-bottom: 1px solid #dfdfdf;
   .profileImage {
     width: 15vw;
     height: 15vw;
@@ -119,12 +119,12 @@ const StyledProfileInfo = styled.div`
         border-radius: 50%;
         width: 100%;
         height: 100%;
-        border: 1px solid #DFDFDF;
+        border: 1px solid #dfdfdf;
       }
       &.dropzone {
         .dropImg {
           border-radius: 50%;
-          border: 1px solid #DFDFDF;
+          border: 1px solid #dfdfdf;
           width: 100%;
           height: 100%;
           border-radius: 50%;
@@ -188,7 +188,7 @@ const StyledProfileInfo = styled.div`
         margin-top: 1.5rem;
         padding: 1rem;
         border-radius: 5px;
-        border: 1px solid #C6D0EB;
+        border: 1px solid #c6d0eb;
       }
       textarea {
         max-width: 80%;
@@ -212,10 +212,10 @@ const StyledProfileInfo = styled.div`
         }
         &.cancel {
           background: white;
-          color: #22387D;
-          border: 1px solid #22387D;
+          color: #22387d;
+          border: 1px solid #22387d;
           &:hover {
-            background: #EDEDED;
+            background: #ededed;
           }
         }
       }
@@ -242,7 +242,11 @@ export function EditProfile(props) {
   const [removeInterests, setRemoveInterests] = useState([]);
 
   const handleSave = () => {
-    if (files.length || user.fullname !== fullname.current.value) {
+    if (
+      files.length ||
+      user.fullname !== fullname.current.value ||
+      user.bio !== bio.current.value
+    ) {
       const data = new FormData();
       if (files.length) {
         data.append("image", files[0]);
@@ -250,9 +254,14 @@ export function EditProfile(props) {
       if (user.fullname !== fullname.current.value) {
         data.append("fullname", fullname.current.value);
       }
+      if (user.bio !== bio.current.value) {
+        data.append("bio", bio.current.value);
+      }
       updateUserProfile(userId, data);
     }
-    setIsEditing(false);
+    if (!loading) {
+      setIsEditing(false);
+    }
   };
 
   const toggleEditing = () => {
@@ -328,8 +337,10 @@ export function EditProfile(props) {
                     <div
                       className="dropImg"
                       style={{
-                        "backgroundImage": `url(${
-                          !files.length ? (user.avatarUrl || userIcon ) : files[0].preview
+                        backgroundImage: `url(${
+                          !files.length
+                            ? user.avatarUrl || userIcon
+                            : files[0].preview
                         })`
                       }}
                     >
@@ -352,7 +363,7 @@ export function EditProfile(props) {
               {!isEditing ? (
                 <>
                   <h3>{user.fullname}</h3>
-                  <p>UI Designer at Fireart Studio</p>
+                  <p>{user.bio}</p>
                 </>
               ) : (
                 <>
@@ -370,7 +381,7 @@ export function EditProfile(props) {
                     name="bio"
                     placeholder="Enter a short bio..."
                     ref={bio}
-                    defaultValue={user.bio || "UI Designer at Fireart Studio"}
+                    defaultValue={user.bio || null}
                   />
                 </>
               )}
