@@ -76,3 +76,4 @@ export const StandLogo = styled.div`
     height: 30px;
   }
 `
+
