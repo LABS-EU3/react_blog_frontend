@@ -30,6 +30,30 @@ export const StyledNotificationDropdownContent = styled.div`
     margin-top: 0!important;
     min-width: 280px!important;
 
+    &:after {
+        content: "";
+        width: 0;
+        height: 0;
+        position: absolute;
+        bottom: 100%;
+        right: 15px;
+        border-width: 0 6px 6px 6px;
+        border-style: solid;
+        border-color: #fff transparent;    
+    }
+    
+    &:before {
+        content: "";
+        width: 0;
+        height: 0;
+        position: absolute;
+        bottom: 100%;
+        right: 60px;
+        border-width: 0 8px 8px 8px;
+        border-style: solid;
+        border-color: rgba(0,0,0,0.1) transparent;    
+    }
+
     padding: 0;
 
     li.card {
