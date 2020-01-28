@@ -200,6 +200,7 @@ body {
 .new-section{
   display:flex;
   flex-wrap: wrap;
+  margin-left: 40px;
 }
 
 .second-section{
