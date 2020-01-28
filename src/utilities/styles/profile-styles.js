@@ -1,8 +1,7 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const MainDiv = styled.div`
-
-.main-article {
+  .main-article {
     width: 30%;
     margin: 2rem 0;
     margin-right: 1.3rem;
@@ -30,6 +29,14 @@ export const MainDiv = styled.div`
       width: 100%;
       padding: 2rem;
       padding-top: 3rem;
+      .delete {
+        background-color: #e17878;
+        border: 1px solid #c85959;
+        border-radius: 2px;
+        &:hover {
+          background-color: #b85050;
+        }
+      }
       h3 {
         margin: 8rem 0 2rem 0;
         font-family: Lato;
@@ -73,4 +80,4 @@ export const MainDiv = styled.div`
       }
     }
   }
-  `;
+`;
