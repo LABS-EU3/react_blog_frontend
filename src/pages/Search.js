@@ -6,16 +6,14 @@ import useConstant from "use-constant";
 
 const useSearchHook = () => {
   const [inputText, setInputText] = useState("");
-  const [results, setResults] = useState({});
-
+  //   const [results, setResults] = useState({});
   const searchInsightly = async text => {
     var formatted = text.length < 2 ? text : text.replace(/\s/g, "+");
     try {
       const response = await axiosWithAuth().get(
         `http://localhost:5000/api/?resources=${formatted}`
       );
-      console.log(results);
-      return setResults(response);
+      return response;
     } catch (error) {
       console.log(error);
     }
@@ -44,7 +42,17 @@ const Search = () => {
   const { inputText, setInputText, search } = useSearchHook();
   return (
     <div>
-      <input value={inputText} onChange={e => setInputText(e.target.value)} />
+      <div>
+        <input value={inputText} onChange={e => setInputText(e.target.value)} />
+      </div>
+      <div>
+        {search.loading && <div>...</div>}
+        {search.error && <div>Error: {search.error.message}</div>}
+        {search.result &&
+          search.result.map(resource => <div>{resource.fullname}</div>)}
+      </div>
     </div>
   );
 };
+
+export default Search;

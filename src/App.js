@@ -10,6 +10,7 @@ import ReadArticle from "./pages/ReadArticle";
 import AboutUs from "./pages/AboutUs";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Interest from "./pages/Final";
+import Search from "./pages/Search";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <ProtectedRoute path="/profile" component={Profile} />
         <ProtectedRoute path="/create" component={Editor} />
         <ProtectedRoute path="/feed" component={Feed} />
+        <ProtectedRoute path="/search" component={Search} />
         <Route path="/article/:id" component={ReadArticle} />
         <Route path="/team" component={AboutUs} />
         <ProtectedRoute path="/final" component={Interest} />
