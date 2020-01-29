@@ -54,8 +54,8 @@ const Search = () => {
               {resource.id}
             </div>
           ))
-        ) : !inputText.length ? (
-          <div>{""}</div>
+        ) : !inputText.length || !search.result ? (
+          <div>Explore our world</div>
         ) : (
           <div>Nothing Found</div>
         )}
