@@ -52,70 +52,17 @@ const MiniDiv = styled.div`
   width: 100%;
 `;
 
-// const ThirdDiv = styled.div`
-//   text-align: center;
-//   color: #828282;
-//   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
-//   margin-left: 40px;
-//   margin-top: 40px;
-//   background-color: white;
-
-//   button {
-//     margin-bottom: 10px;
-//   }
-
-//   img {
-//     width: 240px;
-//     margin: 30px;
-//   }
-// `;
-
-// const P = styled.p`
-//   font-size: 15px;
-//   padding-bottom: 15px;
-// `;
-
-// const FourthDiv = styled.div`
-//   color: #828282;
-//   box-shadow: 0px 0px 0px 0px #aaa;
-//   margin-left: 40px;
-//   margin-top: 40px;
-//   background-color: white;
-//   img {
-//     width: 450px;
-//     margin: 30px;
-//   }
-//   p {
-//     font-size: 16px;
-//     color: #090909;
-//     font-weight: bold;
-//   }
-// `;
-
-// const FifthDiv = styled.div`
-//   display: flex;
-//   align-items: center;
-//   box-shadow: 0px 0px 0px 0px #aaa;
-//   margin-left: 40px;
-//   background-color: white;
-//   margin-top: 40px;
-//   height: 65px;
-//   width: 400px;
-//   img {
-//     height: 40px;
-//     width: 40px;
-//     border-radius: 50%;
-//     margin: 30px;
-//   }
-
-//   p {
-//     font-size: 17px;
-//     color: #828282;
-//     strong {
-//       color: #5d6489;
-//     }
-//   }
-// `;
+const DIV = styled.div`
+display: flex;
+justify-content: space-around;
+font-size: 15px;
+border-bottom: 1px solid darkgray;
+width: 90%;
+margin: auto;
+a{
+    cursor: pointer;
+}
+`;
 
 function ProfileCard() {
     const [clicked, setClicked] = useState();
@@ -136,41 +83,35 @@ function ProfileCard() {
 
             <SecondDiv>
                 <MiniDiv>
-                    <button id="insights" onClick={handleClick} className="fas fa-newspaper">INSIGHTS</button>
-                    <button id="drafts" onClick={handleClick} className="fas fa-feather-alt">DRAFTS</button>
-                    <button id="reactions" onClick={handleClick}className="fas fa-smile-beam" >REACTIONS</button>
+                    <button id="insights" onClick={handleClick} className="fas fa-newspaper"> INSIGHTS</button>
+                    <button id="drafts" onClick={handleClick} className="fas fa-feather-alt"> DRAFTS</button>
+                    <button id="statistics" onClick={handleClick} className="fas fa-chart-line"> STATISTICS</button>
                 </MiniDiv>
 
-                {clicked === "reactions" ? (
-                    <div>Reactions</div>
+                {clicked === "statistics" ? ( 
+                    
+                    <DIV>
+
+                        <a id="views" onClick={handleClick}>VIEWS</a>
+                        <a id="user-reactions" onClick={handleClick}>USER REACTIONS</a>
+                        <a id="reads" onClick={handleClick}>READS</a>
+
+                    </DIV>
+                ) : clicked === "views" ?(
+                <div>views</div>
+                ) : clicked === "user-reactions" ? (
+                <div>user-reactions</div>
+                ) : clicked === "reads" ? (
+                <div>reads</div>
                 ) : clicked === "drafts" ? (
                     <div>Drafts</div>
                 ) : (
                             <UserArticleList />
                         )}
 
-                {/* <h4> Your Insights </h4> */}
-                {/* 
-        <section className="new-section">
-          <ThirdDiv>
-            <img src={words} alt="#" />
-            <P>Advice</P>
-            <button>Delete</button>
-          </ThirdDiv>
-        </section> */}
 
                 <section className="second-section">
-                    {/* <FourthDiv>
-            <img src={yoga} alt="#" />
-          </FourthDiv> */}
-                    {/* 
-          <FifthDiv>
-            <img src={johnson} alt="#" />
-           
-            <p>
-              <strong>Damilolawumi</strong> <span>started following you</span>
-            </p>
-          </FifthDiv> */}
+
                 </section>
             </SecondDiv>
         </Section>
