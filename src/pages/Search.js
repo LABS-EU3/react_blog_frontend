@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { axiosWithAuth } from "../utilities/axios";
 import AwesomeDebouncePromise from "awesome-debounce-promise";
 import { useAsync } from "react-async-hook";
@@ -46,7 +46,7 @@ const Search = () => {
         <input value={inputText} onChange={e => setInputText(e.target.value)} />
       </div>
       <div>
-        {search.loading && <div>...</div>}
+        {search.loading && <div>Loading...</div>}
         {search.error && <div>Error: {search.error.message}</div>}
         {search.result && search.result.data && search.result.data.length ? (
           search.result.data.map(resource => (
@@ -54,10 +54,10 @@ const Search = () => {
               {resource.id}
             </div>
           ))
-        ) : !inputText.length || !search.result ? (
-          <div>Explore our world</div>
-        ) : (
+        ) : inputText.length && !search.result ? (
           <div>Nothing Found</div>
+        ) : (
+          <div>{""}</div>
         )}
       </div>
     </div>
