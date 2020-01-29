@@ -12,8 +12,7 @@ const useSearchHook = () => {
       const response = await axiosWithAuth().get(
         `http://localhost:5000/api/search?resources=${formatted}`
       );
-      console.log(response.data);
-      return response;
+      return response.data;
     } catch (error) {
       console.log(error);
     }
@@ -48,8 +47,8 @@ const Search = () => {
       <div>
         {search.loading && <div>Loading...</div>}
         {search.error && <div>Error: {search.error.message}</div>}
-        {search.result && search.result.data && search.result.data.length ? (
-          search.result.data.map(resource => (
+        {search.result && search.result.length ? (
+          search.result.map(resource => (
             <div style={{ fontSize: "63px" }} key={resource.id}>
               {resource.id}
             </div>
