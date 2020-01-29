@@ -21,7 +21,10 @@ import {
         return {
           ...state,
           loading: false,
-          tags: action.payload
+          tags: Array.from(new Set(action.payload.map(a => a.name)))
+          .map(name => {
+            return action.payload.find(a => a.name === name)
+          })  
         };
       case GET_ALL_TAGS_FAIL:
         return {
