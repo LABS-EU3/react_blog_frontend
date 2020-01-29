@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import Tab from "./Tabs";
 
 class Tabs extends Component {
