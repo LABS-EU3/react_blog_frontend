@@ -49,7 +49,7 @@ const MiniDiv = styled.div`
   border: 1px solid #3f51b6;
   height: 70px;
   margin: 40px;
-  width: 100%;
+  width: 89%;
 `;
 
 const DIV = styled.div`
