@@ -3,12 +3,27 @@ import styled from "styled-components";
 
 const Div = styled.div`
     width: 280px;
-    margin-top: 20px;
-    box-shadow: 1px 1px 1px 1px;
-img{
-    width:220px;
-}
-button{
+    margin: 20px;
+    box-shadow: 0px 1px 3px 0px #aaa;
+    text-align: center;
+
+    h4{
+        font-size: 25px;
+  
+    }
+
+    img{
+    width: 280px;
+    height: 280px;
+    }
+
+     p {
+    font-size: 15px;
+    margin-left:8px;
+   
+    }
+
+    button{
     font-family: Lato;
         font-style: normal;
         font-weight: 800;
@@ -16,15 +31,13 @@ button{
         color: white;
         background-color: #3652BF;
         border: none;
-        border-radius: 3px;
-        box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
         padding: 1rem 2rem;
-        width: 120px;
         display: flex;
         justify-content: center;
         align-items: center;
         cursor: pointer;
-        margin-left: 1rem;
+        margin: auto;
 }
 `;
 

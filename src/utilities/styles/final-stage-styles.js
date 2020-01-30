@@ -17,8 +17,10 @@ export const InteractionSection = styled.div`
   background: #FFF;
 
   /* made changes on line 21, 23 and 27 */
-  div {
-    width: 100%;  
+  .main-container {
+    /* width: 100%;   */
+    display:flex;
+    flex-wrap: wrap;
     margin: auto;
     margin-top: 20px;
 
@@ -62,6 +64,7 @@ export const InteractionSection = styled.div`
         align-items: center;
         cursor: pointer;
         margin-left: 1rem;
+        height: fit-content;
       }
     }
 

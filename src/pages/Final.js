@@ -160,7 +160,7 @@ function Final(props) {
     );
   } else if (stage === 2) {
     view = (
-      <div>
+      <div className="main-container">
         <div className="intro">
           <h3>Users You May Be Interested In</h3>
         </div>
