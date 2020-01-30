@@ -6,7 +6,7 @@ import { axiosWithAuth } from "../../utilities/axios/index";
 export const register = user => dispatch => {
   dispatch({ type: types.REGISTER_REQUEST });
   axios
-    .post(`http://localhost:5000/api/auth/register`, user)
+  .post(`${apiURL}/auth/register`, user)
     .then(res => {
       dispatch({ type: types.REGISTER_SUCCESS, payload: res.data.token, user: res.data });
     })
@@ -19,7 +19,7 @@ export const register = user => dispatch => {
 export const login = user => dispatch => {
   dispatch({ type: types.LOGIN_START })
   return axios
-    .post(`http://localhost:5000/api/auth/login`, user)
+  .post(`${apiURL}/auth/login`, user)
     .then(res => {
       dispatch({ type: types.LOGIN_SUCCESS, payload: res.data.token, user: res.data });
     })
@@ -45,7 +45,7 @@ export const verify = (token, id) => dispatch => {
 export const declareInterest = (interests) => dispatch => {
   dispatch({ type: types.INTEREST_START })
   return axiosWithAuth()
-    .post(`http://localhost:5000/api/interests`, interests)
+  .post(`${apiURL}/interests`, interests)
     .then(res => {
       console.log(res)
       dispatch({ type: types.INTEREST_SUCCESS })
