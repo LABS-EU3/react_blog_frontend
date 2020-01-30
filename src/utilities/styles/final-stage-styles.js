@@ -15,38 +15,38 @@ export const InteractionSection = styled.div`
   flex: 3;
   width: 70%
   background: #FFF;
-
-  /* made changes on line 21, 23 and 27 */
-  .main-container {
-    /* width: 100%;   */
-    display:flex;
-    flex-wrap: wrap;
+  div {
+    width: 85%;
     margin: auto;
-    margin-top: 20px;
-
+    margin-top: 12rem;
     .intro {
       margin-left: 2rem;
-      width: 100%;
+      width: 490px;
       h3 {
         color: #272424;
-        font-size: 30px;
+        font-size: 38px;
         font-weight: bold;
         letter-spacing: 1px;
         margin-bottom: 1rem;
       }
-
       small {
         font-size: 13px;
         color: grey;
       }
     }
-
     .footer {
       display: flex;
       justify-content: flex-end;
       padding: 20px;
       margin-top: 10rem;
-
+      &.followSection {
+        margin-top: 0;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        margin-bottom: 20px;
+        margin-right: 80px;
+      }
       button {
         font-family: Lato;
         font-style: normal;
@@ -64,10 +64,41 @@ export const InteractionSection = styled.div`
         align-items: center;
         cursor: pointer;
         margin-left: 1rem;
-        height: fit-content;
       }
     }
-
+    .users {
+      padding: 20px;
+      width: 100%;
+      margin-top: 4rem;
+      display: flex;
+      flex-wrap: wrap;
+      height: 60%;
+      align-items: center;
+      .userCard {
+        width: 20%;
+        height: 50%;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 4vh;
+        p {
+          font-size: 20px;
+        }
+        img {
+          width: 80%;
+          height: 80%;
+          border-radius: 50%;
+          border: 4px solid #dcdcdc;
+          &:hover {
+            cursor: pointer;
+          }
+          &.clicked {
+            border: 10px solid #dcdcdc;
+          }
+        } 
+      }
+    }
     ul.ks-cboxtags {
       list-style: none;
       padding: 20px;
