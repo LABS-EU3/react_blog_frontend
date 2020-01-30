@@ -11,76 +11,81 @@ import {
   getUsersToFollow
 } from "../redux-store/actions/onboarding-actions";
 import styled from "styled-components";
+import damdam from "../assets/images/damdam.jpeg";
+import dammy from "../assets/images/damdam.jpeg";
+import UserCard from "./UserCard";
 
 const mockUsers = [{
   "id": 16,
   "fullname": "test1234",
-  "bio": null,
-  "avatarUrl": null,
+  "bio": "a cheerful and devoted software developer with experience in node, javascript and react",
+  "avatarUrl": damdam,
   "mutualInterest": "Tech"
 },
 {
   "id": 17,
   "fullname": "User123",
-  "bio": null,
-  "avatarUrl": null,
+  "bio": "a cheerful and devoted software developer with experience in node, javascript and react",
+  "avatarUrl": dammy,
   "mutualInterest": "Tech"
 },
 {
   "id": 19,
   "fullname": "Meg",
-  "bio": null,
-  "avatarUrl": null,
-  "mutualInterest": ["Tech", "Cooking" ]},
+  "bio": "a cheerful and devoted software developer with experience in node, javascript and react",
+  "avatarUrl": damdam,
+  "mutualInterest": ["Tech", "Cooking"]
+},
 {
   "id": 20,
   "fullname": "meg2",
-  "bio": null,
-  "avatarUrl": null,
+  "bio": "a cheerful and devoted software developer with experience in node, javascript and react",
+  "avatarUrl": dammy,
   "mutualInterest": "Tech"
 },
 {
   "id": 21,
   "fullname": "Adam Whalley",
-  "bio": null,
-  "avatarUrl": null,
+  "bio": "a cheerful and devoted software developer with experience in node, javascript and react",
+  "avatarUrl": damdam,
   "mutualInterest": "Tech"
 },
 {
   "id": 21,
   "fullname": "Adam Whalley",
-  "bio": null,
-  "avatarUrl": null,
+  "bio": "a cheerful and devoted software developer with experience in node, javascript and react",
+  "avatarUrl": dammy,
   "mutualInterest": "Tech"
 },
 {
   "id": 21,
   "fullname": "Adam Whalley",
-  "bio": null,
-  "avatarUrl": null,
+  "bio": "a cheerful and devoted software developer with experience in node, javascript and react",
+  "avatarUrl": damdam,
   "mutualInterest": "Tech"
 },
 {
   "id": 21,
   "fullname": "Adam Whalley",
-  "bio": null,
-  "avatarUrl": null,
+  "bio": "a cheerful and devoted software developer with experience in node, javascript and react",
+  "avatarUrl": dammy,
   "mutualInterest": "Tech"
 },
 {
   "id": 21,
   "fullname": "Adam Whalley",
-  "bio": null,
-  "avatarUrl": null,
+  "bio": "a cheerful and devoted software developer with experience in node, javascript and react",
+  "avatarUrl": damdam,
   "mutualInterest": "Tech"
 },
 {
   "id": 21,
   "fullname": "Adam Whalley",
-  "bio": null,
-  "avatarUrl": null,
+  "bio": "a cheerful and devoted software developer with experience in node, javascript and react",
+  "avatarUrl": dammy,
   "mutualInterest": "Tech"
 }];
+
 
 function Final(props) {
   const [stage, setStage] = useState(1);
@@ -127,18 +132,18 @@ function Final(props) {
         <ul className="ks-cboxtags">
           {tags
             ? tags.map((tag, index) => {
-                return (
-                  <li key={index}>
-                    <input
-                      onChange={handleChange}
-                      type="checkbox"
-                      id={`checkbox${index}`}
-                      value={tag.name}
-                    />
-                    <label htmlFor={`checkbox${index}`}>{tag.name}</label>
-                  </li>
-                );
-              })
+              return (
+                <li key={index}>
+                  <input
+                    onChange={handleChange}
+                    type="checkbox"
+                    id={`checkbox${index}`}
+                    value={tag.name}
+                  />
+                  <label htmlFor={`checkbox${index}`}>{tag.name}</label>
+                </li>
+              );
+            })
             : ""}
         </ul>
         <div className="footer">
@@ -159,13 +164,14 @@ function Final(props) {
         <div className="intro">
           <h3>Users You May Be Interested In</h3>
         </div>
-     
-       {mockUsers.map(user => {
-         return (<div className="userCard">
-           <p>{user.fullname}</p>
-         </div>)
-       })}
-             <div className="footer">
+
+        {mockUsers.map(user => {
+          return (<div className="userCard">
+           <UserCard user={user}/>
+
+          </div>)
+        })}
+        <div className="footer">
           <button
             onClick={() => {
               setStage(2);

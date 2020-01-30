@@ -16,17 +16,18 @@ export const InteractionSection = styled.div`
   width: 70%
   background: #FFF;
 
+  /* made changes on line 21, 23 and 27 */
   div {
-    width: 85%;
+    width: 100%;  
     margin: auto;
-    margin-top: 12rem;
+    margin-top: 20px;
 
     .intro {
       margin-left: 2rem;
-      width: 490px;
+      width: 100%;
       h3 {
         color: #272424;
-        font-size: 38px;
+        font-size: 30px;
         font-weight: bold;
         letter-spacing: 1px;
         margin-bottom: 1rem;
