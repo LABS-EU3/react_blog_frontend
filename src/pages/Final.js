@@ -8,94 +8,25 @@ import { connect } from "react-redux";
 import { declareInterest } from "../redux-store/actions/auths";
 import {
   getTags,
-  getUsersToFollow
+  getUsersToFollow,
+  followUsers
 } from "../redux-store/actions/onboarding-actions";
-import styled from "styled-components";
-import damdam from "../assets/images/damdam.jpeg";
-import dammy from "../assets/images/damdam.jpeg";
+
 import UserCard from "./UserCard";
-
-const mockUsers = [{
-  "id": 16,
-  "fullname": "test1234",
-  "bio": "a cheerful and devoted software developer with experience in node, javascript and react",
-  "avatarUrl": damdam,
-  "mutualInterest": "Tech"
-},
-{
-  "id": 17,
-  "fullname": "User123",
-  "bio": "a cheerful and devoted software developer with experience in node, javascript and react",
-  "avatarUrl": dammy,
-  "mutualInterest": "Tech"
-},
-{
-  "id": 19,
-  "fullname": "Meg",
-  "bio": "a cheerful and devoted software developer with experience in node, javascript and react",
-  "avatarUrl": damdam,
-  "mutualInterest": ["Tech", "Cooking"]
-},
-{
-  "id": 20,
-  "fullname": "meg2",
-  "bio": "a cheerful and devoted software developer with experience in node, javascript and react",
-  "avatarUrl": dammy,
-  "mutualInterest": "Tech"
-},
-{
-  "id": 21,
-  "fullname": "Adam Whalley",
-  "bio": "a cheerful and devoted software developer with experience in node, javascript and react",
-  "avatarUrl": damdam,
-  "mutualInterest": "Tech"
-},
-{
-  "id": 21,
-  "fullname": "Adam Whalley",
-  "bio": "a cheerful and devoted software developer with experience in node, javascript and react",
-  "avatarUrl": dammy,
-  "mutualInterest": "Tech"
-},
-{
-  "id": 21,
-  "fullname": "Adam Whalley",
-  "bio": "a cheerful and devoted software developer with experience in node, javascript and react",
-  "avatarUrl": damdam,
-  "mutualInterest": "Tech"
-},
-{
-  "id": 21,
-  "fullname": "Adam Whalley",
-  "bio": "a cheerful and devoted software developer with experience in node, javascript and react",
-  "avatarUrl": dammy,
-  "mutualInterest": "Tech"
-},
-{
-  "id": 21,
-  "fullname": "Adam Whalley",
-  "bio": "a cheerful and devoted software developer with experience in node, javascript and react",
-  "avatarUrl": damdam,
-  "mutualInterest": "Tech"
-},
-{
-  "id": 21,
-  "fullname": "Adam Whalley",
-  "bio": "a cheerful and devoted software developer with experience in node, javascript and react",
-  "avatarUrl": dammy,
-  "mutualInterest": "Tech"
-}];
-
+import userIcon from "../assets/images/Icons/user.png";
 
 function Final(props) {
   const [stage, setStage] = useState(1);
   const [checkItems, setCheckeditems] = useState(new Map());
+  const [follow, setFollow] = useState([]);
   const {
     tags,
     getTags,
     getUsersToFollow,
     declareInterest,
-    usersToFollow
+    usersToFollow,
+    followUsers,
+    loading
   } = props;
   let view;
 
@@ -104,19 +35,40 @@ function Final(props) {
     const isChecked = e.target.checked;
     console.log(e.target.checked);
     setCheckeditems(checkItems => checkItems.set(item, isChecked));
-    console.log([...checkItems.keys()]);
+    console.log([...checkItems]);
   };
 
   const handleSubmit = () => {
-    const interests = [...checkItems.keys()];
+    let interests = [];
+    [...checkItems].map(interest => {
+      if (interest[1] === true) {
+        interests.push(interest[0]);
+      }
+    });
+
     declareInterest(interests).then(res => {
       setStage(2);
     });
   };
 
+  const handleFollowClick = (e, userId) => {
+    if (follow.includes(userId) && e.target.classList.contains("clicked")) {
+      e.target.classList.remove("clicked");
+      setFollow(follow.filter(id => id !== userId));
+    } else {
+      e.target.classList.add("clicked");
+      setFollow(follow.concat(userId));
+    }
+  };
+
+  const handleFollowSubmit = () => {
+    followUsers(follow).then(res => props.history.push("/feed"));
+    setFollow([]);
+  };
+
   useEffect(() => {
     getTags();
-    // getUsersToFollow();
+    getUsersToFollow();
   }, []);
 
   if (stage === 1) {
@@ -130,8 +82,8 @@ function Final(props) {
           </small>
         </div>
         <ul className="ks-cboxtags">
-          {tags
-            ? tags.map((tag, index) => {
+          {tags &&
+            tags.map((tag, index) => {
               return (
                 <li key={index}>
                   <input
@@ -143,8 +95,7 @@ function Final(props) {
                   <label htmlFor={`checkbox${index}`}>{tag.name}</label>
                 </li>
               );
-            })
-            : ""}
+            })}
         </ul>
         <div className="footer">
           <button
@@ -160,26 +111,35 @@ function Final(props) {
     );
   } else if (stage === 2) {
     view = (
-      <div className="main-container">
+      <div>
         <div className="intro">
           <h3>Users You May Be Interested In</h3>
         </div>
-
-        {mockUsers.map(user => {
-          return (<div className="userCard">
-           <UserCard user={user}/>
-
-          </div>)
-        })}
-        <div className="footer">
+        <div className="users">
+          {usersToFollow &&
+            usersToFollow.map(user => {
+              return (
+                <div className="userCard" key={user.id}>
+                  {/* <UserCard user={user} handleFollowClick={handleFollowClick}/> */}
+                  <img
+                    src={user.avatarUrl || userIcon}
+                    alt="#"
+                    onClick={e => handleFollowClick(e, user.id)}
+                  />
+                  <p>{user.fullname}</p>
+                </div>
+              );
+            })}
+        </div>
+        <div className="footer followSection">
           <button
             onClick={() => {
-              setStage(2);
+              props.history.push("/feed");
             }}
           >
             Skip
           </button>
-          <button onClick={handleSubmit}>Next &nbsp;&nbsp; &rarr;</button>
+          <button onClick={handleFollowSubmit}>Next &nbsp;&nbsp; &rarr;</button>
         </div>
       </div>
     );
@@ -205,5 +165,6 @@ const mapStateToProps = store => {
 export default connect(mapStateToProps, {
   declareInterest,
   getTags,
-  getUsersToFollow
+  getUsersToFollow,
+  followUsers
 })(Final);
