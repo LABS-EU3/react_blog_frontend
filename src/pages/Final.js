@@ -14,7 +14,7 @@ import styled from "styled-components";
 import damdam from "../assets/images/damdam.jpeg";
 import dammy from "../assets/images/damdam.jpeg";
 import UserCard from "./UserCard";
-import {MainContainer} from "../utilities/styles/final-stage-styles";
+import {MainContainer} from "../pages/UserCard";
 
 
 const mockUsers = [{
@@ -163,7 +163,7 @@ function Final(props) {
   } else if (stage === 2) {
     view = (
       <MainContainer>
-        <div>
+        <div className="full-width">
           <h3>Users You May Be Interested In</h3>
         </div>
 
