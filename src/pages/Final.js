@@ -73,7 +73,7 @@ function Final(props) {
 
   if (stage === 1) {
     view = (
-      <div>
+      <div className="final-container">
         <div className="intro">
           <h3>How would you describe your taste?</h3>
           <small>
