@@ -143,10 +143,10 @@ export const InteractionSection = styled.div`
 `;
 
 export const MainContainer = styled.div`
-    /* display:flex;
+    display:flex;
      flex-wrap: wrap;
     margin-top: 20px;
-     width:100%; */
+     width:100%;
 
     .footer {
       display: flex;
