@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   display: flex;
   width: 100%;
-  height: 100vh;
+  height: 100vh;  
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
 `;
 
@@ -13,20 +13,22 @@ export const AnimeSection = styled.div`
 
 export const InteractionSection = styled.div`
   flex: 3;
-  width: 70%
-  background: #FFF;
+  width: 100%
+  background-color: #FFF;
 
   /* made changes on line 21, 23 and 27 */
-  .main-container {
-    /* width: 100%;   */
-    display:flex;
-    flex-wrap: wrap;
+  .final-container{
+    width: 85%;  
+    /* display:flex;
+    flex-wrap: wrap; */
     margin: auto;
-    margin-top: 20px;
+    margin-left:2rem;
+    /* margin-top: 20px; */
 
     .intro {
       margin-left: 2rem;
-      width: 100%;
+      /* width: 100%; */
+      width:490px
       h3 {
         color: #272424;
         font-size: 30px;
@@ -138,4 +140,38 @@ export const InteractionSection = styled.div`
       border: 2px solid #f1f6fd;
     }
   }
+`;
+
+export const MainContainer = styled.div`
+    /* display:flex;
+     flex-wrap: wrap;
+    margin-top: 20px;
+     width:100%; */
+
+    .footer {
+      display: flex;
+      justify-content: flex-end;
+      padding: 20px;
+      margin-top: 10rem;
+
+      button {
+        font-family: Lato;
+        font-style: normal;
+        font-weight: 800;
+        font-size: 16px;
+        color: white;
+        background-color: #3652BF;
+        border: none;
+        border-radius: 3px;
+        box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.1);
+        padding: 1rem 2rem;
+        width: 120px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        margin-left: 1rem;
+        height: fit-content;
+      }
+    }
 `;

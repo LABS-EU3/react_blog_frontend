@@ -14,6 +14,8 @@ import styled from "styled-components";
 import damdam from "../assets/images/damdam.jpeg";
 import dammy from "../assets/images/damdam.jpeg";
 import UserCard from "./UserCard";
+import {MainContainer} from "../utilities/styles/final-stage-styles";
+
 
 const mockUsers = [{
   "id": 16,
@@ -121,7 +123,7 @@ function Final(props) {
 
   if (stage === 1) {
     view = (
-      <div>
+      <div className="final-container">
         <div className="intro">
           <h3>How would you describe your taste?</h3>
           <small>
@@ -160,8 +162,8 @@ function Final(props) {
     );
   } else if (stage === 2) {
     view = (
-      <div className="main-container">
-        <div className="intro">
+      <MainContainer>
+        <div>
           <h3>Users You May Be Interested In</h3>
         </div>
 
@@ -181,7 +183,7 @@ function Final(props) {
           </button>
           <button onClick={handleSubmit}>Next &nbsp;&nbsp; &rarr;</button>
         </div>
-      </div>
+      </MainContainer>
     );
   }
 
