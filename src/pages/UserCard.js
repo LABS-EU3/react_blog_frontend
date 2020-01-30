@@ -8,6 +8,24 @@ const Div = styled.div`
 img{
     width:220px;
 }
+button{
+    font-family: Lato;
+        font-style: normal;
+        font-weight: 800;
+        font-size: 16px;
+        color: white;
+        background-color: #3652BF;
+        border: none;
+        border-radius: 3px;
+        box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.1);
+        padding: 1rem 2rem;
+        width: 120px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        margin-left: 1rem;
+}
 `;
 
 function UserCard(props) {
