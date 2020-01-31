@@ -55,12 +55,8 @@ const AuthorProfile = props => {
               <StyledInfo>
                 <div className="content">
                   <h3>{profile.fullname}</h3>
-                  <p className="bio">
-                    {profile.bio
-                      ? profile.bio
-                      : "MeganEnnis.com Author, essayist, screenwriter, copywriter, movie-maker, beach-lover, bison-lover, gym-goer, all-around-the-world-goer."}
-                  </p>
-                  {profile.interests && (
+                  {profile.bio && <p className="bio">{profile.bio}</p>}
+                  {profile.interests && profile.interests.length>0 && (
                     <div className="interests">
                       {profile.interests.map(interest => (
                         <p key={interest.name}>#{interest.name}</p>
