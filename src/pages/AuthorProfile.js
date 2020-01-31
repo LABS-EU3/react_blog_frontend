@@ -89,7 +89,7 @@ const AuthorProfile = props => {
               <div className="section stories">
                 <h3>Insights</h3>
                 <StyledStories>
-                  {authorArticles.map(article => (
+                  {authorArticles.map(article => article.isPublished && (
                     <div
                       className="article"
                       key={article.id}
