@@ -54,7 +54,7 @@ export const authorProfileReducer = (state = initState, action) => {
         followAuthorSuccess: true,
         profile: {
           ...state.profile,
-          followers: JSON.parse(state.profile.followers) + 1
+          followers: [...state.profile.followers, action.payload]
         }
       };
     case GET_AUTHOR_PROFILE_FAIL:
