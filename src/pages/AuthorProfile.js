@@ -1,19 +1,38 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { getAuthorProfile } from "../redux-store/actions/get-author-profile-actions";
+import {
+  getAuthorProfile,
+  followAuthor
+} from "../redux-store/actions/get-author-profile-actions";
 import DefaultNavigation from "../components/Navigation/Default";
 import AuthedNavigation from "../components/Navigation/Authed";
 import { getToken } from "../utilities/authentication";
 import Button from "../components/Buttons/Button";
-import { StyledProfile, StyledInfo, StyledStories } from "../utilities/styles/author-profile-styles";
+import {
+  StyledProfile,
+  StyledInfo,
+  StyledStories
+} from "../utilities/styles/author-profile-styles";
 
 const AuthorProfile = props => {
-  const { match, getAuthorProfile, profile } = props;
+  const {
+    match,
+    getAuthorProfile,
+    profile,
+    followSuccess,
+    followAuthor
+  } = props;
   const token = getToken();
+  const authorId = match.params.id;
   useEffect(() => {
-    const authorId = match.params.id;
     getAuthorProfile(authorId);
-  }, [match.params.id, getAuthorProfile]);
+  }, []);
+
+  const handleFollow = e => {
+    const button = e.target;
+    followAuthor([authorId]).then(res => button.setAttribute("disabled", true));
+    console.log(profile.followers);
+  };
 
   return (
     <div>
@@ -33,7 +52,7 @@ const AuthorProfile = props => {
                   {profile.interests && (
                     <div className="interests">
                       {profile.interests.map(interest => (
-                        <p>#{interest.name}</p>
+                        <p key={interest.name}>#{interest.name}</p>
                       ))}
                     </div>
                   )}
@@ -45,7 +64,12 @@ const AuthorProfile = props => {
                       <span>{profile.following}</span> Following
                     </p>
                   </div>
-                  {token && <Button label="Follow" />}                  
+                  {token && (
+                    <Button
+                      label={followSuccess ? "Following" : "Follow"}
+                      handleClick={handleFollow}
+                    />
+                  )}
                 </div>
                 <div className="image">
                   <img src={profile.avatarUrl} alt="" />
@@ -66,8 +90,11 @@ const AuthorProfile = props => {
 
 const mapStateToProps = state => {
   return {
-    profile: state.authorProfile.profile
+    profile: state.authorProfile.profile,
+    followSuccess: state.authorProfile.followAuthorSuccess
   };
 };
 
-export default connect(mapStateToProps, { getAuthorProfile })(AuthorProfile);
+export default connect(mapStateToProps, { getAuthorProfile, followAuthor })(
+  AuthorProfile
+);
