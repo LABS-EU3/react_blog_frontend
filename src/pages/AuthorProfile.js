@@ -1,13 +1,23 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { getAuthorProfile } from "../redux-store/actions/get-author-profile-actions";
 
 const AuthorProfile = props => {
-  const { match } = props;
+  const { match, getAuthorProfile, profile } = props;
   useEffect(() => {
     const authorId = match.params.id;
-    console.log(authorId);
-  }, [match.params.id]);
-  return <div>AuthorProfile</div>;
+    getAuthorProfile(authorId);
+  }, [match.params.id, getAuthorProfile]);
+  return <div>
+      {profile && console.log(profile)}
+      AuthorProfile
+      </div>;
 };
 
-export default connect(state => state, {})(AuthorProfile);
+const mapStateToProps = state => {
+    return {
+      profile: state.authorProfile.profile
+    };
+  };
+
+export default connect(mapStateToProps, {getAuthorProfile})(AuthorProfile);
