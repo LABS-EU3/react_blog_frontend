@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import {
   getAuthorProfile,
-  followAuthor
+  followAuthor,
+  getAuthorArticles
 } from "../redux-store/actions/get-author-profile-actions";
 import DefaultNavigation from "../components/Navigation/Default";
 import AuthedNavigation from "../components/Navigation/Authed";
@@ -13,6 +14,9 @@ import {
   StyledInfo,
   StyledStories
 } from "../utilities/styles/author-profile-styles";
+import { Link } from "react-router-dom";
+import blue_arrow from "../assets/images/Icons/blue_arrow.svg";
+
 
 const AuthorProfile = props => {
   const {
@@ -20,12 +24,15 @@ const AuthorProfile = props => {
     getAuthorProfile,
     profile,
     followSuccess,
-    followAuthor
+    followAuthor,
+    authorArticles,
+    getAuthorArticles
   } = props;
   const token = getToken();
   const authorId = match.params.id;
   useEffect(() => {
     getAuthorProfile(authorId);
+    getAuthorArticles(authorId);
   }, []);
 
   const handleFollow = e => {
@@ -40,7 +47,9 @@ const AuthorProfile = props => {
       <StyledProfile>
         {profile && (
           <>
-            <div className="section info">
+            <div
+              className={authorArticles ? "section info shorter" : "section info"}
+            >
               <StyledInfo>
                 <div className="content">
                   <h3>{profile.fullname}</h3>
@@ -76,11 +85,41 @@ const AuthorProfile = props => {
                 </div>
               </StyledInfo>
             </div>
-            <div className="section stories">
-              <StyledStories>
-                <h3>Stories Here</h3>
-              </StyledStories>
-            </div>
+            {authorArticles && (
+              <div className="section stories">
+                <h3>Insights</h3>
+                <StyledStories>
+                  {authorArticles.map(article => (
+                    <div
+                      className="article"
+                      key={article.id}
+                      onClick={() =>
+                        props.history.push(`/article/${article.custom_id}`)
+                      }
+                    >
+                      <img src={article.coverImageUrl} alt="" />
+                      <div className="main-article-content">
+                        <h3>{article.title}</h3>
+                        <p>
+                          {JSON.parse(article.body)
+                            .find(block => block.type === "paragraph")
+                            .data.text.substring(0, 150)}
+                          ...
+                        </p>
+                        <div className="main-article-footer">
+                          <div className="article-link">
+                            <Link to={`/article/${article.custom_id}`}>
+                              Details
+                            </Link>
+                            <img src={blue_arrow} alt="Blue Arrow" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </StyledStories>
+              </div>
+            )}
           </>
         )}
       </StyledProfile>
@@ -91,10 +130,13 @@ const AuthorProfile = props => {
 const mapStateToProps = state => {
   return {
     profile: state.authorProfile.profile,
-    followSuccess: state.authorProfile.followAuthorSuccess
+    followSuccess: state.authorProfile.followAuthorSuccess,
+    authorArticles: state.authorProfile.articles
   };
 };
 
-export default connect(mapStateToProps, { getAuthorProfile, followAuthor })(
-  AuthorProfile
-);
+export default connect(mapStateToProps, {
+  getAuthorProfile,
+  followAuthor,
+  getAuthorArticles
+})(AuthorProfile);
