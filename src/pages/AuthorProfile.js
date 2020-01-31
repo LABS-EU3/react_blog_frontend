@@ -16,7 +16,7 @@ import {
 } from "../utilities/styles/author-profile-styles";
 import { Link } from "react-router-dom";
 import blue_arrow from "../assets/images/Icons/blue_arrow.svg";
-
+import { decodeToken } from "../utilities/checkToken";
 
 const AuthorProfile = props => {
   const {
@@ -29,6 +29,7 @@ const AuthorProfile = props => {
     getAuthorArticles
   } = props;
   const token = getToken();
+  const { subject: userId } = decodeToken();
   const authorId = match.params.id;
   useEffect(() => {
     getAuthorProfile(authorId);
@@ -48,7 +49,9 @@ const AuthorProfile = props => {
         {profile && (
           <>
             <div
-              className={authorArticles ? "section info shorter" : "section info"}
+              className={
+                authorArticles ? "section info shorter" : "section info"
+              }
             >
               <StyledInfo>
                 <div className="content">
@@ -65,18 +68,37 @@ const AuthorProfile = props => {
                       ))}
                     </div>
                   )}
-                  <div className="follows">
-                    <p>
-                      <span>{profile.followers}</span> Followers
-                    </p>
-                    <p>
-                      <span>{profile.following}</span> Following
-                    </p>
-                  </div>
+                  {profile.followers && profile.following && (
+                    <div className="follows">
+                      <p>
+                        <span>{profile.followers.length}</span> Followers
+                      </p>
+
+                      <p>
+                        <span>{profile.following.length}</span> Following
+                      </p>
+                    </div>
+                  )}
+
+                  {/* if user is not logged in, follow button should not render. Checks for token below */}
+                  {/* If they are logged in and the button renders, the label content is based on whether the user is already following the author. */}
+
                   {token && (
                     <Button
-                      label={followSuccess ? "Following" : "Follow"}
+                      label={
+                        followSuccess ||
+                        // checks to see if the user id of logged in user is included in array of ids the author has of users that are following them
+                        (profile.followers &&
+                          profile.followers.includes(userId))
+                          ? "Following"
+                          : "Follow"
+                      }
                       handleClick={handleFollow}
+                      disabled={
+                        followSuccess ||
+                        (profile.followers &&
+                          profile.followers.includes(userId))
+                      }
                     />
                   )}
                 </div>
@@ -89,34 +111,37 @@ const AuthorProfile = props => {
               <div className="section stories">
                 <h3>Insights</h3>
                 <StyledStories>
-                  {authorArticles.map(article => article.isPublished && (
-                    <div
-                      className="article"
-                      key={article.id}
-                      onClick={() =>
-                        props.history.push(`/article/${article.custom_id}`)
-                      }
-                    >
-                      <img src={article.coverImageUrl} alt="" />
-                      <div className="main-article-content">
-                        <h3>{article.title}</h3>
-                        <p>
-                          {JSON.parse(article.body)
-                            .find(block => block.type === "paragraph")
-                            .data.text.substring(0, 150)}
-                          ...
-                        </p>
-                        <div className="main-article-footer">
-                          <div className="article-link">
-                            <Link to={`/article/${article.custom_id}`}>
-                              Details
-                            </Link>
-                            <img src={blue_arrow} alt="Blue Arrow" />
+                  {authorArticles.map(
+                    article =>
+                      article.isPublished && (
+                        <div
+                          className="article"
+                          key={article.id}
+                          onClick={() =>
+                            props.history.push(`/article/${article.custom_id}`)
+                          }
+                        >
+                          <img src={article.coverImageUrl} alt="" />
+                          <div className="main-article-content">
+                            <h3>{article.title}</h3>
+                            <p>
+                              {JSON.parse(article.body)
+                                .find(block => block.type === "paragraph")
+                                .data.text.substring(0, 150)}
+                              ...
+                            </p>
+                            <div className="main-article-footer">
+                              <div className="article-link">
+                                <Link to={`/article/${article.custom_id}`}>
+                                  Details
+                                </Link>
+                                <img src={blue_arrow} alt="Blue Arrow" />
+                              </div>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </div>
-                  ))}
+                      )
+                  )}
                 </StyledStories>
               </div>
             )}
