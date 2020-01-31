@@ -46,7 +46,7 @@ export const UserArticleList = ({
       {!isFetching ? (
         <section className="new-section">
           {userArticles.length !== 0 ? (
-            userArticles.response.map(article => article.isPublished && (
+            userArticles.response.map(article => article.isEditing && (
               
               <div
                 className="main-article"

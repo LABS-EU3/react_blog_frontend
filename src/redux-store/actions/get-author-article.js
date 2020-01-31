@@ -7,12 +7,15 @@ export const getAuthorArticle = id => async dispatch => {
     const response = await axios.get(
       `http://localhost:5000/api/articles/author/${id}`
     );
+    
+    
     dispatch({ type: types.GET_USER_ARTICLES_SUCCESS, payload: response.data });
   } catch (err) {
     console.log(err);
     dispatch({ type: types.GET_USER_ARTICLES_FAIL });
   }
 };
+
 
 export const deleteAuthorArticle = id => async dispatch => {
   dispatch({ type: types.DELETE_USER_ARTICLES_START });
@@ -29,3 +32,6 @@ export const deleteAuthorArticle = id => async dispatch => {
     dispatch({ type: types.DELETE_USER_ARTICLES_FAIL });
   }
 };
+
+
+

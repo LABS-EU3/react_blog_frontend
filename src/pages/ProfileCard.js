@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import EditProfile from "../pages/EditProfile";
 import UserArticleList from "../pages/UserArticles/UserArticleLIst";
+import UserArticleDraft from "../pages/UserArticles/UserArticleDraft";
 
 const Section = styled.section`
    width: 100%;
@@ -104,7 +105,9 @@ function ProfileCard() {
                 ) : clicked === "reads" ? (
                 <div>reads</div>
                 ) : clicked === "drafts" ? (
-                    <div>Drafts</div>
+                    <div>
+                     <UserArticleDraft/>
+                    </div>
                 ) : (
                             <UserArticleList />
                         )}
