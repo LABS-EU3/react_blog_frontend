@@ -39,7 +39,6 @@ const AuthorProfile = props => {
   const handleFollow = e => {
     const button = e.target;
     followAuthor([authorId]).then(res => button.setAttribute("disabled", true));
-    console.log(profile.followers);
   };
 
   return (
