@@ -1,27 +1,33 @@
-import React, {useEffect} from "react";
-import {connect} from 'react-redux'
-import { Wrapper, Details, StyledDetailsLeft, StyledDetailsRight, Body } from '../utilities/styles/read-styles';
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import {
+  Wrapper,
+  Details,
+  StyledDetailsLeft,
+  StyledDetailsRight,
+  Body
+} from "../utilities/styles/read-styles";
 import Renderer from "../utilities/renderer";
 import readTime from "../utilities/readTime";
 import NavBar from "../components/Navigation/Authed";
 import BackArrow from "../assets/images/arrow.svg";
 import like from "../assets/images/like-icon.svg";
-
-import { getSingleArticle } from '../redux-store/actions/get-article-actions'
+import Highligter from "../components/Highlight";
+import { getSingleArticle } from "../redux-store/actions/get-article-actions";
 import { Link } from "react-router-dom";
 
-const ReadArticle = (props) => {
+const ReadArticle = props => {
   const { getSingleArticle, singleArticle, location } = props;
   useEffect(() => {
     const getArticle = () => {
-      const params = location.pathname; 
-      const articleId = params.split('/');
-      getSingleArticle(articleId[2])
-    }
+      const params = location.pathname;
+      const articleId = params.split("/");
+      getSingleArticle(articleId[2]);
+    };
     getArticle();
-  }, [getSingleArticle, location.pathname])
+  }, [getSingleArticle, location.pathname]);
 
-  const articleBody = singleArticle.body ? singleArticle.body : '[]';
+  const articleBody = singleArticle.body ? singleArticle.body : "[]";
   const content = JSON.parse(articleBody);
   return (
     <>
@@ -30,29 +36,35 @@ const ReadArticle = (props) => {
         <Details>
           <StyledDetailsLeft>
             <div className="back">
-              <Link to="/feed"><img src={BackArrow} alt="back" /></Link>
+              <Link to="/feed">
+                <img src={BackArrow} alt="back" />
+              </Link>
             </div>
             <div className="tags">
               {singleArticle.tags
-                ? singleArticle.tags.map((tag, index) => <p key={tag.id}>#{tag.name}</p>)
+                ? singleArticle.tags.map((tag, index) => (
+                    <p key={tag.id}>#{tag.name}</p>
+                  ))
                 : ""}
             </div>
             <h2 className="title">{singleArticle.title}</h2>
-            
-              <div className="bottom">
+
+            <div className="bottom">
               <p className="author">{singleArticle.authorName}</p>
               {singleArticle.body && (
-                  <p className="readTimeLength">{`${readTime(
+                <p className="readTimeLength">{`${readTime(
                   singleArticle.body
                 )} min read`}</p>
               )}
-              </div>
+            </div>
           </StyledDetailsLeft>
           <StyledDetailsRight>
             <img src={singleArticle.coverImageUrl} alt="IoT" />
           </StyledDetailsRight>
         </Details>
+        <Highligter article={singleArticle}>
           <Body>{Renderer(content)}</Body>
+        </Highligter>
         <div className="like">
           <img src={like} alt="like icon" />
           <p>22</p>
@@ -65,7 +77,7 @@ const ReadArticle = (props) => {
 const mapStateToProps = store => {
   return {
     singleArticle: store.articles.singleArticle
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps,{getSingleArticle})(ReadArticle);
+export default connect(mapStateToProps, { getSingleArticle })(ReadArticle);
