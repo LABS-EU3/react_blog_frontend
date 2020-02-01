@@ -23,7 +23,6 @@ const StyledOrderedList = styled.div`
 
   .tab-list-active {
     color: ${theme.colors.purple};
-    text-decoration: underline;
   }
 `;
 

@@ -8,6 +8,7 @@ import styled from "styled-components";
 import { Section } from "../styles/shared";
 import theme from "../styles/theme";
 import Loader from "./Loader";
+import binocular from "../assets/binocular.png";
 
 const Container = styled(Section)``;
 
@@ -23,7 +24,24 @@ const StyledSearchContainer = styled.div`
     caret-color: ${theme.colors.purple};
   }
 `;
-
+const StyledBlank = styled.div`
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  vertical-align: middle;
+  img {
+    padding: 1rem;
+    padding-left: 0;
+    object-fit: cover;
+    max-height: 440px;
+    width: auto;
+    margin: 0 auto;
+    filter: grayscale(100%);
+    align-self: center;
+  }
+`;
 const StyledLoaderContainer = styled.div`
   margin: 0 auto;
   display: flex;
@@ -87,7 +105,9 @@ const Search = () => {
         ) : inputText.length ? (
           <Tabs search={search} inputText={inputText} />
         ) : (
-          ""
+          <StyledBlank>
+            <img src={binocular} alt="blank-search-binocular" />
+          </StyledBlank>
         )}
       </div>
     </Container>

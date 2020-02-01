@@ -3,7 +3,7 @@ import Tabs from "./Tabs";
 import ArticleCard from "./ArticleCardWide";
 import UserCard from './UserCardWide'
 
-const Container = ({ search, inputText }) => {
+const Container = ({ search }) => {
   console.log(search);
   return (
     <Tabs>
