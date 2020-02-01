@@ -1,6 +1,6 @@
 export default {
   preload: [
-    "'https://fonts.googleapis.com/css?family=Merriweather&display=swap'",
+    "https://fonts.googleapis.com/css?family=Merriweather&display=swap",
     "https://fonts.googleapis.com/css?family=Lato&display=swap",
     "https://fonts.googleapis.com/css?family=Muli&display=swap",
     "https://fonts.googleapis.com/css?family=Oswald&display=swap"
