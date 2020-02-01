@@ -6,7 +6,7 @@ import useConstant from "use-constant";
 import Tabs from "../components/TabsContainer";
 import styled from "styled-components";
 import { Section } from "../styles/shared";
-import theme from '../styles/theme'
+import theme from "../styles/theme";
 
 const Container = styled(Section)``;
 
@@ -30,7 +30,7 @@ const useSearchHook = () => {
       const response = await axiosWithAuth().get(
         `http://localhost:5000/api/search?resources=${formatted}`
       );
-      console.log(response.data);
+      console.log(response.data.insights);
       return response.data;
     } catch (error) {
       console.log(error);
@@ -61,11 +61,15 @@ const Search = () => {
   return (
     <Container>
       <StyledSearchContainer>
-        <input value={inputText} type="text" onChange={e => setInputText(e.target.value)} placeholder="Search Insights and People on Insightly" />
+        <input
+          value={inputText}
+          type="text"
+          onChange={e => setInputText(e.target.value)}
+          placeholder="Search Insights & People on Insightly"
+        />
       </StyledSearchContainer>
       <div>
-       
-        <Tabs search={search} inputText={inputText}/>
+        <Tabs search={search} inputText={inputText} />
       </div>
     </Container>
   );

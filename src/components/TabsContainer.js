@@ -1,23 +1,19 @@
 import React from "react";
 import Tabs from "./Tabs";
+import ArticleCard from "./ArticleCardWide";
 
 const Container = ({ search, inputText }) => {
+  console.log(search);
   return (
     <Tabs>
       <div label="Insights">
-        {search.loading && <div>Loading...</div>}
-        {search.error && <div>Error: {search.error.message}</div>}
-        {search.result && search.result.length ? (
-          search.result.map(resource => (
-            <div style={{ fontSize: "63px" }} key={resource.id}>
-              {resource.id}
-            </div>
-          ))
-        ) : inputText.length && !search.result ? (
-          <div>Nothing Found</div>
-        ) : (
-          <div>{""}</div>
-        )}
+        {search.result &&
+        search.result.insights &&
+        search.result.insights.length
+          ? search.result.insights.map(insight => (
+              <ArticleCard insight={insight} key={insight.title} />
+            ))
+          : ""}
       </div>
       <div label="People">People</div>
     </Tabs>
