@@ -1,22 +1,28 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import theme from '../styles/theme'
-
+import theme from "../styles/theme";
 
 import Tab from "./Tab";
 
-const StyledOrderedList = styled.ol`
-  padding-left: 0;
+const StyledOrderedList = styled.div`
+  display: flex;
+  width: 100%;
   .tab-list-item {
     display: inline-block;
     list-style: none;
     margin-bottom: -1px;
-    padding: 0.5rem 0.75rem;
     font-family: ${theme.fonts.Oswald};
     text-transform: uppercase;
     cursor: pointer;
+  }
 
+  h3:nth-of-type(2) {
+    padding-left: 3rem;
+  }
+
+  .tab-list-active {
+    color: ${theme.colors.purple};
   }
 `;
 

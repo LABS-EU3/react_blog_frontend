@@ -6,8 +6,21 @@ import useConstant from "use-constant";
 import Tabs from "../components/TabsContainer";
 import styled from "styled-components";
 import { Section } from "../styles/shared";
+import theme from '../styles/theme'
 
 const Container = styled(Section)``;
+
+const StyledSearchContainer = styled.div`
+  input[type="text"] {
+    border: none;
+    background-color: none;
+    outline: 0;
+    font-size: 25px;
+    width: 80%;
+    font-family: ${theme.fonts.Muli};
+    border-bottom: 0.6px solid grey;
+  }
+`;
 
 const useSearchHook = () => {
   const [inputText, setInputText] = useState("");
@@ -47,24 +60,12 @@ const Search = () => {
   const { inputText, setInputText, search } = useSearchHook();
   return (
     <Container>
+      <StyledSearchContainer>
+        <input value={inputText} type="text" onChange={e => setInputText(e.target.value)} placeholder="Search Insights and People on Insightly" />
+      </StyledSearchContainer>
       <div>
-        <input value={inputText} onChange={e => setInputText(e.target.value)} />
-      </div>
-      <div>
-        {search.loading && <div>Loading...</div>}
-        {search.error && <div>Error: {search.error.message}</div>}
-        {search.result && search.result.length ? (
-          search.result.map(resource => (
-            <div style={{ fontSize: "63px" }} key={resource.id}>
-              {resource.id}
-            </div>
-          ))
-        ) : inputText.length && !search.result ? (
-          <div>Nothing Found</div>
-        ) : (
-          <div>{""}</div>
-        )}
-        <Tabs />
+       
+        <Tabs search={search} inputText={inputText}/>
       </div>
     </Container>
   );
