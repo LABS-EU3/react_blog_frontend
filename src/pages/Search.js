@@ -84,8 +84,10 @@ const Search = () => {
           <StyledLoaderContainer>
             <Loader />{" "}
           </StyledLoaderContainer>
-        ) : (
+        ) : inputText.length ? (
           <Tabs search={search} inputText={inputText} />
+        ) : (
+          ""
         )}
       </div>
     </Container>
