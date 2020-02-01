@@ -1,10 +1,12 @@
-import Header from "./Header";
+import Header from "./header";
 import Paragraph from "./Paragraph";
-import Image from "./Image";
+import Image from "./image";
 import List from "./List";
 import Table from "./Table";
 import Delimiter from "./Delimiter";
 import SimpleImage from './SimpleImage'
+import Code from './Code';
+import Quote from './Quote';
 
 const Renderer = data => {
   if (!data || typeof data !== "object") return "";
@@ -23,8 +25,13 @@ const Renderer = data => {
         return SimpleImage(block.data, index);
       case "table":
         return Table(block.data, index);
+      case "code":
+        return Code(block.data, index);
+      case "quote":
+        return Quote(block.data, index);
       case "delimiter":
         return Delimiter;
+        
 
       default:
         return "";

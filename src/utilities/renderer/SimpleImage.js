@@ -4,8 +4,6 @@ import ReactHtmlParser from "react-html-parser";
 const SimpleImage = (data, index) => {
   if (!data || !data || !data.url) return "";
 
-  console.log(data);
-
   const captionStyle = {
     margin: "0 auto",
     fontStyle: "italic"

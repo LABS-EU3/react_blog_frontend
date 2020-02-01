@@ -1,6 +1,6 @@
 import axios from "axios";
 import uuid from "uuid";
-import { apiURL } from '../../utilities/urls';
+import { apiURL } from "../../utilities/urls";
 
 import {
   TOGGLE_MODAL,
@@ -15,6 +15,8 @@ import {
   LOAD_TAGS
 } from "./types";
 
+import { axiosWithAuth } from "../../utilities/axios/index";
+
 export const handlePublishModal = () => dispatch => {
   dispatch({
     type: TOGGLE_MODAL
@@ -26,11 +28,13 @@ export const publishPost = post => async dispatch => {
     type: PUBLISHING_START
   });
   try {
-    let res = await axios.post(`${apiURL}/articles/publish`, post);
+    
+    let res = await axiosWithAuth().post(`${apiURL}/articles/publish`, post);
     if (res)
       dispatch({
         type: PUBLISHING_SUCCESS
       });
+    return res.data;
   } catch (error) {
     console.log(error);
     dispatch({ type: PUBLISHING_FAIL });
@@ -42,7 +46,7 @@ export const savePost = post => async dispatch => {
     type: SAVING_START
   });
   try {
-    let res = await axios.post(`${apiURL}/articles/save`, post);
+    let res = await axiosWithAuth().post(`${apiURL}/articles/save`, post);
     if (res)
       dispatch({
         type: SAVING_SUCCESS
@@ -68,7 +72,6 @@ export const savePostAsDraft = post => async dispatch => {
     dispatch({ type: SAVING_FAIL });
   }
 };
-
 
 export const addTag = inputValue => dispatch => {
   dispatch({

@@ -11,7 +11,7 @@ import {
 import { connect } from "react-redux";
 import styled from "styled-components";
 import logo from "../assets/logo-gradient.png";
-import Button from "./Button";
+import Button from './Buttons/Button';
 
 const modalRoot = document.getElementById("article-modal");
 
@@ -122,13 +122,9 @@ function ModalContainer(props) {
   };
 
   const handleSubmit = e => {
-    if (files.length) {
-      props.handlePublish(files[0]);
-      toggleModal();
-    } else {
-      props.handlePublish();
-      toggleModal();
-    }
+    console.log("hello");
+    props.handlePublish(files);
+    toggleModal();
   };
 
   const Upload = () => (

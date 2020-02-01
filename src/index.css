@@ -192,3 +192,11 @@ body {
 .ce-toolbar__actions--opened {
     margin-right: 20%;
 }
+
+.invalid {
+  color: red
+}
+
+.App {
+  background-color: #F1F6FD;
+}

@@ -20,10 +20,11 @@ import uuid from "uuid";
 
 const StyledTitleInput = styled.div`
   margin: 0 auto;
+  margin: 0 auto;
 `;
 
 const StyledEditor = styled.div`
-  font-family: "HKGrotesk-Regular";
+  font-family: "HKGrotesk-Regular" !important;
   h1 {
     font-size: 3.2rem;
   }
@@ -57,7 +58,6 @@ const StyledEditor = styled.div`
     }
   }
   caret-color: #3d3e77;
-
   input {
     font-family: "HKGrotesk-Regular";
     background-color: transparent;
@@ -79,24 +79,42 @@ class Editor extends Component {
     this.publishPost = this.props.publishPost;
     this.titleRef = React.createRef();
   }
-  async handlePublish(coverImage) {
+  async handlePublish(files) {
     const editorData = await this.editorInstance.save();
+    console.log(editorData)
     const title = this.titleRef.current.value;
-    console.log(title);
-    // const { subject: userId } = decodeToken();
-    const post = {
-      custom_id: uuid(),
-      title,
-      authorId: 1,
-      body: editorData.blocks,
-      coverFile: coverImage ? { ...coverImage, name: coverImage.name } : "",
-      isPublished: true,
-      isEditing: false
-    };
-    const tags = this.props.newPost.tags.map(tag => {
-      return { ...tag, articleId: post.custom_id };
+    const { subject: userId } = decodeToken();
+    const formData = new FormData();
+    let body = editorData.blocks
+    const coverFile = files ? files[0] : null;
+    const custom_id = uuid();
+    if (coverFile) {
+      coverFile["articleId"] = custom_id;
+    }
+    let tags = this.props.newPost.tags.map(tag => {
+      return { ...tag, articleId: custom_id };
     });
-    this.publishPost({ ...post, tags });
+
+    tags = JSON.stringify(tags)
+    body = JSON.stringify(body)
+
+    if (files) {
+      formData.append("image", coverFile);
+    }
+
+    formData.append("custom_id", custom_id);
+    formData.append("title", title);
+    formData.append("authorId", userId);
+    formData.append("body", body);
+    formData.append("isPublished", true);
+    formData.append("isEditing", false);
+    formData.append("tags", tags);
+
+    this.publishPost(formData).then((res) => {
+      if (res) {
+        this.props.history.push(`/article/${res.custom_id}`)
+      }
+    });
   }
 
   async handleSave() {
