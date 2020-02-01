@@ -7,6 +7,7 @@ import Tabs from "../components/TabsContainer";
 import styled from "styled-components";
 import { Section } from "../styles/shared";
 import theme from "../styles/theme";
+import Loader from "./Loader";
 
 const Container = styled(Section)``;
 
@@ -18,8 +19,17 @@ const StyledSearchContainer = styled.div`
     font-size: 25px;
     width: 80%;
     font-family: ${theme.fonts.Muli};
-    border-bottom: 0.6px solid grey;
+    border-bottom: 0.01rem solid grey;
+    caret-color: ${theme.colors.purple};
   }
+`;
+
+const StyledLoaderContainer = styled.div`
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  margin-top: 25%;
+  height: 100vh !important;
 `;
 
 const useSearchHook = () => {
@@ -66,10 +76,17 @@ const Search = () => {
           type="text"
           onChange={e => setInputText(e.target.value)}
           placeholder="Search Insights & People on Insightly"
+          autofocus="autofocus"
         />
       </StyledSearchContainer>
       <div>
-        <Tabs search={search} inputText={inputText} />
+        {search.loading ? (
+          <StyledLoaderContainer>
+            <Loader />{" "}
+          </StyledLoaderContainer>
+        ) : (
+          <Tabs search={search} inputText={inputText} />
+        )}
       </div>
     </Container>
   );

@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import readTime from "../utilities/readTime";
 import theme from "../styles/theme";
+import { Link } from "react-router-dom";
 
 const StyledCard = styled.div`
   display: flex;
@@ -54,6 +55,7 @@ const StyledTextContent = styled.div`
 const Card = ({ insight }) => {
   console.log("mmm");
   return (
+    <Link to={`/article/${insight.custom_id}`}>
     <StyledCard>
       <StyledImageContainer>
         <img src={insight.coverImageUrl} alt={insight.title} />
@@ -78,6 +80,7 @@ const Card = ({ insight }) => {
         </div>
       </StyledTextContent>
     </StyledCard>
+    </Link>
   );
 };
 
