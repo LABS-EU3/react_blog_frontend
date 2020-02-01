@@ -5,14 +5,14 @@ import theme from "../styles/theme";
 
 const StyledCard = styled.div`
   display: flex;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: 3px 4px 20px rgba(0, 0, 0, 0.1);
   padding: 0 2rem;
   max-width: 650px;
   margin-top: 3rem;
   width: 100%;
   h5 {
-    font-size: ${theme.fontSizes.md};
-    font-family: ${theme.fonts.Muli};
+    font-size: ${theme.fontSizes.sm};
+    color: ${theme.colors.textGrey};
   }
 `;
 
@@ -22,8 +22,9 @@ const StyledImageContainer = styled.div`
   align-content: contain;
   img {
     padding: 1rem;
+    padding-left: 0;
     object-fit: cover;
-    height: 100px;
+    height: 140px;
     width: 140px;
     margin: 0 auto;
   }
@@ -39,13 +40,13 @@ const StyledTextContent = styled.div`
     justify-content: space-between;
     p {
       font-family: ${theme.fonts.Muli};
-      font-size: ${theme.fontSizes.sm};
+      font-size: ${theme.fontSizes.xs};
       color: ${theme.colors.purple};
     }
   }
   .snippet {
     font-size: ${theme.fontSizes.xs};
-    color: ${theme.colors.textGrey};
+    color: ${theme.colors.lightGrey};
     line-height: 1.7rem;
   }
 `;
@@ -71,7 +72,7 @@ const Card = ({ insight }) => {
           <p>
             {JSON.parse(insight.body)
               .find(block => block.type === "paragraph")
-              .data.text.substring(0, 120)}
+              .data.text.substring(0, 170)}
             ...
           </p>
         </div>

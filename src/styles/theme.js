@@ -8,7 +8,8 @@ export default {
   colors: {
     purple: "#986C9B",
     cream: "#FEF9E1",
-    textGrey: "rgba(0, 0, 0, 0.76)"
+    textGrey: "rgba(0, 0, 0, 0.76)",
+    lightGrey: "rgba(0, 0, 0, 0.55)"
   },
   borderRadius: "3px",
   fonts: {
