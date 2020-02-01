@@ -13,9 +13,9 @@ const Tab = props => {
   }
 
   return (
-    <li className={className} onClick={handleClick}>
+    <h3 className={className} onClick={handleClick}>
       {props.label}
-    </li>
+    </h3>
   );
 };
 
