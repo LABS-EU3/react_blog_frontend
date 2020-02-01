@@ -1,6 +1,7 @@
 import React from "react";
 import Tabs from "./Tabs";
 import ArticleCard from "./ArticleCardWide";
+import UserCard from './UserCardWide'
 
 const Container = ({ search, inputText }) => {
   console.log(search);
@@ -15,7 +16,13 @@ const Container = ({ search, inputText }) => {
             ))
           : ""}
       </div>
-      <div label="People">People</div>
+      <div label="People"> {search.result &&
+        search.result.people &&
+        search.result.people.length
+          ? search.result.people.map(user => (
+              <UserCard user={user} key={user.fullname} />
+            ))
+          : ""}</div>
     </Tabs>
   );
 };

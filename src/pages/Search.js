@@ -76,7 +76,7 @@ const Search = () => {
           type="text"
           onChange={e => setInputText(e.target.value)}
           placeholder="Search Insights & People on Insightly"
-          autofocus="autofocus"
+          autoFocus="autofocus"
         />
       </StyledSearchContainer>
       <div>

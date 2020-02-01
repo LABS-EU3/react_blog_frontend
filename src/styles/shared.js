@@ -56,6 +56,24 @@ export const mixins = {
     &:after {
       display: none !important;
     }
+  `,
+
+  secondaryButton: css`
+    background-color: white;
+    border: 1px solid black;
+    padding: 0.75rem 1rem;
+    font-size: ${fontSizes.sm};
+    font-family: ${fonts.Muli};
+    line-height: 1;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover,
+    &:focus,
+    &:active {
+    }
+    &:after {
+      display: none !important;
+    }
   `
 };
 
