@@ -3,6 +3,7 @@ import { axiosWithAuth } from "../utilities/axios";
 import AwesomeDebouncePromise from "awesome-debounce-promise";
 import { useAsync } from "react-async-hook";
 import useConstant from "use-constant";
+import Tabs from '../components/TabsContainer'
 
 const useSearchHook = () => {
   const [inputText, setInputText] = useState("");
@@ -12,6 +13,7 @@ const useSearchHook = () => {
       const response = await axiosWithAuth().get(
         `http://localhost:5000/api/search?resources=${formatted}`
       );
+      console.log(response.data)
       return response.data;
     } catch (error) {
       console.log(error);
@@ -58,6 +60,7 @@ const Search = () => {
         ) : (
           <div>{""}</div>
         )}
+         <Tabs/>
       </div>
     </div>
   );

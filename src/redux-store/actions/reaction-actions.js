@@ -1,5 +1,4 @@
 import { axiosWithAuth } from "../../utilities/axios/index";
-import { apiURL } from "../../utilities/urls";
 
 export const postReaction = reaction => async dispatch => {
   console.log(reaction);

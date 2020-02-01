@@ -35,7 +35,7 @@ const Emoji = ({ article, emoji, string , postReaction}) => {
       reactorId,
       emoji: name,
       highlighted_text: string,
-      articleId: article.authorId
+      articleId: article.id
     };
 
     postReaction(reaction);

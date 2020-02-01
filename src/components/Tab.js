@@ -14,7 +14,7 @@ const Tab = props => {
 
   return (
     <li className={className} onClick={handleClick}>
-      {label}
+      {props.label}
     </li>
   );
 };
