@@ -1,7 +1,19 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import styled from "styled-components";
 
 import Tab from "./Tab";
+
+const StyledOrderedList = styled.ol`
+  border-bottom: 1px solid #ccc;
+  padding-left: 0;
+  .tab-list-item {
+    display: inline-block;
+    list-style: none;
+    margin-bottom: -1px;
+    padding: 0.5rem 0.75rem;
+  }
+`;
 
 export default class Tabs extends Component {
   static propTypes = {
@@ -29,7 +41,7 @@ export default class Tabs extends Component {
 
     return (
       <div className="tabs">
-        <ol className="tab-list">
+        <StyledOrderedList>
           {children.map(child => {
             const { label } = child.props;
 
@@ -42,7 +54,7 @@ export default class Tabs extends Component {
               />
             );
           })}
-        </ol>
+        </StyledOrderedList>
         <div className="tab-content">
           {children.map(child => {
             if (child.props.label !== activeTab) return undefined;
