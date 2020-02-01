@@ -1,20 +1,21 @@
 export default {
   preload: [
-    "https://fonts.googleapis.com/css?family=Roboto&display=swap",
-    "https://fonts.googleapis.com/css?family=Lato&display=swap"
+    "'https://fonts.googleapis.com/css?family=Merriweather&display=swap'",
+    "https://fonts.googleapis.com/css?family=Lato&display=swap",
+    "https://fonts.googleapis.com/css?family=Muli&display=swap",
+    "https://fonts.googleapis.com/css?family=Oswald&display=swap"
   ],
   colors: {
-    primary: "#6F85FD",
-    secondary: "#2FC2DF",
-    bannerBlue: "#F1F6FD",
-    textGrey: "#646F79",
-    footerNavy: "#1D243B",
-    footerLightNavy: "#323C5C"
+    purple: "#986C9B",
+    cream: "#FEF9E1",
+    textGrey: "rgba(0, 0, 0, 0.76)"
   },
   borderRadius: "3px",
   fonts: {
     Lato: "Lato, Montserrat, -apple-system, system-ui, BlinkMacSystemFont",
-    Roboto: "Roboto, Montserrat, -apple-system, system-ui, BlinkMacSystemFont"
+    Merriweather: "Merriweather, Roboto",
+    Muli: "-apple-system, system-ui, BlinkMacSystemFont, Muli",
+    Oswald: "Oswald, sans-serif"
   },
 
   fontSizes: {
