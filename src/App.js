@@ -11,25 +11,31 @@ import AboutUs from "./pages/AboutUs";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Interest from "./pages/Final";
 import Search from "./pages/Search";
+import theme from "./styles/theme";
+import { ThemeProvider } from "styled-components";
+import GlobalStyle from "./styles/global";
 
 function App() {
   return (
-    <div className="App">
-      <Switch>
-        <Route exact path="/" render={props => <Home {...props} />} />
-        <Route path="/register" component={Register} />
-        <ProtectedRoute path="/profile" component={Profile} />
-        <ProtectedRoute path="/create" component={Editor} />
-        <ProtectedRoute path="/feed" component={Feed} />
-        <ProtectedRoute path="/search" component={Search} />
-        <Route path="/article/:id" component={ReadArticle} />
-        <Route path="/team" component={AboutUs} />
-        <ProtectedRoute path="/final" component={Interest} />
-        <Route render={() => <Redirect to="/" />} />
-      </Switch>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <div className="App">
+        <Switch>
+          <Route exact path="/" render={props => <Home {...props} />} />
+          <Route path="/register" component={Register} />
+          <ProtectedRoute path="/profile" component={Profile} />
+          <ProtectedRoute path="/create" component={Editor} />
+          <ProtectedRoute path="/feed" component={Feed} />
+          <ProtectedRoute path="/search" component={Search} />
+          <Route path="/article/:id" component={ReadArticle} />
+          <Route path="/team" component={AboutUs} />
+          <ProtectedRoute path="/final" component={Interest} />
+          <Route render={() => <Redirect to="/" />} />
+        </Switch>
 
-      <ArticleModal />
-    </div>
+        <ArticleModal />
+      </div>
+    </ThemeProvider>
   );
 }
 export default App;

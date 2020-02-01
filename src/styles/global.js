@@ -31,15 +31,16 @@ ${props => props.theme.preload.map(url => '@import url("' + url + '");')}
     display: grid;
     grid-template-rows: 1fr auto;
     grid-template-columns: 100%;
+    background-color: white !important; 
   }
 
   body {
     width: 100%;
     overflow-x: hidden;
-    color: #fff;
-    font-family: ${fonts.Lato};
+    color: ${theme.colors.textGrey};
+    font-family: ${fonts.Muli};
     line-height: 1.5em;
-    font-size: ${fontSizes.xl} 
+    font-size: ${fontSizes.xl};
     ${media.tablet`font-size: ${fontSizes.lg};`};
     ${media.phablet`font-size: ${fontSizes.md}`};
   }
@@ -47,7 +48,7 @@ ${props => props.theme.preload.map(url => '@import url("' + url + '");')}
   h1, h2, h3, h4, h5, h6 {
     font-weight: 600 !important;
     line-height: inherit;
-    font-family: ${fonts.Lato};
+    font-family: ${fonts.Merriweather};
   }
 
   a {

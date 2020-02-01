@@ -89,7 +89,7 @@ export const generateSpace = padding =>
 export const Section = styled.section`
   margin: 0 auto;
   ${generateSpace("padding")};
-  max-width: 900px;
+  max-width: 950px;
 
   ${media.tablet`padding: 10px 20px;`};
 `
