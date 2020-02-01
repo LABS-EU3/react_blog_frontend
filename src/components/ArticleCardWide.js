@@ -17,9 +17,9 @@ const StyledCard = styled.div`
 `;
 
 const StyledImageContainer = styled.div`
-  height: 80%;
   display: flex;
   align-content: contain;
+  width: 30%;
   img {
     padding: 1rem;
     padding-left: 0;
