@@ -24,7 +24,7 @@ const StyledSearchContainer = styled.div`
     font-size: 25px;
     width: 100%;
     font-family: ${theme.fonts.Muli};
-    border-bottom: 0.01rem solid grey;
+    border-bottom: 1px solid rgba(0,0,0,.15);
     caret-color: ${theme.colors.purple};
     ${media.phablet`font-size: 18px;`}
   }

@@ -1,4 +1,7 @@
-import styled from 'styled-components';
+import styled from "styled-components";
+import media from "../../styles/mediaQueries";
+import theme from "../../styles/theme";
+import { Section } from "../../styles/shared";
 
 export const Nav = styled.div`
   left: 0%;
@@ -8,32 +11,39 @@ export const Nav = styled.div`
   background: #ffffff;
 `;
 
-export const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  max-width: 1000px;
-  margin: 0 auto;
-  margin-top: 10rem;
-  background: white;
-  padding-top: 3.0rem;
-  width: 900px;
+export const CoverImageContainer = styled.div`
+  height: 30vh;
+  width: 100%;
+  img {
+    padding: 1rem;
+    padding-left: 0;
+    object-fit: cover;
+    height: auto;
+    max-height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    filter: grayscale(100%);
+    align-self: center;
+  }
+`;
 
+export const Wrapper = styled(Section)`
+  margin-top: 10rem;
   .like {
-    margin-top:5.0rem;
-    margin-bottom: 3.0rem;
-    margin-left: -2.0rem;
+    margin-top: 5rem;
+    margin-bottom: 3rem;
+    margin-left: -2rem;
     cursor: pointer;
     display: flex;
     align-items: center;
     img {
       width: 40px;
-      margin-right: 1.0rem;
+      margin-right: 1rem;
     }
     p {
       font-size: 15px;
       font-weight: bold;
-      color: #3652BF;
+      color: #3652bf;
     }
   }
 `;
@@ -51,7 +61,6 @@ export const Body = styled.div`
     color: #333333;
     padding: 1rem;
     line-height: 2.4rem;
-    // letter-spacing: 1px;
   }
 
   .body-image {
@@ -66,7 +75,7 @@ export const Body = styled.div`
   }
   img {
     margin: 0 auto;
-    max-width: 500px;
+    max-width: 600px;
   }
 `;
 
@@ -95,7 +104,7 @@ export const StyledDetailsLeft = styled.div`
     display: flex;
     p {
       padding-right: 5rem;
-      color: #3652BF;
+      color: #3652bf;
       font-style: italic;
       font-size: 13px;
       font-weight: bold;
@@ -109,7 +118,7 @@ export const StyledDetailsLeft = styled.div`
       font-size: 12px;
       font-weight: bold;
       font-style: italic;
-      color: #3652BF;
+      color: #3652bf;
     }
   }
 `;
@@ -122,8 +131,8 @@ export const StyledDetailsRight = styled.div`
     max-width: 550px;
     max-height: 270px;
     min-height: 270px;
-    border-radius:3px 0px 0px 3px;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.20);
+    border-radius: 3px 0px 0px 3px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
   }
 `;
 
