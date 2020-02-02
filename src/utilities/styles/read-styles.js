@@ -58,7 +58,7 @@ export const Wrapper = styled(Section)`
   max-width: 800px;
   padding: 1rem;
   ${media.phablet`
-  padding: 0.7rem;
+  padding: 0.8rem;
   ;`}
   .like {
     margin-top: 5rem;
