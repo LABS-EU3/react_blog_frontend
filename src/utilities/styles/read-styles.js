@@ -29,8 +29,9 @@ export const CoverImageContainer = styled.div`
 
 export const StyledArticleTitle = styled.h2`
   font-family: ${theme.fonts.Merriweather};
-  font-size: 32px !important;
+  font-size: 30px !important;
   margin-top: 1rem;
+  width: 100%;
   padding: 1rem;
   line-height: 4rem;
   ${media.phablet`font-size: 26px !important
