@@ -12,7 +12,7 @@ import binocular from "../assets/binocular.png";
 import AuthedNavigation from "../components/Navigation/Authed";
 
 const Container = styled(Section)`
-  margin-top: 3.5rem;
+  margin-top: 5rem;
 `;
 
 const StyledSearchContainer = styled.div`

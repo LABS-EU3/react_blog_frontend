@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import Button from "../Buttons/Button";
-import { NavWrapper, StandLogo, Control } from "./navigation.styles";
+import { NavWrapper, StandLogo, Control, FixedContainer  } from "./navigation.styles";
 import insight from "../../assets/images/insight-stand.png";
 // import notification from "../../assets/images/Icons/icon-notification.svg";
 import { Icon } from "react-icons-kit";
@@ -51,6 +51,7 @@ export default function Authed(props) {
   console.log(handleSearchClick);
 
   return (
+    <FixedContainer>
     <NavWrapper>
       <StandLogo>
         <img alt="insight logo" src={insight} />
@@ -77,5 +78,6 @@ export default function Authed(props) {
         </div>
       </Control>
     </NavWrapper>
+    </FixedContainer>
   );
 }

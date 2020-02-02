@@ -13,6 +13,13 @@ export const NavWrapper = styled.nav`
   background-color: white;
 `;
 
+export const FixedContainer = styled.div`
+  position: fixed;
+  box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  background-color: white;
+`;
+
 export const Logo = styled.div`
   margin-left: 10rem;
   width: 90px;
@@ -45,8 +52,9 @@ export const AuthButtons = styled.div`
 export const Control = styled.div`
   display: flex;
   flex-basis: auto;
-  div, .write-button {
-    padding-right: 2rem;
+  div,
+  .write-button {
+    padding-right: 1.5rem;
   }
   .avatar {
     line-height: 0;
@@ -56,6 +64,7 @@ export const Control = styled.div`
     transition: linear 0.25s;
     white-space: nowrap;
     margin-top: 2px;
+    padding-right: 0rem;
     img {
       border-radius: 50%;
       width: 32px;
