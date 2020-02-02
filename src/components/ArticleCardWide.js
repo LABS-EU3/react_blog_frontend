@@ -3,11 +3,12 @@ import styled from "styled-components";
 import readTime from "../utilities/readTime";
 import theme from "../styles/theme";
 import { Link } from "react-router-dom";
+import media from '../styles/mediaQueries'
 
 const StyledCard = styled.div`
   display: flex;
   box-shadow: 3px 4px 20px rgba(0, 0, 0, 0.1);
-  padding: 0 2rem;
+  padding: 1rem 2rem;
   max-width: 650px;
   margin-top: 3rem;
   width: 100%;
@@ -15,6 +16,7 @@ const StyledCard = styled.div`
     font-size: ${theme.fontSizes.sm};
     color: ${theme.colors.textGrey};
   }
+  ${media.phablet`flex-direction: column;`};
 `;
 
 const StyledImageContainer = styled.div`
@@ -28,7 +30,11 @@ const StyledImageContainer = styled.div`
     height: 140px;
     width: 140px;
     margin: 0 auto;
+    ${media.phablet`width: 100%;
+    height: auto;
+    `};
   }
+  ${media.phablet`width: 100%`}
 `;
 
 const StyledTextContent = styled.div`
