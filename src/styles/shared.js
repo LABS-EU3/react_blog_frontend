@@ -24,9 +24,11 @@ export const mixins = {
 
   bigButton: css`
     background-color: black;
+    width: 10rem;
     border-radius: ${theme.borderRadius};
-    padding: 0.95rem 1.5rem;
-    font-size: calc(${fontSizes.sm} - 0.5px);
+    color: white;
+    padding: 0.90rem 1.4rem;
+    font-size: ${fontSizes.xs};
     font-family: ${fonts.Muli};
     line-height: 1;
     border: 1px solid black;

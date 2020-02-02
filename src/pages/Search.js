@@ -9,8 +9,11 @@ import { Section } from "../styles/shared";
 import theme from "../styles/theme";
 import Loader from "./Loader";
 import binocular from "../assets/binocular.png";
+import AuthedNavigation from "../components/Navigation/Authed";
 
-const Container = styled(Section)``;
+const Container = styled(Section)`
+  margin-top: 3.5rem;
+`;
 
 const StyledSearchContainer = styled.div`
   input[type="text"] {
@@ -87,30 +90,33 @@ const useSearchHook = () => {
 const Search = () => {
   const { inputText, setInputText, search } = useSearchHook();
   return (
-    <Container>
-      <StyledSearchContainer>
-        <input
-          value={inputText}
-          type="text"
-          onChange={e => setInputText(e.target.value)}
-          placeholder="Search Insights & People on Insightly"
-          autoFocus="autofocus"
-        />
-      </StyledSearchContainer>
-      <div>
-        {search.loading ? (
-          <StyledLoaderContainer>
-            <Loader />{" "}
-          </StyledLoaderContainer>
-        ) : inputText.length ? (
-          <Tabs search={search} inputText={inputText} />
-        ) : (
-          <StyledBlank>
-            <img src={binocular} alt="blank-search-binocular" />
-          </StyledBlank>
-        )}
-      </div>
-    </Container>
+    <>
+      <AuthedNavigation />
+      <Container>
+        <StyledSearchContainer>
+          <input
+            value={inputText}
+            type="text"
+            onChange={e => setInputText(e.target.value)}
+            placeholder="Search Insights & People on Insightly"
+            autoFocus="autofocus"
+          />
+        </StyledSearchContainer>
+        <div>
+          {search.loading ? (
+            <StyledLoaderContainer>
+              <Loader />{" "}
+            </StyledLoaderContainer>
+          ) : inputText.length ? (
+            <Tabs search={search} inputText={inputText} />
+          ) : (
+            <StyledBlank>
+              <img src={binocular} alt="blank-search-binocular" />
+            </StyledBlank>
+          )}
+        </div>
+      </Container>
+    </>
   );
 };
 
