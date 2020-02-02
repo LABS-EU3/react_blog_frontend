@@ -3,7 +3,7 @@ import styled from "styled-components";
 import readTime from "../utilities/readTime";
 import theme from "../styles/theme";
 import { Link } from "react-router-dom";
-import media from '../styles/mediaQueries'
+import media from "../styles/mediaQueries";
 
 const StyledCard = styled.div`
   display: flex;
@@ -62,30 +62,30 @@ const Card = ({ insight }) => {
   console.log("mmm");
   return (
     <Link to={`/article/${insight.custom_id}`}>
-    <StyledCard>
-      <StyledImageContainer>
-        <img src={insight.coverImageUrl} alt={insight.title} />
-      </StyledImageContainer>
-      <StyledTextContent>
-        <h5>
-          {insight.title.split("").length > 50
-            ? `${insight.title.substring(0, 50)}...`
-            : insight.title}
-        </h5>
-        <div className="info">
-          <p>{insight.author}</p>
-          <p>{`${readTime(insight.body)} min read`}</p>
-        </div>
-        <div className="snippet">
-          <p>
-            {JSON.parse(insight.body)
-              .find(block => block.type === "paragraph")
-              .data.text.substring(0, 170)}
-            ...
-          </p>
-        </div>
-      </StyledTextContent>
-    </StyledCard>
+      <StyledCard>
+        <StyledImageContainer>
+          <img src={insight.coverImageUrl} alt={insight.title} />
+        </StyledImageContainer>
+        <StyledTextContent>
+          <h5>
+            {insight.title.split("").length > 50
+              ? `${insight.title.substring(0, 50)}...`
+              : insight.title}
+          </h5>
+          <div className="info">
+            <p>{insight.author}</p>
+            <p>{`${readTime(insight.body)} min read`}</p>
+          </div>
+          <div className="snippet">
+            <p>
+              {JSON.parse(insight.body)
+                .find(block => block.type === "paragraph")
+                .data.text.substring(0, 170)}
+              ...
+            </p>
+          </div>
+        </StyledTextContent>
+      </StyledCard>
     </Link>
   );
 };

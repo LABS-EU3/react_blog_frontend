@@ -10,9 +10,10 @@ import theme from "../styles/theme";
 import Loader from "./Loader";
 import binocular from "../assets/binocular.png";
 import AuthedNavigation from "../components/Navigation/Authed";
+import media from "../styles/mediaQueries";
 
 const Container = styled(Section)`
-  margin-top: 5rem;
+  margin-top: 10rem;
 `;
 
 const StyledSearchContainer = styled.div`
@@ -21,10 +22,11 @@ const StyledSearchContainer = styled.div`
     background-color: none;
     outline: 0;
     font-size: 25px;
-    width: 80%;
+    width: 100%;
     font-family: ${theme.fonts.Muli};
     border-bottom: 0.01rem solid grey;
     caret-color: ${theme.colors.purple};
+    ${media.phablet`font-size: 18px;`}
   }
 `;
 const StyledBlank = styled.div`
