@@ -12,23 +12,54 @@ export const Nav = styled.div`
 `;
 
 export const CoverImageContainer = styled.div`
-  height: 30vh;
+  height: 45vh;
   width: 100%;
+  display: flex;
+  justify-content: center;
   img {
     padding: 1rem;
     padding-left: 0;
     object-fit: cover;
     height: auto;
-    max-height: 100%;
     width: 100%;
+    max-height: 100%;
     margin: 0 auto;
-    filter: grayscale(100%);
-    align-self: center;
+  }
+`;
+
+export const StyledArticleTitle = styled.h2`
+  font-family: ${theme.fonts.Merriweather};
+  font-size: 32px !important;
+  margin-top: 1rem;
+  padding: 1rem;
+  line-height: 4rem;
+  ${media.phablet`font-size: 26px !important
+  padding: 0.6rem;
+  ;`}
+`;
+
+export const DetailsContainer = styled.div`
+  padding: 1rem;
+  ${media.phablet`
+  padding: 0.6rem;
+  ;`}
+  color: ${theme.colors.purple}
+  span {
+    font-size: ${theme.fontSizes.sm}
+    color: ${theme.colors.purple}
+  }
+  span.authorName{
+    font-weight: bold;
   }
 `;
 
 export const Wrapper = styled(Section)`
   margin-top: 10rem;
+  max-width: 800px;
+  padding: 1rem;
+  ${media.phablet`
+  padding: 0.7rem;
+  ;`}
   .like {
     margin-top: 5rem;
     margin-bottom: 3rem;
@@ -50,8 +81,6 @@ export const Wrapper = styled(Section)`
 
 export const Body = styled.div`
   margin: auto;
-  margin-top: 8rem;
-  width: 88%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -59,7 +88,10 @@ export const Body = styled.div`
     font-size: 16px;
     font-weight: 400;
     color: #333333;
+    padding: 1.5rem;
+    ${media.phablet`
     padding: 1rem;
+    ;`}
     line-height: 2.4rem;
   }
 

@@ -67,7 +67,7 @@ export default function Authed(props) {
           <div></div>
         </StyledInsightly>
         <Control>
-          {location.pathname !== "/search" && (
+          {location.pathname !== "/search" && location.pathname.split("/")[1] !== "article" && (
             <div style={{ color: "#A9A9A9" }} onClick={handleSearchClick}>
               <Icon icon={search} size={24} />
             </div>
