@@ -42,8 +42,8 @@ const StyledProfileInterests = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-bottom: 1px solid #dfdfdf;
-  min-height: 60%;
+  border-bottom: 1px solid #DFDFDF;
+  /* min-height: 60%; */
   h1 {
     font-size: 4rem;
   }
@@ -100,7 +100,7 @@ const StyledProfileInterests = styled.div`
 `;
 const StyledProfileInfo = styled.div`
   width: 100%;
-  min-height: 40%;
+  /* min-height: 40%; */
   display: flex;
   padding: 4rem;
   flex-direction: column;
