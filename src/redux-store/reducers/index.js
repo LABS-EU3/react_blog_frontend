@@ -5,6 +5,7 @@ import { getArticlesReducer } from "./get-article-reducer";
 import { userProfileReducer } from "./user-profile-reducer";
 import { reactionReducer } from "./reactions";
 import { authorArticleReducer } from "./get-author-article";
+import { onBoardingReducer } from "./onboarding-reducer";
 
 export const rootReducer = combineReducers({
   auth: authReducer,
@@ -12,5 +13,6 @@ export const rootReducer = combineReducers({
   articles: getArticlesReducer,
   userProfile: userProfileReducer,
   reaction: reactionReducer,
-  userArticles: authorArticleReducer
+  userArticles: authorArticleReducer,
+  onboarding: onBoardingReducer
 });
