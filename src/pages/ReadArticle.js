@@ -19,16 +19,13 @@ import emojiRenderer from "../utilities/emoji-renderer";
 import Renderer from "../utilities/renderer";
 import readTime from "../utilities/readTime";
 import NavBar from "../components/Navigation/Authed";
-// import BackArrow from "../assets/images/arrow.svg";
-import like from "../assets/images/like-icon.svg";
 import Highligter from "../components/Highlight";
 import Like from "../components/Like";
+import Speech from "../components/SpeechSVG";
 import { getSingleArticle } from "../redux-store/actions/get-article-actions";
-// import { Link } from "react-router-dom";
-import speak from '../assets/images/Icons/streaming.svg'
+import speak from "../assets/images/Icons/streaming.svg";
 import { Link } from "react-router-dom";
-import Reactions from './Reactions';
-
+import Reactions from "./Reactions";
 
 const ReadArticle = props => {
   const { getSingleArticle, singleArticle, location } = props;
@@ -46,25 +43,25 @@ const ReadArticle = props => {
   const content = JSON.parse(articleBody);
   singleArticle.userHighlights = [{ emoji: "sob", highlighted_text: "bvere" }];
 
-// eslint-disable-next-line array-callback-return
-const text = content.map((item) => {
-  if (typeof item.data.text === 'string'){
-    return item.data.text
-  }
-});
+  // eslint-disable-next-line array-callback-return
+  const text = content.map(item => {
+    if (typeof item.data.text === "string") {
+      return item.data.text;
+    }
+  });
 
-console.log(text.join(''));
-const message  = text.join('');
+  console.log(text.join(""));
+  const message = text.join("");
 
-const handleSpeak = () => {
-  let speech = new SpeechSynthesisUtterance();
-  speech.text = message;
-  speech.volume = 1;
-  speech.rate = 1;
-  speech.pitch = 1;
+  const handleSpeak = () => {
+    let speech = new SpeechSynthesisUtterance();
+    speech.text = message;
+    speech.volume = 1;
+    speech.rate = 1;
+    speech.pitch = 1;
 
-  window.speechSynthesis.speak(speech);
-}
+    window.speechSynthesis.speak(speech);
+  };
 
   return (
     <>
@@ -75,14 +72,21 @@ const handleSpeak = () => {
         </CoverImageContainer>
         <StyledArticleTitle>{singleArticle.title}</StyledArticleTitle>
         <DetailsContainer>
-          <p>by </p>
-          <span className="authorName">{singleArticle.authorName}</span> -{" "}
-          {singleArticle.body && (
-            <span className="readTime">
-              {" "}
-              {`${readTime(singleArticle.body)} min read`}
-            </span>
-          )}
+          <div>
+            <p>by </p>
+            <span className="authorName">
+              {singleArticle.authorName}
+            </span> -{" "}
+            {singleArticle.body && (
+              <span className="readTime">
+                {" "}
+                {`${readTime(singleArticle.body)} min read`}
+              </span>
+            )}
+          </div>
+          <div className="speech">
+            <img onClick={handleSpeak} src={speak} alt="read out text aloud" />
+          </div>
         </DetailsContainer>
         <Details></Details>
         <Highligter article={singleArticle}>
@@ -100,10 +104,10 @@ const handleSpeak = () => {
             <Like />
             <p>
               {singleArticle.likes
-                ? (singleArticle.likes > 1
+                ? singleArticle.likes > 1
                   ? `${singleArticle.likes} likes`
-                  : `${singleArticle.likes} like`)
-                : '0 likes'}
+                  : `${singleArticle.likes} like`
+                : "0 likes"}
               {}
             </p>
           </div>
@@ -126,11 +130,7 @@ const handleSpeak = () => {
             </BlankHighlightsMessage>
           )}
         </HighlightsSection>
-        <div className="stream">
-          <img  onClick={handleSpeak} src={speak} alt="read out text aloud" />
-        </div>
       </Wrapper>
-     
     </>
   );
 };

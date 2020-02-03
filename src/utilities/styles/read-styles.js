@@ -40,7 +40,9 @@ export const StyledArticleTitle = styled.h2`
 `;
 
 export const DetailsContainer = styled.div`
+  display: flex;
   padding: 1rem;
+  justify-content: space-between;
   p {
     font-size: ${theme.fontSizes.sm};
     display: inline;
@@ -55,6 +57,14 @@ export const DetailsContainer = styled.div`
   }
   span.authorName{
     font-weight: bold;
+  }
+
+  .speech {
+    img {
+      max-width: 45px;
+      height: auto;
+      margin-top: -1.3rem;
+    }
   }
 `;
 
@@ -189,7 +199,7 @@ export const TagsAndLikes = styled.div`
     display: flex;
     `}
     p {
-      margin-right: .55rem;
+      margin-right: 0.55rem;
     }
   }
 
