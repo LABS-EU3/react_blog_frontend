@@ -1,86 +1,100 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import readTime from "../utilities/readTime";
 import theme from "../styles/theme";
 import { Link } from "react-router-dom";
 import media from "../styles/mediaQueries";
 import { mixins } from "../styles/shared";
 
 const StyledCard = styled.div`
-  display: flex;
-  //   box-shadow: 3px 4px 20px rgba(0, 0, 0, 0.1);
-  //   padding: 1rem 2rem;
-  max-width: 650px;
-  margin-top: 3rem;
   width: 100%;
+  margin-top: 2rem;
+  height: 100%;
   h5 {
     font-size: ${theme.fontSizes.sm};
     color: ${theme.colors.textGrey};
   }
   ${media.phablet`flex-direction: column;`};
-  &.reg {
-    flex-direction: column;
-    box-shadow: 3px 4px 20px rgba(0, 0, 0, 0.1);
+
+  &.jumbo {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .btn-container {
+    order: 3;
+    width: 100%;
+    height: 10%;
+    button {
+      ${mixins.secondaryButton}
+    }
   }
 `;
 
 const StyledImageContainer = styled.div`
-  display: flex;
-  align-content: contain;
-  width: 100%;
-  img {
-    padding: 1rem;
-    padding-left: 0;
-    object-fit: cover;
-    height: 140px;
-    width: 100%;
-    margin: 0 auto;
-    ${media.phablet`width: 100%;
-    height: auto;
-    `};
-    &.reg {
-      padding: 0;
+  &.jumbo {
+    width: 50%;
+    order: 2;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
   }
-  ${media.phablet`width: 100%`};
-  &.jumbo {
-    order: 2;
-    width: 50%;
+  &.reg {
+    width: 100%;
+    height: 50%;
+    ${media.desktop`height: 40%;`};
+    ${media.tablet`height: 30%;`};
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
 `;
 
 const StyledTextContent = styled.div`
-  padding: 1rem;
   display: flex;
-  color: black;
   flex-direction: column;
-  &.jumbo {
-    width: 50%;
-  }
+  padding: 1rem;
   .info {
     display: flex;
     justify-content: space-between;
-    &.reg {
-      order: 4;
-    }
+    ${media.tablet`flex-direction: column`};
     p {
       font-family: ${theme.fonts.Muli};
       font-size: ${theme.fontSizes.xs};
+      ${media.tablet`font-size: ${theme.fontSizes.xxs}`};
       color: ${theme.colors.purple};
+    }
+    &.reg {
+      order: 3;
     }
   }
   .snippet {
     font-size: ${theme.fontSizes.xs};
+    ${media.tablet`font-size: ${theme.fontSizes.xxs}`};
     color: ${theme.colors.lightGrey};
     line-height: 1.7rem;
   }
-  button {
-    ${mixins.secondaryButton}
+
+  &.reg {
+    box-shadow: 3px 4px 20px rgba(0, 0, 0, 0.1);
+    height: 50%;
+    justify-content: space-evenly;
+    ${media.desktop`height: 60%;`};
+    ${media.tablet`height: 70%;`};
+  }
+  &.jumbo {
+    width: 50%;
+    padding: 0 3rem 0 0;
+    height: 90%;
   }
 `;
 
 const Card = ({ insight, type }) => {
-  console.log("mmm");
+  const [vw, setVw] = useState(window.innerWidth / 4);
+  window.addEventListener("resize", () => setVw(window.innerWidth / 4));
   return (
     <Link to={`/article/${insight.custom_id}`}>
       <StyledCard className={type}>
@@ -93,8 +107,8 @@ const Card = ({ insight, type }) => {
         </StyledImageContainer>
         <StyledTextContent className={type}>
           <h5>
-            {insight.title.split("").length > 50
-              ? `${insight.title.substring(0, 50)}...`
+            {type !== "jumbo" && insight.title.split("").length > 40
+              ? `${insight.title.substring(0, 40)}...`
               : insight.title}
           </h5>
           <div className={`info ${type}`}>
@@ -106,14 +120,22 @@ const Card = ({ insight, type }) => {
           </div>
           <div className="snippet">
             <p>
-              {JSON.parse(insight.body)
-                .find(block => block.type === "paragraph")
-                .data.text.substring(0, 170)}
+              {type === "reg"
+                ? JSON.parse(insight.body)
+                    .find(block => block.type === "paragraph")
+                    .data.text.substring(0, 100)
+                : JSON.parse(insight.body)
+                    .find(block => block.type === "paragraph")
+                    .data.text.substring(0, vw)}
               ...
             </p>
           </div>
-          {type === "jumbo" && <button>Read More</button>}
         </StyledTextContent>
+        {type === "jumbo" && (
+          <div className="btn-container">
+            <button>Read More</button>
+          </div>
+        )}
       </StyledCard>
     </Link>
   );

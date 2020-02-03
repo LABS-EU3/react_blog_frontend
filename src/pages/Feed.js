@@ -8,7 +8,7 @@ import { getToken } from "../utilities/authentication";
 import { Section, mixins } from "../styles/shared";
 import styled from "styled-components";
 import theme from "../styles/theme";
-import FeedArticleCard from "../components/FeedArticles";
+import TrendingCard from "../components/FeedArticles";
 import ArticleCard from "../components/ArticleCardWide";
 import Loader from "./Loader";
 
@@ -19,7 +19,7 @@ const Container = styled(Section)`
     font-family: ${theme.fonts.Oswald};
     font-size: ${theme.fontSizes.ttl};
     padding-bottom: 1rem;
-    border-bottom: 1px solid ${theme.colors.lightGrey};
+    border-bottom: 1px solid ${theme.colors.purple};
   }
   h2 {
     font-family: ${theme.fonts.Oswald};
@@ -32,11 +32,9 @@ const StyledTrending = styled.div`
   .trending-content {
     display: flex;
     justify-content: space-between;
+    max-height: 50vh;
     .big {
       width: 49%;
-      .imageContainer {
-        order: 2;
-      }
     }
     .small {
       width: 24%;
@@ -54,6 +52,12 @@ const StyledFeed = styled.div`
   }
   .following {
     width: 40%;
+    align-self: stretch;
+    .test {
+      background-color: #FEF9E1;
+      height: 100%;
+      margin-top: 2rem;
+    }
   }
 `;
 
@@ -78,14 +82,14 @@ export function Feed(props) {
             articles.data.trending && (
               <div className="trending-content">
                 <div className="big">
-                  <FeedArticleCard
+                  <TrendingCard
                     insight={articles.data.trending[0]}
                     type="jumbo"
                   />
                 </div>
                 {articles.data.trending.slice(1, 3).map(article => (
                   <div className="small">
-                    <FeedArticleCard insight={article} type="reg" />
+                    <TrendingCard insight={article} type="reg"/>
                   </div>
                 ))}
               </div>
@@ -112,7 +116,9 @@ export function Feed(props) {
           </div>
           <div className="following">
             {!articles.loading && <h2>INSIGHTS BASED ON YOUR FOLLOWING</h2>}
-            {articles.loading && <Loader />}
+            {articles.loading ? <Loader /> : <div className="test">
+                  <h3>No data</h3>
+            </div>}
           </div>
         </StyledFeed>
       </Container>
