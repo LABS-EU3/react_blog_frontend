@@ -71,8 +71,16 @@ const ReadArticle = props => {
               ))}
             </div>
           )}
-          <div className="like">
+          <div className="likes">
             <Like />
+            <p>
+              {singleArticle.likes
+                ? (singleArticle.likes > 1
+                  ? `${singleArticle.likes} likes`
+                  : `${singleArticle.likes} like`)
+                : '0 likes'}
+              {}
+            </p>
           </div>
         </TagsAndLikes>
         <HighlightsSection>
