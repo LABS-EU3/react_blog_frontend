@@ -12,7 +12,8 @@ import {
   HiglightsTitle,
   HighlightsSection,
   BlankHighlightsMessage,
-  Emoji
+  Emoji,
+  TagsContainer
 } from "../utilities/styles/read-styles";
 import emojiRenderer from "../utilities/emoji-renderer";
 import Renderer from "../utilities/renderer";
@@ -35,6 +36,7 @@ const ReadArticle = props => {
     getArticle();
   }, [getSingleArticle, location.pathname]);
 
+  console.log(singleArticle);
   const articleBody = singleArticle.body ? singleArticle.body : "[]";
   const content = JSON.parse(articleBody);
   return (
@@ -58,14 +60,25 @@ const ReadArticle = props => {
         <Highligter article={singleArticle}>
           <Body>{Renderer(content)}</Body>
         </Highligter>
+        <TagsContainer>
+          {singleArticle.tags && (
+            <div className="tags">
+              {singleArticle.tags.map((tag, index) => (
+                <p key={index}>#{tag.name}</p>
+              ))}
+            </div>
+          )}
+        </TagsContainer>
         <HighlightsSection>
           <HiglightsTitle>YOUR REACTIONS TO THIS ARTICLE</HiglightsTitle>
           {singleArticle.userHighlights &&
           singleArticle.userHighlights.length ? (
-            singleArticle.userHighlights.map(highlight => (
-              <Hightlight>
-                <Emoji>{emojiRenderer(highlight.emoji)}</Emoji>
-                <HighlightedText>"{highlight.highlighted_text.substring(0, 70)}..."</HighlightedText>
+            singleArticle.userHighlights.map((highlight, index) => (
+              <Hightlight key={index}>
+                <Emoji role="img">{emojiRenderer(highlight.emoji)}</Emoji>
+                <HighlightedText>
+                  "{highlight.highlighted_text.substring(0, 70)}..."
+                </HighlightedText>
               </Hightlight>
             ))
           ) : (

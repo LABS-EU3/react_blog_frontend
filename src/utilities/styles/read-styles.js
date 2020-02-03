@@ -214,5 +214,24 @@ export const BlankHighlightsMessage = styled.p`
   font-family: ${theme.fonts.Muli};
   color: ${theme.colors.lightGrey};
   margin: 0 auto;
-  font-size: ${theme.fontSizes.sm}
+  font-size: ${theme.fontSizes.sm};
+`;
+
+export const TagsContainer = styled.div`
+  padding: 0.85rem;
+  .tags {
+    position: fixed;
+    top: 35rem;
+    right: calc(100% - 25rem);
+  }
+  p {
+    font-family: ${theme.fonts.Merriweather};
+    font-size: ${theme.fontSizes.xs};
+    max-width: auto;
+    color: ${theme.colors.purple};
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+    text-align: center;
+    text-transform: lowercase;
+  }
 `;
