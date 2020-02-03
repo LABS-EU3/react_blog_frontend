@@ -176,6 +176,20 @@ export const TagsAndLikes = styled.div`
     top: 35rem;
     right: calc(100% - 25rem);
   }
+
+  .like {
+    position: fixed;
+    top: 30rem;
+    left: calc(100% - 25rem);
+
+    svg {
+      transition: all 0.3s ease-in-out;
+      padding: .2rem;
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+  }
   p {
     font-family: ${theme.fonts.Merriweather};
     font-size: ${theme.fontSizes.xs};

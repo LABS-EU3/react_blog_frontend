@@ -20,8 +20,9 @@ import Renderer from "../utilities/renderer";
 import readTime from "../utilities/readTime";
 import NavBar from "../components/Navigation/Authed";
 // import BackArrow from "../assets/images/arrow.svg";
-// import like from "../assets/images/like-icon.svg";
+import like from "../assets/images/like-icon.svg";
 import Highligter from "../components/Highlight";
+import Like from "../components/Like";
 import { getSingleArticle } from "../redux-store/actions/get-article-actions";
 // import { Link } from "react-router-dom";
 
@@ -39,7 +40,7 @@ const ReadArticle = props => {
   console.log(singleArticle);
   const articleBody = singleArticle.body ? singleArticle.body : "[]";
   const content = JSON.parse(articleBody);
-  singleArticle.userHighlights = [{emoji: "sob", highlighted_text: "bvere"}]
+  singleArticle.userHighlights = [{ emoji: "sob", highlighted_text: "bvere" }];
   return (
     <>
       <NavBar />
@@ -70,6 +71,9 @@ const ReadArticle = props => {
               ))}
             </div>
           )}
+          <div className="like">
+            <Like />
+          </div>
         </TagsAndLikes>
         <HighlightsSection>
           <HiglightsTitle>YOUR REACTIONS TO THIS ARTICLE</HiglightsTitle>
