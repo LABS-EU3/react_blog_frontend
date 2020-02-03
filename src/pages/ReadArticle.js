@@ -6,7 +6,11 @@ import {
   Body,
   CoverImageContainer,
   StyledArticleTitle,
-  DetailsContainer
+  DetailsContainer,
+  HighlightedText,
+  Hightlight,
+  HiglightsTitle,
+  HighlightsSection
 } from "../utilities/styles/read-styles";
 import Renderer from "../utilities/renderer";
 import readTime from "../utilities/readTime";
@@ -49,6 +53,9 @@ const ReadArticle = props => {
         <Highligter article={singleArticle}>
           <Body>{Renderer(content)}</Body>
         </Highligter>
+        < HighlightsSection>
+        <HiglightsTitle>YOUR REACTIONS TO THIS ARTICLE</HiglightsTitle>
+        </HighlightsSection>
       </Wrapper>
     </>
   );

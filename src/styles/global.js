@@ -41,8 +41,8 @@ ${props => props.theme.preload.map(url => '@import url("' + url + '");')}
     font-family: ${fonts.Muli};
     line-height: 1.5em;
     font-size: ${fontSizes.xl};
-    ${media.tablet`font-size: ${fontSizes.lg};`};
-    ${media.phablet`font-size: ${fontSizes.md}`};
+    ${media.tablet`font-size: ${fontSizes.md};`};
+    ${media.phablet`font-size: ${fontSizes.xs}`};
   }
 
   h1, h2, h3, h4, h5, h6 {
