@@ -41,6 +41,10 @@ export const StyledArticleTitle = styled.h2`
 
 export const DetailsContainer = styled.div`
   padding: 1rem;
+  p {
+    font-size: ${theme.fontSizes.sm};
+    display: inline;
+  }
   ${media.phablet`
   padding: 0.6rem;
   ;`}
@@ -112,63 +116,6 @@ export const Body = styled.div`
   }
 `;
 
-export const StyledDetailsLeft = styled.div`
-  width: 45%;
-  padding: 0rem 3rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  .back {
-    a {
-      img {
-        width: 40px;
-        margin-left: -50px;
-      }
-    }
-  }
-
-  .title {
-    font-size: 34px;
-    line-height: 44px;
-  }
-
-  .bottom {
-    display: flex;
-    p {
-      padding-right: 5rem;
-      color: #3652bf;
-      font-style: italic;
-      font-size: 13px;
-      font-weight: bold;
-    }
-  }
-
-  .tags {
-    display: flex;
-    p {
-      padding: 0.8rem;
-      font-size: 12px;
-      font-weight: bold;
-      font-style: italic;
-      color: #3652bf;
-    }
-  }
-`;
-
-export const StyledDetailsRight = styled.div`
-  width: 55%;
-  padding-right: 2.3rem;
-  img {
-    width: 100%;
-    max-width: 550px;
-    max-height: 270px;
-    min-height: 270px;
-    border-radius: 3px 0px 0px 3px;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
-  }
-`;
-
 export const Details = styled.div`
   display: flex;
   justify-content: space-between;
@@ -196,19 +143,24 @@ export const HiglightsTitle = styled.h4`
 
 export const Hightlight = styled.div`
   display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  width: 100%;
+  margin-top: 0.75rem;
 `;
 
 export const Emoji = styled.span`
-  border-bottom: 1px solid ${theme.colors.lightGrey};
-  border-right: 1px solid ${theme.colors.lightGrey};
+  font-size: 1.6rem;
 `;
 
 export const HighlightedText = styled.p`
-  border-bottom: 1px solid ${theme.colors.lightGrey};
   font-family: ${theme.fonts.Muli};
   color: ${theme.colors.lightGrey};
-  font-style: italic;
+  font-size: ${theme.fontSizes.sm}
+  margin-right: 1rem;
 `;
+
+//import {heart} from 'react-icons-kit/fa/heart'
 
 export const BlankHighlightsMessage = styled.p`
   font-family: ${theme.fonts.Muli};
@@ -217,7 +169,7 @@ export const BlankHighlightsMessage = styled.p`
   font-size: ${theme.fontSizes.sm};
 `;
 
-export const TagsContainer = styled.div`
+export const TagsAndLikes = styled.div`
   padding: 0.85rem;
   .tags {
     position: fixed;

@@ -13,7 +13,7 @@ import {
   HighlightsSection,
   BlankHighlightsMessage,
   Emoji,
-  TagsContainer
+  TagsAndLikes
 } from "../utilities/styles/read-styles";
 import emojiRenderer from "../utilities/emoji-renderer";
 import Renderer from "../utilities/renderer";
@@ -39,6 +39,7 @@ const ReadArticle = props => {
   console.log(singleArticle);
   const articleBody = singleArticle.body ? singleArticle.body : "[]";
   const content = JSON.parse(articleBody);
+  singleArticle.userHighlights = [{emoji: "sob", highlighted_text: "bvere"}]
   return (
     <>
       <NavBar />
@@ -48,6 +49,7 @@ const ReadArticle = props => {
         </CoverImageContainer>
         <StyledArticleTitle>{singleArticle.title}</StyledArticleTitle>
         <DetailsContainer>
+          <p>by </p>
           <span className="authorName">{singleArticle.authorName}</span> -{" "}
           {singleArticle.body && (
             <span className="readTime">
@@ -60,7 +62,7 @@ const ReadArticle = props => {
         <Highligter article={singleArticle}>
           <Body>{Renderer(content)}</Body>
         </Highligter>
-        <TagsContainer>
+        <TagsAndLikes>
           {singleArticle.tags && (
             <div className="tags">
               {singleArticle.tags.map((tag, index) => (
@@ -68,7 +70,7 @@ const ReadArticle = props => {
               ))}
             </div>
           )}
-        </TagsContainer>
+        </TagsAndLikes>
         <HighlightsSection>
           <HiglightsTitle>YOUR REACTIONS TO THIS ARTICLE</HiglightsTitle>
           {singleArticle.userHighlights &&

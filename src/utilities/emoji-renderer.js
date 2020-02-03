@@ -1,16 +1,27 @@
+const emojis = {
+    cry: "😂",
+    what: "😐",
+    cool: "👌🏽",
+    sob: "😭" 
+};
+
+
+
 const emojiRenderer = name => {
   switch (name) {
     case "sob":
-      return "😭";
+      return emojis.sob;
     case "laugh":
-      return "😂";
+      return emojis.laugh;
     case "cool":
-      return "👌🏽";
+      return emojis.cool;
     case "what":
-      return "😐";
+      return emojis.what;
     default:
       return "";
   }
 };
+
+
 
 export default emojiRenderer;
