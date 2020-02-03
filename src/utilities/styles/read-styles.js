@@ -171,10 +171,26 @@ export const BlankHighlightsMessage = styled.p`
 
 export const TagsAndLikes = styled.div`
   padding: 0.85rem;
+
+  ${media.midpc`
+  position: relative;
+  top: 0;
+  left: 0
+  `}
+
   .tags {
     position: fixed;
     top: 35rem;
     right: calc(100% - 25rem);
+    ${media.midpc`
+    position: relative;
+    top: 0;
+    left: 0
+    display: flex;
+    `}
+    p {
+      margin-right: .55rem;
+    }
   }
 
   .likes {
@@ -182,9 +198,14 @@ export const TagsAndLikes = styled.div`
     top: 35rem;
     left: calc(100% - 25rem);
     p {
-      margin-top: -.25rem;
+      margin-top: -0.25rem;
       font-family: ${theme.fonts.Merriweather};
       font-weight: normal;
+      ${media.midpc`
+      display: flex;
+      margin-top: 1rem;
+      margin-left: .75rem;
+      `}
     }
     svg {
       transition: all 0.3s ease-in-out;
@@ -193,7 +214,16 @@ export const TagsAndLikes = styled.div`
         transform: scale(1.2);
       }
     }
+
+    ${media.midpc`
+    position: relative;
+    top: 0;
+    left: 0
+    display: flex;
+    margin-top: 1rem;
+    `}
   }
+
   p {
     font-family: ${theme.fonts.Merriweather};
     font-size: ${theme.fontSizes.xs};
