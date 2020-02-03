@@ -14,12 +14,15 @@ import readTime from "../utilities/readTime";
 import NavBar from "../components/Navigation/Authed";
 import Highligter from "../components/Highlight";
 import Like from "../components/Like";
-import { getSingleArticle } from "../redux-store/actions/get-article-actions";
+import {
+  getSingleArticle,
+  postLike
+} from "../redux-store/actions/get-article-actions";
 import speak from "../assets/images/Icons/streaming.svg";
 import Reactions from "./Reactions";
 
 const ReadArticle = props => {
-  const { getSingleArticle, singleArticle, location } = props;
+  const { getSingleArticle, singleArticle, location, postLike } = props;
   useEffect(() => {
     const getArticle = () => {
       const params = location.pathname;
@@ -29,10 +32,13 @@ const ReadArticle = props => {
     getArticle();
   }, [getSingleArticle, location.pathname]);
 
+  const handleLike = id => {
+    postLike(id);
+  };
+
   console.log(singleArticle);
   const articleBody = singleArticle.body ? singleArticle.body : "[]";
   const content = JSON.parse(articleBody);
-  singleArticle.userHighlights = [{ emoji: "sob", highlighted_text: "bvere" }];
 
   // eslint-disable-next-line array-callback-return
   const text = content.map(item => {
@@ -92,7 +98,11 @@ const ReadArticle = props => {
             </div>
           )}
           <div className="likes">
-            <Like hasLiked={singleArticle.hasLiked}/>
+            <Like
+              hasLiked={singleArticle.hasLiked}
+              articleId={singleArticle.custom_id}
+              handleLike={handleLike}
+            />
             <p>
               {singleArticle.likeCount
                 ? singleArticle.likeCount > 1
@@ -103,7 +113,7 @@ const ReadArticle = props => {
             </p>
           </div>
         </TagsAndLikes>
-       <Reactions  {...props}/>
+        <Reactions {...props} />
       </Wrapper>
     </>
   );
@@ -115,4 +125,6 @@ const mapStateToProps = store => {
   };
 };
 
-export default connect(mapStateToProps, { getSingleArticle })(ReadArticle);
+export default connect(mapStateToProps, { getSingleArticle, postLike })(
+  ReadArticle
+);

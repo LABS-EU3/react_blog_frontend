@@ -23,18 +23,18 @@ export const getArticlesReducer = (state = initState, action) => {
       return {
         ...state,
         loading: true
-      }
+      };
     case GET_REACTIONS_SUCCESS:
       return {
         ...state,
         articleReactions: action.payload,
         loading: false
-      }
+      };
     case GET_REACTIONS_FAIL:
       return {
         ...state,
         loading: false
-      }
+      };
     case GET_ALL_ARTICLES_START:
       return {
         ...state,
@@ -51,7 +51,7 @@ export const getArticlesReducer = (state = initState, action) => {
         ...state,
         loading: false
       };
-      case GET_SINGLE_START:
+    case GET_SINGLE_START:
       return {
         ...state,
         loading: true
@@ -67,7 +67,12 @@ export const getArticlesReducer = (state = initState, action) => {
         ...state,
         loading: false
       };
-    
+    case "POST_LIKE_SUCCESS":
+      return {
+        ...state,
+        singleArticle: { ...state.singleArticle, likeCount: action.payload }
+      };
+
     default:
       return state;
   }
