@@ -12,6 +12,7 @@ import AboutUs from "./pages/AboutUs";
 import ProtectedRoute from "./components/ProtectedRoute";
 import '../src/index.css';
 import Interest from "./pages/Final";
+import AuthorProfile from "./pages/AuthorProfile";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <ProtectedRoute path="/feed" component={Feed} />
         <Route path="/article/:id" component={ReadArticle} />
         <Route path="/team" component={AboutUs} />
+        <Route path="/author/:id" component={AuthorProfile} />
         <ProtectedRoute path="/final" component={Interest} />
         <Route render={() => <Redirect to="/" />} />
       </Switch>
