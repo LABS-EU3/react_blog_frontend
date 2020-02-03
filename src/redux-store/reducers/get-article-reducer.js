@@ -70,7 +70,11 @@ export const getArticlesReducer = (state = initState, action) => {
     case "POST_LIKE_SUCCESS":
       return {
         ...state,
-        singleArticle: { ...state.singleArticle, likeCount: action.payload, hasLiked: true }
+        singleArticle: {
+          ...state.singleArticle,
+          likeCount: action.payload,
+          hasLiked: true
+        }
       };
 
     default:
