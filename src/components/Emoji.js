@@ -1,5 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { postReaction } from "../redux-store/actions/reaction-actions";
+import { decodeToken } from "../utilities/checkToken";
+import { connect } from "react-redux";
 
 const emojis = [
   { name: "laugh", visual: "😂" },
@@ -23,7 +26,21 @@ const StyledEmoji = styled.span`
   }
 `;
 
-const Emoji = ({ emoji, handleEmoji, string }) => {
+const Emoji = ({ article, emoji, string , postReaction}) => {
+  const { subject: reactorId } = decodeToken();
+
+  const handleEmoji = (name, string) => {
+    const reaction = {
+      authorId: article.authorId,
+      reactorId,
+      emoji: name,
+      highlighted_text: string,
+      articleId: article.authorId
+    };
+
+    postReaction(reaction);
+  };
+
   return (
     <StyledEmoji
       role="img"
@@ -35,12 +52,29 @@ const Emoji = ({ emoji, handleEmoji, string }) => {
   );
 };
 
-export default ({ handleEmoji, string }) => {
+const Emojis = ({ article, string, postReaction }) => {
+  console.log(string, "here");
   return (
     <StyledEmojiWrapper>
       {emojis.map(emoji => (
-        <Emoji emoji={emoji} handleEmoji={handleEmoji} string={string} />
+        <Emoji
+          emoji={emoji}
+          string={string}
+          key={emoji.name}
+          article={article}
+          postReaction={postReaction}
+        />
       ))}
     </StyledEmojiWrapper>
   );
 };
+
+const mapStateToProps = state => {
+  return {
+    reaction: state.reaction
+  };
+};
+
+export default connect(mapStateToProps, {
+  postReaction
+})(Emojis);
