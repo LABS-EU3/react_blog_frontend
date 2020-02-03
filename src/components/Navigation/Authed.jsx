@@ -1,6 +1,7 @@
 import React from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import Button from "../Buttons/Button";
+import styled from 'styled-components'
 import media from '../../styles/mediaQueries'
 import {
   NavWrapper,
@@ -12,9 +13,10 @@ import insight from "../../assets/images/insight-stand.png";
 // import notification from "../../assets/images/Icons/icon-notification.svg";
 import { Icon } from "react-icons-kit";
 import { bell } from "react-icons-kit/feather/bell";
-import ProfileImageDropdown from "../Navigation/ProfileImageDropdown";
 import { search } from "react-icons-kit/fa/search";
-import styled from "styled-components";
+// import notification from '../../assets/images/Icons/icon-notification.svg';
+import ProfileImageDropdown from './ProfileImageDropdown';
+import Notifications from './_notifications/Notifications';
 
 const StyledInsightly = styled.div`
 

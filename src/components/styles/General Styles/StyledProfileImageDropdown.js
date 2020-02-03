@@ -19,7 +19,7 @@ export const StyledProfileImageDropdown = styled.div`
         min-width: 160px;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
         z-index: 900;
-        margin-top: 0;
+        margin-top: 20px;
         width: calc(100% - 100px);
         right: 0.5rem;
         overflow: hidden;
@@ -29,6 +29,10 @@ export const StyledProfileImageDropdown = styled.div`
 
         &.show {
             display: block;
+        }
+
+        &#dropdown-profile-content {
+            margin-top: 7px!important;
         }
 
         ul {
@@ -46,7 +50,7 @@ export const StyledProfileImageDropdown = styled.div`
                 line-height: 1.4;
                 white-space: nowrap;
                 font-size: 18px;
-                padding: 20px!important;
+                padding: 20px;
                 
                 p:last-child {
                     font-size: 1.2rem;

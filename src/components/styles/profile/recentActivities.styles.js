@@ -2,12 +2,11 @@ import styled from 'styled-components';
 
 export const StyledRecentActivity = styled.div`
 
-
-
     .card {
         height: auto;
         border: none;
         padding: 1.5rem;
+        background-color:#F9F9F9;
     }
 
     .card .title {

@@ -156,6 +156,7 @@ export const StyledMainFeed = styled.div`
           width: 100%;
           padding: 2rem;
           padding-top: 3rem;
+          min-height: 430px;
 
           h3 {
             margin: 8rem 0 2rem 0;
@@ -325,3 +326,4 @@ export const StyledLoggedInFeed = styled.div`
     }
   }
 `;
+

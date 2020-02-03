@@ -25,6 +25,10 @@ import Highligter from "../components/Highlight";
 import Like from "../components/Like";
 import { getSingleArticle } from "../redux-store/actions/get-article-actions";
 // import { Link } from "react-router-dom";
+import speak from '../assets/images/Icons/streaming.svg'
+import { Link } from "react-router-dom";
+import Reactions from './Reactions';
+
 
 const ReadArticle = props => {
   const { getSingleArticle, singleArticle, location } = props;
@@ -41,6 +45,27 @@ const ReadArticle = props => {
   const articleBody = singleArticle.body ? singleArticle.body : "[]";
   const content = JSON.parse(articleBody);
   singleArticle.userHighlights = [{ emoji: "sob", highlighted_text: "bvere" }];
+
+// eslint-disable-next-line array-callback-return
+const text = content.map((item) => {
+  if (typeof item.data.text === 'string'){
+    return item.data.text
+  }
+});
+
+console.log(text.join(''));
+const message  = text.join('');
+
+const handleSpeak = () => {
+  let speech = new SpeechSynthesisUtterance();
+  speech.text = message;
+  speech.volume = 1;
+  speech.rate = 1;
+  speech.pitch = 1;
+
+  window.speechSynthesis.speak(speech);
+}
+
   return (
     <>
       <NavBar />
@@ -101,7 +126,11 @@ const ReadArticle = props => {
             </BlankHighlightsMessage>
           )}
         </HighlightsSection>
+        <div className="stream">
+          <img  onClick={handleSpeak} src={speak} alt="read out text aloud" />
+        </div>
       </Wrapper>
+     
     </>
   );
 };
