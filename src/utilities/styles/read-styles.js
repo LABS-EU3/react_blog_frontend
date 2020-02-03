@@ -114,15 +114,19 @@ export const Body = styled.div`
     justify-content: center;
     display: flex;
     flex-direction: column;
-    padding: 2rem;
     figcaption {
       padding-top: 1rem;
       font-size: 1.3rem;
     }
   }
   img {
-    margin: 0 auto;
-    max-width: 600px;
+      padding: 1rem;
+      padding-left: 0;
+      object-fit: cover;
+      height: auto;
+      width: 100%;
+      max-height: 100%;
+      margin: 0 auto;
   }
 `;
 
