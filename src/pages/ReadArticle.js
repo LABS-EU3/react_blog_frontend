@@ -17,6 +17,7 @@ import speak from '../assets/images/Icons/streaming.svg'
 import { getSingleArticle } from '../redux-store/actions/get-article-actions'
 import { Link } from "react-router-dom";
 import Highligter from "../components/Highlight";
+import Reactions from './Reactions';
 
 
 const ReadArticle = props => {
@@ -96,7 +97,9 @@ const handleSpeak = () => {
           <img src={like} alt="like icon" />
           <p>22</p>
         </div>
+        <Reactions {...props} />
       </Wrapper>
+     
     </>
   );
 };

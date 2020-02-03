@@ -35,10 +35,11 @@ const Emoji = ({ article, emoji, string , postReaction}) => {
       reactorId,
       emoji: name,
       highlighted_text: string,
-      articleId: article.authorId
+      articleId: article.custom_id
     };
 
     postReaction(reaction);
+    window.location.reload();
   };
 
   return (
