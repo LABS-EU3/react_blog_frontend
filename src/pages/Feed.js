@@ -8,11 +8,13 @@ import { getToken } from "../utilities/authentication";
 import { Section, mixins } from "../styles/shared";
 import styled from "styled-components";
 import theme from "../styles/theme";
+import FeedArticleCard from "../components/FeedArticles";
 import ArticleCard from "../components/ArticleCardWide";
 import Loader from "./Loader";
 
 const Container = styled(Section)`
   margin-top: 8rem;
+  min-width: 90vw;
   h1 {
     font-family: ${theme.fonts.Oswald};
     font-size: ${theme.fontSizes.ttl};
@@ -27,8 +29,19 @@ const Container = styled(Section)`
 
 const StyledTrending = styled.div`
   width: 100%;
-  ${mixins.flexColumn};
-  justify-content: space-between;
+  .trending-content {
+    display: flex;
+    justify-content: space-between;
+    .big {
+      width: 49%;
+      .imageContainer {
+        order: 2;
+      }
+    }
+    .small {
+      width: 24%;
+    }
+  }
 `;
 
 const StyledFeed = styled.div`
@@ -64,9 +77,16 @@ export function Feed(props) {
           ) : (
             articles.data.trending && (
               <div className="trending-content">
-                <ArticleCard insight={articles.data.trending[0]} />
+                <div className="big">
+                  <FeedArticleCard
+                    insight={articles.data.trending[0]}
+                    type="jumbo"
+                  />
+                </div>
                 {articles.data.trending.slice(1, 3).map(article => (
-                  <ArticleCard insight={article} />
+                  <div className="small">
+                    <FeedArticleCard insight={article} type="reg" />
+                  </div>
                 ))}
               </div>
             )
