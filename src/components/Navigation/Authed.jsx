@@ -1,6 +1,7 @@
 import React from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import Button from "../Buttons/Button";
+import media from '../../styles/mediaQueries'
 import {
   NavWrapper,
   StandLogo,
@@ -16,28 +17,11 @@ import { search } from "react-icons-kit/fa/search";
 import styled from "styled-components";
 
 const StyledInsightly = styled.div`
-  h4 {
-    position: absolute;
-    width: 234px;
-    height: 60px;
-    left: 705px;
-    top: 21px;
-    font-size: 48px;
-    line-height: 60px;
-    color: #000000;
-  }
 
   h3 {
     font-size: 28px;
   }
-  // div {
-  //   position: relative;
-  //   width: 281px;
-  //   height: 45px;
-  //   left: 50%;
-  //   top: 45px;
-  //   background: #fef9e1;
-  // }
+ ${media.phablet`display: none;`}
 `;
 
 export default function Authed(props) {
