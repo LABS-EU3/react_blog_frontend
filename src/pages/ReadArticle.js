@@ -83,7 +83,7 @@ const ReadArticle = props => {
         <Highligter article={singleArticle}>
           <Body>{Renderer(content)}</Body>
         </Highligter>
-        <TagsAndLikes>
+        <TagsAndLikes hasLiked={singleArticle.hasLiked}>
           {singleArticle.tags && (
             <div className="tags">
               {singleArticle.tags.map((tag, index) => (
@@ -92,12 +92,12 @@ const ReadArticle = props => {
             </div>
           )}
           <div className="likes">
-            <Like />
+            <Like hasLiked={singleArticle.hasLiked}/>
             <p>
-              {singleArticle.likes
-                ? singleArticle.likes > 1
-                  ? `${singleArticle.likes} likes`
-                  : `${singleArticle.likes} like`
+              {singleArticle.likeCount
+                ? singleArticle.likeCount > 1
+                  ? `${singleArticle.likeCount} likes`
+                  : `${singleArticle.likeCount} like`
                 : "0 likes"}
               {}
             </p>

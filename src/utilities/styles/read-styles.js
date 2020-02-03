@@ -220,6 +220,8 @@ export const TagsAndLikes = styled.div`
     svg {
       transition: all 0.3s ease-in-out;
       padding: 0.15rem;
+      pointer-events: ${props => props.hasLiked ? 'none' : 'auto'}
+      cursor: ${props => props.hasLiked ? 'none' : 'pointer'}
       &:hover {
         transform: scale(1.2);
       }
