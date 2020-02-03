@@ -9,6 +9,7 @@ import { Section, mixins } from "../styles/shared";
 import styled from "styled-components";
 import theme from "../styles/theme";
 import ArticleCard from "../components/ArticleCardWide";
+import Loader from "./Loader";
 
 const Container = styled(Section)`
   margin-top: 8rem;
@@ -58,13 +59,17 @@ export function Feed(props) {
       <Container>
         <StyledTrending>
           <h1>TRENDING NOW</h1>
-          {!articles.loading && articles.data.trending && (
-            <div className="trending-content">
-              <ArticleCard insight={articles.data.trending[0]} />
-              {articles.data.trending.slice(1, 3).map(article => (
-                <ArticleCard insight={article} />
-              ))}
-            </div>
+          {articles.loading ? (
+            <Loader />
+          ) : (
+            articles.data.trending && (
+              <div className="trending-content">
+                <ArticleCard insight={articles.data.trending[0]} />
+                {articles.data.trending.slice(1, 3).map(article => (
+                  <ArticleCard insight={article} />
+                ))}
+              </div>
+            )
           )}
         </StyledTrending>
         <StyledFeed>
@@ -76,13 +81,18 @@ export function Feed(props) {
                   : "EXPLORE INSIGHTS"}
               </h2>
             )}
-            {(articles.data.mainFeed || articles.data.interests) &&
+            {articles.loading ? (
+              <Loader />
+            ) : (
+              (articles.data.mainFeed || articles.data.interests) &&
               (articles.data.interests || articles.data.mainFeed)
                 .slice(0, 3)
-                .map(insight => <ArticleCard insight={insight} />)}
+                .map(insight => <ArticleCard insight={insight} />)
+            )}
           </div>
           <div className="following">
             {!articles.loading && <h2>INSIGHTS BASED ON YOUR FOLLOWING</h2>}
+            {articles.loading && <Loader />}
           </div>
         </StyledFeed>
       </Container>
