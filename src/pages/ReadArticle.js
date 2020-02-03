@@ -10,8 +10,11 @@ import {
   HighlightedText,
   Hightlight,
   HiglightsTitle,
-  HighlightsSection
+  HighlightsSection,
+  BlankHighlightsMessage,
+  Emoji
 } from "../utilities/styles/read-styles";
+import emojiRenderer from "../utilities/emoji-renderer";
 import Renderer from "../utilities/renderer";
 import readTime from "../utilities/readTime";
 import NavBar from "../components/Navigation/Authed";
@@ -45,16 +48,31 @@ const ReadArticle = props => {
         <DetailsContainer>
           <span className="authorName">{singleArticle.authorName}</span> -{" "}
           {singleArticle.body && (
-            <span className="readTime"> {`${readTime(singleArticle.body)} min read`}</span>
+            <span className="readTime">
+              {" "}
+              {`${readTime(singleArticle.body)} min read`}
+            </span>
           )}
         </DetailsContainer>
-        <Details>
-        </Details>
+        <Details></Details>
         <Highligter article={singleArticle}>
           <Body>{Renderer(content)}</Body>
         </Highligter>
-        < HighlightsSection>
-        <HiglightsTitle>YOUR REACTIONS TO THIS ARTICLE</HiglightsTitle>
+        <HighlightsSection>
+          <HiglightsTitle>YOUR REACTIONS TO THIS ARTICLE</HiglightsTitle>
+          {singleArticle.userHighlights &&
+          singleArticle.userHighlights.length ? (
+            singleArticle.userHighlights.map(highlight => (
+              <Hightlight>
+                <Emoji>{emojiRenderer(highlight.emoji)}</Emoji>
+                <HighlightedText>"{highlight.highlighted_text.substring(0, 70)}..."</HighlightedText>
+              </Hightlight>
+            ))
+          ) : (
+            <BlankHighlightsMessage>
+              You don't have any reactions to this article yet!
+            </BlankHighlightsMessage>
+          )}
         </HighlightsSection>
       </Wrapper>
     </>
