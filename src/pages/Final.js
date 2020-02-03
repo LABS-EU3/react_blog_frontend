@@ -12,7 +12,6 @@ import {
   followUsers
 } from "../redux-store/actions/onboarding-actions";
 
-import UserCard from "./UserCard";
 import userIcon from "../assets/images/Icons/user.png";
 
 function Final(props) {
@@ -26,7 +25,6 @@ function Final(props) {
     declareInterest,
     usersToFollow,
     followUsers,
-    loading
   } = props;
   let view;
 

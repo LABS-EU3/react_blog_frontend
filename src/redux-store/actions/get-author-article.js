@@ -1,11 +1,12 @@
 import * as types from "./types";
 import axios from "axios";
+import { apiURL } from '../../utilities/urls';
 
 export const getAuthorArticle = id => async dispatch => {
   dispatch({ type: types.GET_USER_ARTICLES_START });
   try {
     const response = await axios.get(
-      `http://localhost:5000/api/articles/author/${id}`
+      `${apiURL}/articles/author/${id}`
     );
     
     
@@ -21,7 +22,7 @@ export const deleteAuthorArticle = id => async dispatch => {
   dispatch({ type: types.DELETE_USER_ARTICLES_START });
   try {
     const response = await axios.delete(
-      `http://localhost:5000/api/articles/${id}`
+      `${apiURL}/articles/${id}`
     );
     dispatch({
       type: types.DELETE_USER_ARTICLES_SUCCESS,

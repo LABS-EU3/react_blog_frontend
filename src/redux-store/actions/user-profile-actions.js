@@ -15,11 +15,12 @@ import {
 } from "./types";
 import axios from "axios";
 import { axiosWithAuth } from "../../utilities/axios/index";
+import { apiURL } from '../../utilities/urls';
 
 export const getTags = () => async dispatch => {
   dispatch({ type: GET_TAGS_START });
   try {
-    const response = await axios.get(`http://localhost:5000/api/articles/tags`);
+    const response = await axios.get(`${apiURL}/articles/tags`);
     dispatch({ type: GET_TAGS_SUCCESS, payload: response.data });
   } catch (err) {
     console.log(err);
@@ -30,7 +31,7 @@ export const getTags = () => async dispatch => {
 export const getUserProfile = id => async dispatch => {
   dispatch({ type: GET_USER_PROFILE_START });
   try {
-    const response = await axios.get(`http://localhost:5000/api/users/${id}`);
+    const response = await axios.get(`${apiURL}/users/${id}`);
     dispatch({ type: GET_USER_PROFILE_SUCCESS, payload: response.data });
   } catch (err) {
     console.log(err);
@@ -42,7 +43,7 @@ export const updateUserProfile = (id, data) => async dispatch => {
   dispatch({ type: UPDATE_USER_PROFILE_START });
   try {
     const response = await axios.put(
-      `http://localhost:5000/api/users/${id}`,
+      `${apiURL}/users/${id}`,
       data
     );
     dispatch({ type: UPDATE_USER_PROFILE_SUCCESS, payload: response.data });
@@ -58,7 +59,7 @@ export const updateUserInterests = data => async dispatch => {
   try {
     if (data.remove) {
       const response = await axiosWithAuth().delete(
-        "http://localhost:5000/api/interests",
+        `${apiURL}/interests`,
         { data: data.remove }
       );
       if (response) {
@@ -70,7 +71,7 @@ export const updateUserInterests = data => async dispatch => {
     }
     if (data.add) {
       const response = await axiosWithAuth().post(
-        "http://localhost:5000/api/interests",
+        `${apiURL}/interests`,
         data.add
       );
       if (response) {

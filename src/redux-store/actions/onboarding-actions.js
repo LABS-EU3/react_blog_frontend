@@ -12,11 +12,12 @@ import {
 
 import axios from "axios";
 import { axiosWithAuth } from "../../utilities/axios/index";
+import { apiURL } from '../../utilities/urls';
 
 export const getTags = () => async dispatch => {
   dispatch({ type: GET_ALL_TAGS_START });
   try {
-    const response = await axios.get(`http://localhost:5000/api/articles/tags`);
+    const response = await axios.get(`${apiURL}/articles/tags`);
     dispatch({ type: GET_ALL_TAGS_SUCCESS, payload: response.data });
   } catch (err) {
     console.log(err);
@@ -28,7 +29,7 @@ export const getUsersToFollow = () => async dispatch => {
   dispatch({ type: GET_USERS_TO_FOLLOW_START });
   try {
     const response = await axiosWithAuth().get(
-      `http://localhost:5000/api/follows/potential`
+      `${apiURL}/follows/potential`
     );
     console.log(response);
     dispatch({ type: GET_USERS_TO_FOLLOW_SUCCESS, payload: response.data });
@@ -42,7 +43,7 @@ export const followUsers = (followIds) => async dispatch => {
   dispatch({ type: FOLLOW_USERS_START });
   try {
     const response = await axiosWithAuth().post(
-      `http://localhost:5000/api/follows`, followIds
+      `${apiURL}/follows`, followIds
     );
     dispatch({ type: FOLLOW_USERS_SUCCESS});
     console.log(response);
