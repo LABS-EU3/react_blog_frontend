@@ -19,6 +19,19 @@ export const Wrapper = styled.div`
   padding-top: 3.0rem;
   width: 900px;
 
+  .stream {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: flex-end;
+    width: 95%;
+    margin-left: 2rem;
+    img {
+      width: 40px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  }
+
   .like {
     margin-top:5.0rem;
     margin-bottom: 3.0rem;
@@ -131,3 +144,4 @@ export const Details = styled.div`
   display: flex;
   justify-content: space-between;
 `;
+

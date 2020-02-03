@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { StyledProfileImageDropdown } from '../styles/General Styles/StyledProfileImageDropdown';
 import avatar from '../../assets/images/avatar.svg';
 import { clearLocalStorage } from '../../utilities/authentication'
 import Dropdown from './NavigationDropdown';

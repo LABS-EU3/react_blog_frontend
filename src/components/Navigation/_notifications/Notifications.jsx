@@ -4,9 +4,9 @@ import { faBell } from '@fortawesome/free-solid-svg-icons'
 import Dropdown from '../NavigationDropdown';
 import { StyledNotificationIcon, StyledNotificationDropdownContent } from '../../styles/StyledNotification';
 import TinyAvatar from '../../../assets/random-avatar.jpeg'
-import Pusher from 'pusher-js';
+// import Pusher from 'pusher-js';
 import { getNotifications} from '../../../redux-store/actions/get-notifications';
-import { getToken } from '../../../utilities/authentication'
+// import { getToken } from '../../../utilities/authentication'
 import { pusher, notifications_channel } from '../../../utilities/pusherConfiguration';
 
 export default function ProfileImageDropdown(props) {
@@ -16,7 +16,7 @@ export default function ProfileImageDropdown(props) {
     // fetch the initial notifications
     useEffect(() => {
         getNotifications()
-    }, [getNotifications]);
+    }, []);
 
 
     notifications_channel.bind('new-notification', data => {

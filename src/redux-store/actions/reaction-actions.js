@@ -8,7 +8,7 @@ export const postReaction = reaction => async dispatch => {
   });
   try {
     let res = await axiosWithAuth().post(
-      `http://localhost:5000/api/reactions`,
+      `${apiURL}/reactions`,
       reaction
     );
     if (res)
