@@ -93,10 +93,10 @@ const handleSpeak = () => {
         <Highligter article={singleArticle}>
           <Body>{Renderer(content)}</Body>
         </Highligter>
-        <div className="like">
+        {/* <div className="like">
           <img src={like} alt="like icon" />
           <p>22</p>
-        </div>
+        </div> */}
         <Reactions {...props} />
       </Wrapper>
      
