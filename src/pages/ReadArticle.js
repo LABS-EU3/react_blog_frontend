@@ -7,24 +7,15 @@ import {
   CoverImageContainer,
   StyledArticleTitle,
   DetailsContainer,
-  HighlightedText,
-  Hightlight,
-  HiglightsTitle,
-  HighlightsSection,
-  BlankHighlightsMessage,
-  Emoji,
   TagsAndLikes
 } from "../utilities/styles/read-styles";
-import emojiRenderer from "../utilities/emoji-renderer";
 import Renderer from "../utilities/renderer";
 import readTime from "../utilities/readTime";
 import NavBar from "../components/Navigation/Authed";
 import Highligter from "../components/Highlight";
 import Like from "../components/Like";
-import Speech from "../components/SpeechSVG";
 import { getSingleArticle } from "../redux-store/actions/get-article-actions";
 import speak from "../assets/images/Icons/streaming.svg";
-import { Link } from "react-router-dom";
 import Reactions from "./Reactions";
 
 const ReadArticle = props => {
