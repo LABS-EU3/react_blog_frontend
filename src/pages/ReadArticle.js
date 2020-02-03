@@ -112,24 +112,7 @@ const ReadArticle = props => {
             </p>
           </div>
         </TagsAndLikes>
-        <HighlightsSection>
-          <HiglightsTitle>YOUR REACTIONS TO THIS ARTICLE</HiglightsTitle>
-          {singleArticle.userHighlights &&
-          singleArticle.userHighlights.length ? (
-            singleArticle.userHighlights.map((highlight, index) => (
-              <Hightlight key={index}>
-                <Emoji role="img">{emojiRenderer(highlight.emoji)}</Emoji>
-                <HighlightedText>
-                  "{highlight.highlighted_text.substring(0, 70)}..."
-                </HighlightedText>
-              </Hightlight>
-            ))
-          ) : (
-            <BlankHighlightsMessage>
-              You don't have any reactions to this article yet!
-            </BlankHighlightsMessage>
-          )}
-        </HighlightsSection>
+       <Reactions  {...props}/>
       </Wrapper>
     </>
   );
