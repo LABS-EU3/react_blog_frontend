@@ -100,7 +100,7 @@ const ReadArticle = props => {
           <div className="likes">
             <Like
               hasLiked={singleArticle.hasLiked}
-              articleId={singleArticle.custom_id}
+              articleId={singleArticle.id}
               handleLike={handleLike}
             />
             <p>
