@@ -173,3 +173,21 @@ export const Details = styled.div`
   display: flex;
   justify-content: space-between;
 `;
+
+export const HighlightsSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+`;
+
+export const HiglightsTitle = styled.div`
+  font-family: ${theme.fonts.Oswald};
+`;
+
+export const Hightlight = styled.div`
+  display: flex;
+`;
+
+export const Emoji = styled.span`
+  border-bottom: 1px solid ${theme.colors.lightGrey};
+`;
