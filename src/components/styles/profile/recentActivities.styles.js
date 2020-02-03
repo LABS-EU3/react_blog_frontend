@@ -2,8 +2,6 @@ import styled from 'styled-components';
 
 export const StyledRecentActivity = styled.div`
 
-
-
     .card {
         height: auto;
         border: none;

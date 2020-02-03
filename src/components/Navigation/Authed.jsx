@@ -6,7 +6,8 @@ import {
 } from './navigation.styles';
 import insight from '../../assets/images/insight-stand.png'
 import notification from '../../assets/images/Icons/icon-notification.svg';
-import ProfileImageDropdown from '../Navigation/ProfileImageDropdown';
+import ProfileImageDropdown from './ProfileImageDropdown';
+import Notifications from './_notifications/Notifications';
 
 export default function Authed(props) {
 
@@ -24,11 +25,8 @@ export default function Authed(props) {
       </StandLogo>
       <Control>
         <Button label="Write" handleClick={handleClick}/>
-        <div className="notification">
-          <img alt="notification" src={notification}/>
-        </div>
+        <Notifications />
         <div className="avatar">
-          {/* <img alt="avatar" src={avatar}/> */}
           <ProfileImageDropdown />
         </div>
       </Control>
