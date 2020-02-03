@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from "react";
 import styled from "styled-components";
 import EditProfile from "../pages/EditProfile";
@@ -72,10 +73,10 @@ function ProfileCard() {
         setClicked(e.target.id);
     };
 
-    const getInsights = insightType => {
-        if (insightType === "insights") {
-        }
-    };
+    // const getInsights = insightType => {
+    //     if (insightType === "insights") {
+    //     }
+    // };
     return (
         <Section>
             <Div>
@@ -93,7 +94,7 @@ function ProfileCard() {
                     
                     <DIV>
 
-                        <a id="views" onClick={handleClick}>VIEWS</a>
+                        <a href="" id="views" onClick={handleClick}>VIEWS</a>
                         <a id="user-reactions" onClick={handleClick}>USER REACTIONS</a>
                         <a id="reads" onClick={handleClick}>READS</a>
 

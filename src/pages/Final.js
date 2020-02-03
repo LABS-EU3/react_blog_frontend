@@ -38,6 +38,7 @@ function Final(props) {
 
   const handleSubmit = () => {
     let interests = [];
+    // eslint-disable-next-line array-callback-return
     [...checkItems].map(interest => {
       if (interest[1] === true) {
         interests.push(interest[0]);

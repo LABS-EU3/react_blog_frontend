@@ -5,7 +5,7 @@ import {
   NavWrapper, StandLogo,Control
 } from './navigation.styles';
 import insight from '../../assets/images/insight-stand.png'
-import notification from '../../assets/images/Icons/icon-notification.svg';
+// import notification from '../../assets/images/Icons/icon-notification.svg';
 import ProfileImageDropdown from './ProfileImageDropdown';
 import Notifications from './_notifications/Notifications';
 

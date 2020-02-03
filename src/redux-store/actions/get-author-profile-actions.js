@@ -40,7 +40,7 @@ export const getAuthorArticles = authorId => async dispatch => {
 export const followAuthor = authorId => async dispatch => {
   dispatch({ type: FOLLOW_AUTHOR_START });
   try {
-    const response = await axiosWithAuth().post(`${apiURL}/follows`, authorId);
+    await axiosWithAuth().post(`${apiURL}/follows`, authorId);
     dispatch({ type: FOLLOW_AUTHOR_SUCCESS, payload: authorId[0] });
   } catch (err) {
     console.log(err);
