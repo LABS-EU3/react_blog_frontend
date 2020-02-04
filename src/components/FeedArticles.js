@@ -4,6 +4,61 @@ import theme from "../styles/theme";
 import { Link } from "react-router-dom";
 import media from "../styles/mediaQueries";
 import { mixins } from "../styles/shared";
+import readTime from "../utilities/readTime";
+
+const StyledRegCard = styled.div`
+  display: flex;
+  box-shadow: 3px 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 1rem 2rem;
+  max-width: 650px;
+  margin-top: 3rem;
+  width: 100%;
+  h5 {
+    font-size: ${theme.fontSizes.sm};
+    color: ${theme.colors.textGrey};
+  }
+  ${media.phablet`justify-content: space-between`}
+`;
+
+const StyledRegImageContainer = styled.div`
+  display: flex;
+  align-content: contain;
+  width: 30%;
+  img {
+    padding: 1rem;
+    padding-left: 0;
+    object-fit: cover;
+    height: 140px;
+    width: 140px;
+    margin: 0 auto;
+    ${media.phablet`width: 140px;
+    height: 140px;
+    `};
+  }
+`;
+
+const StyledRegTextContent = styled.div`
+  padding: 1rem;
+  display: flex;
+  color: black;
+  flex-direction: column;
+  ${media.phablet`width: 65%; justify-content: space-between;`}
+  .info {
+    display: flex;
+    justify-content: space-between;
+    ${media.phablet`order: 3`}
+    p {
+      font-family: ${theme.fonts.Muli};
+      font-size: ${theme.fontSizes.xs};
+      color: ${theme.colors.purple};
+    }
+  }
+  .snippet {
+    font-size: ${theme.fontSizes.xs};
+    color: ${theme.colors.lightGrey};
+    line-height: 1.7rem;
+  }
+`;
 
 const StyledCard = styled.div`
   width: 100%;
@@ -109,7 +164,7 @@ const StyledTextContent = styled.div`
   }
 `;
 
-const Card = props => {
+export const TrendingCard = props => {
   const { insight, type } = props;
   const [vw, setVw] = useState(window.innerWidth / 2);
   const setWidth = () => {
@@ -166,4 +221,38 @@ const Card = props => {
   );
 };
 
-export default Card;
+export const RegularCard = ({ insight }) => {
+const [vw, setVw] = useState(window.innerWidth / 10);
+  const setWidth = () => {
+    setVw(window.innerWidth / 8);
+  };
+  window.addEventListener("resize", setWidth);
+  return (
+    <Link to={`/article/${insight.custom_id}`}>
+      <StyledRegCard>
+        <StyledRegImageContainer>
+          <img src={insight.coverImageUrl} alt={insight.title} />
+        </StyledRegImageContainer>
+        <StyledRegTextContent>
+          <h5>
+            {insight.title.split("").length > 50
+              ? `${insight.title.substring(0, 50)}...`
+              : insight.title}
+          </h5>
+          <div className="info">
+            <p>{insight.author}</p>
+            <p>{`${readTime(insight.body)} min read`}</p>
+          </div>
+          <div className="snippet">
+            <p>
+              {JSON.parse(insight.body)
+                .find(block => block.type === "paragraph")
+                .data.text.substring(0, vw)}
+              ...
+            </p>
+          </div>
+        </StyledRegTextContent>
+      </StyledRegCard>
+    </Link>
+  );
+};

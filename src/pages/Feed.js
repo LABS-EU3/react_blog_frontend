@@ -9,7 +9,7 @@ import { Section, mixins } from "../styles/shared";
 import styled from "styled-components";
 import theme from "../styles/theme";
 import media from "../styles/mediaQueries";
-import TrendingCard from "../components/FeedArticles";
+import { TrendingCard, RegularCard } from "../components/FeedArticles";
 import ArticleCard from "../components/ArticleCardWide";
 import Loader from "./Loader";
 
@@ -33,7 +33,7 @@ const StyledTrending = styled.div`
   .trending-content {
     display: flex;
     justify-content: space-between;
-    max-height: 50vh;
+    max-height: 40vh;
     ${media.phablet`flex-direction: column; max-height: none;`};
     .big {
       width: 49%;
@@ -51,12 +51,18 @@ const StyledFeed = styled.div`
   ${mixins.flexBetween};
   margin-top: 10rem;
   align-items: flex-start;
+  ${media.phablet`flex-direction: column; margin-top: 5rem;`};
   .interests {
     width: 55%;
+    ${media.phablet`width: 100%;`};
+    #dynamic-card {
+      width: 5vw;
+    }
   }
   .following {
     width: 40%;
     align-self: stretch;
+    ${media.phablet`width: 100%; margin-top: 5rem;`};
     .test {
       background-color: #FEF9E1;
       height: 100%;
@@ -115,7 +121,7 @@ export function Feed(props) {
               (articles.data.mainFeed || articles.data.interests) &&
               (articles.data.interests || articles.data.mainFeed)
                 .slice(0, 3)
-                .map(insight => <ArticleCard insight={insight} />)
+                .map(insight => <RegularCard insight={insight} />)
             )}
           </div>
           <div className="following">
