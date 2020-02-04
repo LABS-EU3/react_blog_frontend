@@ -54,6 +54,23 @@ const StyledFeed = styled.div`
   ${media.tablet`margin-bottom: 4rem;`};
   ${media.phablet`flex-direction: column; margin-top: 5rem;`};
   .interests {
+  max-height: 90vh;
+  overflow-y: overlay;
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+  background: ${theme.colors.purple};
+  border-radius: 10px;
+  &:hover {
+    background: #765279;
+    cursor: pointer;
+  }
+  }
    h2 {
         line-height: 1.2em;
       }
@@ -166,7 +183,6 @@ export function Feed(props) {
             {!articles.loading &&
               (articles.data.mainFeed || articles.data.interests) &&
               (articles.data.interests || articles.data.mainFeed)
-                .slice(0, 3)
                 .map(insight => <RegularCard insight={insight} key={insight.id}/>)
             }
           </div>
@@ -174,8 +190,8 @@ export function Feed(props) {
             {!articles.loading && <h2>INSIGHTS BASED ON YOUR FOLLOWING</h2>}
             {!articles.loading &&
               <div className="following-container">
-                {articles.data.interests ? (
-                  articles.data.interests
+                {articles.data.following ? (
+                  articles.data.following
                     .map(insight => <FollowingCard insight={insight} />)
                 ) : (
                   <div className="no-following">
