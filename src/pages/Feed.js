@@ -8,6 +8,7 @@ import { getToken } from "../utilities/authentication";
 import { Section, mixins } from "../styles/shared";
 import styled from "styled-components";
 import theme from "../styles/theme";
+import media from "../styles/mediaQueries";
 import TrendingCard from "../components/FeedArticles";
 import ArticleCard from "../components/ArticleCardWide";
 import Loader from "./Loader";
@@ -33,11 +34,14 @@ const StyledTrending = styled.div`
     display: flex;
     justify-content: space-between;
     max-height: 50vh;
+    ${media.phablet`flex-direction: column; max-height: none;`};
     .big {
       width: 49%;
+      ${media.phablet`width: 100%;`};
     }
     .small {
       width: 24%;
+       ${media.phablet`width: 100%;`};
     }
   }
 `;
@@ -45,7 +49,7 @@ const StyledTrending = styled.div`
 const StyledFeed = styled.div`
   width: 100%;
   ${mixins.flexBetween};
-  margin-top: 5rem;
+  margin-top: 10rem;
   align-items: flex-start;
   .interests {
     width: 55%;
