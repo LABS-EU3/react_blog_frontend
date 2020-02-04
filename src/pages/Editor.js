@@ -197,7 +197,10 @@ class Editor extends Component {
     const tags = this.props.newPost.tags.map(tag => {
       return { ...tag, articleId: post.id };
     });
-    this.props.savePost({ ...post, tags });
+    this.props.savePost({ ...post, tags }).then(res=> {
+      if(res) {
+      this.props.history.push(`/profile`)};
+    });
   }
 
   componentDidMount() {

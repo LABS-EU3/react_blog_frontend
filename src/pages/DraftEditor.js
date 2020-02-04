@@ -20,7 +20,6 @@ import { Section } from "../styles/shared";
 import { EDITOR_JS_TOOLS } from "../utilities/editor-tools";
 import { apiURL } from "../utilities/urls";
 import { axiosWithAuth } from "../utilities/axios/index";
-import uuid from "uuid";
 
 const StyledTitleInput = styled.div`
   font-family: ${theme.fonts.Merriweather};
