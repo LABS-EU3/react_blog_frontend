@@ -20,6 +20,7 @@ import {
 } from "../redux-store/actions/get-article-actions";
 import speak from "../assets/images/Icons/streaming.svg";
 import Reactions from "./Reactions";
+import { getToken } from "../utilities/authentication";
 
 const ReadArticle = props => {
   const { getSingleArticle, singleArticle, location, postLike } = props;
@@ -27,7 +28,13 @@ const ReadArticle = props => {
     const getArticle = () => {
       const params = location.pathname;
       const articleId = params.split("/");
-      getSingleArticle(articleId[2]);
+      const token = getToken();
+      const article_id = articleId[2];
+      const data = {
+        token,
+        article_id
+      }
+      getSingleArticle(data);
     };
     getArticle();
   }, [getSingleArticle, location.pathname]);
