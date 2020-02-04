@@ -35,6 +35,21 @@ export const getSingleArticle = id => async dispatch => {
   }
 };
 
+
+export const getSingleArticleToEdit = id => async dispatch => {
+  console.log("hhhh")
+  try {
+    const response = await axiosWithAuth().get(`${apiURL}/articles/${id}`);
+    console.log("hhhh")
+    dispatch({ type: "GET_ARTICLE_TO_EDIT_SUCCESS", payload: response.data.response });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+
+
+
 export const getArticleReactions = id => async dispatch => {
   dispatch({ type: GET_REACTIONS_START });
   try {
