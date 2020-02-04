@@ -7,26 +7,31 @@ import { mixins } from "../styles/shared";
 import readTime from "../utilities/readTime";
 
 const StyledFollowingCard = styled.div`
-  width: 90%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   box-shadow: 3px 4px 20px rgba(0, 0, 0, 0.1);
   padding: 1rem 2rem;
   background-color: white;
-  margin: 2rem auto;
+  margin: 1rem auto;
+  @media (min-width: 540px) and (max-width: 890px) {
+    flex-direction: column;
+  }
 `;
 const StyledFollowingImageContainer = styled.div`
-  width: 30%;
+  width: 35%;
   img {
-    width: 100px;
-    height: 110px;
+    width: 100%;
+    height: 130px;
     object-fit: cover;
     margin-top: 1rem;
+  }
+  @media (min-width: 540px) and (max-width: 890px) {
+    width: 100%;
   }
 `;
 const StyledFollowingText = styled.div`
   width: 60%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -44,8 +49,13 @@ const StyledFollowingText = styled.div`
     width: 100%;
     justify-content: space-between;
     p {
+      font-family: ${theme.fonts.Muli};
       color: ${theme.colors.lightGrey};
+      font-size: ${theme.fontSizes.xs};
     }
+  }
+  @media (min-width: 540px) and (max-width: 890px) {
+    width: 100%;
   }
 `;
 
@@ -226,7 +236,7 @@ export const FollowingCard = ({ insight }) => {
         </StyledFollowingImageContainer>
         <StyledFollowingText>
           <p>{insight.author.toUpperCase()}</p>
-          <h5>{insight.title.substring(0, 40)}...</h5>
+          <h5>{insight.title.substring(0, 30)}...</h5>
           <div className="info">
             <p>{insight.createdAt.substring(0, 10)}</p>
             <p>{`${readTime(insight.body)} min read`}</p>

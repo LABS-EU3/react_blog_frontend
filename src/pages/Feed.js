@@ -37,7 +37,7 @@ const StyledTrending = styled.div`
   .trending-content {
     display: flex;
     justify-content: space-between;
-    max-height: 40vh;
+    max-height: 47vh;
     ${media.phablet`flex-direction: column; max-height: none;`};
     .big {
       width: 49%;
@@ -65,6 +65,9 @@ const StyledFeed = styled.div`
   }
   .following {
     width: 40%;
+    @media (min-width: 540px) and (max-width: 890px) {
+      width: 55%;
+    }
     ${media.phablet`width: 100%; margin-top: 5rem;`};
     .following-container {
       padding: 2rem;
@@ -138,20 +141,16 @@ export function Feed(props) {
                   : "EXPLORE INSIGHTS"}
               </h2>
             )}
-            {articles.loading ? (
-              <Loader />
-            ) : (
+            {!articles.loading &&
               (articles.data.mainFeed || articles.data.interests) &&
               (articles.data.interests || articles.data.mainFeed)
                 .slice(0, 3)
                 .map(insight => <RegularCard insight={insight} />)
-            )}
+            }
           </div>
           <div className="following">
             {!articles.loading && <h2>INSIGHTS BASED ON YOUR FOLLOWING</h2>}
-            {articles.loading ? (
-              <Loader />
-            ) : (
+            {!articles.loading &&
               <div className="following-container">
                 {articles.data.following ? (
                   articles.data.following
@@ -166,7 +165,7 @@ export function Feed(props) {
                   </div>
                 )}
               </div>
-            )}
+            }
           </div>
         </StyledFeed>
       </Container>
