@@ -1,35 +1,15 @@
 import React, { useEffect } from "react";
-import styled from "styled-components";
+import emojiRenderer from "../utilities/emoji-renderer";
 import { connect } from "react-redux";
 import { getArticleReactions } from "../redux-store/actions/get-article-actions";
-
-
-const emojis = [
-  { name: "laugh", visual: "😂" },
-  { name: "what", visual: "😐" },
-  { name: "cool", visual: "👌🏽" },
-  { name: "sob", visual: "😭" }
-];
-
-const findEmoji = (label) => {
-  const reaction = emojis.find((item) => label === item.name);
-  return reaction.visual;
-}
-
-const Wrapper = styled.div`
-  background: #f3f3f3;
-  font-size: 13px;
-  padding: 2rem;
-
-  h3 {
-    font-size: 15px;
-    margin-bottom: 1rem;
-  }
-  div {
-    display: flex;
-  }
-  margin-bottom: 5rem;
-`;
+import {
+  HighlightedText,
+  Hightlight,
+  HiglightsTitle,
+  HighlightsSection,
+  BlankHighlightsMessage,
+  Emoji
+} from "../utilities/styles/read-styles";
 
 function Reactions(props) {
   const { getArticleReactions, articleReactions, location } = props;
@@ -43,18 +23,23 @@ function Reactions(props) {
   }, [getArticleReactions, location.pathname]);
 
   return (
-    <Wrapper>
-      <h3>Reactions</h3>
-      {articleReactions.length !== 0 &&
-        articleReactions.map(reaction => (
-          <div className="single-reaction">
-            <span role="img" aria-label="yo">
-              {findEmoji(reaction.emoji)}
-            </span>
-            <p>{reaction.highlighted_text}</p>
-          </div>
-        ))}
-    </Wrapper>
+    <HighlightsSection>
+      <HiglightsTitle>YOUR REACTIONS TO THIS ARTICLE</HiglightsTitle>
+      {articleReactions && articleReactions.length ? (
+        articleReactions.map((reaction, index) => (
+          <Hightlight key={index}>
+            <Emoji role="img">{emojiRenderer(reaction.emoji)}</Emoji>
+            <HighlightedText>
+              "{reaction.highlighted_text.substring(0, 70)}..."
+            </HighlightedText>
+          </Hightlight>
+        ))
+      ) : (
+        <BlankHighlightsMessage>
+          You don't have any reactions to this article yet!
+        </BlankHighlightsMessage>
+      )}
+    </HighlightsSection>
   );
 }
 

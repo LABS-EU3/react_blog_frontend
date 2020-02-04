@@ -17,7 +17,7 @@ export const StyledTrending = styled.div`
     font-weight: 800;
     font-size: 16px;
     color: white;
-    background-color: #3652BF;
+  
     border: none;
     border-radius: 3px;
     // box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.1);
