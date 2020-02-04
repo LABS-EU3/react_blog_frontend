@@ -59,7 +59,7 @@ const Login = props => {
     if (props.login_success) {
         const targetRoute = localStorage.getItem('target-route');
         console.log(targetRoute);
-        const goToLocation = targetRoute !== 'undefined' ? targetRoute : '/feed';
+        const goToLocation = targetRoute ? targetRoute : '/feed';
         props.history.push(goToLocation);
     }
 
