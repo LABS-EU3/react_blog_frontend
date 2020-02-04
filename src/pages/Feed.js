@@ -4,17 +4,13 @@ import DefaultNavigation from "../components/Navigation/Default";
 import AuthedNavigation from "../components/Navigation/Authed";
 import { getArticleFeed } from "../redux-store/actions/get-article-actions";
 import { getToken } from "../utilities/authentication";
-
 import { Section, mixins } from "../styles/shared";
 import styled from "styled-components";
 import theme from "../styles/theme";
 import media from "../styles/mediaQueries";
-import {
-  TrendingCard,
-  RegularCard,
-  FollowingCard
-} from "../components/FeedArticles";
-import ArticleCard from "../components/ArticleCardWide";
+import FollowingCard from "../components/FeedArticles/FollowingArticle";
+import TrendingCard from "../components/FeedArticles/TrendingArticle";
+import RegularCard from "../components/FeedArticles/RegularArticle";
 import Loader from "./Loader";
 
 const Container = styled(Section)`
