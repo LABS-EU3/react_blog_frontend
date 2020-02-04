@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import ArticleModal from "../components/ArticleModal";
 import EditorJs from "react-editor-js";
-import NavBar from "../components/NavBar";
+import NavBar from "../components/Navigation/Authed";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
@@ -86,7 +86,8 @@ const StyledRedirectContainer = styled(Section)`
 `;
 
 const StyledEditor = styled.div`
-  font-family: ${theme.fonts.Muli} h1 {
+  font-family: ${theme.fonts.Muli} 
+  h1 {
     font-size: 3.2rem;
   }
 
@@ -128,6 +129,7 @@ const StyledEditor = styled.div`
     margin-top: 5rem;
     min-width: 100%;
     margin-left: 29%;
+    margin-top: 10rem;
   }
 `;
 

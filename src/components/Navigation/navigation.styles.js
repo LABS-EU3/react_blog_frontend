@@ -18,6 +18,7 @@ export const FixedContainer = styled.div`
   box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.2);
   width: 100%;
   background-color: white;
+  z-index: 1000000000;
 `;
 
 export const Logo = styled.div`
@@ -55,6 +56,12 @@ export const Control = styled.div`
   div,
   .write-button {
     padding-right: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+
+    button {
+      margin-left: 1rem;
+    }
   }
   .avatar {
     line-height: 0;

@@ -24,10 +24,10 @@ export const getArticleFeed = () => async dispatch => {
   }
 };
 
-export const getSingleArticle = id => async dispatch => {
+export const getSingleArticle = data => async dispatch => {
   dispatch({ type: GET_SINGLE_START });
   try {
-    const response = await axiosWithAuth().get(`${apiURL}/articles/${id}`);
+    const response = await axiosWithAuth().get(`${apiURL}/articles/${data.article_id}`, data);
     dispatch({ type: GET_SINGLE_SUCCESS, payload: response.data.response });
   } catch (err) {
     console.log(err);

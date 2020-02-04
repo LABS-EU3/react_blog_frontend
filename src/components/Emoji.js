@@ -27,7 +27,9 @@ const StyledEmoji = styled.span`
 `;
 
 const Emoji = ({ article, emoji, string , postReaction}) => {
-  const { subject: reactorId } = decodeToken();
+  const token = decodeToken();
+  const reactorId = token ? token.subject : 0;
+  // const { subject: reactorId } = decodeToken();
 
   const handleEmoji = (name, string) => {
     const reaction = {
@@ -54,7 +56,6 @@ const Emoji = ({ article, emoji, string , postReaction}) => {
 };
 
 const Emojis = ({ article, string, postReaction }) => {
-  console.log(string, "here");
   return (
     <StyledEmojiWrapper>
       {emojis.map(emoji => (
