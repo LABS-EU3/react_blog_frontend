@@ -11,6 +11,7 @@ import Loader from "./Loader";
 import binocular from "../assets/binocular.png";
 import AuthedNavigation from "../components/Navigation/Authed";
 import media from "../styles/mediaQueries";
+import { apiURL } from '../utilities/urls';
 
 const Container = styled(Section)`
   margin-top: 10rem;
@@ -61,7 +62,7 @@ const useSearchHook = () => {
     var formatted = text.length < 2 ? text : text.replace(/\s/g, "+");
     try {
       const response = await axiosWithAuth().get(
-        `http://localhost:5000/api/search?resources=${formatted}`
+        `${apiURL}/search?resources=${formatted}`
       );
       console.log(response.data.insights);
       return response.data;
