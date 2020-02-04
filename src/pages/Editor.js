@@ -131,6 +131,9 @@ const StyledEditor = styled.div`
     margin-left: 29%;
     margin-top: 10rem;
   }
+  blockquote, figcaption, .image-tool__caption {
+    font-size: ${theme.fontSizes.sm}
+}
 `;
 
 class Editor extends Component {

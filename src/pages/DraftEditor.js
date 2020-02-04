@@ -132,6 +132,7 @@ const StyledEditor = styled.div`
     margin-top: 5rem;
     min-width: 100%;
     margin-left: 29%;
+    margin-top: 10rem;
   }
 
   blockquote, figcaption, .image-tool__caption {
