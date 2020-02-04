@@ -14,13 +14,10 @@ import {
 } from "../redux-store/actions/post-article-actions";
 import { getSingleArticleToEdit } from "../redux-store/actions/get-article-actions";
 import { isMobile } from "react-device-detect";
-import media from "../styles/mediaQueries";
 import theme from "../styles/theme";
 import { decodeToken } from "../utilities/checkToken";
 import { Section } from "../styles/shared";
 import { EDITOR_JS_TOOLS } from "../utilities/editor-tools";
-import { apiURL } from "../utilities/urls";
-import { axiosWithAuth } from "../utilities/axios/index";
 import uuid from "uuid";
 
 const StyledTitleInput = styled.div`
