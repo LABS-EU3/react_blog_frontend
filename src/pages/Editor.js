@@ -56,7 +56,7 @@ const StyledRedirectContainer = styled(Section)`
     color: ${theme.colors.purple};
     padding: 1em;
     margin: 1em;
-    margin-top: .7em;
+    margin-top: 0.7em;
     width: 100%;
     font-size: 22px;
     &:before {
@@ -70,7 +70,7 @@ const StyledRedirectContainer = styled(Section)`
       color: #78e08f;
     }
     &:after {
-      content: '';
+      content: "";
       display: block;
       position: absolute;
       top: 90%;
@@ -83,12 +83,10 @@ const StyledRedirectContainer = styled(Section)`
   span {
     font-weight: bold;
   }
-  
 `;
 
 const StyledEditor = styled.div`
-  font-family: "HKGrotesk-Regular" !important;
-  h1 {
+  font-family: ${theme.fonts.Muli} h1 {
     font-size: 3.2rem;
   }
 
@@ -122,7 +120,7 @@ const StyledEditor = styled.div`
   }
   caret-color: #3d3e77;
   input {
-    font-family: ${theme.fonts.Merriweather}; 
+    font-family: ${theme.fonts.Merriweather};
     background-color: transparent;
     border: 0px solid;
     color: black;
@@ -201,6 +199,13 @@ class Editor extends Component {
 
   componentDidMount() {
     this.editorInstance;
+    let path =
+      this.props.location.pathname && this.props.location.pathname.split("/")[2]
+        ? this.props.location.pathname.split("/")[2]
+        : null;
+    if (path && path.length) {
+      console.log(this.props.location.pathname.split("/")[2]);
+    }
   }
 
   render() {
@@ -216,15 +221,15 @@ class Editor extends Component {
             </h3>
             <p>
               Due to certain constraints imposed by native mobile web browsers,
-              publishing on the Victorian beauty that is <span>Insightly</span> is best
-              experienced on desktop and, as I’ve heard from a little bird,
-              our native iOS & Android apps (both of which may or may not be
-              happening soon).
+              publishing on the Victorian beauty that is <span>Insightly</span>{" "}
+              is best experienced on desktop and, as I’ve heard from a little
+              bird, our native iOS & Android apps (both of which may or may not
+              be happening soon).
             </p>
             <p>
               However, you may go back to your <Link to="/feed">feed</Link> and
-              connect with other minds through the glorious art of written
-              text. As Shakespeare once said:
+              connect with other minds through the glorious art of written text.
+              As Shakespeare once said:
             </p>
             <blockquote>“I had to swerve on ‘em… skrrrrrr."</blockquote>
           </div>
@@ -254,7 +259,13 @@ class Editor extends Component {
             tools={EDITOR_JS_TOOLS}
             placeholder={"Be Insightful"}
             instanceRef={instance => (this.editorInstance = instance)}
-            data={{}}
+            data={
+              !isMobile
+                ? {
+                    blocks: [{ type: "paragraph", data: { text: "ff" } }]
+                  }
+                : null
+            }
           />
         </StyledEditor>
       </div>
