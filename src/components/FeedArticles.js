@@ -125,6 +125,7 @@ const StyledCard = styled.div`
   &.jumbo {
     display: flex;
     flex-wrap: wrap;
+    cursor: default;
   }
   &.reg {
     ${media.phablet`display: flex; flex-direction: row; justify-content: space-around; align-items:center; box-shadow: 3px 4px 20px rgba(0,0,0,0.1);`};
@@ -285,7 +286,9 @@ export const TrendingCard = props => {
         </StyledTextContent>
         {type === "jumbo" && (
           <div className="btn-container">
-            <button>Read More</button>
+            <Link to={`/article/${insight.custom_id}`}>
+              <button>Read More</button>
+            </Link>
           </div>
         )}
       </StyledCard>
