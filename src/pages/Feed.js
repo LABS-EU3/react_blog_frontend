@@ -9,7 +9,11 @@ import { Section, mixins } from "../styles/shared";
 import styled from "styled-components";
 import theme from "../styles/theme";
 import media from "../styles/mediaQueries";
-import { TrendingCard, RegularCard } from "../components/FeedArticles";
+import {
+  TrendingCard,
+  RegularCard,
+  FollowingCard
+} from "../components/FeedArticles";
 import ArticleCard from "../components/ArticleCardWide";
 import Loader from "./Loader";
 
@@ -41,7 +45,7 @@ const StyledTrending = styled.div`
     }
     .small {
       width: 24%;
-       ${media.phablet`width: 100%;`};
+      ${media.phablet`width: 100%;`};
     }
   }
 `;
@@ -61,12 +65,21 @@ const StyledFeed = styled.div`
   }
   .following {
     width: 40%;
-    align-self: stretch;
     ${media.phablet`width: 100%; margin-top: 5rem;`};
-    .test {
-      background-color: #FEF9E1;
+    .following-container {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-self: stretch;
+      background-color: #fef9e1;
       height: 100%;
       margin-top: 2rem;
+      .no-following {
+        min-height: 30vh;
+        width: 95%;
+        margin: 0 auto;
+        background-color: white;
+      }
     }
   }
 `;
@@ -99,7 +112,7 @@ export function Feed(props) {
                 </div>
                 {articles.data.trending.slice(1, 3).map(article => (
                   <div className="small">
-                    <TrendingCard insight={article} type="reg"/>
+                    <TrendingCard insight={article} type="reg" />
                   </div>
                 ))}
               </div>
@@ -126,9 +139,19 @@ export function Feed(props) {
           </div>
           <div className="following">
             {!articles.loading && <h2>INSIGHTS BASED ON YOUR FOLLOWING</h2>}
-            {articles.loading ? <Loader /> : <div className="test">
-                  <h3>No data</h3>
-            </div>}
+            {articles.loading ? (
+              <Loader />
+            ) : (
+              <div className="following-container">
+                {articles.data.following ? (
+                  articles.data.following
+                    .slice(0, 3)
+                    .map(insight => <FollowingCard insight={insight} />)
+                ) : (
+                  <div className="no-following">No data</div>
+                )}
+              </div>
+            )}
           </div>
         </StyledFeed>
       </Container>

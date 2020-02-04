@@ -6,6 +6,49 @@ import media from "../styles/mediaQueries";
 import { mixins } from "../styles/shared";
 import readTime from "../utilities/readTime";
 
+const StyledFollowingCard = styled.div`
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 3px 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 1rem 2rem;
+  background-color: white;
+  margin: 2rem auto;
+`;
+const StyledFollowingImageContainer = styled.div`
+  width: 30%;
+  img {
+    width: 100px;
+    height: 110px;
+    object-fit: cover;
+    margin-top: 1rem;
+  }
+`;
+const StyledFollowingText = styled.div`
+  width: 60%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  p {
+    font-family: ${theme.fonts.Oswald};
+    font-size: ${theme.fontSizes.sm};
+    color: ${theme.colors.purple};
+  }
+  h5 {
+    font-size: ${theme.fontSizes.sm};
+    color: ${theme.colors.textGrey};
+  }
+  .info {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    p {
+      color: ${theme.colors.lightGrey};
+    }
+  }
+`;
+
 const StyledRegCard = styled.div`
   display: flex;
   box-shadow: 3px 4px 20px rgba(0, 0, 0, 0.1);
@@ -17,24 +60,29 @@ const StyledRegCard = styled.div`
     font-size: ${theme.fontSizes.sm};
     color: ${theme.colors.textGrey};
   }
-  ${media.phablet`justify-content: space-between`}
+  justify-content: space-between;
+  align-items: center;
+  @media (min-width: 540px) and (max-width: 890px) {
+    flex-direction: column;
+    width: 90%;
+  }
 `;
 
 const StyledRegImageContainer = styled.div`
   display: flex;
   align-content: contain;
   width: 30%;
+  height: 20vh;
   img {
-    padding: 1rem;
-    padding-left: 0;
     object-fit: cover;
-    height: 140px;
-    width: 140px;
+    height: 100%;
+    width: 100%;
     margin: 0 auto;
-    ${media.phablet`width: 140px;
-    height: 140px;
-    `};
   }
+  @media (min-width: 540px) and (max-width: 890px) {
+    width: 100%;
+  }
+  ${media.phablet`height: 15vh`};
 `;
 
 const StyledRegTextContent = styled.div`
@@ -42,7 +90,8 @@ const StyledRegTextContent = styled.div`
   display: flex;
   color: black;
   flex-direction: column;
-  ${media.phablet`width: 65%; justify-content: space-between;`}
+  width: 65%;
+  justify-content: space-between;
   .info {
     display: flex;
     justify-content: space-between;
@@ -57,6 +106,9 @@ const StyledRegTextContent = styled.div`
     font-size: ${theme.fontSizes.xs};
     color: ${theme.colors.lightGrey};
     line-height: 1.7rem;
+  }
+  @media (min-width: 540px) and (max-width: 890px) {
+    width: 100%;
   }
 `;
 
@@ -164,14 +216,34 @@ const StyledTextContent = styled.div`
   }
 `;
 
+export const FollowingCard = ({ insight }) => {
+  return (
+    <Link to={`/article/${insight.custom_id}`}>
+      <StyledFollowingCard>
+        <StyledFollowingImageContainer>
+          <img src={insight.coverImageUrl} alt={insight.title} />
+        </StyledFollowingImageContainer>
+        <StyledFollowingText>
+          <p>{insight.author.toUpperCase()}</p>
+          <h5>{insight.title.substring(0, 40)}...</h5>
+          <div className="info">
+            <p>{insight.createdAt.substring(0, 10)}</p>
+            <p>{`${readTime(insight.body)} min read`}</p>
+          </div>
+        </StyledFollowingText>
+      </StyledFollowingCard>
+    </Link>
+  );
+};
+
 export const TrendingCard = props => {
   const { insight, type } = props;
-  const [vw, setVw] = useState(window.innerWidth / 2);
+  const [vw, setVw] = useState(window.innerWidth / 3);
   const setWidth = () => {
     if (window.innerWidth <= 890 && window.innerWidth >= 540) {
       setVw(window.innerWidth / 10);
     } else {
-      setVw(window.innerWidth / 2);
+      setVw(window.innerWidth / 3);
     }
   };
   window.addEventListener("resize", setWidth);
@@ -222,7 +294,7 @@ export const TrendingCard = props => {
 };
 
 export const RegularCard = ({ insight }) => {
-const [vw, setVw] = useState(window.innerWidth / 10);
+  const [vw, setVw] = useState(window.innerWidth / 10);
   const setWidth = () => {
     setVw(window.innerWidth / 8);
   };
