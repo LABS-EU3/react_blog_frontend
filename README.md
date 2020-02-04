@@ -4,20 +4,10 @@ You can find the deployed project at https://getinsightly.com
 
 ## [Team](#team)
 
- [Uzoamaka Anyanwu](https://github.com/Uzoamaka126) | [Megan Ennis](https://github.com/Megan0145) | [Damilola Olawumi](https://github.com/Damilolawumi) | [Johnson Ogwuru](https://github.com/ogwurujohnson) | [Francis Bulus](https://github.com/fosterferret) | [David Kuseh](https://github.com/DavidKuseh)<br>
+[Uzoamaka Anyanwu](https://github.com/Uzoamaka126) | [Megan Ennis](https://github.com/Megan0145) | [Damilola Olawumi](https://github.com/Damilolawumi) | [Johnson Ogwuru](https://github.com/ogwurujohnson) | [Francis Bulus](https://github.com/fosterferret) | [David Kuseh](https://github.com/DavidKuseh)<br>
 | --- | --- | --- | --- | --- | --- |
-[<img src="https://i.imgur.com/j3tPceF.png" />](https://github.com/Uzoamaka126) | 
-[<img src="https://i.imgur.com/0vnPfiM.png" />](https://github.com/Megan0145) | 
-[<img src="https://i.imgur.com/ouU5iJP.png" />](https://github.com/Damilolawumi) |
-[<img src="https://i.imgur.com/CApjLd1.png" />](https://github.com/ogwurujohnson) |
-[<img src="https://i.imgur.com/hMB6U3L.png" />](https://github.com/fosterferret) |
-[<img src="https://i.imgur.com/zBclECd.png" />](https://github.com/DavidKuseh)
-[<img src="https://github.com/favicon.ico" width="15" />](https://github.com/Uzoamaka126) |
-[<img src="https://github.com/favicon.ico" width="15">](https://github.com/Megan0145) |
-[<img src="https://github.com/favicon.ico" width="15" >](https://github.com/Damilolawumi) |
-[<img src="https://github.com/favicon.ico" width="15" />](https://github.com/ogwurujohnson) |
-[<img src="https://github.com/favicon.ico" width="15" />](https://github.com/fosterferret) |
-[<img src="https://github.com/favicon.ico" width="15" />](https://github.com/DavidKuseh)
+[<img src="https://i.imgur.com/j3tPceF.png" />](https://github.com/Uzoamaka126) | [<img src="https://i.imgur.com/0vnPfiM.png" />](https://github.com/Megan0145) | [<img src="https://i.imgur.com/ouU5iJP.png" />](https://github.com/Damilolawumi) | [<img src="https://i.imgur.com/CApjLd1.png" />](https://github.com/ogwurujohnson) | [<img src="https://i.imgur.com/hMB6U3L.png" />](https://github.com/fosterferret) | [<img src="https://i.imgur.com/zBclECd.png" />](https://github.com/DavidKuseh)
+[<img src="https://github.com/favicon.ico" width="15" />](https://github.com/Uzoamaka126) | [<img src="https://github.com/favicon.ico" width="15">](https://github.com/Megan0145) | [<img src="https://github.com/favicon.ico" width="15" >](https://github.com/Damilolawumi) | [<img src="https://github.com/favicon.ico" width="15" />](https://github.com/ogwurujohnson) | [<img src="https://github.com/favicon.ico" width="15" />](https://github.com/fosterferret) | [<img src="https://github.com/favicon.ico" width="15" />](https://github.com/DavidKuseh)
 
 
 ## [Project Overview](#Project-Overview)
