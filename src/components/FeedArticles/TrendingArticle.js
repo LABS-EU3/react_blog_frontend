@@ -21,8 +21,9 @@ const StyledCard = styled.div`
     cursor: default;
   }
   &.reg {
-    ${media.phablet`display: flex; flex-direction: row; justify-content: space-around; align-items:center; box-shadow: 3px 4px 20px rgba(0,0,0,0.1); padding: 1rem;`};
-  }
+    @media (min-width: 380px) and (max-width: 540px) {
+    display: flex; flex-direction: row; justify-content: space-around; align-items:center; box-shadow: 3px 4px 20px rgba(0,0,0,0.1); padding: 1rem;
+  }}
   .btn-container {
     order: 3;
     width: 100%;
@@ -30,7 +31,7 @@ const StyledCard = styled.div`
     button {
       ${mixins.secondaryButton};
       width: 25%;
-      ${media.phablet`width: 30%;`};
+      ${media.tablet`width: 50%; padding: 1.5rem;`};
     }
   }
 `;
@@ -45,12 +46,15 @@ const StyledImageContainer = styled.div`
       height: 100%;
       object-fit: cover;
     }
+    ${media.phablet`margin-bottom: 1rem;`};
   }
   &.reg {
     width: 100%;
     height: 50%;
     ${media.desktop`height: 40%;`};
-    ${media.phablet`width: 30%;`};
+    @media (min-width: 380px) and (max-width: 540px) {
+        width: 30%;
+    }
     ${media.tablet`height: 30%;`};
     img {
       width: 100%;
@@ -71,7 +75,9 @@ const StyledTextContent = styled.div`
     p {
       font-family: ${theme.fonts.Muli};
       font-size: ${theme.fontSizes.xs};
-      ${media.tablet`font-size: ${theme.fontSizes.xxs}`};
+      @media (min-width: 540px) and (max-width: 890px) {
+        font-size: ${theme.fontSizes.xxs}
+      }
       color: ${theme.colors.purple};
     }
     &.reg {
@@ -87,7 +93,9 @@ const StyledTextContent = styled.div`
   }
   .snippet {
     font-size: ${theme.fontSizes.xs};
-    ${media.tablet`font-size: ${theme.fontSizes.xxs}`};
+    @media (min-width: 540px) and (max-width: 890px) {
+        font-size: ${theme.fontSizes.xxs}
+    }
     color: ${theme.colors.lightGrey};
     line-height: 1.7rem;
     overflow: hidden;
@@ -101,12 +109,14 @@ const StyledTextContent = styled.div`
     ${media.desktop`height: 60%;`};
     ${media.tablet`height: 70%;`};
     ${media.phablet`width: 60%; box-shadow: none;`};
+    ${media.mobile`width: 100% !important; margin-top: -1rem !important; box-shadow: 3px 4px 20px rgba(0, 0, 0, 0.1) !important;`};
   }
   &.jumbo {
     width: 50%;
     padding: 0 3rem 0 0;
     height: 90%;
     ${media.tablet`width: 100%; height: auto; order: 2;`};
+    ${media.phablet`padding: 0`};
   }
 `;
 

@@ -53,6 +53,7 @@ const StyledRegTextContent = styled.div`
   ${media.phablet`height: 15vh; padding: 0`}
   .header {
     display: flex;
+    justify-content: space-between;
       .tag {
         font-family: ${theme.fonts.Oswald};
         font-size: ${theme.fontSizes.sm};
