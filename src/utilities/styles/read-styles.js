@@ -29,8 +29,9 @@ export const CoverImageContainer = styled.div`
 
 export const StyledArticleTitle = styled.h2`
   font-family: ${theme.fonts.Merriweather};
-  font-size: 32px !important;
+  font-size: 30px !important;
   margin-top: 1rem;
+  width: 100%;
   padding: 1rem;
   line-height: 4rem;
   ${media.phablet`font-size: 26px !important
@@ -39,7 +40,13 @@ export const StyledArticleTitle = styled.h2`
 `;
 
 export const DetailsContainer = styled.div`
+  display: flex;
   padding: 1rem;
+  justify-content: space-between;
+  p {
+    font-size: ${theme.fontSizes.sm};
+    display: inline;
+  }
   ${media.phablet`
   padding: 0.6rem;
   ;`}
@@ -50,6 +57,14 @@ export const DetailsContainer = styled.div`
   }
   span.authorName{
     font-weight: bold;
+  }
+
+  .speech {
+    img {
+      max-width: 45px;
+      height: auto;
+      margin-top: -1.3rem;
+    }
   }
 `;
 
@@ -99,76 +114,140 @@ export const Body = styled.div`
     justify-content: center;
     display: flex;
     flex-direction: column;
-    padding: 2rem;
     figcaption {
       padding-top: 1rem;
       font-size: 1.3rem;
     }
   }
   img {
-    margin: 0 auto;
-    max-width: 600px;
-  }
-`;
-
-export const StyledDetailsLeft = styled.div`
-  width: 45%;
-  padding: 0rem 3rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  .back {
-    a {
-      img {
-        width: 40px;
-        margin-left: -50px;
-      }
-    }
-  }
-
-  .title {
-    font-size: 34px;
-    line-height: 44px;
-  }
-
-  .bottom {
-    display: flex;
-    p {
-      padding-right: 5rem;
-      color: #3652bf;
-      font-style: italic;
-      font-size: 13px;
-      font-weight: bold;
-    }
-  }
-
-  .tags {
-    display: flex;
-    p {
-      padding: 0.8rem;
-      font-size: 12px;
-      font-weight: bold;
-      font-style: italic;
-      color: #3652bf;
-    }
-  }
-`;
-
-export const StyledDetailsRight = styled.div`
-  width: 55%;
-  padding-right: 2.3rem;
-  img {
-    width: 100%;
-    max-width: 550px;
-    max-height: 270px;
-    min-height: 270px;
-    border-radius: 3px 0px 0px 3px;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+      padding: 1rem;
+      padding-left: 0;
+      object-fit: cover;
+      height: auto;
+      width: 100%;
+      max-height: 100%;
+      margin: 0 auto;
   }
 `;
 
 export const Details = styled.div`
   display: flex;
   justify-content: space-between;
+`;
+
+export const HighlightsSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  background-color: ${theme.colors.cream};
+  width: 100%;
+  margin: 0 auto;
+  min-height: 10rem;
+  margin-top: 5rem;
+`;
+
+export const HiglightsTitle = styled.h4`
+  font-family: ${theme.fonts.Oswald};
+  color: rgba(0, 0, 0, 0.65);
+  margin: auto;
+  ${media.phablet`
+  font-size: ${theme.fontSizes.l};
+  ;`}
+`;
+
+export const Hightlight = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  width: 100%;
+  margin-top: 0.75rem;
+`;
+
+export const Emoji = styled.span`
+  font-size: 1.6rem;
+`;
+
+export const HighlightedText = styled.p`
+  font-family: ${theme.fonts.Muli};
+  color: ${theme.colors.lightGrey};
+  font-size: ${theme.fontSizes.sm}
+  margin-right: 1rem;
+`;
+
+//import {heart} from 'react-icons-kit/fa/heart'
+
+export const BlankHighlightsMessage = styled.p`
+  font-family: ${theme.fonts.Muli};
+  color: ${theme.colors.lightGrey};
+  margin: 0 auto;
+  font-size: ${theme.fontSizes.sm};
+`;
+
+export const TagsAndLikes = styled.div`
+  padding: 0.85rem;
+
+  ${media.midpc`
+  position: relative;
+  top: 0;
+  left: 0
+  `}
+
+  .tags {
+    position: fixed;
+    top: 35rem;
+    right: calc(100% - 25rem);
+    ${media.midpc`
+    position: relative;
+    top: 0;
+    left: 0
+    display: flex;
+    `}
+    p {
+      margin-right: 0.55rem;
+    }
+  }
+
+  .likes {
+    position: fixed;
+    top: 35rem;
+    left: calc(100% - 25rem);
+    p {
+      margin-top: -0.25rem;
+      font-family: ${theme.fonts.Merriweather};
+      font-weight: normal;
+      ${media.midpc`
+      display: flex;
+      margin-top: 1rem;
+      margin-left: .75rem;
+      `}
+    }
+    svg {
+      transition: all 0.3s ease-in-out;
+      padding: 0.15rem;
+      pointer-events: ${props => props.hasLiked ? 'none' : 'auto'}
+      cursor: ${props => props.hasLiked ? 'none' : 'pointer'}
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+
+    ${media.midpc`
+    position: relative;
+    top: 0;
+    left: 0
+    display: flex;
+    margin-top: 1rem;
+    `}
+  }
+
+  p {
+    font-family: ${theme.fonts.Merriweather};
+    font-size: ${theme.fontSizes.xs};
+    max-width: auto;
+    color: ${theme.colors.purple};
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+    text-align: center;
+    text-transform: lowercase;
+  }
 `;

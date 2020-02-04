@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import ArticleModal from "../components/ArticleModal";
 import "../fonts/HKGrotesk-Regular.woff";
 import EditorJs from "react-editor-js";
-import NavBar from "../components/NavBar";
+import NavBar from "../components/Navigation/Authed";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import {
@@ -24,7 +24,6 @@ const StyledTitleInput = styled.div`
 `;
 
 const StyledEditor = styled.div`
-  font-family: "HKGrotesk-Regular" !important;
   h1 {
     font-size: 3.2rem;
   }
@@ -59,14 +58,15 @@ const StyledEditor = styled.div`
   }
   caret-color: #3d3e77;
   input {
-    font-family: "HKGrotesk-Regular";
+    font-weight: bold;
     background-color: transparent;
     border: 0px solid;
     color: black;
     font-size: 4rem;
-    margin-left: 30%;
-    margin-top: 5rem;
-    min-width: 100%;
+    margin: auto;
+    width: 80%;
+    margin-top: 10rem;
+    margin-left: 30rem;
   }
 `;
 
@@ -146,6 +146,8 @@ class Editor extends Component {
         <NavBar
           handlePublish={this.handlePublish}
           handleSave={this.handleSave}
+          saveButton={true}
+          buttonLabel='Publish'
         />
         <ArticleModal handlePublish={this.handlePublish} />
         <StyledEditor>

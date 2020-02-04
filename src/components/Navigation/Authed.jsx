@@ -1,6 +1,15 @@
 import React from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory, useLocation, Link } from "react-router-dom";
 import Button from "../Buttons/Button";
+import styled from 'styled-components'
+import media from '../../styles/mediaQueries';
+import {
+  publishPost,
+  savePostAsDraft,
+  handlePublishModal
+} from "../../redux-store/actions/post-article-actions";
+
+import { connect } from "react-redux";
 import {
   NavWrapper,
   StandLogo,
@@ -11,39 +20,34 @@ import insight from "../../assets/images/insight-stand.png";
 // import notification from "../../assets/images/Icons/icon-notification.svg";
 import { Icon } from "react-icons-kit";
 import { bell } from "react-icons-kit/feather/bell";
-import ProfileImageDropdown from "../Navigation/ProfileImageDropdown";
 import { search } from "react-icons-kit/fa/search";
-import styled from "styled-components";
+// import notification from '../../assets/images/Icons/icon-notification.svg';
+import ProfileImageDropdown from './ProfileImageDropdown';
+import Notifications from './_notifications/Notifications';
 
 const StyledInsightly = styled.div`
-  h4 {
-    position: absolute;
-    width: 234px;
-    height: 60px;
-    left: 705px;
-    top: 21px;
-    font-size: 48px;
-    line-height: 60px;
-    color: #000000;
-  }
 
   h3 {
     font-size: 28px;
   }
-  // div {
-  //   position: relative;
-  //   width: 281px;
-  //   height: 45px;
-  //   left: 50%;
-  //   top: 45px;
-  //   background: #fef9e1;
-  // }
+ ${media.phablet`display: none;`}
 `;
 
-export default function Authed(props) {
+function Authed(props) {
+  const toggleModal = () => {
+    if (props.newPost.showModal) {
+      // document.getElementById("root").style.filter = "blur(0px)";
+      document.getElementById("editor-page").style.pointerEvents = "auto";
+    } else {
+      // document.getElementById("root").style.filter = "blur(4px)";
+      document.getElementById("editor-page").style.pointerEvents = "none";
+    }
+    props.handlePublishModal();
+  };
+
   const history = useHistory();
   const location = useLocation();
-  console.log(location);
+
   const handleClick = event => {
     event.preventDefault();
     history.push("/create");
@@ -60,7 +64,7 @@ export default function Authed(props) {
     <FixedContainer>
       <NavWrapper>
         <StandLogo>
-          <img alt="insight logo" src={insight} />
+          <Link to="/"><img alt="insight logo" src={insight} /></Link>
         </StandLogo>
         <StyledInsightly>
           <h3>Insightly</h3>
@@ -73,7 +77,8 @@ export default function Authed(props) {
             </div>
           )}
           <div className="write-button">
-            <Button label="Create" handleClick={handleClick} />
+            <Button label={props.buttonLabel ? props.buttonLabel : 'Write' } handleClick={props.buttonLabel ? toggleModal : handleClick} />
+            {props.saveButton && (<Button label="Save" handleClick={props.handleSave} /> )}
           </div>
           <div
             className="notification"
@@ -89,3 +94,15 @@ export default function Authed(props) {
     </FixedContainer>
   );
 }
+
+const mapStateToProps = state => {
+  return {
+    newPost: state.newPost
+  };
+};
+
+export default connect(mapStateToProps, {
+  handlePublishModal,
+  publishPost,
+  savePostAsDraft
+})(Authed);

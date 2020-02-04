@@ -120,7 +120,7 @@ export function Feed(props) {
                   />
                 </div>
                 {articles.data.trending.slice(1, 3).map(article => (
-                  <div className="small">
+                  <div className="small" key={article.id}>
                     <TrendingCard insight={article} type="reg" />
                   </div>
                 ))}
@@ -141,7 +141,7 @@ export function Feed(props) {
               (articles.data.mainFeed || articles.data.interests) &&
               (articles.data.interests || articles.data.mainFeed)
                 .slice(0, 3)
-                .map(insight => <RegularCard insight={insight} />)
+                .map(insight => <RegularCard insight={insight} key={insight.id}/>)
             }
           </div>
           <div className="following">

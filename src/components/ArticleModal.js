@@ -195,8 +195,9 @@ function ModalContainer(props) {
 
 const StyledModal = styled.div`
   background: #fff;
+  width: 750px;
   position: absolute;
-  opacity: 100;
+  z-index: 1000;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -205,26 +206,32 @@ const StyledModal = styled.div`
   top: 0;
   bottom: 0;
   margin: auto;
-  width: 30%;
-  height: 300px;
+  height: 500px;
   box-shadow: 0 5px 10px 2px rgba(195, 192, 192, 0.5);
-  padding: 20px;
+  padding: 30px;
   text-align: center;
   div.modal-row-1 {
     display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
     div {
-      width: 50%;
+      width: 5%;
       display: flex;
       flex-direction: start;
-      cursor: default;
+      cursor: pointer;
     }
   }
 
   div.modal-quote {
     font-family: Lato;
-    font-size: 1.3rem;
+    font-size: 14px;
+    width: 270px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-weight: 500;
     color: #808080;
+    margin: auto;
   }
 
   div.modal-bottom {
@@ -232,7 +239,10 @@ const StyledModal = styled.div`
     button {
       margin: auto;
       width: 200px;
-      background: #323c5c;
+      background: #111;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      font-weight: bold;
     }
     img {
       height: 75%;

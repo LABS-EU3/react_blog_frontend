@@ -3,9 +3,7 @@ import { connect } from "react-redux";
 import Authed from "../components/Navigation/Authed";
 import {  decodeToken } from '../utilities/checkToken';
 import { verify } from "../redux-store/actions/auths";
-
-import TabsDisplay from '../components/Tabs/TabsDisplay';
-import ProfileFirstSection from './profile/first_section/FirstSection';
+import ProfileCard from './ProfileCard';
 
 
 function Profile(props) {
@@ -25,8 +23,9 @@ function Profile(props) {
   return (
     <div>
       <Authed />
-      <ProfileFirstSection />  
-      <TabsDisplay />          
+      <ProfileCard/>
+      {/* <ProfileFirstSection />  
+      <TabsDisplay />           */}
 
     </div>
   )
