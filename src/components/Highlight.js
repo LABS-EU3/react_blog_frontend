@@ -4,11 +4,10 @@ import { positionToolTip } from "../utilities/highlightHelpers";
 import { isMobile } from "react-device-detect";
 
 function Highlighter(props) {
+  // eslint-disable-next-line no-unused-vars
   const [lastSelection, setLastSelection] = useState({});
   const [toolTip, setToolTip] = useState({ opacity: 0 });
   const [selectedText, setSelectedText] = useState("");
-  console.log(lastSelection);
-  console.log("dddd", isMobile)
 
   const handleMouseUp = e => {
     if (!isMobile) {

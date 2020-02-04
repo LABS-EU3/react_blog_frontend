@@ -1,26 +1,89 @@
 /* eslint-disable no-unused-expressions */
 import React, { Component } from "react";
 import ArticleModal from "../components/ArticleModal";
-import "../fonts/HKGrotesk-Regular.woff";
 import EditorJs from "react-editor-js";
 import NavBar from "../components/NavBar";
 import styled from "styled-components";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   savePostAsDraft,
   publishPost,
   handlePublishModal,
   savePost
 } from "../redux-store/actions/post-article-actions";
-
+import { isMobile } from "react-device-detect";
+import media from "../styles/mediaQueries";
+import theme from "../styles/theme";
 import { decodeToken } from "../utilities/checkToken";
-
+import { Section } from "../styles/shared";
 import { EDITOR_JS_TOOLS } from "../utilities/editor-tools";
 import uuid from "uuid";
 
 const StyledTitleInput = styled.div`
-  margin: 0 auto;
-  margin: 0 auto;
+  font-family: ${theme.fonts.Merriweather};
+  width: 100%;
+`;
+
+const StyledRedirectContainer = styled(Section)`
+  overflow-y: hidden !important;
+  display: flex;
+  align-content: center;
+  div {
+    height: 80%;
+    align-self: center;
+    margin-top: -10rem;
+  }
+  h3 {
+    font-size: 3.5rem;
+    color: ${theme.colors.purple};
+    margin-bottom: 2.5rem;
+  }
+  p {
+    font-size: ${theme.fontSizes.sm};
+    margin-top: 1.5rem;
+  }
+  a {
+    color: ${theme.colors.purple};
+    &:hover {
+      color: ${theme.colors.purple};
+    }
+  }
+  blockquote {
+    position: relative;
+    padding-left: 10px;
+    font-weight: 800;
+    color: ${theme.colors.purple};
+    padding: 1em;
+    margin: 1em;
+    margin-top: .7em;
+    width: 100%;
+    font-size: 22px;
+    &:before {
+      content: "“";
+      font-family: serif;
+      position: absolute;
+      right: 100%;
+      font-size: 70px;
+      line-height: 0px;
+      top: 50px;
+      color: #78e08f;
+    }
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 90%;
+      width: 30px;
+      height: 5px;
+      background: #e56d39;
+      left: 1em;
+    }
+  }
+  span {
+    font-weight: bold;
+  }
+  
 `;
 
 const StyledEditor = styled.div`
@@ -59,14 +122,14 @@ const StyledEditor = styled.div`
   }
   caret-color: #3d3e77;
   input {
-    font-family: "HKGrotesk-Regular";
+    font-family: ${theme.fonts.Merriweather}; 
     background-color: transparent;
     border: 0px solid;
     color: black;
-    font-size: 4rem;
-    margin-left: 30%;
+    font-size: 3.5rem;
     margin-top: 5rem;
     min-width: 100%;
+    margin-left: 29%;
   }
 `;
 
@@ -81,11 +144,11 @@ class Editor extends Component {
   }
   async handlePublish(files) {
     const editorData = await this.editorInstance.save();
-    console.log(editorData)
+    console.log(editorData);
     const title = this.titleRef.current.value;
     const { subject: userId } = decodeToken();
     const formData = new FormData();
-    let body = editorData.blocks
+    let body = editorData.blocks;
     const coverFile = files ? files[0] : null;
     const custom_id = uuid();
     if (coverFile) {
@@ -95,8 +158,8 @@ class Editor extends Component {
       return { ...tag, articleId: custom_id };
     });
 
-    tags = JSON.stringify(tags)
-    body = JSON.stringify(body)
+    tags = JSON.stringify(tags);
+    body = JSON.stringify(body);
 
     if (files) {
       formData.append("image", coverFile);
@@ -110,9 +173,9 @@ class Editor extends Component {
     formData.append("isEditing", false);
     formData.append("tags", tags);
 
-    this.publishPost(formData).then((res) => {
+    this.publishPost(formData).then(res => {
       if (res) {
-        this.props.history.push(`/article/${res.custom_id}`)
+        this.props.history.push(`/article/${res.custom_id}`);
       }
     });
   }
@@ -141,6 +204,33 @@ class Editor extends Component {
   }
 
   render() {
+    if (isMobile)
+      return (
+        <StyledRedirectContainer>
+          <div>
+            <h3>
+              Hold up, buddy{" "}
+              <span role="img" aria-label="img">
+                ✋🏽
+              </span>
+            </h3>
+            <p>
+              Due to certain constraints imposed by native mobile web browsers,
+              publishing on the Victorian beauty that is <span>Insightly</span> is best
+              experienced on desktop and, as I’ve heard from a little bird,
+              our native iOS & Android apps (both of which may or may not be
+              happening soon).
+            </p>
+            <p>
+              However, you may go back to your <Link to="/feed">feed</Link> and
+              connect with other minds through the glorious art of written
+              text. As Shakespeare once said:
+            </p>
+            <blockquote>“I had to swerve on ‘em… skrrrrrr."</blockquote>
+          </div>
+        </StyledRedirectContainer>
+      );
+
     return (
       <div id="editor-page">
         <NavBar
@@ -154,9 +244,10 @@ class Editor extends Component {
               type="text"
               id="name"
               name="title"
-              placeholder="Insert legendary title here..."
+              placeholder="Insert a legendary title here..."
               autoComplete="off"
               ref={this.titleRef}
+              maxLength="50"
             />
           </StyledTitleInput>
           <EditorJs
