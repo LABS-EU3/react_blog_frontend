@@ -79,6 +79,16 @@ const StyledFeed = styled.div`
         width: 95%;
         margin: 0 auto;
         background-color: white;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        h5 {
+          width: 80%;
+          margin: 0 auto;
+          span {
+            color: ${theme.colors.purple};
+          }
+        }
       }
     }
   }
@@ -148,7 +158,12 @@ export function Feed(props) {
                     .slice(0, 3)
                     .map(insight => <FollowingCard insight={insight} />)
                 ) : (
-                  <div className="no-following">No data</div>
+                  <div className="no-following">
+                    <h5>
+                      <span>Oops!</span> Looks like you're not following any of
+                      our wonderful authors just yet.
+                    </h5>
+                  </div>
                 )}
               </div>
             )}
