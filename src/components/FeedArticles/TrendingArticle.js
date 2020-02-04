@@ -21,7 +21,7 @@ const StyledCard = styled.div`
     cursor: default;
   }
   &.reg {
-    ${media.phablet`display: flex; flex-direction: row; justify-content: space-around; align-items:center; box-shadow: 3px 4px 20px rgba(0,0,0,0.1);`};
+    ${media.phablet`display: flex; flex-direction: row; justify-content: space-around; align-items:center; box-shadow: 3px 4px 20px rgba(0,0,0,0.1); padding: 1rem;`};
   }
   .btn-container {
     order: 3;

@@ -22,6 +22,7 @@ const StyledRegCard = styled.div`
     flex-direction: column;
     width: 90%;
   }
+  ${media.phablet`padding: 2rem`}
 `;
 
 const StyledRegImageContainer = styled.div`
@@ -37,6 +38,7 @@ const StyledRegImageContainer = styled.div`
   }
   @media (min-width: 540px) and (max-width: 890px) {
     width: 100%;
+    margin-top: 1rem;
   }
   ${media.phablet`height: 15vh`};
 `;
@@ -48,6 +50,16 @@ const StyledRegTextContent = styled.div`
   flex-direction: column;
   width: 65%;
   justify-content: space-between;
+  ${media.phablet`height: 15vh; padding: 0`}
+  .header {
+    display: flex;
+      .tag {
+        font-family: ${theme.fonts.Oswald};
+        font-size: ${theme.fontSizes.sm};
+        color: ${theme.colors.lightGrey};
+        margin-left: 1rem;
+      }
+  }
   .info {
     display: flex;
     justify-content: space-between;
@@ -65,6 +77,7 @@ const StyledRegTextContent = styled.div`
   }
   @media (min-width: 540px) and (max-width: 890px) {
     width: 100%;
+    min-height: 20vh;
   }
 `;
 
@@ -81,11 +94,15 @@ export default function RegularCard({ insight }) {
           <img src={insight.coverImageUrl} alt={insight.title} />
         </StyledRegImageContainer>
         <StyledRegTextContent>
+            <div className= "header">
           <h5>
-            {insight.title.split("").length > 50
-              ? `${insight.title.substring(0, 50)}...`
+            {insight.title.split("").length > 40
+              ? `${insight.title.substring(0, 40)}...`
               : insight.title}
           </h5>
+        <p className="tag">{insight.tags[0].name.toUpperCase()}</p>
+
+            </div>
           <div className="info">
             <p>{insight.author}</p>
             <p>{`${readTime(insight.body)} min read`}</p>

@@ -51,8 +51,14 @@ const StyledFeed = styled.div`
   ${mixins.flexBetween};
   margin-top: 10rem;
   align-items: flex-start;
+  ${media.tablet`margin-bottom: 4rem;`};
   ${media.phablet`flex-direction: column; margin-top: 5rem;`};
   .interests {
+    @media (min-width: 540px) and (max-width: 890px) {
+      h2 {
+        line-height: 1.2em;
+      }
+    }
     width: 55%;
     ${media.phablet`width: 100%;`};
     #dynamic-card {
@@ -63,6 +69,9 @@ const StyledFeed = styled.div`
     width: 40%;
     @media (min-width: 540px) and (max-width: 890px) {
       width: 55%;
+      h2 {
+        line-height: 1.2em;
+      }
     }
     ${media.phablet`width: 100%; margin-top: 5rem;`};
     .following-container {
