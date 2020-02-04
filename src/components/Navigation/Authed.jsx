@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory, useLocation, Link } from "react-router-dom";
 import Button from "../Buttons/Button";
 import styled from 'styled-components'
 import media from '../../styles/mediaQueries';
@@ -64,7 +64,7 @@ function Authed(props) {
     <FixedContainer>
       <NavWrapper>
         <StandLogo>
-          <img alt="insight logo" src={insight} />
+          <Link to="/"><img alt="insight logo" src={insight} /></Link>
         </StandLogo>
         <StyledInsightly>
           <h3>Insightly</h3>
