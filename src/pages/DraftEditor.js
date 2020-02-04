@@ -149,9 +149,7 @@ class Editor extends Component {
     };
     this.handlePublish = this.handlePublish.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.handleSave = this.handleSave.bind(this);
     this.publishPost = this.props.publishPost;
-    this.titleRef = React.createRef();
   }
 
   handleChange(e) {
@@ -161,12 +159,12 @@ class Editor extends Component {
   async handlePublish(files) {
     const editorData = await this.editorInstance.save();
     console.log(editorData);
-    const title = this.titleRef.current.value;
+    const title = this.state.title;
     const { subject: userId } = decodeToken();
     const formData = new FormData();
     let body = editorData.blocks;
     const coverFile = files ? files[0] : null;
-    const custom_id = uuid();
+    const custom_id = this.state.article.custom_id;
     if (coverFile) {
       coverFile["articleId"] = custom_id;
     }
@@ -196,25 +194,6 @@ class Editor extends Component {
     });
   }
 
-  async handleSave() {
-    const editorData = await this.editorInstance.save();
-    console.log(editorData);
-    const title = this.state.title;
-    const { subject: userId } = decodeToken();
-    const post = {
-      custom_id: uuid(),
-      title,
-      authorId: userId,
-      body: editorData.blocks,
-      isPublished: false,
-      isEditing: true
-    };
-    const tags = this.props.newPost.tags.map(tag => {
-      return { ...tag, articleId: post.id };
-    });
-    this.props.savePost({ ...post, tags });
-  }
-
   async componentDidMount() {
     this.editorInstance;
     console.log(this.props);
@@ -223,7 +202,6 @@ class Editor extends Component {
       const response = await axiosWithAuth().get(`${apiURL}/articles/${path}`);
       let articleToEdit = response.data.response;
       articleToEdit.body = JSON.parse(articleToEdit.body);
-      console.log(articleToEdit);
       if (articleToEdit) {
         this.setState({ title: articleToEdit.title, article: articleToEdit });
       }
@@ -231,7 +209,6 @@ class Editor extends Component {
   }
 
   render() {
-    console.log(this.props.articleToEdit);
     if (isMobile)
       return (
         <StyledRedirectContainer>

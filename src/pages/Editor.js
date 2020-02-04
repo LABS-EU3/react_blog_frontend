@@ -200,25 +200,8 @@ class Editor extends Component {
     this.props.savePost({ ...post, tags });
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     this.editorInstance;
-    let path =
-      this.props.location.pathname &&
-      this.props.location.pathname.split("/").length > 1 &&
-      this.props.location.pathname.split("/")[2]
-        ? this.props.location.pathname.split("/")[2]
-        : null;
-    if (path && path.length) {
-      console.log(this.props.location.pathname.split("/")[2]);
-      const response = await axiosWithAuth().get(`${apiURL}/articles/${path}`);
-      let articleToEdit = response.data.response;
-      articleToEdit.body = JSON.parse(articleToEdit.body);
-      console.log(articleToEdit);
-      if (articleToEdit) {
-        this.setState({ postToEdit: articleToEdit, editing: true });
-      }
-      this.props.getSingleArticleToEdit(path);
-    }
   }
 
   render() {
