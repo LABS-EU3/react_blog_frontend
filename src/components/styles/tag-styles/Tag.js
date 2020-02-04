@@ -1,8 +1,9 @@
 import styled from 'styled-components'
+import theme from '../../../styles/theme'
 
 const Tag = styled.span`
     float: left;
-    font-family: lato;
+    font-family: ${theme.fonts.Muli};
     font-size: 13px;
     color: #fff;
     margin-top: 1rem;
