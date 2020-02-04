@@ -74,13 +74,31 @@ const StyledFeed = styled.div`
     }
     ${media.phablet`width: 100%; margin-top: 5rem;`};
     .following-container {
-      padding: 2rem;
+      padding: 1rem;
       display: flex;
       flex-direction: column;
       align-self: stretch;
       background-color: #fef9e1;
       height: 100%;
+      max-height: 60vh;
+      border: 2rem solid #fef9e1;
+      overflow-y: auto;
       margin-top: 2rem;
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px grey;
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb {
+      background: ${theme.colors.purple};
+      border-radius: 10px;
+      &:hover {
+        background: #765279;
+        cursor: pointer;
+      }
+      }
       .no-following {
         min-height: 30vh;
         width: 95%;
@@ -156,9 +174,8 @@ export function Feed(props) {
             {!articles.loading && <h2>INSIGHTS BASED ON YOUR FOLLOWING</h2>}
             {!articles.loading &&
               <div className="following-container">
-                {articles.data.following ? (
-                  articles.data.following
-                    .slice(0, 3)
+                {articles.data.interests ? (
+                  articles.data.interests
                     .map(insight => <FollowingCard insight={insight} />)
                 ) : (
                   <div className="no-following">
