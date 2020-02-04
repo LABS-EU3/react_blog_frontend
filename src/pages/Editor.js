@@ -241,6 +241,8 @@ class Editor extends Component {
           <NavBar
             handlePublish={this.handlePublish}
             handleSave={this.handleSave}
+            saveButton={true}
+            buttonLabel='Publish'
           />
           <ArticleModal handlePublish={this.handlePublish} />
           <StyledEditor>

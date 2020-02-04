@@ -58,7 +58,6 @@ function Authed(props) {
     history.push("/search");
   };
 
-  console.log(handleSearchClick);
 
   return (
     <FixedContainer>
@@ -78,7 +77,7 @@ function Authed(props) {
           )}
           <div className="write-button">
             <Button label={props.buttonLabel ? props.buttonLabel : 'Write' } handleClick={props.buttonLabel ? toggleModal : handleClick} />
-            {props.saveButton && (<Button label="Save" handleClick={props.handleSave} /> )}
+            {props.saveButton && (<Button label="Save" handleClick={props.handleSave} secondary={true} /> )}
           </div>
           <div
             className="notification"

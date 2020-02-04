@@ -2,10 +2,10 @@
 import React, { Component } from "react";
 import ArticleModal from "../components/ArticleModal";
 import EditorJs from "react-editor-js";
-import NavBar from "../components/NavBar";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import NavBar from "../components/Navigation/Authed";
 import {
   savePostAsDraft,
   publishPost,
@@ -239,7 +239,7 @@ class Editor extends Component {
         <div id="editor-page-2">
           <NavBar
             handlePublish={this.handlePublish}
-            handleSave={this.handleSave}
+            buttonLabel='Publish'
           />
           <ArticleModal handlePublish={this.handlePublish} />
           <StyledEditor>
