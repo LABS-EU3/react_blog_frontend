@@ -17,7 +17,10 @@ import {
   FOLLOW_USER_FAIL,
   GET_AUTHOR_ARTICLES_START,
   GET_AUTHOR_ARTICLES_SUCCESS,
-  GET_AUTHOR_ARTICLES_FAIL
+  GET_AUTHOR_ARTICLES_FAIL,
+  DELETE_USER_ARTICLES_START,
+  DELETE_USER_ARTICLES_SUCCESS,
+  DELETE_USER_ARTICLES_FAIL
 } from "./types";
 
 import axios from "axios";
@@ -112,5 +115,21 @@ export const getAuthorArticles = authorId => async dispatch => {
   } catch (err) {
     console.log(err);
     dispatch({ type: GET_AUTHOR_ARTICLES_FAIL });
+  }
+};
+
+export const deleteArticle = id => async dispatch => {
+  dispatch({ type: DELETE_USER_ARTICLES_START });
+  try {
+    const response = await axios.delete(
+      `${apiURL}/articles/${id}`
+    );
+    dispatch({
+      type: DELETE_USER_ARTICLES_SUCCESS,
+      payload: response.data.articleId
+    });
+  } catch (err) {
+    console.log(err);
+    dispatch({ type: DELETE_USER_ARTICLES_FAIL });
   }
 };
