@@ -12,6 +12,7 @@ import {
   followAuthor
 } from "../redux-store/actions/user-profile-actions";
 import EditProfile from "./EditProfile";
+import Loader from "./Loader";
 
 const Container = styled(Section)`
   margin-top: 10rem;
@@ -21,6 +22,13 @@ const StyledUserInfo = styled.div`
   box-shadow: 3px 4px 20px rgba(0, 0, 0, 0.1);
   ${media.phablet`box-shadow: none;`};
   min-height: 40vh;
+  .loading {
+    width: 100%;
+    min-height: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 const StyledUserArticles = styled.div``;
@@ -60,13 +68,14 @@ export function Profile(props) {
     <>
       <Authed />
       <Container>
-        {!user.loading && user.data && (
           <StyledUserInfo>
-
+        {user.loading && <div className="loading"><Loader /></div>}
+        {!user.loading && user.data && user.articles && (
               <EditProfile user={user} personal={userId === paramId} />
             
-          </StyledUserInfo>
         )}
+          </StyledUserInfo>
+        {!user.loading && user.articles && console.log(user.articles)}
         <StyledUserArticles></StyledUserArticles>
       </Container>
     </>
@@ -77,8 +86,7 @@ const mapStateToProps = store => {
   return {
     loading: store.auth.loading,
     success: store.auth.verification_success,
-    user: store.userProfile,
-    articles: store.userProfile.articles
+    user: store.userProfile
   };
 };
 
