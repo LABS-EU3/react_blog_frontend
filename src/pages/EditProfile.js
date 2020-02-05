@@ -2,242 +2,104 @@ import React, { useRef, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import Button from "../components/Buttons/Button";
-import {
-  getUserProfile,
-  updateUserProfile,
-  updateUserInterests,
-  getTags
-} from "../redux-store/actions/user-profile-actions";
+import { updateUserProfile } from "../redux-store/actions/user-profile-actions";
 import Dropzone from "react-dropzone";
 import camera_icon from "../assets/images/Icons/camera-icon.png";
 import userIcon from "../assets/images/usericon.svg";
 
 const StyledProfile = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
   width: 100%;
-  font-family: Lato;
-  height: 100%;
+  min-height: 40vh;
+  justify-content: space-between;
 `;
-const StyledProfileFollowCount = styled.div`
-  width: 100%;
-  display: flex;
-  border-bottom: 1px solid #dfdfdf;
-  min-height: 10%;
-  .box {
-    padding: 3rem;
-    width: 50%;
-    text-align: center;
-    height: 100%;
-    &.border-right {
-      border-right: 1px solid #dfdfdf;
-    }
-  }
-`;
-const StyledProfileInterests = styled.div`
-  width: 100%;
-  padding: 3rem;
+
+const StyledProfileImg = styled.div`
+  width: 40%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  border-bottom: 1px solid #DFDFDF;
-  /* min-height: 60%; */
-  h1 {
-    font-size: 4rem;
-  }
-  .interest-row {
-    width: 60%;
-    height: 40%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 2rem;
-    p {
-      font-size: 30px;
-    }
-    button {
-      border-radius: 20px;
-      width: 30px;
-      height: 30px;
-      text-align: center;
-      padding: 0;
-      margin-left: 2rem;
-      font-size: 18px;
-      color: #22387d;
-      &:hover {
-        cursor: pointer;
-        background: #ededed;
-        box-shadow: 0px 8px 8px rgba(111, 133, 253, 0.15);
-      }
-      &.clicked {
-        border: 2px solid #6f85fd;
-      }
-    }
-  }
-  .updateInterestsBtns {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    margin-top: 4rem;
-    button {
-      width: 50%;
-      height: 5vh;
-      &.save {
-        margin-right: 2rem;
-      }
-      &.cancel {
-        background: white;
-        color: #22387d;
-        border: 1px solid #22387d;
-        &:hover {
-          background: #ededed;
-        }
-      }
-    }
-  }
-`;
-const StyledProfileInfo = styled.div`
-  width: 100%;
-  /* min-height: 40%; */
-  display: flex;
-  padding: 4rem;
-  flex-direction: column;
-  align-items: center;
-  border-bottom: 1px solid #dfdfdf;
-  .profileImage {
-    width: 15vw;
-    height: 15vw;
-    margin-bottom: 3rem;
-    .imageContainer {
+  .imageContainer {
+    margin: auto;
+    width: 20vw;
+    height: 20vw;
+    img {
+      border-radius: 50%;
       width: 100%;
       height: 100%;
-      display: flex;
-      justify-content: center;
-      img {
+      border: 10px solid #fef9e1;
+    }
+    &.dropzone {
+      .dropImg {
         border-radius: 50%;
-        width: 100%;
-        height: 100%;
-        border: 1px solid #dfdfdf;
-      }
-      &.dropzone {
-        .dropImg {
-          border-radius: 50%;
-          border: 1px solid #dfdfdf;
+        border: 10px solid #fef9e1;
+        width: 99%;
+        height: 99%;
+        border-radius: 50%;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        .overlay {
           width: 100%;
           height: 100%;
           border-radius: 50%;
-          background-size: contain;
-          background-position: center;
-          background-repeat: no-repeat;
-          .overlay {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          .camera-icon,
+          p {
+            display: none;
+          }
+          &:hover {
+            cursor: pointer;
+            background-color: rgba(202, 202, 202, 0.7);
             .camera-icon,
             p {
-              display: none;
+              display: block;
+              margin-top: 0;
             }
-            &:hover {
-              cursor: pointer;
-              background-color: rgba(202, 202, 202, 0.7);
-              .camera-icon,
-              p {
-                display: block;
-                margin-top: 0;
-              }
-              .camera-icon {
-                border: none;
-                width: 30%;
-                height: 30%;
-              }
-              p {
-                font-size: 14px;
-                width: 80%;
-              }
+            .camera-icon {
+              border: none;
+              width: 30%;
+              height: 30%;
+            }
+            p {
+              font-size: 14px;
+              width: 80%;
             }
           }
         }
       }
     }
   }
-  .profileDetails {
-    width: 100%;
-    height: 50%;
+`;
+
+const StyledProfileDetails = styled.div`
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  .info {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    .profileInfo {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      text-align: center;
-      align-items: center;
-      p {
-        font-size: 21px;
-      }
-      input,
-      textarea {
-        width: 80%;
-        margin-top: 1.5rem;
-        padding: 1rem;
-        border-radius: 5px;
-        border: 1px solid #c6d0eb;
-      }
-      textarea {
-        max-width: 80%;
-        min-width: 80%;
-        max-height: 30vh;
-        min-height: 8vh;
-      }
-    }
-    .profileButtons {
-      width: 80%;
-      display: flex;
-      margin-top: 1.5rem;
-      justify-content: center;
-      &.editing {
-        justify-content: space-between;
-      }
-      button {
-        width: 50%;
-        &.save {
-          margin-right: 2rem;
-        }
-        &.cancel {
-          background: white;
-          color: #22387d;
-          border: 1px solid #22387d;
-          &:hover {
-            background: #ededed;
-          }
-        }
-      }
-    }
+    justify-content: space-between;
+  }
+  .follow-info {
+    display: flex;
+    justify-content: space-evenly;
   }
 `;
 
 export function EditProfile(props) {
   const fullname = useRef();
   const bio = useRef();
-  const {
-    updateUserProfile,
-    updateUserInterests,
-    getTags,
-    tags
-  } = props;
+  const { updateUserProfile } = props;
 
   const user = props.user.data;
   const loading = props.user.loading;
   const [files, setFiles] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
-  const [addInterests, setAddInterests] = useState([]);
-  const [removeInterests, setRemoveInterests] = useState([]);
 
   const handleSave = () => {
     if (
@@ -262,56 +124,13 @@ export function EditProfile(props) {
     }
   };
 
-  const toggleEditing = () => {
-    setIsEditing(!isEditing);
-  };
-
-  const handleInterestClick = e => {
-    if (e.target.name === "add") {
-      setAddInterests(addInterests.concat(e.target.id));
-    } else {
-      setRemoveInterests(removeInterests.concat(e.target.id));
-    }
-    e.target.classList.add("clicked");
-    e.target.setAttribute("disabled", "");
-  };
-
-  const handleInterestCancel = () => {
-    setAddInterests([]);
-    setRemoveInterests([]);
-    document.querySelectorAll(".clicked").forEach(button => {
-      button.removeAttribute("disabled");
-      button.classList.remove("clicked");
-    });
-  };
-
-  const handleInterestSave = e => {
-    let data = {};
-    if (addInterests) {
-      data.add = addInterests;
-    }
-    if (removeInterests.length) {
-      data.remove = removeInterests;
-    }
-    updateUserInterests(data).then(() => {
-      document.querySelectorAll(".clicked").forEach(button => {
-        button.removeAttribute("disabled");
-        button.classList.remove("clicked");
-      });
-      setRemoveInterests([]);
-      setAddInterests([]);
-    });
-  };
-
-  useEffect(() => {
-    getTags();
-  }, []);
+  useEffect(() => {}, []);
 
   return (
-    <StyledProfile>
+    <>
       {user && (
-        <StyledProfileInfo>
-          <div className="profileImage">
+        <StyledProfile>
+          <StyledProfileImg>
             {!isEditing ? (
               <div className="imageContainer">
                 <img src={user.avatarUrl || userIcon} alt="" />
@@ -354,130 +173,77 @@ export function EditProfile(props) {
                 )}
               </Dropzone>
             )}
-          </div>
-          <div className="profileDetails">
-            <div className={!isEditing ? "profileInfo" : "profileInfo editing"}>
+          </StyledProfileImg>
+          <StyledProfileDetails>
+            <div className="info">
               {!isEditing ? (
-                <>
-                  <h3>{user.fullname}</h3>
-                  <p>{user.bio}</p>
-                </>
+                <h2>{user.fullname}</h2>
               ) : (
-                <>
-                  <input
-                    type="text"
-                    id="fullname"
-                    name="fullname"
-                    placeholder="Full Name"
-                    ref={fullname}
-                    defaultValue={user.fullname || null}
-                  />
-                  <textarea
-                    type="text"
-                    id="bio"
-                    name="bio"
-                    placeholder="Enter a short bio..."
-                    ref={bio}
-                    defaultValue={user.bio || null}
-                  />
-                </>
-              )}
-            </div>
-            <div
-              className={
-                !isEditing ? "profileButtons" : "profileButtons editing"
-              }
-            >
-              {!isEditing ? (
-                <Button
-                  label="Edit Profile"
-                  className="cancel"
-                  handleClick={toggleEditing}
+                <input
+                  type="text"
+                  id="fullname"
+                  name="fullname"
+                  placeholder="Full Name"
+                  ref={fullname}
+                  defaultValue={user.fullname || null}
                 />
-              ) : (
-                <>
+              )}
+              <div className="buttons">
+                {!isEditing ? (
                   <Button
-                    label={!loading ? "Save" : "Loading"}
-                    className="save"
-                    handleClick={handleSave}
-                  />
-                  <Button
-                    label="Cancel"
+                    label="Edit Profile"
                     className="cancel"
-                    handleClick={toggleEditing}
+                    handleClick={() => setIsEditing(!isEditing)}
                   />
-                </>
+                ) : (
+                  <>
+                    <Button
+                      label={!loading ? "Save" : "Loading"}
+                      className="save"
+                      handleClick={handleSave}
+                    />
+                    <Button
+                      label="Cancel"
+                      className="cancel"
+                      handleClick={() => setIsEditing(!isEditing)}
+                    />
+                  </>
+                )}
+              </div>
+            </div>
+            <div className="bio">
+              {!isEditing ? (
+                <p>{user.bio}</p>
+              ) : (
+                <textarea
+                  type="text"
+                  id="bio"
+                  name="bio"
+                  placeholder="Enter a short bio..."
+                  ref={bio}
+                  defaultValue={user.bio || null}
+                />
               )}
             </div>
-          </div>
-        </StyledProfileInfo>
+            <div className="follow-info">
+              <div className="box border-right">
+                <h3 className="following">
+                  {user.following && user.following.length}
+                </h3>
+                <p>Following</p>
+              </div>
+              <div className="box">
+                <h3 className="followers">
+                  {user.followers && user.followers.length}
+                </h3>
+                <p>Followers</p>
+              </div>
+            </div>
+          </StyledProfileDetails>
+        </StyledProfile>
       )}
-      {user && (
-        <StyledProfileFollowCount>
-          <div className="box border-right">
-            <p>Following</p>
-            <h3 className="following">{user.following && user.following.length}</h3>
-          </div>
-          <div className="box">
-            <p>Followers</p>
-            <h3 className="followers">{user.followers && user.followers.length}</h3>
-          </div>
-        </StyledProfileFollowCount>
-      )}
-      {/* {user && (
-        <StyledProfileInterests>
-          <h1>Interests</h1>
-          {user.interests &&
-            tags &&
-            tags.map(tag => {
-              let interested = user.interests.find(interest => {
-                return interest.name === tag.name;
-              });
-
-              return (
-                <div key={tag.id} className="interest-row">
-                  <p className={interested ? "interested" : "uninterested"}>
-                    {tag.name}
-                  </p>
-                  <button
-                    onClick={handleInterestClick}
-                    id={tag.name}
-                    name={interested ? "remove" : "add"}
-                  >
-                    {interested ? "-" : "+"}
-                  </button>
-                </div>
-              );
-            })}
-          <div className="updateInterestsBtns">
-            <Button
-              label={!loading ? "Save" : "Loading"}
-              className="save"
-              handleClick={handleInterestSave}
-            />
-            <Button
-              label="Cancel"
-              className="cancel"
-              handleClick={handleInterestCancel}
-            />
-          </div>
-        </StyledProfileInterests>
-      )} */}
-    </StyledProfile>
+    </>
   );
 }
 
-const mapStateToProps = state => {
-  return {
-    user: state.userProfile.data,
-    loading: state.userProfile.loading,
-    tags: state.userProfile.tags
-  };
-};
-
-export default connect(state=>state, {
-  getUserProfile,
-  updateUserProfile,
-  updateUserInterests,
-  getTags
-})(EditProfile);
+export default connect(state => state, { updateUserProfile })(EditProfile);
