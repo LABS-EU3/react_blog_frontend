@@ -65,6 +65,10 @@ export const DetailsContainer = styled.div`
       height: auto;
       margin-top: -1.3rem;
       cursor: pointer;
+
+      ${media.phablet`
+    max-width: 25px;
+    ;`}
     }
 
     .speak {
@@ -72,6 +76,7 @@ export const DetailsContainer = styled.div`
       border: 2px solid black;
       border-radius: 50px;
       margin: 0.3rem;
+      
     }
   }
 `;
