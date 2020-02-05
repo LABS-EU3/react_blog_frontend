@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Register from "./pages/Register";
 import { Route, Redirect, Switch } from "react-router-dom";
 import Editor from "./pages/Editor";
+import DraftEditor from "./pages/DraftEditor";
 import Feed from "./pages/Feed";
 import Profile from "./pages/Profile";
 import EditProfile from "./pages/EditProfile";
@@ -29,6 +30,7 @@ function App() {
         <ProtectedRoute path="/profile" component={Profile} />
         <ProtectedRoute path="/editprofile" component={EditProfile} />
         <ProtectedRoute path="/create" component={Editor} />
+        <ProtectedRoute path="/edit/:id" component={DraftEditor} />
         <ProtectedRoute path="/feed" component={Feed} />
         <ProtectedRoute path="/search" component={Search} />
         <Route path="/article/:id" component={ReadArticle} />

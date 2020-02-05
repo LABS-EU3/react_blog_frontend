@@ -1,8 +1,8 @@
 import React from "react";
 import { useHistory, useLocation, Link } from "react-router-dom";
 import Button from "../Buttons/Button";
-import styled from 'styled-components'
-import media from '../../styles/mediaQueries';
+import styled from "styled-components";
+import media from "../../styles/mediaQueries";
 import {
   publishPost,
   savePostAsDraft,
@@ -22,15 +22,14 @@ import { Icon } from "react-icons-kit";
 import { bell } from "react-icons-kit/feather/bell";
 import { search } from "react-icons-kit/fa/search";
 // import notification from '../../assets/images/Icons/icon-notification.svg';
-import ProfileImageDropdown from './ProfileImageDropdown';
-import Notifications from './_notifications/Notifications';
+import ProfileImageDropdown from "./ProfileImageDropdown";
+import Notifications from "./_notifications/Notifications";
 
 const StyledInsightly = styled.div`
-
   h3 {
     font-size: 28px;
   }
- ${media.phablet`display: none;`}
+  ${media.phablet`display: none;`}
 `;
 
 function Authed(props) {
@@ -58,27 +57,33 @@ function Authed(props) {
     history.push("/search");
   };
 
-  console.log(handleSearchClick);
-
   return (
     <FixedContainer>
       <NavWrapper>
         <StandLogo>
-          <Link to="/"><img alt="insight logo" src={insight} /></Link>
+          <Link to="/">
+            <img alt="insight logo" src={insight} />
+          </Link>
         </StandLogo>
         <StyledInsightly>
           <h3>Insightly</h3>
           <div></div>
         </StyledInsightly>
         <Control>
-          {location.pathname !== "/search" && location.pathname.split("/")[1] !== "article" && (
-            <div style={{ color: "#A9A9A9" }} onClick={handleSearchClick}>
-              <Icon icon={search} size={24} />
-            </div>
-          )}
+          {location.pathname !== "/search" &&
+            location.pathname.split("/")[1] !== "article" && (
+              <div style={{ color: "#A9A9A9" }} onClick={handleSearchClick}>
+                <Icon icon={search} size={24} />
+              </div>
+            )}
           <div className="write-button">
-            <Button label={props.buttonLabel ? props.buttonLabel : 'Write' } handleClick={props.buttonLabel ? toggleModal : handleClick} />
-            {props.saveButton && (<Button label="Save" handleClick={props.handleSave} /> )}
+            <Button
+              label={props.buttonLabel ? props.buttonLabel : "Write"}
+              handleClick={props.buttonLabel ? toggleModal : handleClick}
+            />
+            {props.saveButton && (
+              <Button label="Save" handleClick={props.handleSave} secondary />
+            )}
           </div>
           <div
             className="notification"

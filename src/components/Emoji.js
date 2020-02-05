@@ -56,7 +56,6 @@ const Emoji = ({ article, emoji, string , postReaction}) => {
 };
 
 const Emojis = ({ article, string, postReaction }) => {
-  console.log(string, "here");
   return (
     <StyledEmojiWrapper>
       {emojis.map(emoji => (

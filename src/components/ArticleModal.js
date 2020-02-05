@@ -12,6 +12,7 @@ import { connect } from "react-redux";
 import styled from "styled-components";
 import logo from "../assets/logo-gradient.png";
 import Button from './Buttons/Button';
+import theme from '../styles/theme'
 
 const modalRoot = document.getElementById("article-modal");
 
@@ -112,17 +113,14 @@ function ModalContainer(props) {
   );
 
   const onTagsChanged = newTags => {
-    console.log("tags changed to: ", newTags);
-    console.log(files[0]);
+
   };
 
   const onInputChanged = e => {
-    console.log(`input value is now: ${e.target.value}`);
-    console.log(files[0]);
+   
   };
 
   const handleSubmit = e => {
-    console.log("hello");
     props.handlePublish(files);
     toggleModal();
   };
@@ -223,7 +221,7 @@ const StyledModal = styled.div`
   }
 
   div.modal-quote {
-    font-family: Lato;
+    font-family: ${theme.fonts.Muli} ;
     font-size: 14px;
     width: 270px;
     display: flex;

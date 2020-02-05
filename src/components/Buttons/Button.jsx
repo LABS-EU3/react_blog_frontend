@@ -10,6 +10,7 @@ export default function Button(props) {
         className={props.className}
         onClick={props.handleClick}
         disabled={props.disabled}
+        {...props}
       >
         {props.label}
       </ButtonD>
@@ -19,4 +20,5 @@ export default function Button(props) {
 
 const ButtonD = styled.button`
   ${mixins.bigButton}
+  ${props => (props.secondary ? `color: black; background-color: white;` : "")}
 `;
