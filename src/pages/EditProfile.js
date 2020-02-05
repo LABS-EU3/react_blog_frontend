@@ -30,6 +30,8 @@ const StyledProfileImg = styled.div`
     margin: auto;
     width: 20vw;
     height: 20vw;
+    max-width: 225px;
+    max-height: 225px;
     ${media.phablet`width: 40vw; height: 40vw;`};
     img {
       border-radius: 50%;
@@ -219,9 +221,7 @@ export function EditProfile(props) {
     followAuthor([user.id]).then(res => button.setAttribute("disabled", true));
   };
 
-  useEffect(() => {
-    console.log(props.personal);
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <>
@@ -357,7 +357,11 @@ export function EditProfile(props) {
                 <p>FOLLOWERS</p>
               </div>
               <div className="box">
-                <h6>{user.followers && user.followers.length}</h6>
+                <h6>
+                  {props.user.articles &&
+                    props.user.articles.filter(a => a.isPublished === true)
+                      .length}
+                </h6>
                 <p>INSIGHTS</p>
               </div>
             </div>
