@@ -33,7 +33,7 @@ function App() {
         <ProtectedRoute path="/search" component={Search} />
         <Route path="/article/:id" component={ReadArticle} />
         <Route path="/team" component={AboutUs} />
-        <Route path="/author/:id" component={AuthorProfile} />
+        <Route path="/profile/:userid" component={Profile} />
         <ProtectedRoute path="/final" component={Interest} />
         <Route render={() => <Redirect to="/" />} />
       </Switch>
