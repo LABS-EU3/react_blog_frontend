@@ -38,7 +38,7 @@ export const getTags = () => async dispatch => {
 export const getUserProfile = id => async dispatch => {
   dispatch({ type: GET_USER_PROFILE_START });
   try {
-    const response = await axios.get(`${apiURL}/users/${id}`);
+    const response = await axiosWithAuth().get(`${apiURL}/users/${id}`);
     dispatch({ type: GET_USER_PROFILE_SUCCESS, payload: response.data });
   } catch (err) {
     console.log(err);
