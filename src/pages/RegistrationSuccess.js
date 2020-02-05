@@ -5,7 +5,7 @@ import checkmark from "../assets/images/check.png";
 import {
   StyledRegistrationSuccessModal
 } from "../utilities/styles/RegisterStyles";
-import Button from '../components/Button';
+import Button from '../components/Buttons/Button';
 
 function RegistrationSuccess(props) {
   return (

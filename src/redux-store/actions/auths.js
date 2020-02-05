@@ -1,11 +1,12 @@
 import * as types from "./actionTypes";
 import axios from "axios";
 import { apiURL } from '../../utilities/urls';
+import { axiosWithAuth } from "../../utilities/axios/index";
 
 export const register = user => dispatch => {
   dispatch({ type: types.REGISTER_REQUEST });
   axios
-    .post(`${apiURL}/auth/register`, user)
+  .post(`${apiURL}/auth/register`, user)
     .then(res => {
       dispatch({ type: types.REGISTER_SUCCESS, payload: res.data.token, user: res.data });
     })
@@ -18,7 +19,7 @@ export const register = user => dispatch => {
 export const login = user => dispatch => {
   dispatch({ type: types.LOGIN_START })
   return axios
-    .post(`${apiURL}/auth/login`, user)
+  .post(`${apiURL}/auth/login`, user)
     .then(res => {
       dispatch({ type: types.LOGIN_SUCCESS, payload: res.data.token, user: res.data });
     })
@@ -38,5 +39,19 @@ export const verify = (token, id) => dispatch => {
     .catch(err => {
       console.log(err);
       dispatch({ type: types.VERIFICATION_FAILURE });
+    });
+}
+
+export const declareInterest = (interests) => dispatch => {
+  dispatch({ type: types.INTEREST_START })
+  return axiosWithAuth()
+  .post(`${apiURL}/interests`, interests)
+    .then(res => {
+      console.log(res)
+      dispatch({ type: types.INTEREST_SUCCESS })
+    })
+    .catch(err => {
+      console.log(err);
+      dispatch({ type: types.INTEREST_FAILURE });
     });
 }

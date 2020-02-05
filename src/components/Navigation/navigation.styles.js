@@ -1,17 +1,28 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const NavWrapper = styled.nav`
-  // position: fixed;
-  width: 100%;
+  padding: 0.8rem;
   display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1400px;
+  width: 100%;
+  padding-top: 2rem;
   justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem;
-  padding-top: 2.0rem;
+  background-color: white;
+`;
+
+export const FixedContainer = styled.div`
+  position: fixed;
+  box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  background-color: white;
+  z-index: 1000000000;
 `;
 
 export const Logo = styled.div`
-  margin-left: 10.0rem;
+  margin-left: 10rem;
   width: 90px;
 
   img {
@@ -20,21 +31,19 @@ export const Logo = styled.div`
 `;
 
 export const AuthButtons = styled.div`
-  margin-right: 4.0rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 150px;
 
   li {
-    color: #A2ADCC;
+    color: #a2adcc;
     font-weight: 500;
     font-size: 14px;
     line-height: 24px;
     cursor: pointer;
 
     &:hover {
-      color: #6F85FD;
+      color: #6f85fd;
     }
   }
 `;
@@ -43,28 +52,35 @@ export const AuthButtons = styled.div`
 
 export const Control = styled.div`
   display: flex;
-  justify-content: space-around;
-  margin-right: 4.0rem;
-  width: 200px;
+  flex-basis: auto;
+  div,
+  .write-button {
+    padding-right: 1.5rem;
+    display: flex;
+    justify-content: space-between;
 
-  .notification {
-    img {
-      height: 30px;
-      cursor: pointer;
+    button {
+      margin-left: 1rem;
     }
   }
-
   .avatar {
+    line-height: 0;
+    display: inline-block;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    transition: linear 0.25s;
+    white-space: nowrap;
+    margin-top: 2px;
+    padding-right: 0rem;
     img {
-      height: 30px;
-      cursor: pointer;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
     }
   }
-
 `;
 
 export const StandLogo = styled.div`
-  margin-left: 4.0rem;
   width: 90px;
   height: 40px;
   display: flex;
@@ -73,4 +89,4 @@ export const StandLogo = styled.div`
   img {
     height: 30px;
   }
-`
+`;

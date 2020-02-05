@@ -3,11 +3,13 @@ import { connect } from "react-redux";
 import Authed from "../components/Navigation/Authed";
 import {  decodeToken } from '../utilities/checkToken';
 import { verify } from "../redux-store/actions/auths";
+import ProfileCard from './ProfileCard';
+
 
 function Profile(props) {
   useEffect(() => {
     const { subject : userId } = decodeToken();
-    const location = props.location.search;
+    const location = props.location.search; 
     if (location) {
       const verificationId = location.split('=');
       props.verify(verificationId[1], userId)
@@ -21,6 +23,10 @@ function Profile(props) {
   return (
     <div>
       <Authed />
+      <ProfileCard/>
+      {/* <ProfileFirstSection />  
+      <TabsDisplay />           */}
+
     </div>
   )
 }

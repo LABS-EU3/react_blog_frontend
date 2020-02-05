@@ -192,3 +192,21 @@ body {
 .ce-toolbar__actions--opened {
     margin-right: 20%;
 }
+
+.invalid {
+  color: red
+}
+
+.new-section{
+  display:flex;
+  flex-wrap: wrap;
+  margin-left: 40px;
+}
+
+.second-section{
+  display:flex;
+  flex-wrap: wrap;
+}
+.App {
+  background-color: #fff;
+}

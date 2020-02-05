@@ -158,7 +158,7 @@ export const Demo = styled.div`
 `;
 
 export const Space = styled.div`
-  background-color: #f1f6fd;
+  background-color: #fff;
   height: 226px;
 `;
 

@@ -17,7 +17,7 @@ const Nav = styled.nav`
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
-  max-width: 75%;
+  max-width: 1500px;
   padding-top: 2.0rem;
 
   div.left {
@@ -121,7 +121,7 @@ const EditorNavBar = props => {
 
       <div className="right" style={{ width: "30%" }}>
         <div>
-          <button className="draft" onClick={() => props.handleSave()}>Save for Later</button>
+          <button className='draft' onClick={() => props.handleSave()}>Save for Later</button>
         </div>
         <div>
           <button onClick={() => toggleModal()}>Publish</button>
