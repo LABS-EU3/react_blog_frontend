@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useHistory, useLocation, Link } from "react-router-dom";
 import Button from "../Buttons/Button";
 import styled from "styled-components";
@@ -17,13 +17,13 @@ import {
   FixedContainer
 } from "./navigation.styles";
 import insight from "../../assets/images/insight-stand.png";
-// import notification from "../../assets/images/Icons/icon-notification.svg";
 import { Icon } from "react-icons-kit";
 import { bell } from "react-icons-kit/feather/bell";
 import { search } from "react-icons-kit/fa/search";
-// import notification from '../../assets/images/Icons/icon-notification.svg';
 import ProfileImageDropdown from "./ProfileImageDropdown";
 import Notifications from "./_notifications/Notifications";
+import { getUserBasic } from '../../redux-store/actions/user-profile-actions';
+
 
 const StyledInsightly = styled.div`
   h3 {
@@ -33,12 +33,26 @@ const StyledInsightly = styled.div`
 `;
 
 function Authed(props) {
+
+  useEffect(() => {
+    async function fetchD() {
+      const userData = localStorage.getItem('userBasic');
+      const token = localStorage.getItem('token');
+      console.log(userData);
+      if (!userData && token) {
+        const user = await getUserBasic();
+        const stringObj = JSON.stringify(user)
+        localStorage.setItem('userBasic', stringObj);
+      }
+    }
+    fetchD(); 
+  }, [])
+
+
   const toggleModal = () => {
     if (props.newPost.showModal) {
-      // document.getElementById("root").style.filter = "blur(0px)";
       document.getElementById("editor-page").style.pointerEvents = "auto";
     } else {
-      // document.getElementById("root").style.filter = "blur(4px)";
       document.getElementById("editor-page").style.pointerEvents = "none";
     }
     props.handlePublishModal();

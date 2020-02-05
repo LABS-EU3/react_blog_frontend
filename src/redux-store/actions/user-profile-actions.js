@@ -28,10 +28,21 @@ export const getTags = () => async dispatch => {
   }
 };
 
+
+export const getUserBasic = async () => {
+  try {
+    const response = await axiosWithAuth().get(`${apiURL}/users/basic`);
+    return response;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+
 export const getUserProfile = id => async dispatch => {
   dispatch({ type: GET_USER_PROFILE_START });
   try {
-    const response = await axios.get(`${apiURL}/users/${id}`);
+    const response = await axiosWithAuth().get(`${apiURL}/users/${id}`);
     dispatch({ type: GET_USER_PROFILE_SUCCESS, payload: response.data });
   } catch (err) {
     console.log(err);
@@ -42,7 +53,7 @@ export const getUserProfile = id => async dispatch => {
 export const updateUserProfile = (id, data) => async dispatch => {
   dispatch({ type: UPDATE_USER_PROFILE_START });
   try {
-    const response = await axios.put(
+    const response = await axiosWithAuth().put(
       `${apiURL}/users/${id}`,
       data
     );

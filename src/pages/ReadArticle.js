@@ -18,7 +18,9 @@ import {
   getSingleArticle,
   postLike
 } from "../redux-store/actions/get-article-actions";
-import speak from "../assets/images/Icons/streaming.svg";
+import speak from "../assets/images/Icons/icon-sound.svg";
+import play from "../assets/images/Icons/play-button.svg";
+import pause from "../assets/images/Icons/pause.svg";
 import Reactions from "./Reactions";
 import { getToken } from "../utilities/authentication";
 
@@ -43,7 +45,6 @@ const ReadArticle = props => {
     postLike(id);
   };
 
-  console.log(singleArticle);
   const articleBody = singleArticle.body ? singleArticle.body : "[]";
   const content = JSON.parse(articleBody);
 
@@ -53,19 +54,30 @@ const ReadArticle = props => {
       return item.data.text;
     }
   });
-
-  console.log(text.join(""));
   const message = text.join("");
 
-  const handleSpeak = () => {
-    let speech = new SpeechSynthesisUtterance();
-    speech.text = message;
-    speech.volume = 1;
-    speech.rate = 1;
-    speech.pitch = 1;
 
-    window.speechSynthesis.speak(speech);
+  const synth = window.speechSynthesis;
+
+  const queue = (text, rate, pitch, voiceIndex) => {
+    let utter = new SpeechSynthesisUtterance();
+    utter.text = text;
+    utter.rate = rate || 1;
+    utter.pitch = pitch || 1;
+    synth.speak(utter);
   };
+
+  const handleSpeak = () => {
+    queue(message);
+  };
+
+  const handlePause = () => {
+    synth.pause();
+  }
+
+  const handleResume = () => {
+    synth.resume();
+  }
 
   return (
     <>
@@ -89,7 +101,9 @@ const ReadArticle = props => {
             )}
           </div>
           <div className="speech">
-            <img onClick={handleSpeak} src={speak} alt="read out text aloud" />
+            <img onClick={handlePause} src={pause} title="pause" alt="read out text aloud" />
+            <img className="speak" onClick={handleSpeak} src={speak} title="speak" alt="read out text aloud" />
+            <img onClick={handleResume} src={play} title="continue" alt="read out text aloud" />
           </div>
         </DetailsContainer>
         <Details></Details>
