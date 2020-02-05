@@ -4,6 +4,11 @@ import avatar from '../../assets/images/avatar.svg';
 import { clearLocalStorage } from '../../utilities/authentication'
 import Dropdown from './NavigationDropdown';
 export default function ProfileImageDropdown(props) {
+    const local = localStorage.getItem('userBasic');
+    const user = local ? JSON.parse(local): {};
+    const avatar = user && user.data ? user.data.avatarUrl : 'https://getinsightly.s3.us-west-2.amazonaws.com/man5-512.png';
+    const name = user && user.data ? user.data.fullname : 'John Doe';
+
     function logout() {
         clearLocalStorage();
     }
@@ -21,7 +26,7 @@ export default function ProfileImageDropdown(props) {
              <div className="dropdown-content" id="dropdown-profile-content">
                  <ul>
                      <li className="dropdown-user-bio">
-                         <p>David Kuseh</p>
+                         <p>{name}</p>
                          <p>@davidkuseh</p>
                      </li>
                      <li className="list-item-separator"></li>

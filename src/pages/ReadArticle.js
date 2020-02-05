@@ -45,7 +45,6 @@ const ReadArticle = props => {
     postLike(id);
   };
 
-  console.log(singleArticle);
   const articleBody = singleArticle.body ? singleArticle.body : "[]";
   const content = JSON.parse(articleBody);
 
@@ -55,8 +54,6 @@ const ReadArticle = props => {
       return item.data.text;
     }
   });
-
-  console.log(text.join(""));
   const message = text.join("");
 
 
@@ -105,7 +102,7 @@ const ReadArticle = props => {
           </div>
           <div className="speech">
             <img onClick={handlePause} src={pause} title="pause" alt="read out text aloud" />
-            <img class="speak" onClick={handleSpeak} src={speak} title="speak" alt="read out text aloud" />
+            <img className="speak" onClick={handleSpeak} src={speak} title="speak" alt="read out text aloud" />
             <img onClick={handleResume} src={play} title="continue" alt="read out text aloud" />
           </div>
         </DetailsContainer>

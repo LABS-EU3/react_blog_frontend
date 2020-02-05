@@ -20,6 +20,7 @@ import GlobalStyle from "./styles/global";
 import AuthorProfile from "./pages/AuthorProfile";
 
 function App() {
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
