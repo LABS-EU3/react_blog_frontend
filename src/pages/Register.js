@@ -28,10 +28,12 @@ function Register({ register, loading, success, location, history }) {
     const userData = {
       fullname: fullname.current.value,
       email: email.current.value,
-      password: password.current.value
+      password: password.current.value,
+      avatarUrl: 'https://getinsightly.s3.us-west-2.amazonaws.com/man5-512.png'
     };
 
     if (userData.fullname && userData.email && userData.password) {
+      console.log(userData)
       register(userData);
     }
   };
