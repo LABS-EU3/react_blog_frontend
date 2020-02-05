@@ -5,6 +5,8 @@ import media from "../styles/mediaQueries";
 import { Section, mixins } from "../styles/shared";
 import tools from "../assets/tools.png";
 import pattern from "../assets/pattern.png";
+import feed from "../assets/feed.png";
+import highlight from "../assets/highlight.png";
 
 const StyledContainer = styled.div`
   width: 100%;
@@ -72,8 +74,21 @@ const StyledShowCase = styled.div`
 const StyledShowCaseItem = styled.div`
   display: flex;
   justify-content: space-between;
+  &:nth-of-type(2),
+  &:nth-of-type(3) {
+    margin-top: 11rem;
+  }
+
+  &:nth-of-type(even) {
+    flex-direction: row-reverse;
+    div.text-container {
+      margin-left: 0;
+      margin-right: 5rem;
+    }
+  }
+
   div.image-container {
-    border: 2px solid rgba(152, 108, 155, 0.5);
+    border: 1.5px solid rgba(152, 108, 155, 0.5);
     width: 60%;
     background: url(${tools});
     opacity: 1;
@@ -120,17 +135,43 @@ const StyledShowCaseItem = styled.div`
 
 const StyledPattern = styled.div`
   float: right;
- 
   max-height: 50px;
   max-width: 50px;
   left: 150px;
+
   img {
     object-fit: cover;
     width: 100%;
     position: absolute;
     max-height: 70px;
     max-width: 80px;
+    top: 215rem;
+    z-index: -1;
+  }
+
+  img.one {
+    object-fit: cover;
+    width: 100%;
+    position: absolute;
+    max-height: 70px;
+    max-width: 80px;
     top: 113rem;
+    z-index: -1;
+  }
+`;
+
+const StyledPattern2 = styled.div`
+  float: left;
+  max-height: 50px;
+  max-width: 50px;
+  margin-left: -3rem;
+  img {
+    object-fit: cover;
+    width: 100%;
+    position: absolute;
+    max-height: 70px;
+    max-width: 80px;
+    top: 164rem;
     z-index: -1;
   }
 `;
@@ -152,9 +193,46 @@ const Showcase = () => {
           <StyledShowCaseItem>
             <div className="image-container">
               <StyledPattern>
-                <img src={pattern} alt="pattern" />
+                <img src={pattern} alt="pattern" className="one" />
               </StyledPattern>
               <img src={tools} alt="writing" className="showcase" />
+            </div>
+            <div className="text-container">
+              <h4>
+                The tools <br />
+                of a <span>craftsman.</span>
+              </h4>
+              <p>
+                Write easily using our block-based approach to content creation
+                and a host of in-line formatting tools at your disposal. After
+                all, a craftsman is only as good as the tool he/she possesses.
+              </p>
+            </div>
+          </StyledShowCaseItem>
+          <StyledShowCaseItem>
+            <div className="image-container">
+              <StyledPattern2>
+                <img src={pattern} alt="pattern" />
+              </StyledPattern2>
+              <img src={feed} alt="writing" className="showcase" />
+            </div>
+            <div className="text-container">
+              <h4>
+                Find what <br /> <span>matters</span> to you
+              </h4>
+              <p>
+                As a reader, it’s easy to get overwhelmed by the thousands of
+                voices around you. Pick and hone in on what you want to hear
+                through our curated posts feed.
+              </p>
+            </div>
+          </StyledShowCaseItem>
+          <StyledShowCaseItem className="second">
+            <div className="image-container">
+              <StyledPattern>
+                <img src={pattern} alt="pattern" />
+              </StyledPattern>
+              <img src={highlight} alt="writing" className="showcase" />
             </div>
             <div className="text-container">
               <h4>
