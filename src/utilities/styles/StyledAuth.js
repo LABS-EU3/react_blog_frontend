@@ -65,7 +65,6 @@ export const RightSectionForm = styled.form`
             width: 100%;
             height: 100%;
         }
-
     }
     .float-right-btn {
         float: right;
