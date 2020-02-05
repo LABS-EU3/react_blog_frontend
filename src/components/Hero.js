@@ -32,8 +32,8 @@ const StyledLeft = styled.div`
     color: #000000;
   }
   p {
-    line-height: 1.8rem;
-    font-size: ${theme.fontSizes.md};
+    line-height: 2.4rem;
+    font-size: 19px;
     margin-top: 20px;
   }
 `;
@@ -42,6 +42,7 @@ const StyledRight = styled.div`
   display: flex;
   align-self: center;
 `;
+
 
 const StyledButton = styled.a`
   ${mixins.bigButton};
