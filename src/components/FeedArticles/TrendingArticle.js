@@ -4,6 +4,7 @@ import theme from "../../styles/theme";
 import media from "../../styles/mediaQueries";
 import { mixins } from "../../styles/shared";
 import { Link } from "react-router-dom";
+import moment from "moment";
 
 const StyledCard = styled.div`
   width: 100%;
@@ -151,7 +152,7 @@ export default function TrendingCard(props) {
             <p>{insight.author}</p>
             <p>
               {(type === "jumbo" || type === "reg") &&
-                insight.createdAt.substring(0, 10)}
+                moment(insight.createdAt).format('ll')}
             </p>
           </div>
           <div className="snippet">

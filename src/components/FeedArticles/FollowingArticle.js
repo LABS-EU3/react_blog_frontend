@@ -3,6 +3,7 @@ import styled from "styled-components";
 import theme from "../../styles/theme";
 import { Link } from "react-router-dom";
 import readTime from "../../utilities/readTime";
+import moment from "moment";
 
 const StyledFollowingCard = styled.div`
   width: 100%;
@@ -70,7 +71,7 @@ export default function FollowingCard({ insight }) {
           <p>{insight.author.toUpperCase()}</p>
           <h5>{insight.title.substring(0, 30)}...</h5>
           <div className="info">
-            <p>{insight.createdAt.substring(0, 10)}</p>
+            <p>{moment(insight.createdAt).format('ll')}</p>
             <p>{`${readTime(insight.body)} min read`}</p>
           </div>
         </StyledFollowingText>
