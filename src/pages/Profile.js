@@ -5,6 +5,7 @@ import { decodeToken } from "../utilities/checkToken";
 import { verify } from "../redux-store/actions/auths";
 import { Section } from "../styles/shared";
 import styled from "styled-components";
+import media from "../styles/mediaQueries";
 import {
   getUserProfile,
   getAuthorArticles,
@@ -18,6 +19,7 @@ const Container = styled(Section)`
 
 const StyledUserInfo = styled.div`
   box-shadow: 3px 4px 20px rgba(0, 0, 0, 0.1);
+  ${media.phablet`box-shadow: none;`};
   min-height: 40vh;
 `;
 
@@ -26,9 +28,15 @@ const StyledUserArticles = styled.div``;
 export function Profile(props) {
   const { subject: userId } = decodeToken();
   const paramId = JSON.parse(props.location.pathname.split("/")[2]);
-  const { getUserProfile, user, followAuthor, articles, getAuthorArticles } = props;
+  const {
+    getUserProfile,
+    user,
+    followAuthor,
+    articles,
+    getAuthorArticles
+  } = props;
   const token = localStorage.getItem("token");
-  
+
   useEffect(() => {
     // const location = props.location.search;
     // if (location) {
@@ -54,37 +62,40 @@ export function Profile(props) {
       <Container>
         {!user.loading && user.data && (
           <StyledUserInfo>
-            {userId === paramId ? <EditProfile user={user}/> :
-            <div className="content">
-              {user.data.followers ? (
-                token &&
-                userId !== paramId &&
-                user.data.followers.includes(userId) ? (
-                  <button>Following</button>
-                ) : (
+            {userId === paramId ? (
+              <EditProfile user={user} />
+            ) : (
+              <div className="content">
+                {user.data.followers ? (
                   token &&
                   userId !== paramId &&
-                  !user.data.followers.includes(userId) && (
-                    <button onClick={handleFollow}>Follow</button>
+                  user.data.followers.includes(userId) ? (
+                    <button>Following</button>
+                  ) : (
+                    token &&
+                    userId !== paramId &&
+                    !user.data.followers.includes(userId) && (
+                      <button onClick={handleFollow}>Follow</button>
+                    )
                   )
-                )
-              ) : null}
+                ) : null}
 
-              <img src={user.data.avatarUrl} alt="" />
-              <h3>{user.data.fullname}</h3>
-              {user.data.bio && <p className="bio">{user.data.bio}</p>}
-              {user.data.followers && user.data.following && (
-                <div className="follows">
-                  <p>
-                    <span>{user.data.followers.length}</span> Followers
-                  </p>
+                <img src={user.data.avatarUrl} alt="" />
+                <h3>{user.data.fullname}</h3>
+                {user.data.bio && <p className="bio">{user.data.bio}</p>}
+                {user.data.followers && user.data.following && (
+                  <div className="follows">
+                    <p>
+                      <span>{user.data.followers.length}</span> Followers
+                    </p>
 
-                  <p>
-                    <span>{user.data.following.length}</span> Following
-                  </p>
-                </div>
-              )}
-            </div> }
+                    <p>
+                      <span>{user.data.following.length}</span> Following
+                    </p>
+                  </div>
+                )}
+              </div>
+            )}
           </StyledUserInfo>
         )}
         <StyledUserArticles></StyledUserArticles>
