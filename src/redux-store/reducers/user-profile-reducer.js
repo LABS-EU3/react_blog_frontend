@@ -14,7 +14,10 @@ import {
   UPDATE_USER_INTERESTS_FAIL,
   FOLLOW_USER_START,
   FOLLOW_USER_SUCCESS,
-  FOLLOW_USER_FAIL
+  FOLLOW_USER_FAIL,
+  GET_AUTHOR_ARTICLES_START,
+  GET_AUTHOR_ARTICLES_SUCCESS,
+  GET_AUTHOR_ARTICLES_FAIL
 } from "../actions/types";
 
 export const initState = {
@@ -28,6 +31,8 @@ export const initState = {
 export const userProfileReducer = (state = initState, action) => {
   switch (action.type) {
     case GET_USER_PROFILE_START ||
+      GET_AUTHOR_ARTICLES_START ||
+      FOLLOW_USER_START ||
       UPDATE_USER_PROFILE_START ||
       GET_TAGS_START ||
       UPDATE_USER_INTERESTS_START:
@@ -35,17 +40,17 @@ export const userProfileReducer = (state = initState, action) => {
         ...state,
         loading: true
       };
-    case FOLLOW_USER_START:
-      return {
-        ...state,
-        loading: true,
-        followAuthorSuccess: false
-      };
     case GET_USER_PROFILE_SUCCESS:
       return {
         ...state,
         loading: false,
         data: action.payload
+      };
+    case GET_AUTHOR_ARTICLES_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        articles: action.payload
       };
     case UPDATE_USER_PROFILE_SUCCESS:
       return {
@@ -95,16 +100,12 @@ export const userProfileReducer = (state = initState, action) => {
     case GET_USER_PROFILE_FAIL ||
       UPDATE_USER_PROFILE_FAIL ||
       GET_TAGS_FAIL ||
+      FOLLOW_USER_FAIL ||
+      GET_AUTHOR_ARTICLES_FAIL ||
       UPDATE_USER_INTERESTS_FAIL:
       return {
         ...state,
         loading: false
-      };
-    case FOLLOW_USER_FAIL:
-      return {
-        ...state,
-        loading: false,
-        followAuthorSuccess: false
       };
     default:
       return state;
