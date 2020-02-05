@@ -10,11 +10,14 @@ import theme from "../styles/theme";
 import {
   getUserProfile,
   getAuthorArticles,
-  followAuthor
+  followAuthor,
+  deleteArticle
 } from "../redux-store/actions/user-profile-actions";
 import EditProfile from "./EditProfile";
 import Loader from "./Loader";
-import { initState } from "../redux-store/reducers/user-profile-reducer";
+import ProfileArticle from "../components/ProfileArticle";
+import Modal from "../components/Others/Modal";
+import DeleteArticleModal from "../components/DeleteArticleModal";
 
 const Container = styled(Section)`
   margin-top: 10rem;
@@ -34,7 +37,6 @@ const StyledUserInfo = styled.div`
 `;
 
 const StyledUserArticles = styled.div`
-  border: 1px solid #cacaca;
   margin-top: 3rem;
   ${media.phablet`margin-top: 0;`}
   .tabs {
@@ -61,15 +63,23 @@ const StyledUserArticles = styled.div`
       font-weight: bold !important;
     }
   }
+  .articles {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
 `;
+
 
 export function Profile(props) {
   const { subject: userId } = decodeToken();
   const paramId = JSON.parse(props.location.pathname.split("/")[2]);
-  const { getUserProfile, user, followAuthor, getAuthorArticles } = props;
-  const token = localStorage.getItem("token");
+  const { getUserProfile, user, followAuthor, getAuthorArticles, deleteAuthorArticle } = props;
   let personal = userId === paramId;
   const [clicked, setClicked] = useState("published");
+  const [modalOpen, setModalOpen] = useState(false);
+  const [articleToDelete, setArticleToDelete] = useState(null);
 
   useEffect(() => {
     // const location = props.location.search;
@@ -90,10 +100,24 @@ export function Profile(props) {
     followAuthor(paramId).then(res => button.setAttribute("disabled", true));
   };
 
+  const handleDeleteArticle = id => {
+    deleteArticle(id);
+  };
+
   return (
     <>
       <Authed />
       <Container>
+      {modalOpen && (
+        <Modal height="250px" width="380px" handleOpen={setModalOpen}>
+          <DeleteArticleModal
+            handleDelete={handleDeleteArticle}
+            articleToDelete={articleToDelete}
+            setModalOpen={setModalOpen}
+            setArticleToDelete={setArticleToDelete}
+          />
+        </Modal>
+      )}
         <StyledUserInfo>
           {user.loading && (
             <div className="loading">
@@ -139,9 +163,9 @@ export function Profile(props) {
             </div>
           
             <div className="articles">
-             {!personal && user.articles.map(insight => insight.isPublished && <div>{insight.title}</div>)}   
-             {personal && clicked==="published" && user.articles.map(insight => insight.isPublished && <div>{insight.title}</div>)}   
-             {personal && clicked==="drafts" && user.articles.map(insight => insight.isEditing && <div>{insight.title}</div>)}   
+             {!personal && user.articles.map(insight => insight.isPublished && <ProfileArticle insight={insight} personal={personal}/>)}   
+             {personal && clicked==="published" && user.articles.map(insight => insight.isPublished && <ProfileArticle insight={insight} personal={personal} setArticleToDelete={setArticleToDelete} setModalOpen={setModalOpen}/>)}   
+             {personal && clicked==="drafts" && user.articles.map(insight => insight.isEditing && <ProfileArticle insight={insight} personal={personal} setArticleToDelete={setArticleToDelete} setModalOpen={setModalOpen}/>)}   
             </div>  
             </>  
           )}
@@ -163,5 +187,6 @@ export default connect(mapStateToProps, {
   verify,
   getUserProfile,
   getAuthorArticles,
-  followAuthor
+  followAuthor,
+  deleteArticle
 })(Profile);
