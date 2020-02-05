@@ -1,0 +1,12 @@
+import React from "react";
+
+export default () => {
+  return (
+  <svg viewBox="-20 -20 160 160" xmlns="http://www.w3.org/2000/svg">
+  <path d="M8 19H3a3 3 0 01-3-3v-2a3 3 0 013-3h5v8z"/>
+  <path d="M11 23l-4.925-4.684v-6.632L11 7z"/>
+  <path d="M25.323 26.242C27.621 23.172 29 19.377 29 15.256c0-4.35-1.526-8.346-4.06-11.498M15.157 20.428a8.17 8.17 0 00-.432-10.827M20.408 23.343a13.91 13.91 0 00-.383-16.685" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"/>
+</svg>
+
+  );
+};

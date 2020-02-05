@@ -6,7 +6,7 @@ const TagDelete = styled.span.attrs(props => ({
     color: #69626D;
     font-size: 1em;
     &:hover {
-        color: #69626D;
+        color: 'white';
     }
 `
 
