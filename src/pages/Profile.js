@@ -62,40 +62,9 @@ export function Profile(props) {
       <Container>
         {!user.loading && user.data && (
           <StyledUserInfo>
-            {userId === paramId ? (
-              <EditProfile user={user} />
-            ) : (
-              <div className="content">
-                {user.data.followers ? (
-                  token &&
-                  userId !== paramId &&
-                  user.data.followers.includes(userId) ? (
-                    <button>Following</button>
-                  ) : (
-                    token &&
-                    userId !== paramId &&
-                    !user.data.followers.includes(userId) && (
-                      <button onClick={handleFollow}>Follow</button>
-                    )
-                  )
-                ) : null}
 
-                <img src={user.data.avatarUrl} alt="" />
-                <h3>{user.data.fullname}</h3>
-                {user.data.bio && <p className="bio">{user.data.bio}</p>}
-                {user.data.followers && user.data.following && (
-                  <div className="follows">
-                    <p>
-                      <span>{user.data.followers.length}</span> Followers
-                    </p>
-
-                    <p>
-                      <span>{user.data.following.length}</span> Following
-                    </p>
-                  </div>
-                )}
-              </div>
-            )}
+              <EditProfile user={user} personal={userId === paramId} />
+            
           </StyledUserInfo>
         )}
         <StyledUserArticles></StyledUserArticles>
@@ -109,7 +78,6 @@ const mapStateToProps = store => {
     loading: store.auth.loading,
     success: store.auth.verification_success,
     user: store.userProfile,
-    followSuccess: store.userProfile.followAuthorSuccess,
     articles: store.userProfile.articles
   };
 };

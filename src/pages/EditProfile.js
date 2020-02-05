@@ -1,13 +1,17 @@
 import React, { useRef, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import { updateUserProfile } from "../redux-store/actions/user-profile-actions";
+import {
+  updateUserProfile,
+  followAuthor
+} from "../redux-store/actions/user-profile-actions";
 import Dropzone from "react-dropzone";
 import camera_icon from "../assets/images/Icons/camera-icon.png";
 import userIcon from "../assets/images/usericon.svg";
 import theme from "../styles/theme";
 import media from "../styles/mediaQueries";
 import { mixins } from "../styles/shared";
+import { decodeToken } from "../utilities/checkToken";
 
 const StyledProfile = styled.div`
   display: flex;
@@ -26,7 +30,7 @@ const StyledProfileImg = styled.div`
     margin: auto;
     width: 20vw;
     height: 20vw;
-    ${media.tablet`width: 40vw; height: 40vw;`};
+    ${media.phablet`width: 40vw; height: 40vw;`};
     img {
       border-radius: 50%;
       width: 100%;
@@ -180,11 +184,12 @@ const StyledProfileDetails = styled.div`
 export function EditProfile(props) {
   const fullname = useRef();
   const bio = useRef();
-  const { updateUserProfile } = props;
+  const { updateUserProfile, followAuthor, followSuccess } = props;
   const user = props.user.data;
   const loading = props.user.loading;
   const [files, setFiles] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
+  const { subject: currentUserId } = decodeToken();
 
   const handleSave = () => {
     if (
@@ -209,7 +214,14 @@ export function EditProfile(props) {
     }
   };
 
-  useEffect(() => {}, []);
+  const handleFollow = e => {
+    const button = e.target;
+    followAuthor([user.id]).then(res => button.setAttribute("disabled", true));
+  };
+
+  useEffect(() => {
+    console.log(props.personal);
+  }, []);
 
   return (
     <>
@@ -273,30 +285,53 @@ export function EditProfile(props) {
                   defaultValue={user.fullname || null}
                 />
               )}
-              <div className="buttons">
-                {!isEditing ? (
-                  <button
-                    label="Edit Profile"
-                    className="cancel"
-                    onClick={() => setIsEditing(!isEditing)}
-                  >
-                    Edit Profile
-                  </button>
-                ) : (
-                  <>
-                    <button label="Save" className="save" onClick={handleSave}>
-                      {!loading ? "Save" : "Loading"}
-                    </button>
+              {props.personal ? (
+                <div className="buttons">
+                  {!isEditing ? (
                     <button
-                      label="Cancel"
+                      label="Edit Profile"
                       className="cancel"
                       onClick={() => setIsEditing(!isEditing)}
                     >
-                      Cancel
+                      Edit Profile
                     </button>
-                  </>
-                )}
-              </div>
+                  ) : (
+                    <>
+                      <button
+                        label="Save"
+                        className="save"
+                        onClick={handleSave}
+                      >
+                        {!loading ? "Save" : "Loading"}
+                      </button>
+                      <button
+                        label="Cancel"
+                        className="cancel"
+                        onClick={() => setIsEditing(!isEditing)}
+                      >
+                        Cancel
+                      </button>
+                    </>
+                  )}
+                </div>
+              ) : (
+                <div className="buttons">
+                  <button
+                    label="Follow"
+                    className="cancel"
+                    onClick={handleFollow}
+                    disabled={
+                      followSuccess ||
+                      (user.followers && user.followers.includes(currentUserId))
+                    }
+                  >
+                    {followSuccess ||
+                    (user.followers && user.followers.includes(currentUserId))
+                      ? "Following"
+                      : "Follow"}
+                  </button>
+                </div>
+              )}
             </div>
             <div className="bio">
               {!isEditing ? (
@@ -333,4 +368,12 @@ export function EditProfile(props) {
   );
 }
 
-export default connect(state => state, { updateUserProfile })(EditProfile);
+const mapStateToProps = state => {
+  return {
+    followSuccess: state.userProfile.followAuthorSuccess
+  };
+};
+
+export default connect(mapStateToProps, { updateUserProfile, followAuthor })(
+  EditProfile
+);
