@@ -3,19 +3,19 @@ import styled from "styled-components";
 import theme from "../styles/theme";
 import media from "../styles/mediaQueries";
 import { Section, mixins } from "../styles/shared";
+import quill from "../assets/quill.png";
 
 const StyledContainer = styled.div`
   width: 100%;
   background-color: ${theme.colors.yellow};
-  min-height: 100vh;
+  margin-top: 0rem;
 `;
 
 const StyledSection = styled(Section)`
-  min-height: 100%;
+  height: 100vh;
   display: flex;
   align-content: center;
   justify-content: center;
-  margin-top: 0rem;
   max-width: 1200px;
 `;
 
@@ -23,7 +23,7 @@ const StyledLeft = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 100vh;
+  height: 100%;
   width: 65%;
   h1 {
     font-family: ${theme.fonts.Muli} !important;
@@ -40,11 +40,7 @@ const StyledLeft = styled.div`
 
 const StyledRight = styled.div`
   display: flex;
-  flex-direction: column;
-`;
-
-const StyledTitle = styled.h1`
-  font-family: ${theme.fonts.Muli};
+  align-self: center;
 `;
 
 const StyledButton = styled.a`
@@ -71,7 +67,9 @@ const Hero = () => {
           </p>
           <StyledButton>Get Started</StyledButton>
         </StyledLeft>
-        <StyledRight></StyledRight>
+        <StyledRight>
+          <img src={quill} alt="quill" />
+        </StyledRight>
       </StyledSection>
     </StyledContainer>
   );
