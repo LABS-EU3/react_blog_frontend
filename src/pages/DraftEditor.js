@@ -2,10 +2,10 @@
 import React, { Component } from "react";
 import ArticleModal from "../components/ArticleModal";
 import EditorJs from "react-editor-js";
-import NavBar from "../components/Navigation/Authed";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import NavBar from "../components/Navigation/Authed";
 import {
   savePostAsDraft,
   publishPost,
@@ -18,7 +18,8 @@ import theme from "../styles/theme";
 import { decodeToken } from "../utilities/checkToken";
 import { Section } from "../styles/shared";
 import { EDITOR_JS_TOOLS } from "../utilities/editor-tools";
-import uuid from "uuid";
+import { apiURL } from "../utilities/urls";
+import { axiosWithAuth } from "../utilities/axios/index";
 
 const StyledTitleInput = styled.div`
   font-family: ${theme.fonts.Merriweather};
@@ -49,7 +50,7 @@ const StyledRedirectContainer = styled(Section)`
       color: ${theme.colors.purple};
     }
   }
-  blockquote {
+  blockquote.warning {
     position: relative;
     padding-left: 10px;
     font-weight: 800;
@@ -86,9 +87,11 @@ const StyledRedirectContainer = styled(Section)`
 `;
 
 const StyledEditor = styled.div`
-  font-family: ${theme.fonts.Muli} 
-  h1 {
+  font-family: ${theme.fonts.Muli} h1 {
     font-size: 3.2rem;
+  }
+  h1 {
+      font-size: 3rem
   }
 
   h2 {
@@ -131,29 +134,37 @@ const StyledEditor = styled.div`
     margin-left: 29%;
     margin-top: 10rem;
   }
+
   blockquote, figcaption, .image-tool__caption {
-    font-size: ${theme.fontSizes.sm}
-}
+      font-size: ${theme.fontSizes.sm}
+  }
 `;
 
 class Editor extends Component {
   constructor(props) {
     super(props);
-    this.state = { postToEdit: {}, editing: false };
+    this.state = {
+      title: "",
+      article: {}
+    };
     this.handlePublish = this.handlePublish.bind(this);
-    this.handleSave = this.handleSave.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.publishPost = this.props.publishPost;
-    this.titleRef = React.createRef();
   }
+
+  handleChange(e) {
+    this.setState({ title: e.target.value });
+  }
+
   async handlePublish(files) {
     const editorData = await this.editorInstance.save();
     console.log(editorData);
-    const title = this.titleRef.current.value;
+    const title = this.state.title;
     const { subject: userId } = decodeToken();
     const formData = new FormData();
     let body = editorData.blocks;
     const coverFile = files ? files[0] : null;
-    const custom_id = uuid();
+    const custom_id = this.state.article.custom_id;
     if (coverFile) {
       coverFile["articleId"] = custom_id;
     }
@@ -183,34 +194,21 @@ class Editor extends Component {
     });
   }
 
-  async handleSave() {
-    const editorData = await this.editorInstance.save();
-    console.log(editorData);
-    const title = this.titleRef.current.value;
-    const { subject: userId } = decodeToken();
-    const post = {
-      custom_id: uuid(),
-      title,
-      authorId: userId,
-      body: editorData.blocks,
-      isPublished: false,
-      isEditing: true
-    };
-    const tags = this.props.newPost.tags.map(tag => {
-      return { ...tag, articleId: post.id };
-    });
-    this.props.savePost({ ...post, tags }).then(res=> {
-      if(res) {
-      this.props.history.push(`/profile`)};
-    });
-  }
-
-  componentDidMount() {
+  async componentDidMount() {
     this.editorInstance;
+    console.log(this.props);
+    let path = this.props.match.params.id;
+    if (path) {
+      const response = await axiosWithAuth().get(`${apiURL}/articles/${path}`);
+      let articleToEdit = response.data.response;
+      articleToEdit.body = JSON.parse(articleToEdit.body);
+      if (articleToEdit) {
+        this.setState({ title: articleToEdit.title, article: articleToEdit });
+      }
+    }
   }
 
   render() {
-    console.log(this.props.articleToEdit);
     if (isMobile)
       return (
         <StyledRedirectContainer>
@@ -233,18 +231,15 @@ class Editor extends Component {
               connect with other minds through the glorious art of written text.
               As Shakespeare once said:
             </p>
-            <blockquote>“I had to swerve on ‘em… skrrrrrr."</blockquote>
+            <blockquote className="warning">“I had to swerve on ‘em… skrrrrrr."</blockquote>
           </div>
         </StyledRedirectContainer>
       );
-   
-    else
+    else if (this.state.article.body && this.state.article.body.length)
       return (
-        <div id="editor-page">
+        <div id="editor-page-2">
           <NavBar
             handlePublish={this.handlePublish}
-            handleSave={this.handleSave}
-            saveButton={true}
             buttonLabel='Publish'
           />
           <ArticleModal handlePublish={this.handlePublish} />
@@ -256,19 +251,24 @@ class Editor extends Component {
                 name="title"
                 placeholder="Insert a legendary title here..."
                 autoComplete="off"
-                ref={this.titleRef}
                 maxLength="50"
+                value={this.state.title}
+                onChange={e => this.handleChange(e)}
               />
             </StyledTitleInput>{" "}
             <EditorJs
               tools={EDITOR_JS_TOOLS}
               placeholder={"Be Insightful"}
               instanceRef={instance => (this.editorInstance = instance)}
-              data={{blocks: this.props.articleToEdit.body}}
+              data={{
+                time: 4444,
+                blocks: [...this.state.article.body]
+              }}
             />
           </StyledEditor>
         </div>
       );
+    return "";
   }
 }
 

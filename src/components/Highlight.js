@@ -1,23 +1,22 @@
 import React, { useState } from "react";
 import ToolTip from "./Tooltip";
 import { positionToolTip } from "../utilities/highlightHelpers";
+import { isMobile } from "react-device-detect";
 
 function Highlighter(props) {
+  // eslint-disable-next-line no-unused-vars
   const [lastSelection, setLastSelection] = useState({});
   const [toolTip, setToolTip] = useState({ opacity: 0 });
   const [selectedText, setSelectedText] = useState("");
-  console.log(lastSelection);
 
   const handleMouseUp = e => {
-    const selection = window.getSelection();
-    // const selectionRange = selection.getRangeAt(0);
-    // const startNode = selectionRange.startContainer.parentNode;
-    // const endNode = selectionRange.endContainer.parentNode;
-
-    showToolTip();
-    const string = selection.toString().trim();
-    setSelectedText(string)
-    console.log(selectedText);
+    if (!isMobile) {
+      const selection = window.getSelection();
+      showToolTip();
+      const string = selection.toString().trim();
+      setSelectedText(string);
+    }
+    else return;
   };
 
   const handleMouseDown = () => {
@@ -32,7 +31,7 @@ function Highlighter(props) {
   };
 
   return (
-    <div >
+    <div>
       <ToolTip
         toolTipLocStyle={toolTip}
         setToolTip={setToolTip}

@@ -14,7 +14,8 @@ export const initState = {
   loading: false,
   data: [],
   singleArticle: {},
-  articleReactions: []
+  articleReactions: [],
+  articleToEdit: {}
 };
 
 export const getArticlesReducer = (state = initState, action) => {
@@ -76,6 +77,11 @@ export const getArticlesReducer = (state = initState, action) => {
           hasLiked: true
         }
       };
+      case "GET_ARTICLE_TO_EDIT_SUCCESS":
+        return {
+          ...state,
+          articleToEdit: {...action.payload, body: JSON.parse(action.payload.body)}
+        }
 
     default:
       return state;
