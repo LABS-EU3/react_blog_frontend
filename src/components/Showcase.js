@@ -79,6 +79,10 @@ const StyledShowCaseItem = styled.div`
     margin-top: 11rem;
   }
 
+  &:nth-of-type(3) {
+    margin-bottom: 6rem;
+  }
+
   &:nth-of-type(even) {
     flex-direction: row-reverse;
     div.text-container {
@@ -236,13 +240,12 @@ const Showcase = () => {
             </div>
             <div className="text-container">
               <h4>
-                The tools <br />
-                of a <span>craftsman.</span>
+                Find a <br />
+                line that <span>you like</span>?
               </h4>
               <p>
-                Write easily using our block-based approach to content creation
-                and a host of in-line formatting tools at your disposal. After
-                all, a craftsman is only as good as the tool he/she possesses.
+                React to sentences in an article using a carefully selected set
+                of emojis to express how you feel about the writer’s thoughts.
               </p>
             </div>
           </StyledShowCaseItem>
