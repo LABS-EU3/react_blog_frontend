@@ -11,20 +11,47 @@ const StyledContainer = styled.div`
 `;
 
 const StyledSection = styled(Section)`
-  height: auto;
   display: flex;
   align-content: center;
-  justify-content: center;
+  justify-content: space-between;
   max-width: 1200px;
-  padding-top: 4rem;
-  padding-bottom: 4rem;
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+  min-height: auto;
+  width: 100%;
+  li {
+    font-size: 17.5px;
+  }
+  h4 {
+    font-family: ${theme.fonts.Muli};
+    font-color: black;
+  }
+`;
+
+const StyledListContainer = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 export default () => {
   return (
     <StyledContainer>
       <StyledSection>
-          
+        <StyledListContainer>
+          <h4>PRODUCT</h4>
+          <ul>
+            <li>Feedback</li>
+            <li>Integration suggestions</li>
+          </ul>
+        </StyledListContainer>
+        <StyledListContainer>
+          <h4>COMPANY</h4>
+          <ul>
+            <li>Sign in</li>
+            <li>Register</li>
+            <li>Meet the team</li>
+          </ul>
+        </StyledListContainer>
       </StyledSection>
     </StyledContainer>
   );
