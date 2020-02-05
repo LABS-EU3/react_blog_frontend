@@ -26,7 +26,7 @@ const StyledBar = styled.div`
   }
 `;
 const StyledSection = styled(Section)`
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -80,7 +80,7 @@ const StyledShowCaseItem = styled.div`
   }
 
   &:nth-of-type(3) {
-    margin-bottom: 6rem;
+    margin-bottom: 10rem;
   }
 
   &:nth-of-type(even) {
@@ -180,6 +180,44 @@ const StyledPattern2 = styled.div`
   }
 `;
 
+const StyledCTA = styled.div`
+display: flex;
+flex-direction: column;
+margin-top: 3rem;
+align-content: center;
+width: 100%;
+margin: 0 auto;
+  h4 {
+    font-size: 4.2rem;
+    line-height: 4.5rem;
+    align-self: center;
+    span {
+      color: ${theme.colors.purple};
+    }
+  }
+  p {
+    font-size: ${theme.fontSizes.md};
+    margin-top: 2rem;
+    line-height: 2.8rem;
+    align-self: center;
+  }
+  a{
+    align-self: center;
+  }
+`;
+
+const StyledButton = styled.a`
+  ${mixins.bigButton};
+  color: white;
+  width: 15rem;
+  padding: 1.7rem;
+  text-align: center;
+  font-size: 1.6rem;
+  box-sizing: border-box;
+  margin-top: 40px;
+  width: 25rem;
+`;
+
 const Showcase = () => {
   return (
     <StyledContainer>
@@ -249,6 +287,11 @@ const Showcase = () => {
               </p>
             </div>
           </StyledShowCaseItem>
+          <StyledCTA>
+              <h4>And the best part?</h4>
+              <p>It's absolutely free, so sign up to get started with us today.</p>
+              <StyledButton>Get Started</StyledButton>
+          </StyledCTA>
         </StyledShowCase>
       </StyledSection>
     </StyledContainer>

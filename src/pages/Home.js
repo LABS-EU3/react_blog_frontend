@@ -5,11 +5,12 @@ import styled from "styled-components";
 import theme from "../styles/theme";
 import Hero from "../components/Hero";
 import Showcase from "../components/Showcase";
+import Footer from '../components/LandingFooter'
 
-const StyledSection = styled(Section)`
-  margin-top: 10rem;
+// const StyledSection = styled(Section)`
+//   margin-top: 10rem;
  
-`;
+// `;
 
 export default function Home(props) {
   useEffect(() => {
@@ -22,6 +23,7 @@ export default function Home(props) {
     <div>
       <Hero />
       <Showcase/>
+      <Footer/>
     </div>
   );
 }
