@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import Authed from "../components/Navigation/Authed";
 import { decodeToken } from "../utilities/checkToken";
@@ -6,6 +6,7 @@ import { verify } from "../redux-store/actions/auths";
 import { Section } from "../styles/shared";
 import styled from "styled-components";
 import media from "../styles/mediaQueries";
+import theme from "../styles/theme";
 import {
   getUserProfile,
   getAuthorArticles,
@@ -31,19 +32,43 @@ const StyledUserInfo = styled.div`
   }
 `;
 
-const StyledUserArticles = styled.div``;
+const StyledUserArticles = styled.div`
+  border: 1px solid #cacaca;
+  margin-top: 3rem;
+  ${media.phablet`margin-top: 0;`}
+  .tabs {
+    margin-bottom: 3rem;
+    ${media.phablet`display: flex; justify-content: space-between;`};
+    button {
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      margin-right: 2rem;
+      &.clicked {
+        border-bottom: 1px solid ${theme.colors.purple};
+      }
+    }
+    h2 {
+      border-bottom: 1px solid ${theme.colors.purple};
+      width: fit-content;
+      line-height: normal;
+    }
+    .tab {
+      color: ${theme.colors.textGrey};
+      font-size: ${theme.fontSizes.xxl};
+      font-family: ${theme.fonts.Oswald};
+      font-weight: bold !important;
+    }
+  }
+`;
 
 export function Profile(props) {
   const { subject: userId } = decodeToken();
   const paramId = JSON.parse(props.location.pathname.split("/")[2]);
-  const {
-    getUserProfile,
-    user,
-    followAuthor,
-    articles,
-    getAuthorArticles
-  } = props;
+  const { getUserProfile, user, followAuthor, getAuthorArticles } = props;
   const token = localStorage.getItem("token");
+  let personal = userId === paramId;
+  const [clicked, setClicked] = useState("published");
 
   useEffect(() => {
     // const location = props.location.search;
@@ -68,15 +93,50 @@ export function Profile(props) {
     <>
       <Authed />
       <Container>
-          <StyledUserInfo>
-        {user.loading && <div className="loading"><Loader /></div>}
-        {!user.loading && user.data && user.articles && (
-              <EditProfile user={user} personal={userId === paramId} />
-            
-        )}
-          </StyledUserInfo>
-        {!user.loading && user.articles && console.log(user.articles)}
-        <StyledUserArticles></StyledUserArticles>
+        <StyledUserInfo>
+          {user.loading && (
+            <div className="loading">
+              <Loader />
+            </div>
+          )}
+          {!user.loading && user.data && user.articles && (
+            <EditProfile user={user} personal={personal} />
+          )}
+        </StyledUserInfo>
+
+        <StyledUserArticles>
+          {!user.loading && user.articles && (
+            <div className="tabs">
+              {!personal ? (
+                <h2 className="tab">INSIGHTS</h2>
+              ) : (
+                <>
+                  <button
+                    className={clicked === "published" ? "tab clicked" : "tab"}
+                    name="published"
+                    onClick={() => setClicked("published")}
+                  >
+                    PUBLISHED
+                  </button>
+                  <button
+                    className={clicked === "drafts" ? "tab clicked" : "tab"}
+                    name="drafts"
+                    onClick={() => setClicked("drafts")}
+                  >
+                    DRAFTS
+                  </button>
+                  <button
+                    className={clicked === "reactions" ? "tab clicked" : "tab"}
+                    name="reactions"
+                    onClick={() => setClicked("reactions")}
+                  >
+                    REACTIONS
+                  </button>
+                </>
+              )}
+            </div>
+          )}
+        </StyledUserArticles>
       </Container>
     </>
   );
