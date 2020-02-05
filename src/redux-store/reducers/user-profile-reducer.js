@@ -11,13 +11,18 @@ import {
   UPDATE_USER_INTERESTS_START,
   REMOVE_USER_INTERESTS_SUCCESS,
   ADD_USER_INTERESTS_SUCCESS,
-  UPDATE_USER_INTERESTS_FAIL
+  UPDATE_USER_INTERESTS_FAIL,
+  FOLLOW_USER_START,
+  FOLLOW_USER_SUCCESS,
+  FOLLOW_USER_FAIL
 } from "../actions/types";
 
 export const initState = {
   loading: false,
   data: [],
-  tags: []
+  tags: [],
+  articles: [],
+  followAuthorSuccess: false
 };
 
 export const userProfileReducer = (state = initState, action) => {
@@ -30,18 +35,34 @@ export const userProfileReducer = (state = initState, action) => {
         ...state,
         loading: true
       };
+    case FOLLOW_USER_START:
+      return {
+        ...state,
+        loading: true,
+        followAuthorSuccess: false
+      };
     case GET_USER_PROFILE_SUCCESS:
       return {
         ...state,
         loading: false,
         data: action.payload
       };
-      case UPDATE_USER_PROFILE_SUCCESS: 
+    case UPDATE_USER_PROFILE_SUCCESS:
       return {
         ...state,
         loading: false,
-        data: {...action.payload}
-      }
+        data: { ...action.payload }
+      };
+    case FOLLOW_USER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        followAuthorSuccess: true,
+        data: {
+          ...state.data,
+          followers: [...state.data.followers, action.payload]
+        }
+      };
     case GET_TAGS_SUCCESS:
       return {
         ...state,
@@ -78,6 +99,12 @@ export const userProfileReducer = (state = initState, action) => {
       return {
         ...state,
         loading: false
+      };
+    case FOLLOW_USER_FAIL:
+      return {
+        ...state,
+        loading: false,
+        followAuthorSuccess: false
       };
     default:
       return state;
