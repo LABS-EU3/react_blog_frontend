@@ -2,7 +2,6 @@ import React, { useRef, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import Button from "../components/Buttons/Button";
-import { decodeToken } from "../utilities/checkToken";
 import {
   getUserProfile,
   updateUserProfile,
@@ -226,16 +225,15 @@ const StyledProfileInfo = styled.div`
 export function EditProfile(props) {
   const fullname = useRef();
   const bio = useRef();
-  const { subject: userId } = decodeToken();
   const {
-    user,
-    loading,
-    getUserProfile,
     updateUserProfile,
     updateUserInterests,
     getTags,
     tags
   } = props;
+
+  const user = props.user.data;
+  const loading = props.user.loading;
   const [files, setFiles] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const [addInterests, setAddInterests] = useState([]);
@@ -257,7 +255,7 @@ export function EditProfile(props) {
       if (user.bio !== bio.current.value) {
         data.append("bio", bio.current.value);
       }
-      updateUserProfile(userId, data);
+      updateUserProfile(user.id, data);
     }
     if (!loading) {
       setIsEditing(false);
@@ -306,7 +304,6 @@ export function EditProfile(props) {
   };
 
   useEffect(() => {
-    getUserProfile(userId);
     getTags();
   }, []);
 
@@ -419,15 +416,15 @@ export function EditProfile(props) {
         <StyledProfileFollowCount>
           <div className="box border-right">
             <p>Following</p>
-            <h3 className="following">{user.following}</h3>
+            <h3 className="following">{user.following && user.following.length}</h3>
           </div>
           <div className="box">
             <p>Followers</p>
-            <h3 className="followers">{user.followers}</h3>
+            <h3 className="followers">{user.followers && user.followers.length}</h3>
           </div>
         </StyledProfileFollowCount>
       )}
-      {user && (
+      {/* {user && (
         <StyledProfileInterests>
           <h1>Interests</h1>
           {user.interests &&
@@ -465,7 +462,7 @@ export function EditProfile(props) {
             />
           </div>
         </StyledProfileInterests>
-      )}
+      )} */}
     </StyledProfile>
   );
 }
@@ -478,7 +475,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {
+export default connect(state=>state, {
   getUserProfile,
   updateUserProfile,
   updateUserInterests,
