@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import avatar from '../../assets/images/avatar.svg';
 import { clearLocalStorage } from '../../utilities/authentication'
 import Dropdown from './NavigationDropdown';
 export default function ProfileImageDropdown(props) {
@@ -27,13 +26,11 @@ export default function ProfileImageDropdown(props) {
                  <ul>
                      <li className="dropdown-user-bio">
                          <p>{name}</p>
-                         <p>@davidkuseh</p>
                      </li>
                      <li className="list-item-separator"></li>
                      <li className="dropdown-links">
-                         <Link to="">New Insight</Link>
-                         <Link to="">Insights</Link>
-                         <Link to="">Stats</Link>
+                         <Link to="/create">New Insight</Link>
+                         <Link to="/feed">Insights</Link>
                          <button onClick={logout}>Logout</button>
                      </li>
                  </ul></div>

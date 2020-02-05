@@ -31,7 +31,6 @@ export const getTags = () => async dispatch => {
 
 export const getUserBasic = async () => {
   try {
-    console.log('base')
     const response = await axiosWithAuth().get(`${apiURL}/users/basic`);
     return response;
   } catch (err) {
