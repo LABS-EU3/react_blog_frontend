@@ -14,6 +14,7 @@ import {
 } from "../redux-store/actions/user-profile-actions";
 import EditProfile from "./EditProfile";
 import Loader from "./Loader";
+import { initState } from "../redux-store/reducers/user-profile-reducer";
 
 const Container = styled(Section)`
   margin-top: 10rem;
@@ -106,6 +107,7 @@ export function Profile(props) {
 
         <StyledUserArticles>
           {!user.loading && user.articles && (
+            <>
             <div className="tabs">
               {!personal ? (
                 <h2 className="tab">INSIGHTS</h2>
@@ -135,6 +137,13 @@ export function Profile(props) {
                 </>
               )}
             </div>
+          
+            <div className="articles">
+             {!personal && user.articles.map(insight => insight.isPublished && <div>{insight.title}</div>)}   
+             {personal && clicked==="published" && user.articles.map(insight => insight.isPublished && <div>{insight.title}</div>)}   
+             {personal && clicked==="drafts" && user.articles.map(insight => insight.isEditing && <div>{insight.title}</div>)}   
+            </div>  
+            </>  
           )}
         </StyledUserArticles>
       </Container>
