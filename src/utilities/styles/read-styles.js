@@ -61,9 +61,22 @@ export const DetailsContainer = styled.div`
 
   .speech {
     img {
-      max-width: 45px;
+      width: 35px;
       height: auto;
       margin-top: -1.3rem;
+      cursor: pointer;
+
+      ${media.phablet`
+    max-width: 25px;
+    ;`}
+    }
+
+    .speak {
+      width: 40px;
+      border: 2px solid black;
+      border-radius: 50px;
+      margin: 0.3rem;
+      
     }
   }
 `;

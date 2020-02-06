@@ -30,6 +30,7 @@ export const getToken = () => {
 export const clearLocalStorage = () => {
   localStorage.removeItem('token');
   localStorage.removeItem('user');
+  localStorage.removeItem('userBasic');
   window.location.href = '/';
 };
 

@@ -1,6 +1,9 @@
 import React from "react";
 import Home from "./pages/Home";
-import Register from "./pages/Register";
+// import Register from "./pages/Register";
+import Register from "./pages/RedesignSignup";
+import Login from "./pages/RedesignLoginPage";
+
 import { Route, Redirect, Switch } from "react-router-dom";
 import Editor from "./pages/Editor";
 import DraftEditor from "./pages/DraftEditor";
@@ -20,6 +23,7 @@ import GlobalStyle from "./styles/global";
 import AuthorProfile from "./pages/AuthorProfile";
 
 function App() {
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
@@ -27,6 +31,7 @@ function App() {
       <Switch>
         <Route exact path="/" render={props => <Home {...props} />} />
         <Route path="/register" component={Register} />
+        <Route path="/login" component={Login} />
         <ProtectedRoute path="/profile" component={Profile} />
         <ProtectedRoute path="/editprofile" component={EditProfile} />
         <ProtectedRoute path="/create" component={Editor} />
