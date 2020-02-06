@@ -71,11 +71,10 @@ const StyledUserArticles = styled.div`
   }
 `;
 
-
 export function Profile(props) {
   const { subject: userId } = decodeToken();
   const paramId = JSON.parse(props.location.pathname.split("/")[2]);
-  const { getUserProfile, user, followAuthor, getAuthorArticles, deleteAuthorArticle } = props;
+  const { getUserProfile, user, getAuthorArticles, deleteArticle } = props;
   let personal = userId === paramId;
   const [clicked, setClicked] = useState("published");
   const [modalOpen, setModalOpen] = useState(false);
@@ -95,11 +94,6 @@ export function Profile(props) {
   //   window.location.href = "/profile";
   // }
 
-  const handleFollow = e => {
-    const button = e.target;
-    followAuthor(paramId).then(res => button.setAttribute("disabled", true));
-  };
-
   const handleDeleteArticle = id => {
     deleteArticle(id);
   };
@@ -108,16 +102,16 @@ export function Profile(props) {
     <>
       <Authed />
       <Container>
-      {modalOpen && (
-        <Modal height="250px" width="380px" handleOpen={setModalOpen}>
-          <DeleteArticleModal
-            handleDelete={handleDeleteArticle}
-            articleToDelete={articleToDelete}
-            setModalOpen={setModalOpen}
-            setArticleToDelete={setArticleToDelete}
-          />
-        </Modal>
-      )}
+        {modalOpen && (
+          <Modal height="250px" width="380px" handleOpen={setModalOpen}>
+            <DeleteArticleModal
+              handleDelete={handleDeleteArticle}
+              articleToDelete={articleToDelete}
+              setModalOpen={setModalOpen}
+              setArticleToDelete={setArticleToDelete}
+            />
+          </Modal>
+        )}
         <StyledUserInfo>
           {user.loading && (
             <div className="loading">
@@ -132,42 +126,76 @@ export function Profile(props) {
         <StyledUserArticles>
           {!user.loading && user.articles && (
             <>
-            <div className="tabs">
-              {!personal ? (
-                <h2 className="tab">INSIGHTS</h2>
-              ) : (
-                <>
-                  <button
-                    className={clicked === "published" ? "tab clicked" : "tab"}
-                    name="published"
-                    onClick={() => setClicked("published")}
-                  >
-                    PUBLISHED
-                  </button>
-                  <button
-                    className={clicked === "drafts" ? "tab clicked" : "tab"}
-                    name="drafts"
-                    onClick={() => setClicked("drafts")}
-                  >
-                    DRAFTS
-                  </button>
-                  <button
-                    className={clicked === "reactions" ? "tab clicked" : "tab"}
-                    name="reactions"
-                    onClick={() => setClicked("reactions")}
-                  >
-                    REACTIONS
-                  </button>
-                </>
-              )}
-            </div>
-          
-            <div className="articles">
-             {!personal && user.articles.map(insight => insight.isPublished && <ProfileArticle insight={insight} personal={personal}/>)}   
-             {personal && clicked==="published" && user.articles.map(insight => insight.isPublished && <ProfileArticle insight={insight} personal={personal} setArticleToDelete={setArticleToDelete} setModalOpen={setModalOpen}/>)}   
-             {personal && clicked==="drafts" && user.articles.map(insight => insight.isEditing && <ProfileArticle insight={insight} personal={personal} setArticleToDelete={setArticleToDelete} setModalOpen={setModalOpen}/>)}   
-            </div>  
-            </>  
+              <div className="tabs">
+                {!personal ? (
+                  <h2 className="tab">INSIGHTS</h2>
+                ) : (
+                  <>
+                    <button
+                      className={
+                        clicked === "published" ? "tab clicked" : "tab"
+                      }
+                      name="published"
+                      onClick={() => setClicked("published")}
+                    >
+                      PUBLISHED
+                    </button>
+                    <button
+                      className={clicked === "drafts" ? "tab clicked" : "tab"}
+                      name="drafts"
+                      onClick={() => setClicked("drafts")}
+                    >
+                      DRAFTS
+                    </button>
+                    <button
+                      className={
+                        clicked === "reactions" ? "tab clicked" : "tab"
+                      }
+                      name="reactions"
+                      onClick={() => setClicked("reactions")}
+                    >
+                      REACTIONS
+                    </button>
+                  </>
+                )}
+              </div>
+
+              <div className="articles">
+                {!personal &&
+                  user.articles.map(
+                    insight =>
+                      insight.isPublished && (
+                        <ProfileArticle insight={insight} personal={personal} />
+                      )
+                  )}
+                {personal &&
+                  clicked === "published" &&
+                  user.articles.map(
+                    insight =>
+                      insight.isPublished && (
+                        <ProfileArticle
+                          insight={insight}
+                          personal={personal}
+                          setArticleToDelete={setArticleToDelete}
+                          setModalOpen={setModalOpen}
+                        />
+                      )
+                  )}
+                {personal &&
+                  clicked === "drafts" &&
+                  user.articles.map(
+                    insight =>
+                      insight.isEditing && (
+                        <ProfileArticle
+                          insight={insight}
+                          personal={personal}
+                          setArticleToDelete={setArticleToDelete}
+                          setModalOpen={setModalOpen}
+                        />
+                      )
+                  )}
+              </div>
+            </>
           )}
         </StyledUserArticles>
       </Container>
