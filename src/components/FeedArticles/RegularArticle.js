@@ -105,7 +105,9 @@ export default function RegularCard({ insight }) {
 
             </div>
           <div className="info">
-            <p>{insight.author}</p>
+          <Link to={`/profile/${insight.authorId}`}>
+             <p>{insight.author}</p>
+          </Link>
             <p>{`${readTime(insight.body)} min read`}</p>
           </div>
           <div className="snippet">
