@@ -222,7 +222,10 @@ export function EditProfile(props) {
 
   const handleFollow = e => {
     const button = e.target;
-    followAuthor([user.id]).then(res => button.setAttribute("disabled", true));
+    const data = {
+      follow: [user.id]
+    }
+    followAuthor(data).then(res => button.setAttribute("disabled", true));
   };
 
   useEffect(() => {}, []);

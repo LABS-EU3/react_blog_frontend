@@ -101,7 +101,7 @@ export default function RegularCard({ insight }) {
               ? `${insight.title.substring(0, 40)}...`
               : insight.title}
           </h5>
-        {/* <p className="tag">{insight.tags[0].name.toUpperCase()}</p> */}
+        <p className="tag">{insight && insight.tag ? insight.tags[0].name.toUpperCase() : ''}</p>
 
             </div>
           <div className="info">
