@@ -12,6 +12,8 @@ import {
   followUsers
 } from "../redux-store/actions/onboarding-actions";
 
+import onboard from '../assets/onboarding.png';
+
 import userIcon from "../assets/images/Icons/user.png";
 
 function Final(props) {
@@ -58,7 +60,10 @@ function Final(props) {
   };
 
   const handleFollowSubmit = () => {
-    followUsers(follow).then(res => props.history.push("/feed"));
+    const data = {
+      follow,
+    }
+    followUsers(data).then(res => props.history.push("/feed"));
     setFollow([]);
   };
 
@@ -142,7 +147,9 @@ function Final(props) {
 
   return (
     <Wrapper>
-      <AnimeSection></AnimeSection>
+      <AnimeSection>
+        <img src={onboard} alt="onboarding" />
+      </AnimeSection>
       <InteractionSection>{view}</InteractionSection>
     </Wrapper>
   );
