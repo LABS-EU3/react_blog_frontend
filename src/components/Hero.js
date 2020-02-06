@@ -5,6 +5,7 @@ import Nav from "./LandingNav";
 import media from "../styles/mediaQueries";
 import { Section, mixins } from "../styles/shared";
 import quill from "../assets/quill.png";
+import { NavLink } from "react-router-dom";
 
 const StyledContainer = styled.div`
   width: 100%;
@@ -66,7 +67,7 @@ const StyledRight = styled.div`
   `}
 `;
 
-const StyledButton = styled.a`
+const StyledButton = styled.div`
   ${mixins.bigButton};
   color: white;
   width: 15rem;
@@ -91,7 +92,7 @@ const Hero = () => {
               for readers on the other end of the spectrum based on their
               preferences.
             </p>
-            <StyledButton>Get Started</StyledButton>
+            <NavLink to="/register"><StyledButton>Get Started</StyledButton></NavLink>
           </StyledLeft>
           <StyledRight>
             <img src={quill} alt="quill" />

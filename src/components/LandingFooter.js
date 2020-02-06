@@ -3,6 +3,7 @@ import styled from "styled-components";
 import theme from "../styles/theme";
 import media from "../styles/mediaQueries";
 import { Section, mixins } from "../styles/shared";
+import { NavLink } from "react-router-dom";
 
 const StyledContainer = styled.div`
   width: 100%;
@@ -19,12 +20,26 @@ const StyledSection = styled(Section)`
   padding-bottom: 8rem;
   min-height: auto;
   width: 100%;
-  li {
+  ${media.tablet`
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  `}
+  li, a {
     font-size: 17.5px;
+    display: flex;
+    flex-direction: column;
+    ${media.tablet`
+    font-size: 14px;
+    padding: .5rem;
+    `}
   }
   h4 {
-    font-family: ${theme.fonts.Muli};
+    font-family: ${theme.fonts.Oswald};
     font-color: black;
+    ${media.tablet`
+    padding: .5rem;
+    font-size: 16px;
+    `}
   }
 `;
 
@@ -47,9 +62,9 @@ export default () => {
         <StyledListContainer>
           <h4>COMPANY</h4>
           <ul>
-            <li>Sign in</li>
-            <li>Register</li>
-            <li>Meet the team</li>
+            <NavLink to="/signin">Sign in</NavLink>
+            <NavLink to="/register">Register</NavLink>
+            <NavLink to="/team">Meet the team</NavLink>
           </ul>
         </StyledListContainer>
       </StyledSection>

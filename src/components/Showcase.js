@@ -7,6 +7,7 @@ import tools from "../assets/tools.png";
 import pattern from "../assets/pattern.png";
 import feed from "../assets/feed.png";
 import highlight from "../assets/highlight.png";
+import { NavLink } from "react-router-dom";
 
 const StyledContainer = styled.div`
   width: 100%;
@@ -58,6 +59,9 @@ const StyledShowCaseIntro = styled.div`
     span {
       color: ${theme.colors.purple};
     }
+    ${media.phablet`
+    font-size: 2.8rem;
+  `}
   }
 `;
 
@@ -74,9 +78,15 @@ const StyledShowCase = styled.div`
 const StyledShowCaseItem = styled.div`
   display: flex;
   justify-content: space-between;
+  ${media.phablet`
+  flex-direction: column;
+`}
   &:nth-of-type(2),
   &:nth-of-type(3) {
     margin-top: 11rem;
+    ${media.phablet`
+    margin-top: 8rem;
+  `}
   }
 
   &:nth-of-type(3) {
@@ -85,15 +95,31 @@ const StyledShowCaseItem = styled.div`
 
   &:nth-of-type(even) {
     flex-direction: row-reverse;
+    ${media.phablet`
+    flex-direction: column;
+  `}
     div.text-container {
       margin-left: 0;
       margin-right: 5rem;
+      ${media.phablet`
+      font-size: 3.7rem;
+      line-height: 4rem;
+      margin-top: 1rem;
+    `}
+    p {
+      ${media.phablet`
+      font-size: 16px;
+    `}
+    }
     }
   }
 
   div.image-container {
     border: 1.5px solid rgba(152, 108, 155, 0.5);
     width: 60%;
+    ${media.phablet`
+    width: 100%;
+  `}
     background: url(${tools});
     opacity: 1;
     z-index: 5;
@@ -105,6 +131,10 @@ const StyledShowCaseItem = styled.div`
     flex-direction: column;
     justify-content: center;
     width: 40%;
+    ${media.phablet`
+    width: 100%;
+    margin-left: 0;
+  `}
     margin-left: 5rem;
     min-height: 100%;
     h4 {
@@ -112,6 +142,11 @@ const StyledShowCaseItem = styled.div`
       font-size: 4.8rem;
       line-height: 4.5rem;
       justify-self: center;
+      ${media.phablet`
+      font-size: 3.7rem;
+      line-height: 4rem;
+      margin-top: 1rem;
+    `}
       span {
         color: ${theme.colors.purple};
       }
@@ -120,6 +155,9 @@ const StyledShowCaseItem = styled.div`
       font-size: ${theme.fontSizes.md};
       margin-top: 2rem;
       line-height: 2.8rem;
+      ${media.phablet`
+      font-size: 16px;
+    `}
     }
   }
   img.showcase {
@@ -142,14 +180,19 @@ const StyledPattern = styled.div`
   max-height: 50px;
   max-width: 50px;
   left: 150px;
+  ${media.tablet`display: none`};
 
+  @media (max-width: 1300px) {
+    display:none;
+  } 
+  
   img {
     object-fit: cover;
     width: 100%;
     position: absolute;
     max-height: 70px;
     max-width: 80px;
-    top: 215rem;
+    top: 222rem;
     z-index: -1;
   }
 
@@ -159,7 +202,7 @@ const StyledPattern = styled.div`
     position: absolute;
     max-height: 70px;
     max-width: 80px;
-    top: 113rem;
+    top: 119rem;
     z-index: -1;
   }
 `;
@@ -167,7 +210,11 @@ const StyledPattern = styled.div`
 const StyledPattern2 = styled.div`
   float: left;
   max-height: 50px;
+  @media (max-width: 1300px) {
+    display:none;
+  } 
   max-width: 50px;
+  ${media.tablet`display: none`};
   margin-left: -3rem;
   img {
     object-fit: cover;
@@ -175,18 +222,18 @@ const StyledPattern2 = styled.div`
     position: absolute;
     max-height: 70px;
     max-width: 80px;
-    top: 164rem;
+    top: 172rem;
     z-index: -1;
   }
 `;
 
 const StyledCTA = styled.div`
-display: flex;
-flex-direction: column;
-margin-top: 3rem;
-align-content: center;
-width: 100%;
-margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  margin-top: 3rem;
+  align-content: center;
+  width: 100%;
+  margin: 0 auto;
   h4 {
     font-size: 4.2rem;
     line-height: 4.5rem;
@@ -194,19 +241,26 @@ margin: 0 auto;
     span {
       color: ${theme.colors.purple};
     }
+    ${media.phablet`
+    font-size: 3.8;
+    text-align: center;
+  `}
   }
   p {
     font-size: ${theme.fontSizes.md};
     margin-top: 2rem;
     line-height: 2.8rem;
     align-self: center;
+    ${media.phablet`
+    font-size: 16px;
+  `}
   }
-  a{
+  a {
     align-self: center;
   }
 `;
 
-const StyledButton = styled.a`
+const StyledButton = styled(NavLink)`
   ${mixins.bigButton};
   color: white;
   width: 15rem;
@@ -288,9 +342,11 @@ const Showcase = () => {
             </div>
           </StyledShowCaseItem>
           <StyledCTA>
-              <h4>And the best part?</h4>
-              <p>It's absolutely free, so sign up to get started with us today.</p>
-              <StyledButton>Get Started</StyledButton>
+            <h4>And the best part?</h4>
+            <p>
+              It's absolutely free, so sign up to get started with us today.
+            </p>
+            <StyledButton to="/register">Get Started</StyledButton>
           </StyledCTA>
         </StyledShowCase>
       </StyledSection>
