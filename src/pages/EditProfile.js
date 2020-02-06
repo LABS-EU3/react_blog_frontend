@@ -115,24 +115,24 @@ const StyledProfileDetails = styled.div`
     .buttons {
       width: 50%;
       display: flex;
-      justify-content: center;
       ${media.tablet`margin-bottom: 2rem; justify-content: space-evenly`};
       button {
         margin-left: 2rem;
         ${media.tablet`margin-left: 0;`};
         &.cancel {
-          ${mixins.secondaryButton}
+          ${mixins.secondaryButton};
+          border-radius: 3px;
         }
         &.save {
           color: white;
-          ${mixins.button}
+          ${mixins.bigButton};
         }
       }
     }
   }
 
   .bio {
-    width: 85%;
+    width: 95%;
     ${media.tablet`margin: auto; text-align: center;`};
     p {
       color: ${theme.colors.textGrey};
