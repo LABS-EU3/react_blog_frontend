@@ -64,13 +64,12 @@ const StyledUserArticles = styled.div`
     }
   }
   .articles {
-    width: 100%;
+    width: 106%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
-    @media (min-width: 300px) and (max-width: 810px) {
-      justify-content: center;
-    }
+    @media (max-width: 620px) and (min-width: 100px){
+      width: 100%;
+  }
   }
 `;
 
