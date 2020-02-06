@@ -165,6 +165,13 @@ export function Profile(props) {
 
               <div className="articles">
                 {!personal &&
+                  !user.articles.map(insight => insight.isPublished).length >
+                    0 && (
+                    <div className="no-articles">
+                      This author hasn't published any articles just yet{" "}
+                    </div>
+                  )}
+                {!personal &&
                   user.articles.map(
                     insight =>
                       insight.isPublished && (
