@@ -31,6 +31,10 @@ const StyledLeft = styled.div`
   width: 100%;
   padding: 3rem;
   `}
+  ${media.phablet`
+  width: 100%;
+  padding: 1.5rem;
+  `}
   h1 {
     font-family: ${theme.fonts.Muli} !important;
     font-size: 40px;
@@ -39,11 +43,18 @@ const StyledLeft = styled.div`
     ${media.tablet`
     font-size: 38px;
     `}
+    ${media.phablet`
+    font-size: 36px;
+    line-height: 45px;
+    `}
   }
   p {
     line-height: 2.4rem;
     font-size: 19px;
     margin-top: 20px;
+    ${media.phablet`
+    font-size: 17px;
+    `}
   }
 `;
 
