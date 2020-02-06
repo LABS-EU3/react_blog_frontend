@@ -104,28 +104,31 @@ const StyledProfileDetails = styled.div`
     }
 
     input {
-      width: 50%;
+      width: 40%;
       border: 1px solid ${theme.colors.lightGrey};
       border-radius: 5px;
-      padding: 1rem;
+      padding: 0.8rem;
       font-size: 18px;
       font-family: ${theme.fonts.Muli};
       color: ${theme.colors.textGrey};
+      ${media.phablet`width: 60%;`};
     }
     .buttons {
-      width: 50%;
+      width: 60%;
       display: flex;
-      ${media.tablet`margin-bottom: 2rem; justify-content: space-evenly`};
+      ${media.tablet`margin-bottom: 2rem; justify-content: center; width: 40%;`};
       button {
         margin-left: 2rem;
         ${media.tablet`margin-left: 0;`};
         &.cancel {
           ${mixins.secondaryButton};
           border-radius: 3px;
+          width: 10rem;
         }
         &.save {
           color: white;
           ${mixins.bigButton};
+          ${media.tablet`margin-right: 2rem;`};
         }
       }
     }
@@ -141,8 +144,8 @@ const StyledProfileDetails = styled.div`
       ${media.tablet`margin: 2rem 0;`};
     }
     textarea {
-      width: 95%;
-      max-width: 95%;
+      width: 91%;
+      max-width: 91%;
       max-height: 18vh;
 
       border: 1px solid ${theme.colors.lightGrey};
@@ -151,7 +154,8 @@ const StyledProfileDetails = styled.div`
       padding: 1rem;
       font-size: 18px;
       font-family: ${theme.fonts.Muli};
-      ${media.tablet`width: 59%; max-width: 59%; margin: 2rem 0;`};
+      ${media.tablet`width: 42%; max-width: 42%; margin: 2rem 0;`};
+      ${media.phablet`width: 62%; max-width: 62%;`};
     }
   }
 
@@ -190,7 +194,7 @@ export function EditProfile(props) {
   const user = props.user.data;
   const loading = props.user.loading;
   const [files, setFiles] = useState([]);
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(true);
   const { subject: currentUserId } = decodeToken();
 
   const handleSave = () => {
