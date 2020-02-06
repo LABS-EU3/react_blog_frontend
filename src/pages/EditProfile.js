@@ -1,223 +1,187 @@
 import React, { useRef, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import Button from "../components/Buttons/Button";
-import { decodeToken } from "../utilities/checkToken";
 import {
-  getUserProfile,
   updateUserProfile,
-  updateUserInterests,
-  getTags
+  followAuthor
 } from "../redux-store/actions/user-profile-actions";
 import Dropzone from "react-dropzone";
 import camera_icon from "../assets/images/Icons/camera-icon.png";
 import userIcon from "../assets/images/usericon.svg";
+import theme from "../styles/theme";
+import media from "../styles/mediaQueries";
+import { mixins } from "../styles/shared";
+import { decodeToken } from "../utilities/checkToken";
 
 const StyledProfile = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
   width: 100%;
-  font-family: Lato;
-  height: 100%;
+  min-height: 40vh;
+  justify-content: space-between;
+  ${media.tablet`min-height: 55vh; flex-direction: column; justify-content: space-evenly; padding: 3rem 0;`};
 `;
-const StyledProfileFollowCount = styled.div`
-  width: 100%;
-  display: flex;
-  border-bottom: 1px solid #dfdfdf;
-  min-height: 10%;
-  .box {
-    padding: 3rem;
-    width: 50%;
-    text-align: center;
-    height: 100%;
-    &.border-right {
-      border-right: 1px solid #dfdfdf;
-    }
-  }
-`;
-const StyledProfileInterests = styled.div`
-  width: 100%;
-  padding: 3rem;
+
+const StyledProfileImg = styled.div`
+  width: 40%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  border-bottom: 1px solid #DFDFDF;
-  /* min-height: 60%; */
-  h1 {
-    font-size: 4rem;
-  }
-  .interest-row {
-    width: 60%;
-    height: 40%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 2rem;
-    p {
-      font-size: 30px;
-    }
-    button {
-      border-radius: 20px;
-      width: 30px;
-      height: 30px;
-      text-align: center;
-      padding: 0;
-      margin-left: 2rem;
-      font-size: 18px;
-      color: #22387d;
-      &:hover {
-        cursor: pointer;
-        background: #ededed;
-        box-shadow: 0px 8px 8px rgba(111, 133, 253, 0.15);
-      }
-      &.clicked {
-        border: 2px solid #6f85fd;
-      }
-    }
-  }
-  .updateInterestsBtns {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    margin-top: 4rem;
-    button {
-      width: 50%;
-      height: 5vh;
-      &.save {
-        margin-right: 2rem;
-      }
-      &.cancel {
-        background: white;
-        color: #22387d;
-        border: 1px solid #22387d;
-        &:hover {
-          background: #ededed;
-        }
-      }
-    }
-  }
-`;
-const StyledProfileInfo = styled.div`
-  width: 100%;
-  /* min-height: 40%; */
-  display: flex;
-  padding: 4rem;
-  flex-direction: column;
-  align-items: center;
-  border-bottom: 1px solid #dfdfdf;
-  .profileImage {
-    width: 15vw;
-    height: 15vw;
-    margin-bottom: 3rem;
-    .imageContainer {
+  ${media.tablet`width: 100%; margin-bottom: 3rem;`};
+  .imageContainer {
+    margin: auto;
+    width: 20vw;
+    height: 20vw;
+    max-width: 225px;
+    max-height: 225px;
+    ${media.phablet`width: 40vw; height: 40vw;`};
+    img {
+      border-radius: 50%;
       width: 100%;
       height: 100%;
-      display: flex;
-      justify-content: center;
-      img {
+      border: 10px solid #fef9e1;
+    }
+    &.dropzone {
+      .dropImg {
         border-radius: 50%;
-        width: 100%;
-        height: 100%;
-        border: 1px solid #dfdfdf;
-      }
-      &.dropzone {
-        .dropImg {
-          border-radius: 50%;
-          border: 1px solid #dfdfdf;
+        border: 10px solid #fef9e1;
+        width: 99%;
+        height: 99%;
+        border-radius: 50%;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        .overlay {
           width: 100%;
           height: 100%;
           border-radius: 50%;
-          background-size: contain;
-          background-position: center;
-          background-repeat: no-repeat;
-          .overlay {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          .camera-icon,
+          p {
+            display: none;
+          }
+          &:hover {
+            cursor: pointer;
+            background-color: rgba(202, 202, 202, 0.7);
             .camera-icon,
             p {
-              display: none;
+              display: block;
+              margin-top: 0;
             }
-            &:hover {
-              cursor: pointer;
-              background-color: rgba(202, 202, 202, 0.7);
-              .camera-icon,
-              p {
-                display: block;
-                margin-top: 0;
-              }
-              .camera-icon {
-                border: none;
-                width: 30%;
-                height: 30%;
-              }
-              p {
-                font-size: 14px;
-                width: 80%;
-              }
+            .camera-icon {
+              border: none;
+              width: 30%;
+              height: 30%;
+            }
+            p {
+              font-size: 14px;
+              width: 80%;
             }
           }
         }
       }
     }
   }
-  .profileDetails {
-    width: 100%;
-    height: 50%;
+`;
+
+const StyledProfileDetails = styled.div`
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  ${media.tablet`flex-direction: column; justify-content: space-evenly; width: 100%;`};
+
+  .info {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    .profileInfo {
-      width: 100%;
+    justify-content: space-between;
+    ${media.tablet`flex-direction: column-reverse; align-items: center;`};
+    h2 {
+      color: ${theme.colors.purple};
+      font-size: ${theme.fontSizes.ttl};
+      font-family: ${theme.fonts.Oswald};
+    }
+
+    input {
+      width: 40%;
+      border: 1px solid ${theme.colors.lightGrey};
+      border-radius: 5px;
+      padding: 0.8rem;
+      font-size: 18px;
+      font-family: ${theme.fonts.Muli};
+      color: ${theme.colors.textGrey};
+      ${media.phablet`width: 60%;`};
+    }
+    .buttons {
+      width: 60%;
       display: flex;
-      flex-direction: column;
-      text-align: center;
-      align-items: center;
-      p {
-        font-size: 21px;
-      }
-      input,
-      textarea {
-        width: 80%;
-        margin-top: 1.5rem;
-        padding: 1rem;
-        border-radius: 5px;
-        border: 1px solid #c6d0eb;
-      }
-      textarea {
-        max-width: 80%;
-        min-width: 80%;
-        max-height: 30vh;
-        min-height: 8vh;
+      ${media.tablet`margin-bottom: 2rem; justify-content: center; width: 40%;`};
+      button {
+        margin-left: 2rem;
+        ${media.tablet`margin-left: 0;`};
+        &.cancel {
+          ${mixins.secondaryButton};
+          border-radius: 3px;
+          width: 10rem;
+        }
+        &.save {
+          color: white;
+          ${mixins.bigButton};
+          ${media.tablet`margin-right: 2rem;`};
+        }
       }
     }
-    .profileButtons {
-      width: 80%;
+  }
+
+  .bio {
+    width: 95%;
+    ${media.tablet`margin: auto; text-align: center;`};
+    p {
+      color: ${theme.colors.textGrey};
+      font-size: ${theme.fontSizes.l};
+      font-family: ${theme.fonts.Muli};
+      ${media.tablet`margin: 2rem 0;`};
+    }
+    textarea {
+      width: 91%;
+      max-width: 91%;
+      max-height: 18vh;
+
+      border: 1px solid ${theme.colors.lightGrey};
+      color: ${theme.colors.textGrey};
+      border-radius: 5px;
+      padding: 1rem;
+      font-size: 18px;
+      font-family: ${theme.fonts.Muli};
+      ${media.tablet`width: 42%; max-width: 42%; margin: 2rem 0;`};
+      ${media.phablet`width: 62%; max-width: 62%;`};
+    }
+  }
+
+  .follow-info {
+    display: flex;
+    ${media.tablet`margin: 2rem auto;`};
+    .box {
       display: flex;
-      margin-top: 1.5rem;
-      justify-content: center;
-      &.editing {
-        justify-content: space-between;
+      flex-direction: column;
+      align-items: center;
+      padding-right: 2rem;
+      &.border-right {
+        margin-right: 2rem;
+        border-right: 1px solid ${theme.colors.purple};
       }
-      button {
-        width: 50%;
-        &.save {
-          margin-right: 2rem;
-        }
-        &.cancel {
-          background: white;
-          color: #22387d;
-          border: 1px solid #22387d;
-          &:hover {
-            background: #ededed;
-          }
-        }
+
+      h6 {
+        color: ${theme.colors.purple};
+        font-size: ${theme.fontSizes.ttl};
+        font-family: ${theme.fonts.Muli};
+        ${media.tablet`margin: 2rem 0;`};
+      }
+      p {
+        color: ${theme.colors.lightGrey};
+        font-size: ${theme.fontSizes.sm};
+        font-family: ${theme.fonts.Oswald};
       }
     }
   }
@@ -226,20 +190,12 @@ const StyledProfileInfo = styled.div`
 export function EditProfile(props) {
   const fullname = useRef();
   const bio = useRef();
-  const { subject: userId } = decodeToken();
-  const {
-    user,
-    loading,
-    getUserProfile,
-    updateUserProfile,
-    updateUserInterests,
-    getTags,
-    tags
-  } = props;
+  const { updateUserProfile, followAuthor, followSuccess } = props;
+  const user = props.user.data;
+  const loading = props.user.loading;
   const [files, setFiles] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
-  const [addInterests, setAddInterests] = useState([]);
-  const [removeInterests, setRemoveInterests] = useState([]);
+  const { subject: currentUserId } = decodeToken();
 
   const handleSave = () => {
     if (
@@ -257,64 +213,25 @@ export function EditProfile(props) {
       if (user.bio !== bio.current.value) {
         data.append("bio", bio.current.value);
       }
-      updateUserProfile(userId, data);
+      updateUserProfile(user.id, data);
     }
     if (!loading) {
       setIsEditing(false);
     }
   };
 
-  const toggleEditing = () => {
-    setIsEditing(!isEditing);
+  const handleFollow = e => {
+    const button = e.target;
+    followAuthor([user.id]).then(res => button.setAttribute("disabled", true));
   };
 
-  const handleInterestClick = e => {
-    if (e.target.name === "add") {
-      setAddInterests(addInterests.concat(e.target.id));
-    } else {
-      setRemoveInterests(removeInterests.concat(e.target.id));
-    }
-    e.target.classList.add("clicked");
-    e.target.setAttribute("disabled", "");
-  };
-
-  const handleInterestCancel = () => {
-    setAddInterests([]);
-    setRemoveInterests([]);
-    document.querySelectorAll(".clicked").forEach(button => {
-      button.removeAttribute("disabled");
-      button.classList.remove("clicked");
-    });
-  };
-
-  const handleInterestSave = e => {
-    let data = {};
-    if (addInterests) {
-      data.add = addInterests;
-    }
-    if (removeInterests.length) {
-      data.remove = removeInterests;
-    }
-    updateUserInterests(data).then(() => {
-      document.querySelectorAll(".clicked").forEach(button => {
-        button.removeAttribute("disabled");
-        button.classList.remove("clicked");
-      });
-      setRemoveInterests([]);
-      setAddInterests([]);
-    });
-  };
-
-  useEffect(() => {
-    getUserProfile(userId);
-    getTags();
-  }, []);
+  useEffect(() => {}, []);
 
   return (
-    <StyledProfile>
+    <>
       {user && (
-        <StyledProfileInfo>
-          <div className="profileImage">
+        <StyledProfile>
+          <StyledProfileImg>
             {!isEditing ? (
               <div className="imageContainer">
                 <img src={user.avatarUrl || userIcon} alt="" />
@@ -357,130 +274,114 @@ export function EditProfile(props) {
                 )}
               </Dropzone>
             )}
-          </div>
-          <div className="profileDetails">
-            <div className={!isEditing ? "profileInfo" : "profileInfo editing"}>
-              {!isEditing ? (
-                <>
-                  <h3>{user.fullname}</h3>
-                  <p>{user.bio}</p>
-                </>
+          </StyledProfileImg>
+          <StyledProfileDetails>
+            <div className="info">
+              {!isEditing && user.fullname ? (
+                <h2>{user.fullname.toUpperCase()}</h2>
               ) : (
-                <>
-                  <input
-                    type="text"
-                    id="fullname"
-                    name="fullname"
-                    placeholder="Full Name"
-                    ref={fullname}
-                    defaultValue={user.fullname || null}
-                  />
-                  <textarea
-                    type="text"
-                    id="bio"
-                    name="bio"
-                    placeholder="Enter a short bio..."
-                    ref={bio}
-                    defaultValue={user.bio || null}
-                  />
-                </>
-              )}
-            </div>
-            <div
-              className={
-                !isEditing ? "profileButtons" : "profileButtons editing"
-              }
-            >
-              {!isEditing ? (
-                <Button
-                  label="Edit Profile"
-                  className="cancel"
-                  handleClick={toggleEditing}
+                <input
+                  type="text"
+                  id="fullname"
+                  name="fullname"
+                  placeholder="Full Name"
+                  ref={fullname}
+                  defaultValue={user.fullname || null}
                 />
-              ) : (
-                <>
-                  <Button
-                    label={!loading ? "Save" : "Loading"}
-                    className="save"
-                    handleClick={handleSave}
-                  />
-                  <Button
-                    label="Cancel"
-                    className="cancel"
-                    handleClick={toggleEditing}
-                  />
-                </>
               )}
-            </div>
-          </div>
-        </StyledProfileInfo>
-      )}
-      {user && (
-        <StyledProfileFollowCount>
-          <div className="box border-right">
-            <p>Following</p>
-            <h3 className="following">{user.following}</h3>
-          </div>
-          <div className="box">
-            <p>Followers</p>
-            <h3 className="followers">{user.followers}</h3>
-          </div>
-        </StyledProfileFollowCount>
-      )}
-      {user && (
-        <StyledProfileInterests>
-          <h1>Interests</h1>
-          {user.interests &&
-            tags &&
-            tags.map(tag => {
-              let interested = user.interests.find(interest => {
-                return interest.name === tag.name;
-              });
-
-              return (
-                <div key={tag.id} className="interest-row">
-                  <p className={interested ? "interested" : "uninterested"}>
-                    {tag.name}
-                  </p>
+              {props.personal ? (
+                <div className="buttons">
+                  {!isEditing ? (
+                    <button
+                      label="Edit Profile"
+                      className="cancel"
+                      onClick={() => setIsEditing(!isEditing)}
+                    >
+                      Edit Profile
+                    </button>
+                  ) : (
+                    <>
+                      <button
+                        label="Save"
+                        className="save"
+                        onClick={handleSave}
+                      >
+                        {!loading ? "Save" : "Loading"}
+                      </button>
+                      <button
+                        label="Cancel"
+                        className="cancel"
+                        onClick={() => setIsEditing(!isEditing)}
+                      >
+                        Cancel
+                      </button>
+                    </>
+                  )}
+                </div>
+              ) : (
+                <div className="buttons">
                   <button
-                    onClick={handleInterestClick}
-                    id={tag.name}
-                    name={interested ? "remove" : "add"}
+                    label="Follow"
+                    className="cancel"
+                    onClick={handleFollow}
+                    disabled={
+                      followSuccess ||
+                      (user.followers && user.followers.includes(currentUserId))
+                    }
                   >
-                    {interested ? "-" : "+"}
+                    {followSuccess ||
+                    (user.followers && user.followers.includes(currentUserId))
+                      ? "Following"
+                      : "Follow"}
                   </button>
                 </div>
-              );
-            })}
-          <div className="updateInterestsBtns">
-            <Button
-              label={!loading ? "Save" : "Loading"}
-              className="save"
-              handleClick={handleInterestSave}
-            />
-            <Button
-              label="Cancel"
-              className="cancel"
-              handleClick={handleInterestCancel}
-            />
-          </div>
-        </StyledProfileInterests>
+              )}
+            </div>
+            <div className="bio">
+              {!isEditing ? (
+                <p>{user.bio}</p>
+              ) : (
+                <textarea
+                  type="text"
+                  id="bio"
+                  name="bio"
+                  placeholder="Enter a short bio..."
+                  ref={bio}
+                  defaultValue={user.bio || null}
+                />
+              )}
+            </div>
+            <div className="follow-info">
+              <div className="box border-right">
+                <h6>{user.following && user.following.length}</h6>
+                <p>FOLLOWING</p>
+              </div>
+              <div className="box border-right">
+                <h6>{user.followers && user.followers.length}</h6>
+                <p>FOLLOWERS</p>
+              </div>
+              <div className="box">
+                <h6>
+                  {props.user.articles &&
+                    props.user.articles.filter(a => a.isPublished === true)
+                      .length}
+                </h6>
+                <p>INSIGHTS</p>
+              </div>
+            </div>
+          </StyledProfileDetails>
+        </StyledProfile>
       )}
-    </StyledProfile>
+    </>
   );
 }
 
 const mapStateToProps = state => {
   return {
-    user: state.userProfile.data,
-    loading: state.userProfile.loading,
-    tags: state.userProfile.tags
+    followSuccess: state.userProfile.followAuthorSuccess
   };
 };
 
-export default connect(mapStateToProps, {
-  getUserProfile,
-  updateUserProfile,
-  updateUserInterests,
-  getTags
-})(EditProfile);
+export default connect(mapStateToProps, { updateUserProfile, followAuthor })(
+  EditProfile
+);
