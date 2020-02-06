@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import readTime from "../utilities/readTime";
 import theme from "../styles/theme";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import media from "../styles/mediaQueries";
 import moment from "moment";
 
@@ -15,7 +15,8 @@ const StyledRegCard = styled.div`
   max-width: 260px;
   box-shadow: 3px 4px 20px rgba(0, 0, 0, 0.1);
   margin-bottom: 2rem;
-  ${media.phablet`max-width: 400px;`};
+  ${media.tablet`max-width: 380px; margin-bottom: 3rem;`};
+  cursor: pointer;
 `;
 
 const StyledRegImageContainer = styled.div`
@@ -29,7 +30,7 @@ const StyledRegImageContainer = styled.div`
     width: 100%;
     margin: 0 auto;
   }
-${media.phablet`height: 30vh`};
+  ${media.phablet`height: 30vh`};
 `;
 
 const StyledRegTextContent = styled.div`
@@ -46,80 +47,96 @@ const StyledRegTextContent = styled.div`
   }
 
   .info {
-      p {
-        font-size: ${theme.fontSizes.sm};
-        color: ${theme.colors.purple};
-      }
-      margin-bottom: 1rem;
-      overflow: hidden;
+    p {
+      font-size: ${theme.fontSizes.sm};
+      color: ${theme.colors.purple};
+    }
+    margin-bottom: 1rem;
+    overflow: hidden;
   }
 
   .snippet {
-      p {
-        font-size: ${theme.fontSizes.xs};
-        color: ${theme.colors.lightGrey};
-      }
+    p {
+      font-size: ${theme.fontSizes.xs};
+      color: ${theme.colors.lightGrey};
+    }
   }
   .crud-btns {
     display: flex;
     justify-content: space-between;
 
     button {
-        border: none;
-        font-size: ${theme.fontSizes.xs};
-        color: ${theme.colors.purple};
-        font-family: ${theme.fonts.Oswald};
-        cursor: pointer;
+      border: none;
+      font-size: ${theme.fontSizes.xs};
+      color: ${theme.colors.purple};
+      font-family: ${theme.fonts.Oswald};
+      cursor: pointer;
     }
   }
 `;
 
 export default function ProfileCard(props) {
-    const { insight, personal, setArticleToDelete, setModalOpen } = props;
-    const [vw, setVw] = useState(200);
-    const setWidth = () => {
-        window.innerWidth <= 540 ? setVw(window.innerWidth/2) : setVw(window.innerWidth / 8);
-    };
-    window.addEventListener("resize", setWidth);
-    const history = useHistory();
-    return (
-        <>
-      {/* <Link to={`/article/${insight.custom_id}`}> */}
-        <StyledRegCard>
-          <StyledRegImageContainer>
-            <img src={insight.coverImageUrl} alt={insight.title} />
-          </StyledRegImageContainer>
-          <StyledRegTextContent>
-              <div className= "header">
+  const { insight, personal, setArticleToDelete, setModalOpen } = props;
+  const [vw, setVw] = useState(200);
+  const setWidth = () => {
+    window.innerWidth <= 540
+      ? setVw(window.innerWidth / 2)
+      : setVw(window.innerWidth / 8);
+  };
+  window.addEventListener("resize", setWidth);
+  const history = useHistory();
+  return (
+    <>
+      <StyledRegCard
+        onClick={e =>
+          e.target.name !== "edit" &&
+          history.push(`/article/${insight.custom_id}`)
+        }
+      >
+        <StyledRegImageContainer>
+          <img src={insight.coverImageUrl} alt={insight.title} />
+        </StyledRegImageContainer>
+        <StyledRegTextContent>
+          <div className="header">
             <h5>
               {insight.title.split("").length > 40
                 ? `${insight.title.substring(0, 40)}...`
                 : insight.title}
             </h5>
-              </div>
-            <div className="info">
-              <p>{moment(insight.createdAt).format('ll')}</p>
-            </div>
-            <div className="snippet">
-              <p>
-                {JSON.parse(insight.body)
-                  .find(block => block.type === "paragraph")
-                  .data.text.substring(0, vw)}
-                ...
-              </p>
-            </div>
-            {personal && <div className="crud-btns">
-                <button onClick={() => history.push(`/article/${insight.custom_id}/edit`)}>EDIT</button>
-                <button
+          </div>
+          <div className="info">
+            <p>{moment(insight.createdAt).format("ll")}</p>
+          </div>
+          <div className="snippet">
+            <p>
+              {JSON.parse(insight.body)
+                .find(block => block.type === "paragraph")
+                .data.text.substring(0, vw)}
+              ...
+            </p>
+          </div>
+          {personal && (
+            <div className="crud-btns">
+              <button
+                onClick={() =>
+                  history.push(`/article/${insight.custom_id}/edit`)
+                }
+                name="edit"
+              >
+                EDIT
+              </button>
+              <button
                 onClick={() => {
-                    setModalOpen(true);
-                    setArticleToDelete(insight.id);
-                  }}
-                >DELETE</button>
-            </div>}
-          </StyledRegTextContent>
-        </StyledRegCard>
-      {/* </Link> */}
-      </>
-    );
-  }
+                  setModalOpen(true);
+                  setArticleToDelete(insight.id);
+                }}
+              >
+                DELETE
+              </button>
+            </div>
+          )}
+        </StyledRegTextContent>
+      </StyledRegCard>
+    </>
+  );
+}
