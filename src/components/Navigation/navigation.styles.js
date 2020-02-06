@@ -52,6 +52,7 @@ export const AuthButtons = styled.div`
 
 export const Control = styled.div`
   display: flex;
+  height: 100%;
   flex-basis: auto;
   div,
   .write-button {
@@ -81,10 +82,14 @@ export const Control = styled.div`
   .search {
     display: flex;
     margin-auto: 0 auto;
-
-    .s-icon {
+    box-sizing:border-box;
+    height: 100%;
+    img {
       margin: 0 auto;
-      width: 100%;
+      object-fit: cover;
+      padding: 1rem;
+      height: auto;
+      width: 42px;
     }
   }
 `;
