@@ -95,7 +95,7 @@ export default () => {
         </div>
         <div className="right">
           <NavLink to="/register">Register</NavLink>
-          <NavLink to="/signin">Sign In</NavLink>
+          <NavLink to="/login">Sign In</NavLink>
         </div>
       </StyledNav>
     </StyledContainer>

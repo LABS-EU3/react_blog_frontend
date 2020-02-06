@@ -270,6 +270,9 @@ const StyledButton = styled(NavLink)`
   box-sizing: border-box;
   margin-top: 40px;
   width: 25rem;
+  ${media.phablet`
+  font-size: 1.4rem;
+`}
 `;
 
 const Showcase = () => {

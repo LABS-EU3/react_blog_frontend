@@ -62,7 +62,7 @@ export default () => {
         <StyledListContainer>
           <h4>COMPANY</h4>
           <ul>
-            <NavLink to="/signin">Sign in</NavLink>
+            <NavLink to="/login">Sign in</NavLink>
             <NavLink to="/register">Register</NavLink>
             <NavLink to="/team">Meet the team</NavLink>
           </ul>
