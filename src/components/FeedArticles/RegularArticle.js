@@ -101,11 +101,13 @@ export default function RegularCard({ insight }) {
               ? `${insight.title.substring(0, 40)}...`
               : insight.title}
           </h5>
-        <p className="tag">{insight.tags[0].name.toUpperCase()}</p>
+        {/* <p className="tag">{insight.tags[0].name.toUpperCase()}</p> */}
 
             </div>
           <div className="info">
-            <p>{insight.author}</p>
+          <Link to={`/profile/${insight.authorId}`}>
+             <p>{insight.author}</p>
+          </Link>
             <p>{`${readTime(insight.body)} min read`}</p>
           </div>
           <div className="snippet">

@@ -149,7 +149,9 @@ export default function TrendingCard(props) {
               : insight.title}
           </h5>
           <div className={`info ${type}`}>
-            <p>{insight.author}</p>
+          <Link to={`/profile/${insight.authorId}`}>
+             <p>{insight.author.toUpperCase()}</p>
+          </Link>
             <p>
               {(type === "jumbo" || type === "reg") &&
                 moment(insight.createdAt).format('ll')}
