@@ -112,6 +112,13 @@ export const Body = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  h4, h4 {
+    font-size: ${theme.fontSizes.lg}
+    ${media.phablet`
+    font-size: 18px;
+    padding: 1rem;
+    ;`}
+  }
   p {
     font-size: 16px;
     font-weight: 400;
@@ -166,6 +173,7 @@ export const HiglightsTitle = styled.h4`
   ${media.phablet`
   font-size: ${theme.fontSizes.l};
   ;`}
+  margin-bottom: 1.4rem;
 `;
 
 export const Hightlight = styled.div`
@@ -214,6 +222,8 @@ export const TagsAndLikes = styled.div`
     top: 0;
     left: 0
     display: flex;
+    max-width: 100%;
+    flex-wrap: wrap;
     `}
     p {
       margin-right: 0.55rem;

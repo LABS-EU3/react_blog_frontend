@@ -78,6 +78,15 @@ export const Control = styled.div`
       height: 32px;
     }
   }
+  .search {
+    display: flex;
+    margin-auto: 0 auto;
+
+    .s-icon {
+      margin: 0 auto;
+      width: 100%;
+    }
+  }
 `;
 
 export const StandLogo = styled.div`

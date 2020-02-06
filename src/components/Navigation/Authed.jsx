@@ -75,7 +75,7 @@ function Authed(props) {
     <FixedContainer>
       <NavWrapper>
         <StandLogo>
-          <Link to="/">
+          <Link to="/feed">
             <img alt="insight logo" src={insight} />
           </Link>
         </StandLogo>
@@ -86,8 +86,8 @@ function Authed(props) {
         <Control>
           {location.pathname !== "/search" &&
             location.pathname.split("/")[1] !== "article" && (
-              <div style={{ color: "#A9A9A9" }} onClick={handleSearchClick}>
-                <Icon icon={search} size={24} />
+              <div style={{ color: "#A9A9A9" }} onClick={handleSearchClick} className="search">
+                <Icon icon={search} size={24} className="s-icon"/>
               </div>
             )}
           <div className="write-button">
@@ -98,12 +98,6 @@ function Authed(props) {
             {props.saveButton && (
               <Button label="Save" handleClick={props.handleSave} secondary />
             )}
-          </div>
-          <div
-            className="notification"
-            style={{ color: "#A9A9A9", paddingTop: "2px" }}
-          >
-            <Icon icon={bell} size={24} />
           </div>
           <div className="avatar">
             <ProfileImageDropdown />
