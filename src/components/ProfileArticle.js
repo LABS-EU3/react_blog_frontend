@@ -85,7 +85,7 @@ const StyledRegTextContent = styled.div`
 
 export default function ProfileCard(props) {
   const { insight, personal, setArticleToDelete, setModalOpen } = props;
-  const [vw, setVw] = useState(window.innerWidth / 9);
+  const [vw, setVw] = useState(window.innerWidth < 540 ? window.innerWidth / 2 : window.innerWidth / 9);
   const setWidth = () => {
     window.innerWidth <= 540
       ? setVw(window.innerWidth / 2)
