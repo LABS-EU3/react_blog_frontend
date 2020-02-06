@@ -45,6 +45,11 @@ export const RightSection = styled.div`
 
   a {
     color: #986C9B;
+    cursor: pointer;
+
+    &:hover {
+      color: #986C9B;
+    }
   }
 
   img {
