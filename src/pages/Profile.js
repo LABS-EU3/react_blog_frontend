@@ -61,15 +61,21 @@ const StyledUserArticles = styled.div`
       font-size: ${theme.fontSizes.xxl};
       font-family: ${theme.fonts.Oswald};
       font-weight: bold !important;
+      ${media.mobile`font-size: ${theme.fontSizes.l}`};
     }
   }
   .articles {
-    width: 100%;
+    width: 106%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
-    @media (min-width: 300px) and (max-width: 810px) {
-      justify-content: center;
+    @media (max-width: 620px) and (min-width: 100px) {
+      width: 100%;
+    }
+    .no-articles {
+      width: 80%;
+      a {
+        color: ${theme.colors.purple};
+      }
     }
   }
 `;
@@ -165,21 +171,32 @@ export function Profile(props) {
 
               <div className="articles">
                 {!personal &&
-                  !user.articles.map(insight => insight.isPublished).length >
-                    0 && (
-                    <div className="no-articles">
-                      This author hasn't published any articles just yet{" "}
-                    </div>
-                  )}
-                {!personal &&
+                user.articles.map(insight => insight.isPublished).length ===
+                  0 ? (
+                  <div className="no-articles">
+                    This author hasn't published any articles just yet{" "}
+                    <span role="img" aria-label="img">
+                       😔
+                    </span>{" "}
+                    Make sure to follow them to stay in the loop!
+                  </div>
+                ) : (
                   user.articles.map(
                     insight =>
                       insight.isPublished && (
                         <ProfileArticle insight={insight} personal={personal} />
                       )
-                  )}
+                  )
+                )}
                 {personal &&
-                  clicked === "published" &&
+                clicked === "published" &&
+                user.articles.map(insight => insight.isPublished).length ===
+                  0 ? (
+                  <div className="no-articles">
+                    You have no articles published just yet. Head over to our{" "}
+                    <a href="/create">editor</a> to get started.
+                  </div>
+                ) : (
                   user.articles.map(
                     insight =>
                       insight.isPublished && (
@@ -190,9 +207,16 @@ export function Profile(props) {
                           setModalOpen={setModalOpen}
                         />
                       )
-                  )}
+                  )
+                )}
                 {personal &&
-                  clicked === "drafts" &&
+                clicked === "drafts" &&
+                user.articles.map(insight => insight.isEditing).length === 0 ? (
+                  <div className="no-articles">
+                    You have no drafts just yet. Head over to our{" "}
+                    <a href="/create">editor</a> to get started.
+                  </div>
+                ) : (
                   user.articles.map(
                     insight =>
                       insight.isEditing && (
@@ -203,7 +227,8 @@ export function Profile(props) {
                           setModalOpen={setModalOpen}
                         />
                       )
-                  )}
+                  )
+                )}
               </div>
             </>
           )}
