@@ -240,7 +240,6 @@ export const TagsAndLikes = styled.div`
       ${media.midpc`
       display: flex;
       margin-left: .75rem;
-      margin-top: -4rem;
       `}
     }
     svg {
