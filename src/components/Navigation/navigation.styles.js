@@ -84,6 +84,7 @@ export const Control = styled.div`
     margin-auto: 0 auto;
     box-sizing:border-box;
     height: 100%;
+    margin-right: -1rem;
     img {
       margin: 0 auto;
       object-fit: cover;
