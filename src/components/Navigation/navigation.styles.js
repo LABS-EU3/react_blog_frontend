@@ -52,6 +52,7 @@ export const AuthButtons = styled.div`
 
 export const Control = styled.div`
   display: flex;
+  height: 100%;
   flex-basis: auto;
   div,
   .write-button {
@@ -76,6 +77,20 @@ export const Control = styled.div`
       border-radius: 50%;
       width: 32px;
       height: 32px;
+    }
+  }
+  .search {
+    display: flex;
+    margin-auto: 0 auto;
+    box-sizing:border-box;
+    height: 100%;
+    margin-right: -1rem;
+    img {
+      margin: 0 auto;
+      object-fit: cover;
+      padding: 1rem;
+      height: auto;
+      width: 42px;
     }
   }
 `;

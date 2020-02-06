@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import theme from "../styles/theme";
 import { mixins } from "../styles/shared";
+import { Link } from "react-router-dom";
 
 const StyledCard = styled.div`
   display: flex;
@@ -54,6 +55,7 @@ const interests = ['Sports', 'Technology', 'Gaming', 'Lifestyle'] //hardcoding t
 
 const UserCard = ({ user }) => {
   return (
+    <Link to={`/author/${user.id}`}>
     <StyledCard>
       <StyledImageContainer>
         <img
@@ -72,6 +74,7 @@ const UserCard = ({ user }) => {
         </div>
       </StyledTextContent>
     </StyledCard>
+    </Link> 
   );
 };
 
