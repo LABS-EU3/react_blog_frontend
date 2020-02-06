@@ -194,7 +194,7 @@ export function EditProfile(props) {
   const user = props.user.data;
   const loading = props.user.loading;
   const [files, setFiles] = useState([]);
-  const [isEditing, setIsEditing] = useState(true);
+  const [isEditing, setIsEditing] = useState(false);
   const { subject: currentUserId } = decodeToken();
 
   const handleSave = () => {
