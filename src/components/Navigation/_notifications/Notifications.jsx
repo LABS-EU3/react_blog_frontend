@@ -7,7 +7,7 @@ import TinyAvatar from '../../../assets/random-avatar.jpeg'
 // import Pusher from 'pusher-js';
 import { getNotifications} from '../../../redux-store/actions/get-notifications';
 // import { getToken } from '../../../utilities/authentication'
-import { pusher, notifications_channel } from '../../../utilities/pusherConfiguration';
+// import { pusher, notifications_channel } from '../../../utilities/pusherConfiguration';
 
 export default function ProfileImageDropdown(props) {
     const [isOpen, setIsOpen] = useState(false);
@@ -19,9 +19,9 @@ export default function ProfileImageDropdown(props) {
     }, []);
 
 
-    notifications_channel.bind('new-notification', data => {
-        setNotifications(notifications.concat(data.notification))
-    }, this);
+    // notifications_channel.bind('new-notification', data => {
+    //     setNotifications(notifications.concat(data.notification))
+    // }, this);
 
 
     function toggleDropdown() {
