@@ -38,6 +38,15 @@ export const RightSection = styled.div`
   display: flex;
   flex-direction: column;
 
+  p {
+    margin-top: 1rem;
+    margin-left: 3.5rem;
+  }
+
+  a {
+    color: #986C9B;
+  }
+
   img {
     width: 100%;
     height: 100%;
