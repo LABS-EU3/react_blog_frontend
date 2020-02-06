@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import logo from "../assets/logo-gradient.png";
+import { mixins } from "../styles/shared";
 
 const Container = styled.div`
   display: flex;
@@ -16,34 +17,22 @@ const Container = styled.div`
     text-align: center;
     margin-bottom: 2rem;
     width: 80%;
+    line-height: 1.5em;
   }
   .buttons {
     width: 80%;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     button {
-      width: 40%;
-      height: 30px;
-      border: none;
-      font-size: 16px;
-      border-radius: 2px;
-      &.confirm {
-        background-color: #e17878;
-        border: 1px solid #c85959;
-        color: white;
-        &:hover {
-          background-color: #b85050;
-          cursor: pointer;
-        }
-      }
       &.cancel {
-        background: white;
-        color: #22387d;
-        border: 1px solid #22387d;
-        &:hover {
-          background: #ededed;
-          cursor: pointer;
-        }
+        padding: 1rem 2rem !important;
+        ${mixins.secondaryButton};
+        border-radius: 3px;
+        margin-left: 3rem;
+      }
+      &.confirm {
+        color: white;
+        ${mixins.bigButton};
       }
     }
   }
