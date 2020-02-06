@@ -37,6 +37,8 @@ const StyledRegTextContent = styled.div`
   display: flex;
   color: black;
   flex-direction: column;
+  height: 70%;
+  justify-content: space-between;
 
   h5 {
     font-size: ${theme.fontSizes.sm};
