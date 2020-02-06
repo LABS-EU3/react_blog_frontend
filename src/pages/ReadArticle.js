@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import Loader from "./Loader";
 import {
   Wrapper,
   Details,
@@ -25,7 +26,13 @@ import Reactions from "./Reactions";
 import { getToken } from "../utilities/authentication";
 
 const ReadArticle = props => {
-  const { getSingleArticle, singleArticle, location, postLike } = props;
+  const {
+    getSingleArticle,
+    singleArticle,
+    location,
+    postLike,
+    loading
+  } = props;
   useEffect(() => {
     const getArticle = () => {
       const params = location.pathname;
@@ -35,7 +42,7 @@ const ReadArticle = props => {
       const data = {
         token,
         article_id
-      }
+      };
       getSingleArticle(data);
     };
     getArticle();
@@ -56,7 +63,6 @@ const ReadArticle = props => {
   });
   const message = text.join("");
 
-
   const synth = window.speechSynthesis;
 
   const queue = (text, rate, pitch, voiceIndex) => {
@@ -73,76 +79,97 @@ const ReadArticle = props => {
 
   const handlePause = () => {
     synth.pause();
-  }
+  };
 
   const handleResume = () => {
     synth.resume();
-  }
-
+  };
+  console.log(loading, "loading");
   return (
     <>
       <NavBar />
-      <Wrapper>
-        <CoverImageContainer>
-          <img src={singleArticle.coverImageUrl} alt={singleArticle.title} />
-        </CoverImageContainer>
-        <StyledArticleTitle>{singleArticle.title}</StyledArticleTitle>
-        <DetailsContainer>
-          <div>
-            <p>by </p>
-            <span className="authorName">
-              {singleArticle.authorName}
-            </span> -{" "}
-            {singleArticle.body && (
-              <span className="readTime">
-                {" "}
-                {`${readTime(singleArticle.body)} min read`}
-              </span>
-            )}
-          </div>
-          <div className="speech">
-            <img onClick={handlePause} src={pause} title="pause" alt="read out text aloud" />
-            <img className="speak" onClick={handleSpeak} src={speak} title="speak" alt="read out text aloud" />
-            <img onClick={handleResume} src={play} title="continue" alt="read out text aloud" />
-          </div>
-        </DetailsContainer>
-        <Details></Details>
-        <Highligter article={singleArticle}>
-          <Body>{Renderer(content)}</Body>
-        </Highligter>
-        <TagsAndLikes hasLiked={singleArticle.hasLiked}>
-          {singleArticle.tags && (
-            <div className="tags">
-              {singleArticle.tags.map((tag, index) => (
-                <p key={index}>#{tag.name}</p>
-              ))}
+      {loading && typeof singleArticle.title === "undefined" ? (
+        <Loader />
+      ) : (
+        <Wrapper>
+          <CoverImageContainer>
+            <img src={singleArticle.coverImageUrl} alt={singleArticle.title} />
+          </CoverImageContainer>
+          <StyledArticleTitle>{singleArticle.title}</StyledArticleTitle>
+          <DetailsContainer>
+            <div>
+              <p>by </p>
+              <span className="authorName">
+                {singleArticle.authorName}
+              </span> -{" "}
+              {singleArticle.body && (
+                <span className="readTime">
+                  {" "}
+                  {`${readTime(singleArticle.body)} min read`}
+                </span>
+              )}
             </div>
-          )}
-          <div className="likes">
-            <Like
-              hasLiked={singleArticle.hasLiked}
-              articleId={singleArticle.id}
-              handleLike={handleLike}
-            />
-            <p>
-              {singleArticle.likeCount
-                ? singleArticle.likeCount > 1
-                  ? `${singleArticle.likeCount} likes`
-                  : `${singleArticle.likeCount} like`
-                : "0 likes"}
-              {}
-            </p>
-          </div>
-        </TagsAndLikes>
-        <Reactions {...props} />
-      </Wrapper>
+            <div className="speech">
+              <img
+                onClick={handlePause}
+                src={pause}
+                title="pause"
+                alt="read out text aloud"
+              />
+              <img
+                className="speak"
+                onClick={handleSpeak}
+                src={speak}
+                title="speak"
+                alt="read out text aloud"
+              />
+              <img
+                onClick={handleResume}
+                src={play}
+                title="continue"
+                alt="read out text aloud"
+              />
+            </div>
+          </DetailsContainer>
+          <Details></Details>
+          <Highligter article={singleArticle}>
+            <Body>{Renderer(content)}</Body>
+          </Highligter>
+          <TagsAndLikes hasLiked={singleArticle.hasLiked}>
+            {singleArticle.tags && (
+              <div className="tags">
+                {singleArticle.tags.map((tag, index) => (
+                  <p key={index}>#{tag.name}</p>
+                ))}
+              </div>
+            )}
+            <div className="likes">
+              <Like
+                hasLiked={singleArticle.hasLiked}
+                articleId={singleArticle.id}
+                handleLike={handleLike}
+              />
+              <p>
+                {singleArticle.likeCount
+                  ? singleArticle.likeCount > 1
+                    ? `${singleArticle.likeCount} likes`
+                    : `${singleArticle.likeCount} like`
+                  : "0 likes"}
+                {}
+              </p>
+            </div>
+          </TagsAndLikes>
+          <Reactions {...props} />
+        </Wrapper>
+      )}
     </>
   );
 };
 
 const mapStateToProps = store => {
   return {
-    singleArticle: store.articles.singleArticle
+    singleArticle: store.articles.singleArticle,
+    loading: store.articles.loading
   };
 };
 
