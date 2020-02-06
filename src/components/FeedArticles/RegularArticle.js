@@ -22,7 +22,7 @@ const StyledRegCard = styled.div`
     flex-direction: column;
     width: 90%;
   }
-  ${media.phablet`padding: 2rem`}
+  ${media.phablet`padding: 2rem; flex-direction: column;`}
 `;
 
 const StyledRegImageContainer = styled.div`
@@ -40,7 +40,7 @@ const StyledRegImageContainer = styled.div`
     width: 100%;
     margin-top: 1rem;
   }
-  ${media.phablet`height: 15vh`};
+  ${media.phablet`height: 15vh; width: 100%;margin-bottom: 1rem;`};
 `;
 
 const StyledRegTextContent = styled.div`
@@ -50,7 +50,7 @@ const StyledRegTextContent = styled.div`
   flex-direction: column;
   width: 65%;
   justify-content: space-between;
-  ${media.phablet`height: 15vh; padding: 0`}
+  ${media.phablet`height: 15vh; padding: 0; width: 100%`}
   .header {
     display: flex;
     justify-content: space-between;
