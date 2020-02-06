@@ -1,18 +1,23 @@
 import styled from "styled-components";
+import media from "../../styles/mediaQueries";
 
 export const Wrapper = styled.div`
   display: flex;
   width: 100%;
   height: 100vh;
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  // box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
 `;
 
 export const AnimeSection = styled.div`
   flex: 1;
   background: #f8d96d;
 
+  ${media.phablet`
+    display: none;
+  ;`}
+
   img {
-    width: 650px;
+    width: 600px;
     margin-top: 7rem;
   }
 `;
@@ -20,14 +25,39 @@ export const AnimeSection = styled.div`
 export const InteractionSection = styled.div`
   flex: 2;
   width: 70%
+
+  ${media.phablet`
+    width: 100%;
+  ;`}
+
   background: #FFF;
   div {
     width: 85%;
+
+    ${media.phablet`
+      width: 100%
+      margin-top: 5rem;
+    ;`}
+
     margin: auto;
     margin-top: 16rem;
     .intro {
       margin-left: 2rem;
       width: 700px;
+
+      ${media.phablet`
+        width: 90%
+
+        h3 {
+          font-size: 17px;
+        }
+
+        small {
+          font-size: 12px;
+          text-align: center;
+        }
+      ;`}
+
       h3 {
         color: #272424;
         font-size: 28px;
