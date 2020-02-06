@@ -78,7 +78,7 @@ function Register({
       </LeftSection>
       <RightSection>
         <RightSectionLogo>
-          <img src={FormLogo} alt="logo" />
+          <Link to="/"><img src={FormLogo} alt="logo" /></Link>
         </RightSectionLogo>
         <RightSectionForm>
           <div className="title-as-an-img">
@@ -139,10 +139,10 @@ function Register({
             className="float-right-btn"
           />
         </RightSectionForm>
-        <p>
+        <p style={{fontSize: "16px"}}>
           {" "}
           Already have an account? &nbsp;
-          <Link to="/login"> Login here </Link>{" "}
+          <Link to="/login">Login here </Link>{" "}
         </p>
       </RightSection>
     </StyledAuthWrapper>
