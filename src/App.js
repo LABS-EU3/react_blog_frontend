@@ -1,6 +1,8 @@
 import React from "react";
 import Home from "./pages/Home";
-import Register from "./pages/Register";
+// import Register from "./pages/Register";
+import Register from "./pages/RedesignSignup";
+
 import { Route, Redirect, Switch } from "react-router-dom";
 import Editor from "./pages/Editor";
 import DraftEditor from "./pages/DraftEditor";
