@@ -15,8 +15,8 @@ const StyledSection = styled(Section)`
   align-content: center;
   justify-content: space-between;
   max-width: 1200px;
-  padding-top: 7rem;
-  padding-bottom: 7rem;
+  padding-top: 8rem;
+  padding-bottom: 8rem;
   min-height: auto;
   width: 100%;
   li {

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import theme from "../styles/theme";
+import Nav from "./LandingNav";
 import media from "../styles/mediaQueries";
 import { Section, mixins } from "../styles/shared";
 import quill from "../assets/quill.png";
@@ -17,6 +18,7 @@ const StyledSection = styled(Section)`
   align-content: center;
   justify-content: center;
   max-width: 1200px;
+  margin-top: -2rem;
 `;
 
 const StyledLeft = styled.div`
@@ -25,11 +27,18 @@ const StyledLeft = styled.div`
   justify-content: center;
   height: 100%;
   width: 65%;
+  ${media.tablet`
+  width: 100%;
+  padding: 3rem;
+  `}
   h1 {
     font-family: ${theme.fonts.Muli} !important;
     font-size: 40px;
     line-height: 50px;
     color: #000000;
+    ${media.tablet`
+    font-size: 38px;
+    `}
   }
   p {
     line-height: 2.4rem;
@@ -41,8 +50,10 @@ const StyledLeft = styled.div`
 const StyledRight = styled.div`
   display: flex;
   align-self: center;
+  ${media.tablet`
+  display:none;
+  `}
 `;
-
 
 const StyledButton = styled.a`
   ${mixins.bigButton};
@@ -57,22 +68,26 @@ const StyledButton = styled.a`
 
 const Hero = () => {
   return (
-    <StyledContainer>
-      <StyledSection>
-        <StyledLeft>
-          <h1>Explore minds and connect with people through writing.</h1>
-          <p>
-            Insightly connects writers with readers by providing a flexible
-            environment for publishing, and then curates reading experiences for
-            readers on the other end of the spectrum based on their preferences.
-          </p>
-          <StyledButton>Get Started</StyledButton>
-        </StyledLeft>
-        <StyledRight>
-          <img src={quill} alt="quill" />
-        </StyledRight>
-      </StyledSection>
-    </StyledContainer>
+    <>
+      <Nav />
+      <StyledContainer>
+        <StyledSection>
+          <StyledLeft>
+            <h1>Explore minds and connect with people through writing.</h1>
+            <p>
+              Insightly connects writers with readers by providing a flexible
+              environment for publishing, and then curates reading experiences
+              for readers on the other end of the spectrum based on their
+              preferences.
+            </p>
+            <StyledButton>Get Started</StyledButton>
+          </StyledLeft>
+          <StyledRight>
+            <img src={quill} alt="quill" />
+          </StyledRight>
+        </StyledSection>
+      </StyledContainer>
+    </>
   );
 };
 
