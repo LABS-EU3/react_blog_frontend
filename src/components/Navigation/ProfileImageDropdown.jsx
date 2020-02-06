@@ -29,6 +29,7 @@ export default function ProfileImageDropdown(props) {
                      </li>
                      <li className="list-item-separator"></li>
                      <li className="dropdown-links">
+                         <Link to="/profile">Profile</Link>
                          <Link to="/create">New Insight</Link>
                          <Link to="/feed">Insights</Link>
                          <button onClick={logout}>Logout</button>
