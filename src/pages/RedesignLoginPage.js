@@ -34,7 +34,7 @@ export default function RedesignedLogin({ register, loading, success, location, 
                     <input placeholder="Password" />
                 </div>
             </div>
-            <Button label="Login" className="float-right-btn" />
+            <Button label="Sign In" className="float-right-btn" />
         </RightSectionForm>
       </RightSection>
           
