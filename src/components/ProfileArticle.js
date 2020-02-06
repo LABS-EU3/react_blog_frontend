@@ -10,12 +10,19 @@ const StyledRegCard = styled.div`
   box-shadow: 3px 4px 20px rgba(0, 0, 0, 0.1);
   flex-direction: column;
   align-content: center;
-  width: 100%;
-  max-width: 260px;
+  width: 30%;
   box-shadow: 3px 4px 20px rgba(0, 0, 0, 0.1);
-  margin-bottom: 2rem;
-  ${media.tablet`max-width: 380px; margin-bottom: 3rem;`};
+  margin-bottom: 3rem;
+  padding-bottom: 1rem;
+  ${media.tablet`width: 45%; margin-right: 3rem;`};
   cursor: pointer;
+  max-height: 500px;
+  overflow-y: hidden;
+  margin-right: 2rem;
+ @media (max-width: 620px) and (min-width: 100px){
+     width: 100%;
+     margin-right: 0;
+ }
 `;
 
 const StyledRegImageContainer = styled.div`
@@ -78,11 +85,11 @@ const StyledRegTextContent = styled.div`
 
 export default function ProfileCard(props) {
   const { insight, personal, setArticleToDelete, setModalOpen } = props;
-  const [vw, setVw] = useState(200);
+  const [vw, setVw] = useState(window.innerWidth / 9);
   const setWidth = () => {
     window.innerWidth <= 540
       ? setVw(window.innerWidth / 2)
-      : setVw(window.innerWidth / 8);
+      : setVw(window.innerWidth / 9);
   };
   window.addEventListener("resize", setWidth);
   const history = useHistory();
