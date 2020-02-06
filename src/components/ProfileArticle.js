@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import theme from "../styles/theme";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import media from "../styles/mediaQueries";
 import moment from "moment";
 
@@ -88,7 +88,13 @@ export default function ProfileCard(props) {
   const history = useHistory();
   return (
     <>
-      <StyledRegCard>
+      <StyledRegCard
+        onClick={e =>
+          e.target.name !== "delete" &&
+          e.target.name !== "edit" &&
+          history.push(`/article/${insight.custom_id}`)
+        }
+      >
         <StyledRegImageContainer>
           <img src={insight.coverImageUrl} alt={insight.title} />
         </StyledRegImageContainer>
@@ -114,14 +120,13 @@ export default function ProfileCard(props) {
           {personal && (
             <div className="crud-btns">
               <button
-                onClick={() =>
-                  history.push(`/article/${insight.custom_id}/edit`)
-                }
                 name="edit"
+                onClick={() => history.push(`/edit/${insight.custom_id}`)}
               >
                 EDIT
               </button>
               <button
+                name="delete"
                 onClick={() => {
                   setModalOpen(true);
                   setArticleToDelete(insight.id);
