@@ -1,32 +1,69 @@
 import styled from "styled-components";
+import media from "../../styles/mediaQueries";
 
 export const Wrapper = styled.div`
   display: flex;
   width: 100%;
-  height: 100vh;  
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  height: 100vh;
+  // box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
 `;
 
 export const AnimeSection = styled.div`
   flex: 1;
+  background: #f8d96d;
+
+  ${media.phablet`
+    display: none;
+  ;`}
+
+  img {
+    width: 600px;
+    margin-top: 7rem;
+  }
 `;
 
 export const InteractionSection = styled.div`
-  flex: 3;
+  flex: 2;
   width: 70%
+
+  ${media.phablet`
+    width: 100%;
+  ;`}
+
   background: #FFF;
   div {
     width: 85%;
+
+    ${media.phablet`
+      width: 100%
+      margin-top: 5rem;
+    ;`}
+
     margin: auto;
-    margin-top: 12rem;
+    margin-top: 16rem;
     .intro {
       margin-left: 2rem;
-      width: 490px;
+      width: 700px;
+
+      ${media.phablet`
+        width: 90%
+
+        h3 {
+          font-size: 17px;
+        }
+
+        small {
+          font-size: 12px;
+          text-align: center;
+        }
+      ;`}
+
       h3 {
         color: #272424;
-        font-size: 38px;
+        font-size: 28px;
         font-weight: bold;
         letter-spacing: 1px;
+        line-height: 50px;
         margin-bottom: 1rem;
       }
       small {
@@ -53,7 +90,7 @@ export const InteractionSection = styled.div`
         font-weight: 800;
         font-size: 16px;
         color: white;
-        background-color: #3652BF;
+        background-color: #111;
         border: none;
         border-radius: 3px;
         box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.1);
@@ -83,27 +120,27 @@ export const InteractionSection = styled.div`
         align-items: center;
         margin-bottom: 4vh;
         p {
-          font-size: 20px;
+          font-size: 14px;
         }
         img {
           width: 80%;
           height: 80%;
-          border-radius: 50%;
-          border: 4px solid #dcdcdc;
+          border-radius: 99em;
+          box-shadow: 0px 10px 20px #fff;
           &:hover {
             cursor: pointer;
           }
           &.clicked {
-            border: 10px solid #dcdcdc;
+            border: 1px solid #986C9B;
           }
         } 
       }
     }
     ul.ks-cboxtags {
       list-style: none;
-      padding: 20px;
       width: 100%;
       margin-top: 3rem;
+      margin-left: 1rem;
     }
     ul.ks-cboxtags li{
       display: inline;
@@ -111,10 +148,10 @@ export const InteractionSection = styled.div`
     ul.ks-cboxtags li label{
         box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.10);
         display: inline-block;
-        background-color: #f1f6fd;
-        border: 2px solid rgba(139, 139, 139, .3);
-        color: #adadad;
-        border-radius: 3px;
+        background: rgba(248, 217, 109, 0.1);
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 4px;
+        color: #111;
         white-space: nowrap;
         margin: 10px 3px;
         -webkit-touch-callout: none;
@@ -127,8 +164,10 @@ export const InteractionSection = styled.div`
     }
     
     ul.ks-cboxtags li label {
-        padding: 8px 12px;
+        padding: 3px 12px;
         cursor: pointer;
+        font-size: 12px;
+        font-weight: 500;
     }
     
     ul.ks-cboxtags li label::before {
@@ -152,9 +191,10 @@ export const InteractionSection = styled.div`
     }
     
     ul.ks-cboxtags li input[type="checkbox"]:checked + label {
-        border: 2px solid #2a81fb;
-        background-color: #3652BF;
-        color: #fff;
+        background: rgba(248, 217, 109, 0.1);
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 4px;
+        color: #111;
         transition: all .2s;
     }
     
@@ -170,4 +210,3 @@ export const InteractionSection = styled.div`
     }
   }
 `;
-

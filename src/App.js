@@ -32,7 +32,7 @@ function App() {
         <Route exact path="/" render={props => <Home {...props} />} />
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
-        <ProtectedRoute path="/profile" component={Profile} />
+        <ProtectedRoute path="/profile/:userid" component={Profile} />
         <ProtectedRoute path="/editprofile" component={EditProfile} />
         <ProtectedRoute path="/create" component={Editor} />
         <ProtectedRoute path="/edit/:id" component={DraftEditor} />

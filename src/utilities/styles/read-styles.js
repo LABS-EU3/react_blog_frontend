@@ -112,6 +112,13 @@ export const Body = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  h4,
+  h4 {
+    font-size: ${theme.fontSizes.lg} ${media.phablet`
+    font-size: 18px;
+    padding: 1rem;
+    ;`};
+  }
   p {
     font-size: 16px;
     font-weight: 400;
@@ -133,13 +140,13 @@ export const Body = styled.div`
     }
   }
   img {
-      padding: 1rem;
-      padding-left: 0;
-      object-fit: cover;
-      height: auto;
-      width: 100%;
-      max-height: 100%;
-      margin: 0 auto;
+    padding: 1rem;
+    padding-left: 0;
+    object-fit: cover;
+    height: auto;
+    width: 100%;
+    max-height: 100%;
+    margin: 0 auto;
   }
 `;
 
@@ -166,6 +173,7 @@ export const HiglightsTitle = styled.h4`
   ${media.phablet`
   font-size: ${theme.fontSizes.l};
   ;`}
+  margin-bottom: 1.4rem;
 `;
 
 export const Hightlight = styled.div`
@@ -214,6 +222,8 @@ export const TagsAndLikes = styled.div`
     top: 0;
     left: 0
     display: flex;
+    max-width: 100%;
+    flex-wrap: wrap;
     `}
     p {
       margin-right: 0.55rem;
@@ -225,20 +235,19 @@ export const TagsAndLikes = styled.div`
     top: 35rem;
     left: calc(100% - 25rem);
     p {
-      margin-top: -0.25rem;
       font-family: ${theme.fonts.Merriweather};
       font-weight: normal;
       ${media.midpc`
       display: flex;
-      margin-top: 1rem;
       margin-left: .75rem;
+      margin-top: -4rem;
       `}
     }
     svg {
       transition: all 0.3s ease-in-out;
       padding: 0.15rem;
-      pointer-events: ${props => props.hasLiked ? 'none' : 'auto'}
-      cursor: ${props => props.hasLiked ? 'none' : 'pointer'}
+      pointer-events: ${props => (props.hasLiked ? "none" : "auto")}
+      cursor: ${props => (props.hasLiked ? "none" : "pointer")}
       &:hover {
         transform: scale(1.2);
       }
@@ -249,7 +258,8 @@ export const TagsAndLikes = styled.div`
     top: 0;
     left: 0
     display: flex;
-    margin-top: 1rem;
+    margin-top: .1rem;
+    flex-direction: column;
     `}
   }
 

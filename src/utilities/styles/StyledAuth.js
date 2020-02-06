@@ -41,6 +41,7 @@ export const RightSection = styled.div`
   p {
     margin-top: 1rem;
     margin-left: 3.5rem;
+    font-size: 13px;
   }
 
   a {
