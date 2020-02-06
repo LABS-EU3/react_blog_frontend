@@ -68,7 +68,9 @@ export default function FollowingCard({ insight }) {
           <img src={insight.coverImageUrl} alt={insight.title} />
         </StyledFollowingImageContainer>
         <StyledFollowingText>
-          <p>{insight.author.toUpperCase()}</p>
+        <Link to={`/profile/${insight.authorId}`}>
+             <p>{insight.author.toUpperCase()}</p>
+        </Link>
           <h5>{insight.title.substring(0, 30)}...</h5>
           <div className="info">
             <p>{moment(insight.createdAt).format('ll')}</p>
