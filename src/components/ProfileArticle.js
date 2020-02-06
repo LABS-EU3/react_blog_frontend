@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import readTime from "../utilities/readTime";
 import theme from "../styles/theme";
 import { useHistory } from "react-router-dom";
 import media from "../styles/mediaQueries";
@@ -44,6 +43,7 @@ const StyledRegTextContent = styled.div`
   h5 {
     font-size: ${theme.fontSizes.sm};
     color: ${theme.colors.textGrey};
+    ${media.tablet`margin-bottom: 1rem;`};
   }
 
   .info {
@@ -64,6 +64,7 @@ const StyledRegTextContent = styled.div`
   .crud-btns {
     display: flex;
     justify-content: space-between;
+    ${media.tablet`margin-top: 1rem;`};
 
     button {
       border: none;
