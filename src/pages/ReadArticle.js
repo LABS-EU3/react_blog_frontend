@@ -56,34 +56,34 @@ const ReadArticle = props => {
   const content = JSON.parse(articleBody);
 
   // eslint-disable-next-line array-callback-return
-  const text = content.map(item => {
-    if (typeof item.data.text === "string") {
-      return item.data.text;
-    }
-  });
-  const message = text.join("");
+  // const text = content.map(item => {
+  //   if (typeof item.data.text === "string") {
+  //     return item.data.text;
+  //   }
+  // });
+  // const message = text.join("");
 
-  const synth = window.speechSynthesis;
+  // const synth = window.speechSynthesis;
 
-  const queue = (text, rate, pitch, voiceIndex) => {
-    let utter = new SpeechSynthesisUtterance();
-    utter.text = text;
-    utter.rate = rate || 1;
-    utter.pitch = pitch || 1;
-    synth.speak(utter);
-  };
+  // const queue = (text, rate, pitch, voiceIndex) => {
+  //   let utter = new SpeechSynthesisUtterance();
+  //   utter.text = text;
+  //   utter.rate = rate || 1;
+  //   utter.pitch = pitch || 1;
+  //   synth.speak(utter);
+  // };
 
-  const handleSpeak = () => {
-    queue(message);
-  };
+  // const handleSpeak = () => {
+  //   queue(message);
+  // };
 
-  const handlePause = () => {
-    synth.pause();
-  };
+  // const handlePause = () => {
+  //   synth.pause();
+  // };
 
-  const handleResume = () => {
-    synth.resume();
-  };
+  // const handleResume = () => {
+  //   synth.resume();
+  // };
   console.log(loading, "loading");
   return (
     <>
@@ -109,7 +109,7 @@ const ReadArticle = props => {
                 </span>
               )}
             </div>
-            <div className="speech">
+            {/* <div className="speech">
               <img
                 onClick={handlePause}
                 src={pause}
@@ -129,7 +129,7 @@ const ReadArticle = props => {
                 title="continue"
                 alt="read out text aloud"
               />
-            </div>
+            </div> */}
           </DetailsContainer>
           <Details></Details>
           <Highligter article={singleArticle}>
