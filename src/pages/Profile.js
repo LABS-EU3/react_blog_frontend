@@ -61,6 +61,7 @@ const StyledUserArticles = styled.div`
       font-size: ${theme.fontSizes.xxl};
       font-family: ${theme.fonts.Oswald};
       font-weight: bold !important;
+      ${media.mobile`font-size: ${theme.fontSizes.l}`};
     }
   }
   .articles {
