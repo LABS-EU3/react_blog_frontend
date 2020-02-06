@@ -31,12 +31,11 @@ function Final(props) {
   const handleChange = e => {
     const item = e.target.value;
     const isChecked = e.target.checked;
-    console.log(e.target.checked);
     setCheckeditems(checkItems => checkItems.set(item, isChecked));
-    console.log([...checkItems]);
   };
 
   const handleSubmit = () => {
+    getUsersToFollow();
     let interests = [];
     // eslint-disable-next-line array-callback-return
     [...checkItems].map(interest => {
@@ -50,12 +49,10 @@ function Final(props) {
     });
   };
 
-  const handleFollowClick = (e, userId) => {
-    if (follow.includes(userId) && e.target.classList.contains("clicked")) {
-      e.target.classList.remove("clicked");
+  const handleFollowClick = (userId) => {
+    if (follow.includes(userId)) {
       setFollow(follow.filter(id => id !== userId));
     } else {
-      e.target.classList.add("clicked");
       setFollow(follow.concat(userId));
     }
   };
@@ -67,8 +64,7 @@ function Final(props) {
 
   useEffect(() => {
     getTags();
-    getUsersToFollow();
-  }, []);
+  }, [getTags]);
 
   if (stage === 1) {
     view = (
@@ -119,11 +115,11 @@ function Final(props) {
             usersToFollow.map(user => {
               return (
                 <div className="userCard" key={user.id}>
-                  {/* <UserCard user={user} handleFollowClick={handleFollowClick}/> */}
                   <img
+                    className={follow.includes(user.id) ? 'clicked': ''}
                     src={user.avatarUrl || userIcon}
                     alt="#"
-                    onClick={e => handleFollowClick(e, user.id)}
+                    onClick={e => handleFollowClick(user.id)}
                   />
                   <p>{user.fullname}</p>
                 </div>
@@ -138,7 +134,7 @@ function Final(props) {
           >
             Skip
           </button>
-          <button onClick={handleFollowSubmit}>Next &nbsp;&nbsp; &rarr;</button>
+          <button onClick={handleFollowSubmit}>Finish</button>
         </div>
       </div>
     );

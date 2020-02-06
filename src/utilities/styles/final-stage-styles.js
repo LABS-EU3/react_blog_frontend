@@ -88,13 +88,13 @@ export const InteractionSection = styled.div`
         img {
           width: 80%;
           height: 80%;
-          border-radius: 50%;
-          border: 4px solid #dcdcdc;
+          border-radius: 99em;
+          box-shadow: 0px 10px 20px #fff;
           &:hover {
             cursor: pointer;
           }
           &.clicked {
-            border: 10px solid #dcdcdc;
+            border: 1px solid #986C9B;
           }
         } 
       }
