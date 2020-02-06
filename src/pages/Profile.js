@@ -67,7 +67,10 @@ const StyledUserArticles = styled.div`
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
+    @media (min-width: 300px) and (max-width: 810px) {
+      justify-content: center;
+    }
   }
 `;
 
