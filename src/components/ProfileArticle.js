@@ -1,8 +1,8 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import readTime from "../utilities/readTime";
 import theme from "../styles/theme";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import media from "../styles/mediaQueries";
 import moment from "moment";
 
@@ -81,6 +81,7 @@ export default function ProfileCard(props) {
         window.innerWidth <= 540 ? setVw(window.innerWidth/2) : setVw(window.innerWidth / 8);
     };
     window.addEventListener("resize", setWidth);
+    const history = useHistory();
     return (
         <>
       {/* <Link to={`/article/${insight.custom_id}`}> */}
@@ -108,7 +109,7 @@ export default function ProfileCard(props) {
               </p>
             </div>
             {personal && <div className="crud-btns">
-                <button>EDIT</button>
+                <button onClick={() => history.push(`/article/${insight.custom_id}/edit`)}>EDIT</button>
                 <button
                 onClick={() => {
                     setModalOpen(true);
